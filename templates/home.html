@@ -1,101 +1,126 @@
 {% extends "base.html" %}
-{% from "_karte.html" import karte, liste %}
+{% from "_teaser.html" import teaser, img, textlist %}
 {% block bodyclass %}home{% endblock %}
 {% block content %}
 {% set root = '../' * depth %}
 
-<!-- ===== SLIDER ===== -->
-<section class="slider sec-dark" id="slider" aria-roledescription="Karussell" aria-label="Aufmacher">
-  <div class="slides">
-    {% for a in featured %}
-    <a class="slide{% if loop.first %} is-active{% endif %}" href="{{ root }}artikel/{{ a.slug }}/" data-i="{{ loop.index0 }}">
-      <img src="{{ root }}assets/img/{{ a.bild }}.jpg" alt="{{ a.bild_alt }}" width="1600" height="1067"{% if not loop.first %} loading="lazy"{% endif %}>
-      <div class="slide-copy container">
-        <div class="slide-meta"><span class="ressort-tag light">{{ a.ressort_name }}</span><time datetime="{{ a.datum_iso }}">{{ a.datum_de }}</time></div>
-        <h2>{{ a.title }}</h2>
-        <p>{{ a.dek }}</p>
-        <span class="slide-cta">Artikel lesen</span>
+<!-- ===== TOP-THEMEN (Aufmacher + Leiste) ===== -->
+<section class="top container" id="top" data-slider>
+  <div class="top-grid">
+    <div class="top-stage" aria-roledescription="Karussell" aria-label="Top-Themen">
+      {% for a in featured %}
+      <a class="top-slide{% if loop.first %} is-active{% endif %}" href="{{ root }}artikel/{{ a.slug }}/" data-i="{{ loop.index0 }}"{% if not loop.first %} aria-hidden="true" tabindex="-1"{% endif %}>
+        {{ img(a, root, big=True, lazy=not loop.first) }}
+        <div class="top-copy">
+          <span class="t-kicker light">{{ a.ressort_name }} · {{ a.datum_kurz }}</span>
+          <h2>{{ a.title }}</h2>
+          <p>{{ a.dek }}</p>
+        </div>
+      </a>
+      {% endfor %}
+      <div class="top-ctrl">
+        <button type="button" class="top-btn" data-dir="-1" aria-label="Vorheriger Beitrag">&#8249;</button>
+        <span class="top-count"><b data-count>1</b> / {{ featured|length }}</span>
+        <button type="button" class="top-btn" data-dir="1" aria-label="Nächster Beitrag">&#8250;</button>
       </div>
-    </a>
-    {% endfor %}
-  </div>
-  <div class="slider-nav container">
-    <button type="button" class="slider-btn" data-dir="-1" aria-label="Vorheriger Beitrag">‹</button>
-    <div class="slider-dots">{% for a in featured %}<button type="button" class="dot{% if loop.first %} is-active{% endif %}" data-i="{{ loop.index0 }}" aria-label="Beitrag {{ loop.index }}"></button>{% endfor %}</div>
-    <button type="button" class="slider-btn" data-dir="1" aria-label="Nächster Beitrag">›</button>
-  </div>
-</section>
-
-<!-- ===== AKTUELL ===== -->
-<section class="sec-light" id="aktuell">
-  <div class="container">
-    <div class="sec-head"><h2 class="sec-title">Aktuell</h2><a class="sec-more" href="{{ root }}artikel/">Alle {{ anzahl }} Artikel</a></div>
-    <div class="karten-grid">
-      {% for a in latest %}{{ karte(a, root) }}{% endfor %}
+    </div>
+    <div class="top-rail">
+      <h3 class="rail-title">Top-Themen</h3>
+      <ol class="rail">
+        {% for a in featured %}
+        <li><button type="button" class="rail-item{% if loop.first %} is-active{% endif %}" data-i="{{ loop.index0 }}" aria-label="Beitrag {{ loop.index }} anzeigen">
+          <span class="rail-img">{{ img(a, root) }}</span>
+          <span class="rail-text"><span class="t-meta"><span class="t-ressort">{{ a.ressort_kurz }}</span><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></span><span class="rail-h">{{ a.title }}</span></span>
+          <span class="rail-prog" aria-hidden="true"></span>
+        </button></li>
+        {% endfor %}
+      </ol>
     </div>
   </div>
 </section>
 
-<!-- ===== AUSGABE + MEISTGELESEN ===== -->
-<section class="sec-paper" id="ausgabe">
-  <div class="container zweispalt">
-    <div>
-      {% if aktuelle_ausgabe %}
-      <div class="ausgabe-box">
-        <a class="ausgabe-cover" href="{{ root }}ausgaben/{{ aktuelle_ausgabe.ym }}/">
-          <img src="{{ root }}assets/img/{{ aktuelle_ausgabe.lead.bild }}.jpg" alt="" loading="lazy">
-          <div class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">{{ aktuelle_ausgabe.label }}</span><span class="cover-titel">{{ aktuelle_ausgabe.titel }}</span></div>
+<!-- ===== AKTUELL + SEITENLEISTE ===== -->
+<section class="container main-grid">
+  <div class="col-main">
+    <div class="rubrik"><h2>Aktuell</h2><a class="rubrik-more" href="{{ root }}artikel/">Alle {{ anzahl }} Beiträge</a></div>
+    <div class="river">
+      {% for a in river %}{{ teaser(a, root, 'horiz') }}{% endfor %}
+    </div>
+    <div class="river-more"><a class="btn ghost" href="{{ root }}artikel/">Zum Archiv</a></div>
+  </div>
+  <aside class="col-side">
+    {% if aktuelle_ausgabe %}
+    <div class="box box-ausgabe">
+      <h3 class="box-title">Aktuelle Ausgabe</h3>
+      <div class="box-ausgabe-grid">
+        <a class="cover" href="{{ root }}ausgaben/{{ aktuelle_ausgabe.ym }}/">
+          <img src="{{ root }}assets/img/{{ aktuelle_ausgabe.lead.bild }}-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+          <span class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">{{ aktuelle_ausgabe.label }}</span><span class="cover-titel">{{ aktuelle_ausgabe.titel }}</span></span>
         </a>
-        <div class="ausgabe-info">
-          <span class="kicker">Die aktuelle Ausgabe</span>
-          <h2>{{ aktuelle_ausgabe.label }}: {{ aktuelle_ausgabe.titel }}</h2>
-          <p>{{ aktuelle_ausgabe.editorial }}</p>
-          <ul class="inhalt-liste">{% for a in aktuelle_ausgabe.artikel[:5] %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></li>{% endfor %}</ul>
-          <div class="btn-row"><a class="btn" href="{{ root }}{{ aktuelle_ausgabe.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn ghost" href="{{ root }}ausgaben/">Alle Ausgaben</a></div>
+        <div class="box-ausgabe-text">
+          <b>{{ aktuelle_ausgabe.label }}</b><span>{{ aktuelle_ausgabe.monat }} · {{ aktuelle_ausgabe.artikel|length }} Beiträge</span>
+          <ul class="inhalt-kurz">{% for a in aktuelle_ausgabe.artikel[:4] %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></li>{% endfor %}</ul>
+          <div class="btn-row"><a class="btn sm" href="{{ root }}{{ aktuelle_ausgabe.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="mehr-link" href="{{ root }}ausgaben/">Alle Ausgaben</a></div>
         </div>
       </div>
-      {% endif %}
     </div>
-    <aside class="seitenleiste">
-      <div class="sl-block">
-        <h3 class="sl-title">Meistgelesen</h3>
-        <ol class="rang-liste" id="meistgelesen">{% for a in meist %}<li><a href="{{ root }}artikel/{{ a.slug }}/" data-slug="{{ a.slug }}"><span class="rang">{{ loop.index }}</span><span>{{ a.title }}</span></a></li>{% endfor %}</ol>
-      </div>
-      <div class="sl-block">
-        <h3 class="sl-title">Themen</h3>
-        <div class="tag-wolke">{% for t in top_tags %}<a href="{{ root }}artikel/?q={{ t|urlencode }}">{{ t }}</a>{% endfor %}</div>
-      </div>
-      <div class="sl-block abo-block">
-        <h3 class="sl-title">Ausgabe per E-Mail</h3>
-        <p>Jeden Monat die neue Ausgabe als PDF und die wichtigsten Meldungen der Woche. Kostenlos, jederzeit abbestellbar.</p>
-        <form class="abo-form" data-abo>
-          <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email">
-          <button type="submit" class="btn block">Anmelden</button>
-          <div class="abo-note" data-abo-note></div>
-        </form>
-      </div>
-    </aside>
-  </div>
+    {% endif %}
+    <div class="box">
+      <h3 class="box-title">Meistgelesen</h3>
+      <ol class="rang" id="meistgelesen">{% for a in meist %}<li><a href="{{ root }}artikel/{{ a.slug }}/" data-slug="{{ a.slug }}"><span class="rang-nr">{{ loop.index }}</span><span class="rang-h">{{ a.title }}</span></a></li>{% endfor %}</ol>
+    </div>
+    {% if termine %}
+    <div class="box">
+      <h3 class="box-title">Termine &amp; Fristen</h3>
+      <ul class="termine">{% for t in termine[:5] %}<li><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a>{% if t.ort %}<span class="termin-ort">{{ t.ort }}</span>{% endif %}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+    <div class="box box-abo">
+      <h3 class="box-title">Ausgabe per E-Mail</h3>
+      <p>Jeden Monat die neue Ausgabe als PDF und die wichtigsten Meldungen der Woche. Kostenlos, jederzeit abbestellbar.</p>
+      <form class="abo-form" data-abo>
+        <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email" aria-label="E-Mail-Adresse">
+        <button type="submit" class="btn light block">Anmelden</button>
+        <div class="abo-note" data-abo-note></div>
+      </form>
+    </div>
+    <div class="box box-themen">
+      <h3 class="box-title">Themen</h3>
+      <div class="tag-wolke">{% for t in top_tags %}<a href="{{ root }}artikel/?q={{ t|urlencode }}">{{ t }}</a>{% endfor %}</div>
+    </div>
+  </aside>
 </section>
 
-<!-- ===== RESSORTS ===== -->
-{% for b in bloecke %}
-<section class="{{ 'sec-light' if loop.index0 % 2 == 0 else 'sec-paper' }} ressort-block">
-  <div class="container">
-    <div class="sec-head"><h2 class="sec-title"><a href="{{ root }}ressort/{{ b.ressort.slug }}/">{{ b.ressort.name }}</a></h2><a class="sec-more" href="{{ root }}ressort/{{ b.ressort.slug }}/">Mehr aus {{ b.ressort.kurz }}</a></div>
-    <div class="ressort-grid">
-      <div>{{ karte(b.artikel[0], root, 'lg') }}</div>
-      <div class="listen">{% for a in b.artikel[1:4] %}{{ liste(a, root) }}{% endfor %}</div>
+<!-- ===== AUS DEN RESSORTS ===== -->
+<section class="container ressorts">
+  <div class="rubrik"><h2>Aus den Ressorts</h2><a class="rubrik-more" href="{{ root }}artikel/">Archiv</a></div>
+  <div class="rblocks">
+    {% for b in bloecke %}
+    <div class="rblock">
+      <h3 class="rblock-title"><a href="{{ root }}ressort/{{ b.ressort.slug }}/">{{ b.ressort.name }}</a></h3>
+      {{ teaser(b.artikel[0], root, 'grid') }}
+      {{ textlist(b.artikel[1:4], root) }}
+      <a class="mehr-link" href="{{ root }}ressort/{{ b.ressort.slug }}/">Alle Beiträge aus {{ b.ressort.kurz }}</a>
     </div>
+    {% endfor %}
   </div>
 </section>
-{% endfor %}
 
 <!-- ===== SERVICE ===== -->
-<section class="sec-dark" id="service">
-  <div class="container promo-grid">
-    <div class="promo"><span class="tag">Standort-Check</span><h3>Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?</h3><p>Postleitzahl eingeben, Fachkräfte-Potenzial im 30-Kilometer-Umkreis sehen, dazu Standorttyp und drei Voraussetzungen für die Mitarbeitersuche. Kostenlos.</p><a class="btn" href="{{ root }}standort/">Standort prüfen</a></div>
-    <div class="promo"><span class="tag">Branchenumfrage 2026</span><h3>Wie finden Betriebe 2026 Mitarbeiter?</h3><p>Zwölf Fragen, drei Minuten. Die Ergebnisse veröffentlichen wir im Oktober. Als Dankeschön erhalten Teilnehmer den Standort-Check.</p><a class="btn ghost" href="{{ root }}umfrage/">An der Umfrage teilnehmen</a></div>
+<section class="service-band">
+  <div class="container service-grid">
+    <div class="service">
+      <span class="t-kicker light">Standort-Check</span>
+      <h3>Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?</h3>
+      <p>Postleitzahl eingeben, Fachkräfte-Potenzial im 30-Kilometer-Umkreis sehen, dazu Standorttyp und drei Voraussetzungen für die Mitarbeitersuche. Kostenlos.</p>
+      <a class="btn light" href="{{ root }}standort/">Standort prüfen</a>
+    </div>
+    <div class="service">
+      <span class="t-kicker light">Branchenumfrage 2026</span>
+      <h3>Wie finden Betriebe 2026 Mitarbeiter?</h3>
+      <p>Zwölf Fragen, drei Minuten. Die Ergebnisse veröffentlichen wir im Oktober. Als Dankeschön erhalten Teilnehmer den Standort-Check.</p>
+      <a class="btn ghost light" href="{{ root }}umfrage/">An der Umfrage teilnehmen</a>
+    </div>
   </div>
 </section>
 {% endblock %}

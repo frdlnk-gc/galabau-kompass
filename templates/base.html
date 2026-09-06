@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0A1710">
   <title>{% block title %}{{ site.name }} – {{ site.claim }}{% endblock %}</title>
   <meta name="description" content="{% block description %}{{ site.claim }}: Betrieb, Recht, Technik, Bauen, Markt, Sicherheit, Karriere.{% endblock %}">
   <meta property="og:site_name" content="{{ site.name }}">
@@ -20,8 +21,9 @@
   {% block head %}{% endblock %}
 </head>
 <body data-depth="{{ depth }}" class="{% block bodyclass %}{% endblock %}">
+  <a class="skip" href="#inhalt">Zum Inhalt</a>
   <header data-kompass-header></header>
-  <main>
+  <main id="inhalt">
   {% block content %}{% endblock %}
   </main>
   <footer data-kompass-footer></footer>
