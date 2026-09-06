@@ -71,7 +71,7 @@ def build():
             "ressort": meta["ressort"], "ressort_name": ressorts[meta["ressort"]]["name"], "tags": [str(t) for t in (meta.get("tags") or [])],
             "bild": meta.get("bild", slug), "bild_alt": meta.get("bild_alt", meta["title"]), "bild_caption": meta.get("bild_caption", ""), "bild_prompt": meta.get("bild_prompt", ""),
             "relevanz": int(meta.get("relevanz", 50)), "featured": bool(meta.get("featured", False)), "autor": meta.get("autor", "Redaktion GaLaBau Kompass"),
-            "lesezeit": max(1, round(n / 210)), "woerter": n, "quellen": meta.get("quellen", []), "stimmen": meta.get("stimmen", []),
+            "lesezeit": max(1, -(-n // 180)),  # aufrunden, ~180 Wörter/Min (deutsch) "woerter": n, "quellen": meta.get("quellen", []), "stimmen": meta.get("stimmen", []),
             "html": html, "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip(),
             "ausgabe": datum.strftime("%Y-%m"),
         }
