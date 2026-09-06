@@ -8,6 +8,10 @@ bild_alt: "Verwaister Rohbau einer Wohnanlage mit unfertiger Außenanlage, Bauza
 bild_prompt: "An abandoned residential construction site in Germany with an unfinished outdoor area, closed construction fence, weeds growing through gravel, overcast summer day, realistic documentary photo, no text."
 bild_caption: "Wenn der Bauträger fällt, bleibt die Außenanlage liegen – und die letzte Abschlagsrechnung offen."
 relevanz: 63
+kurz:
+  - '12.900 Unternehmensinsolvenzen im ersten Halbjahr 2026 (plus 7,8 Prozent), höchster Stand seit 2013; Bau plus 4,5 Prozent, Dienstleistungen plus 12,6 Prozent.'
+  - 'Rund 165.000 betroffene Arbeitsplätze und 28,5 Milliarden Euro Schäden; Creditreform erwartet eine Stabilisierung frühestens 2027.'
+  - 'Für Betriebe: Abschlagsrechnungen, Bonitätsprüfung und Bauhandwerkersicherung nach § 650f BGB – die Außenanlage ist das letzte Gewerk und die letzte offene Rechnung.'
 quellen:
   - t: "Creditreform: Insolvenzen in Deutschland, 1. Halbjahr 2026, 23. Juni 2026 (12.900 Unternehmensinsolvenzen, +7,8 Prozent; Baugewerbe +4,5 Prozent; Dienstleistungen +12,6 Prozent; Handel −1,3 Prozent; rund 165.000 betroffene Arbeitsplätze; rund 28,5 Milliarden Euro Schäden; rund 38.800 Verbraucherinsolvenzen, +2,3 Prozent)"
     u: "https://www.creditreform.de/aktuelles-wissen/pressemeldungen-fachbeitraege/news-details/show/insolvenzen-in-deutschland-1-halbjahr-2026"

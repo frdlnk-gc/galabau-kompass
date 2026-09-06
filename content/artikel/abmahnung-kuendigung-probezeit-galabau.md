@@ -8,6 +8,10 @@ bild_alt: "Inhaber eines Landschaftsbaubetriebs sitzt mit einem Mitarbeiter im B
 bild_prompt: "The owner of a small German landscaping company and an employee in work clothes sitting at an office desk, a printed letter between them, serious but calm mood, filing cabinets in the background, winter light, realistic documentary photo, no text."
 bild_caption: "Eine Kündigung per WhatsApp ist keine Kündigung: Ohne Unterschrift auf Papier läuft das Arbeitsverhältnis weiter."
 relevanz: 58
+kurz:
+  - 'Probezeit maximal sechs Monate mit zwei Wochen Frist; Kündigungsschutz ab elf Arbeitnehmern und nach sechs Monaten Wartezeit.'
+  - 'Abmahnung konkret mit Datum, Ort, Verstoß und Warnung; Kündigung nur schriftlich mit Unterschrift – WhatsApp und E-Mail zählen nicht.'
+  - 'Fristlos nur bei wichtigem Grund innerhalb von zwei Wochen; Azubis nach der Probezeit nur aus wichtigem Grund; Klagefrist drei Wochen.'
 quellen:
   - t: "Bürgerliches Gesetzbuch, § 622 Kündigungsfristen bei Arbeitsverhältnissen, § 623 Schriftform der Kündigung, § 626 Fristlose Kündigung aus wichtigem Grund"
     u: "https://www.gesetze-im-internet.de/bgb/__622.html"

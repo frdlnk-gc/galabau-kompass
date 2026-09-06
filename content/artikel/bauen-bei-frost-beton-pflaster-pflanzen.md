@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner deckt frisch gesetzte Betonfundamente mit Wärmed
 bild_prompt: "Landscape construction workers covering freshly poured concrete foundations with insulating mats on a frosty German building site, hoarfrost on the ground, low winter sun, realistic documentary photo, no text."
 bild_caption: "Beton, der im Dezember friert, meldet sich im April: als Abplatzung, Riss oder lockere Palisade."
 relevanz: 47
+kurz:
+  - 'DIN 1045-3: Zwischen +5 und −3 Grad muss der Frischbeton mindestens +5 Grad haben, unter −3 Grad +10 Grad und drei Tage Schutz; nie auf gefrorenen Boden betonieren.'
+  - 'Mörtel und Kleber enden bei +5 Grad; gefrorene Bettung und gefrorenes Planum lassen sich nicht verdichten – Pflastern bei Frost produziert Setzungen mit Garantieanspruch.'
+  - 'Pflanzen nur in frostfreiem Boden; seit 1. Dezember steht Saison-Kurzarbeit als Alternative zum Weiterbauen um jeden Preis bereit.'
 quellen:
   - t: "DIN 1045-3: Tragwerke aus Beton, Stahlbeton und Spannbeton – Teil 3: Bauausführung (Betonieren bei kalter Witterung)"
   - t: "DIN 18318: VOB Teil C – Verkehrswegebauarbeiten – Pflasterdecken und Plattenbeläge, Einfassungen"

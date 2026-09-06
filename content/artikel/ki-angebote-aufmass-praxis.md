@@ -8,6 +8,10 @@ bild_alt: "Bauleiter steuert eine Vermessungsdrohne über einer Gartenbaustelle 
 bild_prompt: "A landscaping site manager flying a small surveying drone over a private garden construction site in Germany while checking a tablet, June light, realistic documentary style, no text on screens."
 bild_caption: "Drohne, Laserscanner oder Messapp: Das Aufmaß ist der Bereich, in dem Digitalisierung im GaLaBau am schnellsten Geld spart."
 relevanz: 72
+kurz:
+  - 'Aufmaß ist der Bereich mit dem klarsten Nutzen: Drohne, Scanner und Messapps liefern Flächen, Höhen und Volumen in Minuten.'
+  - 'Angebote: KI-Module wie Aura-Quote von Craftview erstellen aus einer Projektbeschreibung einen Angebotsentwurf – den der Betrieb prüft, nicht übernimmt.'
+  - 'Für Drohnen gelten Kompetenznachweis, Registrierung und Flugregeln über Wohngebieten; KI-Werkzeuge liefern Entwürfe, die Kalkulation bleibt Sache des Betriebs.'
 quellen:
   - t: "Messe Nürnberg: Handwerkersoftware und KI im GaLaBau nutzen, Juni 2026 (Drohnenvermessung, Aufmaß, KI-gestützte Planung; Softwareanbieter wie KS21 auf der GaLaBau 2026)"
     u: "https://www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkersoftware-und-ki-im-galabau"

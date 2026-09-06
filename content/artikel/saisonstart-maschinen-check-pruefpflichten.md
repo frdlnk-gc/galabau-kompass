@@ -8,6 +8,10 @@ bild_alt: "Mechaniker prüft die Hydraulikschläuche eines Minibaggers in der We
 bild_prompt: "A mechanic in a workshop hall of a German landscaping company inspecting the hydraulic hoses of a compact excavator, tool trolley beside him, early spring light through the open gate, realistic documentary photo, no text."
 bild_caption: "Der Sachkundige prüft einmal im Jahr. Die Kolonne prüft jeden Morgen."
 relevanz: 51
+kurz:
+  - 'Betriebssicherheitsverordnung § 14: Prüfung durch befähigte Personen nach Fristen aus der Gefährdungsbeurteilung – Fahrzeuge und Erdbaumaschinen jährlich, elektrische Geräte auf Baustellen alle drei Monate, Leitern und Zurrgurte jährlich.'
+  - 'Checkliste: Hydraulik, Beleuchtung, Bremsen und Ladungssicherung, Akkus, Schutzausrüstung mit Ablaufdatum, Verbandkasten nach DIN 13157.'
+  - 'Prüfungen gehören in die Schlechtwetterzeit – im März haben Werkstätten und Sachkundige keine Zeit.'
 quellen:
   - t: "Betriebssicherheitsverordnung, § 14 Prüfung von Arbeitsmitteln (Prüfung durch zur Prüfung befähigte Personen, Fristen nach Gefährdungsbeurteilung)"
     u: "https://www.gesetze-im-internet.de/betrsichv_2015/__14.html"

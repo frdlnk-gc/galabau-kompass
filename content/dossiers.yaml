@@ -1,0 +1,46 @@
+# Dossiers = Themenseiten. Ein Beitrag gehört dazu, wenn eines seiner Tags (oder sein Ressort) passt.
+- slug: fachkraefte
+  titel: Fachkräfte finden und halten
+  kurz: Fachkräfte
+  intro: "Die Frage, die in jeder Halle gestellt wird: Wo kommen die Leute her – und wie bleiben sie? Alle Beiträge zu Mitarbeitergewinnung, Bindung, Onboarding, Führung und Einwanderung."
+  tags: [Mitarbeitergewinnung, Mitarbeiterbindung, Onboarding, Führung, Kündigung, Fachkräfteeinwanderung, Probearbeit, Vorarbeiter, Arbeitsmarkt, Zeitarbeit, Mitarbeitergespräch]
+- slug: ausbildung
+  titel: Ausbildung und Nachwuchs
+  kurz: Ausbildung
+  intro: "Azubi-Zahlen, Vergütung, die erste Woche, die Pflanzenkenntnis-Prüfung, der Bildungspreis: alles rund um die Ausbildung zum Landschaftsgärtner."
+  tags: [Ausbildung, Azubis, Nachwuchs, Ausbildungsvergütung, Berufsschule, Prüfung, JArbSchG]
+- slug: tarif-lohn
+  titel: Tarif, Lohn und Gehalt
+  kurz: Tarif & Lohn
+  intro: "Ecklohn, Lohngruppen, Mindestlohn, Extras: Was der GaLaBau zahlt, was er zahlen muss und was neben dem Stundenlohn zählt."
+  tags: [Tarif, Lohn, Gehalt, Lohngruppen, Mindestlohn, Gehaltsextras, Sachbezug]
+- slug: arbeitsrecht
+  titel: Arbeitsrecht im Betriebsalltag
+  kurz: Arbeitsrecht
+  intro: "Arbeitszeit, Kündigung, Zeiterfassung, Bereitschaft, Haftung: die Regeln, die im Kolonnenalltag wirklich zählen – mit Paragraf und Quelle."
+  tags: [Arbeitsrecht, Arbeitszeit, Kündigung, Abmahnung, Zeiterfassung, Bereitschaft, Haftung, Recht]
+- slug: maschinen-technik
+  titel: Maschinen, Akkus und Elektroantriebe
+  kurz: Maschinen
+  intro: "Vom Elektro-Minibagger bis zum Profi-Mähroboter: Was die Technik kann, was sie kostet und welche Qualifikation die Kolonne dafür braucht."
+  tags: [Maschinen, E-Mobilität, Elektroantrieb, Akku, Erdbaumaschinen, Baggerschein, Mähroboter, Wartung]
+- slug: digitalisierung
+  titel: Software, Apps und KI
+  kurz: Digital
+  intro: "Aufmaß, Bautagebuch, Zeiterfassung, Angebote mit KI, E-Rechnung: die Werkzeuge, die Büro und Baustelle verbinden."
+  tags: [Digitalisierung, Software, KI, Aufmaß, Bautagebuch, E-Rechnung, Apps, Bauleiter]
+- slug: klimaanpassung
+  titel: Klimaanpassung und Wasser
+  kurz: Klima & Wasser
+  intro: "Schwammstadt, Zukunftsbäume, Bewässerung, Wasserentnahmeverbote, Gebäudegrün: die Bauaufgaben des Jahrzehnts."
+  tags: [Klimaanpassung, Schwammstadt, Bewässerung, Trockenheit, Gebäudegrün, Zukunftsbäume, Wasser, Stadtbäume]
+- slug: arbeitsschutz
+  titel: Arbeitsschutz und Gesundheit
+  kurz: Arbeitsschutz
+  intro: "Unfallzahlen, Hitze und UV, Zecken, Motorsäge, Rücken: was Betriebe tun müssen – und was sich lohnt."
+  tags: [Arbeitsschutz, Sicherheit, Unfall, Hitze, UV, Zecken, FSME, Motorsäge, Prävention, Gesundheit, DGUV]
+- slug: konjunktur
+  titel: Konjunktur und Markt
+  kurz: Konjunktur
+  intro: "Umfragen des BGL, ifo-Index, Insolvenzen, Branchenstatistik, Vergabe: die Zahlen, an denen Betriebe ihre Planung ausrichten."
+  tags: [Konjunktur, Auftragslage, Insolvenzen, Branchenstatistik, Markt, Vergabe, ifo, BGL, Nachfolge]

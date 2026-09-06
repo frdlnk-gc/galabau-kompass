@@ -8,6 +8,10 @@ bild_alt: "Inhaber eines Landschaftsbaubetriebs am Schreibtisch mit Auftragsmapp
 bild_prompt: "Owner of a German landscaping company, around fifty, sitting at a desk in a small office with order folders and a laptop, through the window a yard with green work vans and a mini excavator, November daylight."
 bild_caption: "Volle Auftragsbücher, verhaltene Erwartungen: Die Branche bleibt robust, aber ohne Wachstumsspielraum."
 relevanz: 70
+kurz:
+  - '668 Betriebe befragt: 56 Prozent gute Geschäftslage (Herbst 2024: 59 Prozent), 37 Prozent befriedigend, 7 Prozent schlecht.'
+  - '31,2 Prozent melden eine schlechtere Auftragslage; für die nächsten sechs Monate erwarten 73 Prozent Stillstand und 21 Prozent eine Verschlechterung.'
+  - 'Die Umfrage misst Stimmung, nicht Ertrag: Der Umsatz hält, die Marge nicht – ob das durchschlägt, zeigt die Frühjahrsumfrage 2026.'
 quellen:
   - t: "Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): BGL-Herbstumfrage 2025 – Geschäftslage bleibt stabil, aber wenig Wachstumsspielraum, Pressemitteilung vom 10. November 2025 (668 Betriebe)"
     u: "https://www.presseportal.de/pm/117960/6154790"

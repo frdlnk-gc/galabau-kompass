@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner hebt mit einem Vakuum-Hebegerät eine Großformat
 bild_prompt: "A landscaping worker using a vacuum lifting device to place a large concrete slab while a colleague guides it, German terrace construction site, summer light, realistic documentary photo, no text."
 bild_caption: "Ein Vakuumheber kostet weniger als drei Wochen Ausfall eines Facharbeiters."
 relevanz: 54
+kurz:
+  - 'DAK: Krankenstand 5,3 Prozent im ersten Halbjahr 2026 (Vorjahr 5,4), 9,7 Tage je Fall; psychische Erkrankungen erstmals vorn (plus 9 Prozent), Atemwege minus 21 Prozent.'
+  - 'Landschaftsgärtner sind seltener krank, aber länger: Muskel-Skelett-Erkrankungen bleiben die Ursache Nummer eins der Branche.'
+  - 'Ab sechs Wochen Arbeitsunfähigkeit im Jahr ist das betriebliche Eingliederungsmanagement Pflicht (§ 167 SGB IX); Vakuumheber und Rotation sind billiger als drei Wochen Ausfall.'
 quellen:
   - t: "DAK-Gesundheit: Krankenstand im ersten Halbjahr 2026 leicht gesunken, Pressemitteilung vom 20. Juli 2026 (5,3 Prozent nach 5,4 Prozent; 9,7 Tage je Fall nach 9,5; psychische Erkrankungen +9 Prozent, Atemwegserkrankungen −21 Prozent)"
     u: "https://www.dak.de/presse/bundesthemen/gesundheitsreport/krankenstand-im-ersten-halbjahr-2026-leicht-gesunken_223354"

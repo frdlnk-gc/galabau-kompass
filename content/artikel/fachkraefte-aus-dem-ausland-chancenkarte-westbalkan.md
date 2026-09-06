@@ -8,6 +8,10 @@ bild_alt: "Internationales Team einer Landschaftsbaukolonne bespricht am Morgen 
 bild_prompt: "A diverse landscaping crew of four men and women in green work clothes discussing a site plan next to a truck in a German company yard on a cold December morning, breath visible, realistic documentary photo, no text."
 bild_caption: "Der Weg über die Westbalkanregelung braucht keine Anerkennung – aber Geduld bei der Visastelle."
 relevanz: 60
+kurz:
+  - 'Drei Wege seit Juni 2024: Westbalkanregelung (50.000 Zustimmungen pro Jahr, ohne Anerkennung), Fachkraft mit anerkannter Ausbildung samt Anerkennungspartnerschaft, Chancenkarte zur Jobsuche.'
+  - 'Für den GaLaBau ist die Westbalkanregelung der praktikabelste Weg – der Engpass sind die Wartezeiten der Visastellen.'
+  - 'Das Ankommen entscheidet: Wohnung, Konto, Krankenkasse, Führerschein – wer eine Person im Betrieb dafür benennt, behält die Fachkraft.'
 quellen:
   - t: "Bundesministerium des Innern: Mehr Anreize für dringend benötigte Fachkräfte – Punktesystem für die Chancenkarte gilt ab 1. Juni 2024, Pressemitteilung vom 31. Mai 2024"
     u: "https://www.bmi.bund.de/SharedDocs/pressemitteilungen/DE/2024/05/chancenkarte-feg.html"

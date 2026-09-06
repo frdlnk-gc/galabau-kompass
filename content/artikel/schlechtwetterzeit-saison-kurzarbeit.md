@@ -8,6 +8,10 @@ bild_alt: "Verschneiter Betriebshof eines Landschaftsbaubetriebs mit abgestellte
 bild_prompt: "A snow-covered yard of a German landscaping company with parked mini excavators, trailers and stacked paving stones under tarps, overcast winter morning, quiet atmosphere, no people, realistic."
 bild_caption: "Wenn der Hof ruht: Saison-Kurzarbeit überbrückt die Monate, in denen draußen nichts geht."
 relevanz: 72
+kurz:
+  - 'Vom 1. Dezember bis 31. März können GaLaBau-Betriebe Saison-Kurzarbeitergeld beantragen – 60 beziehungsweise 67 Prozent des ausgefallenen Nettoentgelts, ohne Wartezeit.'
+  - 'Dazu Zuschuss-Wintergeld bis 2,50 Euro je ausgefallener Stunde beim Abbau von Arbeitszeitguthaben und Mehraufwands-Wintergeld von 1,00 Euro je geleisteter Stunde vom 15. Dezember bis Ende Februar.'
+  - 'Der Zweck ist halten statt entlassen: Wer im November kündigt, findet im April bei 262 Tagen Vakanzzeit niemanden.'
 quellen:
   - t: "§ 101 SGB III – Saison-Kurzarbeitergeld (Schlechtwetterzeit 1. Dezember bis 31. März)"
     u: "https://www.gesetze-im-internet.de/sgb_3/__101.html"

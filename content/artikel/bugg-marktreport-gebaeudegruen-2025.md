@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner verlegen Substrat und Sedum-Matten auf einem Flac
 bild_prompt: "Two landscapers installing sedum mats and substrate on a flat green roof of a modern building, German city skyline in the background, safety harnesses, clear winter light, realistic documentary style."
 bild_caption: "Extensive Dachbegrünung: 2024 wurden bundesweit rund neun Millionen Quadratmeter neu angelegt."
 relevanz: 74
+kurz:
+  - '2024 wurden rund neun Millionen Quadratmeter Dach neu begrünt – 12,8 Prozent der rund 69 Millionen Quadratmeter neuer Flachdächer.'
+  - 'Der Gründachbestand liegt bei rund 200 Millionen Quadratmetern; Fassadenbegrünung kam 2024 auf 137.100 neue Quadratmeter.'
+  - 'Treiber 2026: Festsetzungen in Bebauungsplänen, kommunale Förderung, Klimaanpassung – ein Geschäftsfeld, das weniger konjunkturabhängig ist als der Privatgarten.'
 quellen:
   - t: "Bundesverband GebäudeGrün e. V. (BuGG): BuGG-Marktreport Gebäudegrün 2025, veröffentlicht 16. Dezember 2025 (Dachbegrünung 2024: rund 9 Mio. m², 12,8 % der rund 69 Mio. m² neuer Flachdächer; Fassadenbegrünung 137.100 m²; Bestand rund 200 Mio. m²), zitiert nach baulinks.de"
     u: "https://www.baulinks.de/webplugin/2025/1812.php4"

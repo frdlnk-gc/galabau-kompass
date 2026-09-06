@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner in Schnittschutzkleidung fällt mit der Motorsäg
 bild_prompt: "A landscaping worker in full chainsaw protective gear cutting a small tree in a German park in winter while a colleague keeps the retreat path clear, sawdust in the air, overcast light, realistic documentary photo, no text."
 bild_caption: "Modul A reicht für Bäume bis 20 Zentimeter Durchmesser. Alles darüber ist Modul B."
 relevanz: 54
+kurz:
+  - 'Modul A: zwei Tage, 16 Unterrichtseinheiten, Fällung bis 20 Zentimeter; Modul B: 24 Einheiten für stärkere Bäume, Voraussetzung ist Modul A.'
+  - 'Der Schein ersetzt weder die jährliche Unterweisung nach DGUV Vorschrift 1 noch die Ausrüstung: Schnittschutzhose, Stiefel, Helm mit Visier und Gehörschutz.'
+  - 'Bewährt: Modul A für alle, die regelmäßig sägen, Modul B für zwei bis drei erfahrene Mitarbeiter; Lehrgänge im Winter buchen.'
 quellen:
   - t: "DGUV Information 214-059: Ausbildung für Arbeiten mit der Motorsäge und die Durchführung von Baumarbeiten"
     u: "https://publikationen.dguv.de/regelwerk/dguv-informationen/1296/ausbildung-fuer-arbeiten-mit-der-motorsaege-und-die-durchfuehrung-von-baumarbeiten"

@@ -1,45 +1,64 @@
 name: GaLaBau Kompass
 claim: Das Magazin für den Garten- und Landschaftsbau
+seit: 2025
 domain: galabau-kompass.de
 preview_url: https://frdlnk-gc.github.io/galabau-kompass
 api_base: https://gc-tracking-dashboard.vercel.app/api/public/kompass
 redaktion_mail: redaktion@galabau-kompass.de
 
-# Reihenfolge = Navigation. Die ersten sechs stehen in der Hauptleiste,
-# der Rest unter „Mehr“ und im mobilen Menü.
+# Reihenfolge = Navigation. `nav` ist das kurze Label in der Ressortleiste (Zeitungsstil),
+# `name` der volle Name, `kurz` das Kurzwort in Teasern.
 ressorts:
   - slug: betrieb-personal
     name: Betrieb & Personal
     kurz: Betrieb
+    nav: Betrieb
     beschreibung: "Mitarbeiter gewinnen und halten, Ausbildung, Führung, Organisation – alles, was den Betrieb am Laufen hält."
   - slug: recht-tarif
     name: Recht & Tarif
     kurz: Recht
+    nav: Recht
     beschreibung: "Tarifabschlüsse, Arbeitsrecht, Haftung, Pflichten – verständlich erklärt und mit Quelle."
   - slug: technik-digital
     name: Technik & Digital
     kurz: Technik
+    nav: Technik
     beschreibung: "Maschinen, Elektroantriebe, Software, KI, Aufmaß und Dokumentation."
+  - slug: produkte
+    name: Produkte & Software
+    kurz: Produkte
+    nav: Produkte
+    beschreibung: "Maschinen, Geräte, Apps und Branchensoftware im Steckbrief – mit Preisen, Grenzen und der Frage, für wen sich das lohnt. Keine bezahlten Platzierungen."
   - slug: bauen-pflanzen
     name: Bauen & Pflanzen
     kurz: Bauen
+    nav: Bauen
     beschreibung: "Klimaanpassung, Gebäudegrün, Baumarten, Bewässerung, Pflanzenschutz."
   - slug: markt-politik
     name: Markt & Politik
     kurz: Markt
+    nav: Markt
     beschreibung: "Konjunktur, Branchenstatistik, Verbände, Förderung, Vergabe."
   - slug: sicherheit-gesundheit
     name: Sicherheit & Gesundheit
     kurz: Sicherheit
+    nav: Sicherheit
     beschreibung: "Unfallzahlen, Hitze und UV, Absturz, Lärm, Prävention."
   - slug: karriere
     name: Karriere & Weiterbildung
     kurz: Karriere
+    nav: Karriere
     beschreibung: "Für Fachkräfte, Vorarbeiter und Bauleiter: Wege, Werkzeuge, Weiterbildung."
   - slug: messe-termine
     name: Messe & Termine
     kurz: Termine
+    nav: Termine
     beschreibung: "GaLaBau in Nürnberg, Gartenschauen, Preise, Veranstaltungen."
+  - slug: standpunkt
+    name: Standpunkt
+    kurz: Standpunkt
+    nav: Standpunkt
+    beschreibung: "Kommentare der Redaktion zu den Fragen, die die Branche bewegen. Klar gekennzeichnet, klar formuliert."
 
 service:
   - href: standort/
@@ -48,5 +67,5 @@ service:
     label: Branchenumfrage 2026
   - href: ausgaben/
     label: Ausgaben (PDF)
-  - href: abo/
-    label: Ausgabe per E-Mail
+  - href: newsletter/
+    label: Newsletter

@@ -8,6 +8,10 @@ bild_alt: "Fahrer eines Räumfahrzeugs mit Streuer prüft am frühen Morgen die 
 bild_prompt: "A driver checking a small snow plough and salt spreader mounted on a pickup truck in the yard of a German landscaping company at dawn, first frost on the ground, headlights on, realistic documentary photo, no text."
 bild_caption: "Wer um 3 Uhr räumt, darf um 7 Uhr nicht auf die Baustelle: Die Ruhezeit gilt auch im Winterdienst."
 relevanz: 51
+kurz:
+  - 'Rufbereitschaft ist keine Arbeitszeit, Bereitschaftsdienst schon – für den Winterdienst ist die Rufbereitschaft das Modell, aber nur mit Vereinbarung.'
+  - 'Elf Stunden Ruhezeit gelten auch nach dem Nachteinsatz: Wer von 3 bis 6 Uhr räumt, darf nicht um 7 Uhr auf die Baustelle – zwei Teams sind das Minimum.'
+  - 'Pauschale für die Bereitschaft, Zuschläge für Nacht, Sonn- und Feiertag, Einsatzprotokoll mit Uhrzeit: September Verträge, Oktober Vereinbarungen, November Probelauf.'
 quellen:
   - t: "Arbeitszeitgesetz, § 5 Ruhezeit (elf Stunden), § 6 Nacht- und Schichtarbeit (angemessener Zuschlag oder Freizeitausgleich), § 10 Sonn- und Feiertagsbeschäftigung"
     u: "https://www.gesetze-im-internet.de/arbzg/__5.html"

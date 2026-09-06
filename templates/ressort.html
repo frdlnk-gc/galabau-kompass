@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_teaser.html" import teaser %}
+{% from "_teaser.html" import teaser, meldungsliste %}
 {% set root = '../' * depth %}
 {% block title %}{{ ressort.name }} | {{ site.name }}{% endblock %}
 {% block description %}{{ ressort.beschreibung }}{% endblock %}
@@ -22,6 +22,10 @@
   <div class="river" data-mehr-liste data-schritt="6">{% for a in artikel[7:] %}{{ teaser(a, root, 'horiz') }}{% endfor %}</div>
   <div class="center mt-s"><button type="button" class="btn ghost" data-mehr-btn hidden>Weitere Beiträge laden</button></div>
   {% endif %}
-  {% else %}<p class="muted">In diesem Ressort erscheinen in Kürze Beiträge.</p>{% endif %}
+  {% elif not meldungen %}<p class="muted mt-s">In diesem Ressort erscheinen in Kürze Beiträge.</p>{% endif %}
+  {% if meldungen %}
+  <div class="rubrik mt"><h2>Kurz gemeldet</h2><span class="rubrik-note">{{ meldungen|length }} Meldungen</span></div>
+  <div class="meldungen-breit">{{ meldungsliste(meldungen, root) }}</div>
+  {% endif %}
 </section>
 {% endblock %}

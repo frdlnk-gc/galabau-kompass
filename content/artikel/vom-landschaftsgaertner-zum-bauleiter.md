@@ -8,6 +8,10 @@ bild_alt: "Bauleiter erklärt zwei Landschaftsgärtnern einen Plan am Heck eines
 bild_prompt: "A landscaping site manager in his thirties explaining a construction drawing to two crew members at the open tailgate of a work van on a residential construction site in Germany, morning light, realistic documentary style."
 bild_caption: "Bauleiter wachsen im Betrieb – wenn der Betrieb den Weg dorthin sichtbar macht."
 relevanz: 66
+kurz:
+  - 'Bauleiter werden nicht ausgebildet, sie wachsen aus Landschaftsgärtnern – drei Wege: Meister, Techniker, Studium.'
+  - 'Meister: ein Jahr Vollzeit oder zwei bis drei Jahre berufsbegleitend; Techniker: zwei Jahre Fachschule mit Hochschulzugang; Bachelor: sechs bis sieben Semester, auch ohne Abitur möglich.'
+  - 'Das Trendbarometer nennt Bauleiter als die Position, an der es europaweit am stärksten fehlt – wer intern entwickelt, hat sie.'
 quellen:
   - t: "Messe Nürnberg: Trendbarometer der GaLaBau 2026 (Fachkräftemangel besonders bei Bauleitern und Projektverantwortlichen)"
     u: "https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026"

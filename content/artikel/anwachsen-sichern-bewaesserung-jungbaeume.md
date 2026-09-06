@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner füllt einen Bewässerungssack an einem frisch ge
 bild_prompt: "A landscaping worker filling a green watering bag around a newly planted street tree from the water tank on a flatbed truck in a German town on a hot summer morning, realistic documentary photo, no text."
 bild_caption: "Wenig und oft ist falsch: Ein Jungbaum braucht seltene, große Gaben, die bis in den Ballen reichen."
 relevanz: 52
+kurz:
+  - 'Fertigstellungspflege nach DIN 18916 bis zur Abnahme, Entwicklungspflege nach DIN 18919 danach – im Vertrag regeln, wer sie übernimmt.'
+  - 'Selten und viel statt oft und wenig: in Trockenphasen wöchentlich in der Größenordnung von 50 bis 100 Litern je Jungbaum, mit Gießrand, Bewässerungssack und Mulch.'
+  - 'Kontrollgänge dokumentieren: Das Pflegeprotokoll mit Foto ist die günstigste Versicherung gegen Ersatzpflanzungen in der Gewährleistung.'
 quellen:
   - t: "DIN 18916: Vegetationstechnik im Landschaftsbau – Pflanzen und Pflanzarbeiten (Fertigstellungspflege)"
   - t: "DIN 18919: Vegetationstechnik im Landschaftsbau – Entwicklungs- und Unterhaltungspflege von Vegetationsflächen"

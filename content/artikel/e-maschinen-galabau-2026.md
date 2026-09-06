@@ -9,6 +9,10 @@ bild_alt: "Elektrischer Minibagger arbeitet in einem engen Innenhof zwischen Woh
 bild_prompt: "A compact electric mini excavator working in a narrow courtyard between German apartment buildings, a charging cable and portable charging station nearby, worker in high-visibility vest, soft morning light, realistic, no brand logos."
 bild_caption: "Innenhof, Kindergarten, Friedhof: Wo Lärm und Abgase stören, spielen Elektromaschinen ihren Vorteil aus."
 relevanz: 78
+kurz:
+  - 'SDLG zeigt den elektrischen Kompaktradlader L902HEV (2,7 Tonnen, 24 kWh, vier bis sechs Betriebsstunden, rund eine Stunde Laden) und den Midi-Bagger E655HEV mit 90-kWh-Batterie; Volvo den L25 Electric.'
+  - 'Weitere Hersteller von CASE bis Yanmar zeigen Minibagger und Lader mit Akku – Serientechnik, keine Studien.'
+  - 'Rechnen lohnt sich für Innenstadt, Innenräume und emissionsbeschränkte Ausschreibungen; auf dem freien Feld bleibt der Diesel vorerst günstiger.'
 quellen:
   - t: "B_I galabau: GaLaBau 2026-Ticker – Bagger und Radlader aus China: SDLG zeigt Neuheiten (L902HEV: 2,7 t, 24 kWh, vier bis sechs Betriebsstunden, eine Stunde Ladezeit; ER680H 8,7 t; E655HEV 6 t, 90 kWh)"
     u: "https://bau.bi/galabau/maschinen/galabau-2026-ticker-womit-der-chinesische-baumaschinenhersteller-sdlg-punkten-will-g22102"

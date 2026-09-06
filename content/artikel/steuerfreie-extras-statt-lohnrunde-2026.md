@@ -8,6 +8,10 @@ bild_alt: "Mitarbeiterin eines Landschaftsbaubetriebs schließt nach Feierabend 
 bild_prompt: "A landscaping worker locking up a company-provided e-bike next to the workshop of a German gardening business after work, evening light, green work jacket, realistic documentary photo, no text."
 bild_caption: "Ein Dienstrad, ein 50-Euro-Gutschein, ein Fahrtkostenzuschuss: Drei Positionen, die auf der Abrechnung fast ohne Abzug ankommen."
 relevanz: 59
+kurz:
+  - '50-Euro-Sachbezug (Freigrenze, zusätzlich zum Lohn), Fahrtkostenzuschuss pauschal mit 15 Prozent, steuerfreies Dienstrad, Erholungsbeihilfe 156/104/52 Euro, betriebliche Altersversorgung bis 8 Prozent der Beitragsbemessungsgrenze steuerfrei.'
+  - 'Die Inflationsausgleichsprämie ist seit 31. Dezember 2024 Geschichte – alte Zusagen bereinigen.'
+  - 'Von 100 Euro Lohnerhöhung kommen rund 55 Euro an und kosten den Betrieb rund 120; Extras haben die bessere Quote, und der Steuerberater richtet sie in einer Stunde ein.'
 quellen:
   - t: "Einkommensteuergesetz, § 8 Abs. 2 Satz 11 (Sachbezugsfreigrenze 50 Euro monatlich), § 3 Nr. 37 (Überlassung betrieblicher Fahrräder), § 3 Nr. 33 (Kinderbetreuung), § 3 Nr. 63 (betriebliche Altersversorgung), § 40 Abs. 2 (Pauschalierung für Fahrtkostenzuschüsse und Erholungsbeihilfen)"
     u: "https://www.gesetze-im-internet.de/estg/__8.html"

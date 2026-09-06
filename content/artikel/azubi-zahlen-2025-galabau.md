@@ -8,6 +8,10 @@ bild_alt: "Auszubildende und Ausbilder beim Verlegen einer Natursteinmauer auf e
 bild_prompt: "A teenage apprentice and an older master gardener building a dry stone wall together on a training ground of a German landscaping company, late winter, focused expressions, realistic documentary style."
 bild_caption: "3.221 neue Ausbildungsverträge im Jahr 2025: Der Nachwuchs kommt – aber nicht von allein."
 relevanz: 68
+kurz:
+  - '8.089 Auszubildende in den umlagepflichtigen Betrieben (plus 85), 3.221 Neuverträge (plus 1,5 Prozent) – Wachstum gegen den Trend im Handwerk.'
+  - 'Der Frauenanteil sinkt um drei Prozentpunkte auf rund 11 Prozent.'
+  - 'Ab 1. Juli 2026 zahlt der Tarif 1.140, 1.270 und 1.390 Euro in den drei Lehrjahren; danach greift der Ecklohn von 20,91 Euro.'
 quellen:
   - t: "Gabot.de: GaLaBau – Azubi-Zahlen klettern auf fast 8.100, 25. Februar 2026 (8.089 Auszubildende, 3.221 Neuverträge, +1,5 %; Gesamtzahl +85 / +1,1 %; Frauenanteil rund 11 %, −3 Prozentpunkte; Zitate Matthias Lösch, BGL-Vizepräsident)"
     u: "https://www.gabot.de/ansicht/galabau-azubi-zahlen-klettern-auf-fast-8100-439688.html"

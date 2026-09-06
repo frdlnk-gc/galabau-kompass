@@ -8,6 +8,10 @@ bild_alt: "Älterer Inhaber und junge Bauleiterin gehen über den Betriebshof ei
 bild_prompt: "An older owner of a German landscaping company walking across the company yard with a young female site manager, both looking at the fleet of green vehicles, spring morning, realistic documentary photo, no text."
 bild_caption: "Die wahrscheinlichste Nachfolgerin steht oft schon auf dem Hof – wenn der Inhaber fünf Jahre vorher fragt."
 relevanz: 56
+kurz:
+  - 'IfM Bonn: rund 186.000 Unternehmen stehen 2026 bis 2030 vor der Übergabe – 800 pro Jahr weniger als zuvor geschätzt, weil viele Betriebe unattraktiv geworden sind.'
+  - 'Im GaLaBau mit knapp 20.000 Betrieben und steigenden Insolvenzen ist der wahrscheinlichste Nachfolger intern: Meister, Bauleiterin, Vorarbeiter.'
+  - 'Der Fünf-Jahres-Plan: klären, aufbauen, übergabefähig machen, finanzieren, übergeben – mit 58 beginnen, nicht mit 63.'
 quellen:
   - t: "Institut für Mittelstandsforschung Bonn: Unternehmensnachfolgen in Deutschland 2026 bis 2030, Daten und Fakten Nr. 37 (rund 186.000 Unternehmen mit anstehender Nachfolge; rund 800 weniger pro Jahr als in der Schätzung 2022 bis 2026)"
     u: "https://www.ifm-bonn.org/fileadmin/data/redaktion/publikationen/daten_und_fakten/dokumente/Daten-und-Fakten-37_2025.pdf"

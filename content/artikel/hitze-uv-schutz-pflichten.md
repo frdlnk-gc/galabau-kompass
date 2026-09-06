@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner mit breitkrempigem Hut, langärmligem UV-Shirt un
 bild_prompt: "A landscaper wearing a wide-brimmed hat, long-sleeved light UV shirt and sunglasses drinking water in the shade of a tree on a hot construction site in Germany, sun flare, realistic documentary photo, no text."
 bild_caption: "Schatten, Wasser, Kleidung, Zeitplan: Die vier Hebel gegen Hitze auf der Baustelle."
 relevanz: 66
+kurz:
+  - 'Ab UV-Index 3 – an klaren Tagen schon im April – sind Schutzmaßnahmen Pflicht: technisch (Schatten), organisatorisch (Arbeitszeiten, Pausen, Trinkwasser), persönlich (Kleidung, Kopfbedeckung, Lichtschutzfaktor 30 bis 50).'
+  - 'Weißer Hautkrebs durch UV-Strahlung ist anerkannte Berufskrankheit; Sonnenschutzmittel ist persönliche Schutzausrüstung und vom Arbeitgeber zu stellen.'
+  - 'Die BG BAU fördert Sonnenschutzmaßnahmen über ihre Arbeitsschutzprämien.'
 quellen:
   - t: "BG BAU: UV-Strahlung und Hitze – Schutzmaßnahmen (Arbeitgeberpflichten nach § 3 ArbSchG, UV-Index ab 3, PSA)"
     u: "https://www.bgbau.de/themen/sicherheit-und-gesundheit/uv-strahlung-hitze"

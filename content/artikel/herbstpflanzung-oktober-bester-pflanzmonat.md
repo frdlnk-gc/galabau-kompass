@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner setzt im Oktober einen Ballenbaum in eine vorbere
 bild_prompt: "Two landscape gardeners planting a young balled-and-burlapped tree into a prepared planting pit in a German garden in October, fallen leaves on the ground, soft overcast light, realistic documentary style, no text."
 bild_caption: "Der Boden hält die Sommerwärme bis in den November – die Wurzeln arbeiten weiter, während oben nichts mehr passiert."
 relevanz: 44
+kurz:
+  - 'Im Oktober ist der Boden noch über zehn Grad warm, die Luft kühl: Gehölze bilden Wurzeln, ohne dass die Krone Wasser verlangt.'
+  - 'Wurzelnackte Ware ab Mitte Oktober, Ballenware ab Oktober, Container ganzjährig – Immergrüne, Gräser und frostempfindliche Arten lieber im Frühjahr.'
+  - 'Die häufigsten Fehler: zu spät bestellt, zu lange gelagert, zu tief gepflanzt, zu wenig gewässert.'
 quellen:
   - t: "DIN 18916: Vegetationstechnik im Landschaftsbau – Pflanzen und Pflanzarbeiten (DIN Media)"
   - t: "Bund deutscher Baumschulen (BdB): Gütebestimmungen für Baumschulpflanzen"

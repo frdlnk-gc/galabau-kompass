@@ -8,6 +8,10 @@ bild_alt: "Elektrischer Kompaktradlader auf einer innerstädtischen Baustelle ne
 bild_prompt: "A compact electric wheel loader on an urban construction site in a German city, freshly planted street trees with stakes, workers in the background, overcast January light, realistic, no logos."
 bild_caption: "Leise und lokal emissionsfrei: Elektrische Kompaktmaschinen sind eines der drei Messethemen 2026."
 relevanz: 60
+kurz:
+  - 'Drei Schwerpunkte der Messe für 2026: Klimaanpassung, Fachkräftemangel, emissionsfreie Technik; die GaLaBau läuft vom 15. bis 18. September.'
+  - 'Klimaanpassung wird zum Auftrag: Kommunen schreiben Schwammstadt, Baumrigolen und Retentionsdächer aus – der Grün-Blaue Pfad zeigt die Technik dahinter.'
+  - 'Beim Personal fehlen europaweit besonders Bauleiter und Projektverantwortliche; der Landschaftsgärtner-Cup soll den Nachwuchs sichtbar machen.'
 quellen:
   - t: "Messe Nürnberg: Das Trendbarometer der GaLaBau 2026 – Nachhaltigkeit, Klimaanpassung und Fachkräfte im Fokus, Pressemitteilung Januar 2026"
     u: "https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026"

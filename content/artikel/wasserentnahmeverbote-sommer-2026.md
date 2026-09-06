@@ -9,6 +9,10 @@ bild_alt: "Landschaftsgärtner bewässert junge Bäume mit einem Wasserfass auf 
 bild_prompt: "A landscaper watering young newly planted trees from a water tank trailer on a dry, brown lawn in a German suburb during a heat wave, harsh midday sun, realistic documentary photo, no text."
 bild_caption: "Wasser aus dem Fass statt aus dem Bach: In mehr als 80 Landkreisen gelten im Sommer 2026 Entnahmeverbote."
 relevanz: 82
+kurz:
+  - 'Mehr als 80 Landkreise, Städte und Versorger haben Mitte August Entnahmeverbote oder Auflagen erlassen – von Böblingen bis Potsdam-Mittelmark, teils bis Ende November.'
+  - 'Bußgelder bis 10.000 Euro in Baden-Württemberg, Köln nennt bis zu 50.000 Euro; ausgenommen sind meist Gießkanne, Regentonne und Tropfbewässerung im Wurzelbereich.'
+  - 'Für Betriebe zählt die Allgemeinverfügung des jeweiligen Kreises – und die Fertigstellungspflege muss trotzdem geleistet werden.'
 quellen:
   - t: "t-online: Wasserentnahme-Verbot ausgeweitet – Welche Landkreise betroffen sind, Stand 14. August 2026 (über 80 Landkreise, Städte und Wasserversorger; Zeiträume je Region; Bußgelder bis 10.000 Euro in Baden-Württemberg, bis 50.000 Euro in Köln; Ausnahmen)"
     u: "https://www.t-online.de/heim-garten/aktuelles/id_101387108/wasserentnahme-verbot-ausgeweitet-welche-landkreise-betroffen-sind.html"

@@ -8,6 +8,10 @@ bild_alt: "Bauleiterin prüft Ausschreibungsunterlagen am Laptop im Baucontainer
 bild_prompt: "A female construction manager reviewing public tender documents on a laptop inside a site office container, printed plans pinned to the wall, hard hat on the desk, German landscaping context, winter light, realistic documentary photo, no text."
 bild_caption: "Unter 50.000 Euro darf die Kommune beschränkt ausschreiben – und lädt dann ein, wen sie kennt."
 relevanz: 53
+kurz:
+  - 'EU-Schwellen seit 1. Januar 2026: 5,404 Millionen Euro für Bau, 216.000 Euro für Liefer- und Dienstleistungen – für den typischen GaLaBau-Auftrag ohne Bedeutung.'
+  - 'Darunter gilt die VOB/A: beschränkte Ausschreibung ohne Teilnahmewettbewerb bis 50.000 Euro für Landschaftsbau, freihändig bis 10.000 Euro; die Länder heben die Grenzen per Erlass an.'
+  - 'Eingeladen wird, wer bekannt ist: Präqualifikation, Bieterverzeichnisse der Kommunen, Vergabeplattformen – und formal saubere Angebote.'
 quellen:
   - t: "Deutscher Städte- und Gemeindebund: Neue EU-Schwellenwerte festgelegt (2026/2027) – Bauaufträge 5.404.000 Euro, Liefer- und Dienstleistungsaufträge 216.000 Euro, netto, ab 1. Januar 2026"
     u: "https://www.dstgb.de/themen/vergaberecht/aktuelles/neue-eu-schwellenwerte-festgelegt-2026-2027/"

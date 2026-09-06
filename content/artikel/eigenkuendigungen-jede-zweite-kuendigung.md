@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner packt am Feierabend seine Werkzeugkiste in den Ko
 bild_prompt: "A landscaping worker in his thirties loading a toolbox into the back of a white work van at dusk on a residential street in Germany, thoughtful mood, autumn light, shallow depth of field, seen from the side."
 bild_caption: "Wer den Betrieb verlässt, hat meist längst entschieden – lange bevor die Kündigung auf dem Tisch liegt."
 relevanz: 78
+kurz:
+  - '52 Prozent aller beendeten Arbeitsverhältnisse gehen inzwischen auf Kündigungen der Beschäftigten zurück (2009: 34 Prozent); 84 Prozent der Wechsler haben die nächste Stelle schon in Aussicht.'
+  - 'Rund 36 Prozent der Beschäftigten waren 2025 wechselbereit – im Handwerk mit vielen Kleinbetrieben führt der Wechsel oft nur einen Ort weiter.'
+  - 'Für Betriebe heißt das: das Gespräch vor der Kündigung führen, Verantwortung sichtbar machen und so auftreten, als müsste man seine Leute jedes Jahr neu gewinnen.'
 quellen:
   - t: "Institut der deutschen Wirtschaft (IW), Holger Schäfer: Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Eigenkündigungen 34 % 2009 → 52 % 2022; 84 % mit neuer Stelle in Aussicht)"
     u: "https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html"

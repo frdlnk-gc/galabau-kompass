@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Termine & Fristen | {{ site.name }}{% endblock %}
+{% block description %}Messen, Gartenschauen, Tarifstufen und gesetzliche Fristen für den Garten- und Landschaftsbau – nur belegte Termine mit Quelle.{% endblock %}
+{% block bodyclass %}seite termine-seite{% endblock %}
+{% block content %}
+<section class="container narrow">
+  <header class="page-head">
+    <span class="t-kicker">Termine &amp; Fristen</span>
+    <h1>Was ansteht</h1>
+    <p class="page-dek">Messen, Gartenschauen, Tarifstufen und gesetzliche Stichtage – nur Termine, die wir mit einer Quelle belegen können. Fehlt ein Termin? <a href="mailto:{{ site.redaktion_mail }}">Schreiben Sie der Redaktion.</a></p>
+  </header>
+  {% for m in monate %}
+  <div class="termin-monat">
+    <h2 class="termin-monat-titel">{{ m.monat }}</h2>
+    <ul class="termine gross">
+      {% for t in m.liste %}
+      <li><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a>{% if t.ort %}<span class="termin-ort">{{ t.ort }}</span>{% endif %}{% if t.beschreibung %}<span class="termin-text">{{ t.beschreibung }}</span>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+  {% if vergangene %}
+  <div class="termin-monat vorbei">
+    <h2 class="termin-monat-titel">Bereits vorbei</h2>
+    <ul class="termine gross">{% for t in vergangene[:8] %}<li><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a></li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

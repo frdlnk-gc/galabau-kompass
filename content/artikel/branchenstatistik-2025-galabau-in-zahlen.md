@@ -8,6 +8,10 @@ bild_alt: "Blick über einen großen Betriebshof eines Landschaftsbauunternehmen
 bild_prompt: "Elevated view of a large German landscaping company yard with a fleet of green vans and trucks, a warehouse, stacked pavers and a tree nursery area, early morning in late winter, realistic documentary photo, no logos."
 bild_caption: "Fast 20.000 Betriebe, im Schnitt 22 Beschäftigte: Der GaLaBau bleibt eine Branche der Kleinbetriebe."
 relevanz: 80
+kurz:
+  - '19.898 Betriebe, 131.746 Beschäftigte, 11,11 Milliarden Euro Umsatz (plus 4,3 Prozent nominal), 133 Insolvenzen nach 101 im Vorjahr.'
+  - 'Rechnerisch rund 558.000 Euro Umsatz je Betrieb und 84.000 Euro je Beschäftigtem; 0,7 Prozent der Betriebe gingen in die Insolvenz.'
+  - '65,2 Prozent der Betriebe bewerten ihre Ertragslage als unbefriedigend – der Markt verschiebt sich zu den Betrieben, die Aufträge und Leute halten können.'
 quellen:
   - t: "Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): GaLaBau-Branchenstatistik 2025 – Mehr Umsatz, mehr Beschäftigte, mehr Azubis, Pressemitteilung vom 27. Februar 2026 (19.898 Betriebe, 131.746 Beschäftigte, 11,11 Mrd. Euro Umsatz, 8.089 Auszubildende, 133 Insolvenzen nach 101, nominales Umsatzplus 4,3 %)"
     u: "https://www.presseportal.de/pm/117960/6225203"

@@ -8,6 +8,10 @@ bild_alt: "Auszubildende bestimmen mit dem Ausbilder Gehölze an einem Lehrpfad,
 bild_prompt: "Three apprentices with their trainer identifying shrubs and trees along a labelled plant trail in a German nursery in early spring, holding twigs with buds and name tags, focused expressions, realistic documentary photo, no readable text."
 bild_caption: "Gattung, Art, deutscher Name: Die Prüfung fragt alle drei."
 relevanz: 49
+kurz:
+  - 'Abschlussprüfung: 50 Pflanzen in 30 Minuten erkennen und mit Gattung, Art und deutschem Namen benennen, dazu 30 Minuten schriftlich.'
+  - 'Grundlage sind die Pflanzenlisten der Länder mit mehreren hundert Arten; vorrangig markierte Pflanzen bilden den Schwerpunkt der Zwischenprüfung.'
+  - 'Betriebe sind zuständig: fünf Pflanzen pro Woche, Herbarium ab dem ersten Lehrjahr, Baumschulbesuch, Pflanzplan als Übung, Simulation zwei Monate vor der Prüfung.'
 quellen:
   - t: "Landwirtschaftskammer Nordrhein-Westfalen: Informationen zur schriftlichen Abschlussprüfung im Beruf Gärtner/Gärtnerin (Pflanzenkenntnisse: 50 Pflanzen erkennen und benennen in 30 Minuten, dazu 30 Minuten schriftlicher Teil)"
     u: "https://www.landwirtschaftskammer.de/bildung/gaertner/pruefungen/aufgaben.htm"

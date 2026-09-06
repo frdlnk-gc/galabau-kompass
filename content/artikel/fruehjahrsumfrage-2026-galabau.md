@@ -8,6 +8,10 @@ bild_alt: "Bauleiterin prüft auf einer Baustelle mit Rollrasen und Pflasterflä
 bild_prompt: "A female landscaping site manager reviewing paperwork on a clipboard at a residential garden construction site with fresh sod and paving in progress, German suburb, May sunshine, realistic documentary photo."
 bild_caption: "18 Wochen Auslastung in Pflege und Neubau: Die Nachfrage ist da – der Ertrag oft nicht."
 relevanz: 76
+kurz:
+  - '699 Betriebe: 51,8 Prozent gute Geschäftslage (Frühjahr 2025: 65 Prozent), 40,1 Prozent befriedigend, 8,2 Prozent schlecht.'
+  - '22,2 Prozent rechnen mit einer ungünstigeren Entwicklung (Vorjahr 12,5 Prozent); die Auslastung liegt in Pflege und Neubau bei je 18 Wochen.'
+  - 'Der eigentliche Befund ist die Ertragslage: 65,2 Prozent nennen sie unbefriedigend oder verbesserungsbedürftig.'
 quellen:
   - t: "Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): Frühjahrsumfrage 2026 unter 699 Mitgliedsbetrieben, veröffentlicht 28. Mai 2026, zitiert nach B_I galabau"
     u: "https://bau.bi/galabau/nachrichten/fruehjahrsumfrage-2026-darum-trotzt-der-garten-und-landschaftsbau-der-wirtschaftskrise-g21750"

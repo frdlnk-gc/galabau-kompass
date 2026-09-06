@@ -8,6 +8,10 @@ bild_alt: "Vorarbeiter bespricht am Morgen mit seiner dreiköpfigen Kolonne den 
 bild_prompt: "A foreman in his forties discussing the day's plan with his three-person landscaping crew at the open tailgate of a van on a German construction site early in the morning, plan on the tailgate, realistic documentary photo, no text."
 bild_caption: "Die Kolonne kündigt nicht dem Betrieb. Sie kündigt dem Vorarbeiter – oder bleibt seinetwegen."
 relevanz: 57
+kurz:
+  - 'Der Vorarbeiter entscheidet zehn Stunden am Tag über Qualität, Sicherheit und Stimmung – und wird meist nach Dienstalter ernannt statt nach Eignung.'
+  - 'Seine Aufgaben: planen, anleiten ohne selbst zu machen, sichern als Aufsichtführender, melden – nicht kalkulieren und nicht mit Kunden verhandeln.'
+  - 'Der Betrieb schuldet Geld nach Tarif, einen Tag Einweisung, Rückendeckung vor der Kolonne und eine Stunde Führungszeit am Tag.'
 quellen:
   - t: "DGUV Vorschrift 1: Grundsätze der Prävention, § 13 Pflichtenübertragung (schriftliche Übertragung von Unternehmerpflichten an Aufsichtführende)"
     u: "https://publikationen.dguv.de/regelwerk/dguv-vorschriften/"

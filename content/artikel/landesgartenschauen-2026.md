@@ -8,6 +8,10 @@ bild_alt: "Frisch angelegtes Gartenschaugelände mit Staudenbeeten, Wegen und Be
 bild_prompt: "A newly opened German state garden show grounds in April: perennial beds in bloom, gravel paths, a wooden pavilion, visitors strolling, blue sky, wide documentary shot, no text or signs."
 bild_caption: "Gartenschauen bleiben ein halbes Jahr geöffnet – und ihre Anlagen für Jahrzehnte."
 relevanz: 52
+kurz:
+  - 'Neuss (16. April bis 11. Oktober), Leinefelde-Worbis (23. April bis 11. Oktober), Ellwangen (24. April bis 4. Oktober), Bad Nenndorf (29. April bis 18. Oktober).'
+  - 'Die Anlagen bauen regionale Betriebe über Ausschreibungen in Losen – Vergaben laufen zwei bis drei Jahre vor der Eröffnung, Präqualifikation ist Voraussetzung.'
+  - 'Für Betriebe sind die Schauen Referenz, Schaufenster für Pflanzenverwendung und Materialien und ein Ausflugsziel für die Kolonne.'
 quellen:
   - t: "Landesgartenschau Ellwangen 2026: Zeitfenster 24. April bis 4. Oktober 2026 (164 Tage, 26 Hektar)"
     u: "https://www.ellwangen2026.de/zeitfenster-fuer-die-landesgartenschau-2026-in-ellwangen-festgelegt/"

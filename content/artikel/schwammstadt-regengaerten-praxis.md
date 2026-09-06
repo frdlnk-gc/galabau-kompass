@@ -8,6 +8,10 @@ bild_alt: "Neu angelegte Versickerungsmulde mit Stauden und Kies zwischen Straß
 bild_prompt: "A newly built rain garden swale with grasses and perennials between a street and a sidewalk in a German city, curb cut inlet visible, newly planted street tree with a tree grate, overcast spring day, realistic documentary style, no text."
 bild_caption: "Versickerungsmulde im Straßenraum: Das Wasser bleibt, wo es fällt."
 relevanz: 70
+kurz:
+  - 'Regengärten, Baumrigolen, Entsiegelung, Retentionsdächer und Zisternen: Die Bausteine sind bekannt, neu ist ihre Kombination in kommunalen Aufträgen.'
+  - 'Die Landesgartenschau 2027 in Büdingen zeigt Regengärten als Kernelement, Nürnberg plant Schwammstadt-Maßnahmen für die Gartenschau 2030; der Grün-Blaue Pfad der GaLaBau 2026 führt durch die Technik.'
+  - 'Betriebe brauchen dafür Bodenkunde für die Versickerung, die passende Pflanzenverwendung und Referenzen für die Vergabe.'
 quellen:
   - t: "Landesbetrieb Landwirtschaft Hessen: Regengärten – Schwammstadtkonzept auf der Landesgartenschau 2027 in Büdingen erleben"
     u: "https://llh.hessen.de/bildung/hessische-gartenakademie/gartenschauen/regengarten-schwammstadtkonzept-lgs-2027/"

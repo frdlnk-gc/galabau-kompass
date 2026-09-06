@@ -9,6 +9,10 @@ bild_alt: "Landschaftsgärtner beim Setzen von Randsteinen, Nahaufnahme der Hän
 bild_prompt: "Close-up of a landscaper's gloved hands setting a concrete curb stone with a rubber mallet on a sunny construction site in Germany, string line in focus, realistic documentary style, no text."
 bild_caption: "Tariflohn ist im Bewerbergespräch ein Anker – wenn Betriebe ihn nennen."
 relevanz: 84
+kurz:
+  - 'Zweite Stufe des Abschlusses vom 24. Juni 2025: plus 3,3 Prozent ab 1. Juli 2026, Ecklohn (Lohngruppe 4.2a) 20,91 Euro nach 20,24 Euro.'
+  - 'Ausbildungsvergütung 1.140, 1.270 und 1.390 Euro; über beide Stufen ist der Ecklohn um 1,30 Euro oder rund 6,6 Prozent gestiegen.'
+  - 'Für eine Vollzeitkraft mit 170 Stunden sind das rund 114 Euro brutto im Monat mehr, zuzüglich Arbeitgeberanteile.'
 quellen:
   - t: "IG BAU: Garten- und Landschaftsbau – Tarifabschluss: mehr Geld für alle (Abschluss vom 24. Juni 2025; Stufen 1. Juli 2025 und 1. Juli 2026; Ecklohn 19,61 / 20,24 / 20,91 Euro; Ausbildungsvergütungen)"
     u: "https://igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Geld-fuer-alle.html"

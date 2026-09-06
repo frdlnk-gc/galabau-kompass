@@ -8,6 +8,10 @@ bild_alt: "Vorarbeiter zeigt einem neuen Mitarbeiter am ersten Arbeitstag den Be
 bild_prompt: "A foreman walking a new employee through the yard of a German landscaping company on his first day, pointing at machines and equipment, both in green workwear, early morning, realistic documentary style."
 bild_caption: "Der erste Tag entscheidet mehr als das Gehalt: Wer Anschluss findet, bleibt."
 relevanz: 58
+kurz:
+  - '166 Tage dauert eine Besetzung im Baugewerbe – geht der Neue nach sechs Wochen, beginnt die Rechnung von vorn.'
+  - 'Das Muster: nicht eingeplant, falsche Kolonne, keine Regeln erklärt, niemand fragt nach – nach sechs Wochen ruft der alte Betrieb an.'
+  - 'Ein Plan über 90 Tage mit Nachricht vor dem ersten Tag, vorbereitetem Platz, festem Ansprechpartner und regelmäßigen Gesprächen macht aus der Formalität eine soziale Aufgabe.'
 quellen:
   - t: "Institut der deutschen Wirtschaft (IW): Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Eigenkündigungen 52 %)"
     u: "https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html"

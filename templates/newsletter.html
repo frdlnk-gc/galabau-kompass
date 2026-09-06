@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% from "_teaser.html" import textlist %}
+{% set root = '../' * depth %}
+{% block title %}Der Montagskompass – Newsletter | {{ site.name }}{% endblock %}
+{% block description %}Der Montagskompass: jeden Montag die Beiträge der Woche in fünf Minuten, eine Zahl, ein Termin. Dazu die Monatsausgabe als PDF. Kostenlos.{% endblock %}
+{% block bodyclass %}seite seite-newsletter{% endblock %}
+{% block content %}
+<section class="container narrow">
+  <header class="page-head">
+    <span class="t-kicker">Newsletter</span>
+    <h1>Der Montagskompass</h1>
+    <p class="page-dek">Montag früh, fünf Minuten: die Beiträge der Woche, eine Zahl mit Quelle, ein Termin, der ansteht. Einmal im Monat die Ausgabe als PDF. Kein Werbebrief, kein Login, Abmeldung mit einem Klick.</p>
+  </header>
+  <div class="abo-panel">
+    <form class="abo-form zeile" data-abo>
+      <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email" aria-label="E-Mail-Adresse">
+      <button type="submit" class="btn">Kostenlos anmelden</button>
+      <div class="abo-note" data-abo-note></div>
+    </form>
+    <ul class="vorteile">
+      <li><b>Montags, 6 Uhr</b><span>Vor der Frühbesprechung gelesen. Fünf Minuten, keine Anhänge.</span></li>
+      <li><b>Monatsausgabe als PDF</b><span>Alle Beiträge des Monats, gesetzt zum Lesen und Drucken.</span></li>
+      <li><b>Kein Abo-Zwang</b><span>Kostenlos, kein Login, Abmeldung mit einem Klick in jeder E-Mail.</span></li>
+    </ul>
+    <p class="abo-hinweis">Mit der Anmeldung stimmen Sie zu, dass wir Ihnen den wöchentlichen Newsletter und die monatliche Ausgabe per E-Mail senden. Details in der <a href="{{ root }}datenschutz/">Datenschutzerklärung</a>.</p>
+  </div>
+
+  <div class="rubrik mt"><h2>So sieht eine Ausgabe aus</h2><span class="rubrik-note">Beispiel aus dieser Woche</span></div>
+  <div class="nl-vorschau">
+    <div class="nl-kopf"><span class="nl-marke">GaLaBau Kompass · Der Montagskompass</span><span class="nl-datum">{{ heute_lang }}</span></div>
+    <h3 class="nl-titel">Guten Morgen. Das war die Woche im Garten- und Landschaftsbau.</h3>
+    <div class="nl-block"><span class="box-title">Die Beiträge der Woche</span>{{ textlist(neueste, root) }}</div>
+    {% if zahlen %}<div class="nl-block"><span class="box-title">Die Zahl</span><p class="nl-zahl"><b>{{ zahlen[0].wert_fmt }}</b> {{ zahlen[0].label }} – {{ zahlen[0].hinweis }}. <a href="{{ root }}artikel/{{ zahlen[0].quelle.slug }}/">Quelle und Einordnung</a></p></div>{% endif %}
+    {% if meld %}<div class="nl-block"><span class="box-title">Kurz gemeldet</span><ul class="nl-liste">{% for a in meld %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+    {% if termine %}<div class="nl-block"><span class="box-title">Der Termin</span><p><b>{{ termine[0].label }}</b> – {{ termine[0].titel }}{% if termine[0].ort %}, {{ termine[0].ort }}{% endif %}.</p></div>{% endif %}
+    <p class="nl-fuss">Bis Montag. Die Redaktion.</p>
+  </div>
+</section>
+{% endblock %}

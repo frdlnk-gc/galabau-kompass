@@ -8,6 +8,10 @@ bild_alt: "Neubau-Reihenhäuser mit noch unbearbeiteten Vorgärten, ein Landscha
 bild_prompt: "A row of newly built terraced houses in Germany with unfinished front gardens, a landscape gardener measuring the plot with a tape measure, late summer light, realistic documentary photo, no text."
 bild_caption: "Wo Baugenehmigungen zu Baustellen werden, kommt die Außenanlage ein Jahr später."
 relevanz: 50
+kurz:
+  - 'ifo-Geschäftsklima im August 88,8 Punkte nach 86,7; im Bauhauptgewerbe steigen die Erwartungen, die Lage wird leicht schlechter bewertet.'
+  - 'Wohnungsbau im Juli: −29,3 Punkte (Juni −30,6), Auftragsmangel 41,2 statt 43,7 Prozent, Stornierungen 13,1 statt 11,4 Prozent.'
+  - 'Steigende Genehmigungen sind ein Signal für 2027, steigende Stornierungen eines für jetzt – Bauträgerprojekte im Auftragsbestand prüfen.'
 quellen:
   - t: "ifo Institut: Geschäftsklima im Wohnungsbau leicht verbessert, Konjunkturumfrage vom 17. August 2026 (Juli: −29,3 Punkte nach −30,6; Auftragsmangel 41,2 Prozent nach 43,7; Stornierungen 13,1 Prozent nach 11,4; Materialengpässe 8,5 Prozent nach 9,7; Zitate Klaus Wohlrabe)"
     u: "https://www.ifo.de/en/facts/2026-08-17/business-climate-residential-construction-germany-improves-slightly"

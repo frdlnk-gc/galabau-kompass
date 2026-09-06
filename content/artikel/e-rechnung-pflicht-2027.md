@@ -8,6 +8,10 @@ bild_alt: "Büro eines Landschaftsbaubetriebs mit Laptop, Rechnungsordnern und B
 bild_prompt: "Office desk of a German landscaping company with a laptop, invoice folders and a coffee mug, through the window the yard with a green van and plants, morning light, realistic, no readable text."
 bild_caption: "Strukturierte Daten statt Papier: Die E-Rechnung ist eine XML-Datei, keine PDF."
 relevanz: 60
+kurz:
+  - 'Empfangen müssen alle Unternehmen seit 2025; versenden müssen ab 1. Januar 2027 Betriebe mit mehr als 800.000 Euro Umsatz im Jahr 2026, ab 2028 alle.'
+  - 'Eine E-Rechnung ist strukturiertes XML nach EN 16931 (XRechnung oder ZUGFeRD) – eine PDF per E-Mail ist keine.'
+  - 'Rechnungen an Privatkunden sind nicht betroffen; Kommunen verlangen ohnehin XRechnung.'
 quellen:
   - t: "sevdesk: E-Rechnung Pflicht für Handwerker – Was gilt 2026? (Empfangspflicht seit 1. Januar 2025; Versandpflicht ab 2027 bei Vorjahresumsatz über 800.000 Euro; ab 2028 für alle; Formate XRechnung und ZUGFeRD)"
     u: "https://sevdesk.de/ratgeber/buchhaltung-finanzen/rechnungen/e-rechnung/e-rechnung-handwerker/"

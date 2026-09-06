@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner mit Rückenspritze und Schutzausrüstung kontroll
 bild_prompt: "A landscape gardener wearing protective gloves and a backpack sprayer inspecting a hedge in a private garden in Germany, early spring, realistic documentary photo, no text."
 bild_caption: "Anwenden, kaufen, abgeben: Für alle drei Tätigkeiten gilt die Sachkundepflicht."
 relevanz: 58
+kurz:
+  - 'Wer Pflanzenschutzmittel beruflich anwendet, berät oder abgibt, braucht den Sachkundenachweis nach § 9 Pflanzenschutzgesetz – auch bei wenigen Einsätzen im Jahr.'
+  - 'Alle drei Jahre ist eine anerkannte Fortbildung Pflicht; wer die Frist verpasst, darf nicht mehr anwenden oder kaufen, bis sie nachgeholt ist.'
+  - 'Anerkannt sind Veranstaltungen der Länder, Kammern und Bildungsträger, meist ein halber Tag, oft online; Bescheinigungen aufbewahren.'
 quellen:
   - t: "Bayerische Landesanstalt für Landwirtschaft (LfL): Regelmäßige Fortbildung im Pflanzenschutz ist verpflichtend (§ 9 Abs. 4 PflSchG, Dreijahreszeitraum)"
     u: "https://www.lfl.bayern.de/ips/recht/052356/index.php"

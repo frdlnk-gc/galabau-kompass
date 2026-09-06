@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="{{ root }}assets/kompass.css">
   {% block head %}{% endblock %}
 </head>
-<body data-depth="{{ depth }}" class="{% block bodyclass %}{% endblock %}">
+<body data-depth="{{ depth }}"{% if aktuelle_ausgabe %} data-ausgabe="Nr. {{ aktuelle_ausgabe.lauf }} · Ausgabe {{ aktuelle_ausgabe.nr }}"{% endif %} class="{% block bodyclass %}{% endblock %}">
   <a class="skip" href="#inhalt">Zum Inhalt</a>
   <header data-kompass-header></header>
   <main id="inhalt">

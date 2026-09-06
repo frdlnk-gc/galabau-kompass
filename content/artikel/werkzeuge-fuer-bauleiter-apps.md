@@ -8,6 +8,10 @@ bild_alt: "Bauleiter fotografiert mit dem Smartphone den Baufortschritt einer Te
 bild_prompt: "A landscaping site manager taking a photo with his smartphone of a terrace under construction for documentation, crew working in the background, German residential garden, late summer light, realistic, no readable text on screen."
 bild_caption: "Ein Foto mit Zeitstempel ersetzt im Streitfall zehn Seiten Schriftverkehr."
 relevanz: 58
+kurz:
+  - 'Sechs Kategorien digitaler Helfer – Aufmaß, Bautagebuch, Fotodokumentation, Zeiterfassung, Material und Lieferungen, Kommunikation – jede mit einem Auswahlkriterium.'
+  - 'Entscheidend sind Export in die Kalkulation, Offline-Fähigkeit, automatische Zuordnung zur Baustelle und Schnittstellen zur Lohnabrechnung.'
+  - 'Weniger ist mehr: Was ein Bauleiter an drei bis fünf Baustellen täglich braucht, ist Kommunikation und Dokumentation, keine Sammlung von Apps.'
 quellen:
   - t: "Messe Nürnberg: Handwerkersoftware und KI im GaLaBau nutzen, Juni 2026 (Drohnenvermessung, Aufmaß, Messapps)"
     u: "https://www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkersoftware-und-ki-im-galabau"

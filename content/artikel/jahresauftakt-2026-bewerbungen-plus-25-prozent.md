@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtnerin scrollt in der Mittagspause auf dem Smartphone 
 bild_prompt: "A young female landscape gardener in work jacket looking at her smartphone during a break in a workshop of a German landscaping company, winter light through the gate, realistic, candid, no text on screen visible."
 bild_caption: "Januar ist Suchmonat: 38 Prozent mehr Suchanfragen als in der ersten Dezemberhälfte."
 relevanz: 80
+kurz:
+  - 'Januar 2026 gegenüber Anfang Dezember: Bewerbungen plus 25 Prozent, Suchanfragen plus 38, Ausschreibungen minus 3 – 28 Prozent mehr Bewerbungen je Anzeige.'
+  - 'Die Arbeitslosigkeit stieg im Januar um 177.000 auf 3.085.000, begründet mit den Außenberufen; Vakanzzeit 166 Tage, 49 Prozent der Stellen länger als drei Monate offen.'
+  - 'Wer im Januar sichtbar ist, hat die beste Ausgangslage des Jahres – im März haben die Wechsler unterschrieben.'
 quellen:
   - t: "Indeed Hiring Lab Deutschland, Virginia Sondergeld: Mehr Bewerbungen bei weniger Stellen – einseitige Dynamik am Stellenmarkt zum Jahresauftakt, 16. Februar 2026 (Januar gegenüber 1.–15. Dezember: Bewerbungen +25 %, Suchanfragen +38 %, Ausschreibungen −3 %, Bewerbungen je Ausschreibung +28 %)"
     u: "https://hiringlab.indeed.com/de/blog/2026/02/16/mehr-bewerbungen-bei-weniger-stellen-einseitige-dynamik-am-stellenmarkt-zum-jahresauftakt/"

@@ -8,6 +8,10 @@ bild_alt: "Bauleiter mit Tablet und Bauplan auf einer Baustelle im Herbst, im Hi
 bild_prompt: "A German site manager in a fleece jacket and hard hat checking a tablet on a landscaping construction site in late October, yellow leaves on the ground, mini excavator in the background, overcast soft light."
 bild_caption: "Oktober auf der Baustelle: Die Saison läuft aus, die Personalplanung für das nächste Jahr beginnt."
 relevanz: 62
+kurz:
+  - 'Oktober 2025: 2.911.000 Arbeitslose, 623.000 gemeldete Stellen – und ein Winter, der Außenberufe freisetzt (jedes kältere Dezember-Grad rund 34.000 zusätzliche Arbeitslose laut IAB).'
+  - 'Im Januar suchen mehr Menschen bei weniger Anzeigen: 2025 lagen die Suchanfragen 34 Prozent über der Vorweihnachtszeit, die Stellen 14,1 Prozent unter dem Vorjahr.'
+  - 'Wer am 1. April besetzt haben will, rechnet von Kündigungsfristen und Probearbeit zurück – und sucht im Januar, nicht im März.'
 quellen:
   - t: "Bundesagentur für Arbeit: Presseinfo Nr. 44 vom 30. Oktober 2025 – Der Arbeitsmarkt im Oktober 2025 (2.911.000 Arbeitslose, 623.000 gemeldete Stellen)"
     u: "https://www.arbeitsagentur.de/presse/2025-44-arbeitsmarkt-im-oktober-2025"

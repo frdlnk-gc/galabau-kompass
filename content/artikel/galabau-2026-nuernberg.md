@@ -9,6 +9,10 @@ bild_alt: "Fachbesucher vor dem Messezentrum Nürnberg am Morgen des ersten Mess
 bild_prompt: "Trade visitors in work jackets and business casual walking towards a large modern exhibition center entrance on a bright September morning in Germany, banners without readable text, wide documentary shot."
 bild_caption: "Die GaLaBau gilt als umfassendste Gesamtschau im grünen Bereich – alle zwei Jahre in Nürnberg."
 relevanz: 90
+kurz:
+  - '15. bis 18. September, Messezentrum Nürnberg, täglich 9 bis 18 Uhr (Freitag bis 17 Uhr); Tageskarte 45 Euro, Dauerkarte 85 Euro, nur online.'
+  - 'Drei Themen: Klimaanpassung (Grün-Blauer Pfad), emissionsfreie Technik (E-Mobility Area), Nachwuchs (Landschaftsgärtner-Cup).'
+  - 'Die Frage in jeder Halle: Wo kommen die Leute her? Bauleiter und Projektverantwortliche fehlen europaweit am stärksten.'
 quellen:
   - t: "Messe Nürnberg: GaLaBau 2026 – Besuchen (Termine, Öffnungszeiten, Tickets), abgerufen am 5. September 2026"
     u: "https://www.galabau-messe.com/de-de/besuchen"

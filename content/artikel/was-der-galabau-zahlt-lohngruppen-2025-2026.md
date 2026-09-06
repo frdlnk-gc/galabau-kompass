@@ -8,6 +8,10 @@ bild_alt: "Lohnabrechnung und Tarifbroschüre auf dem Schreibtisch eines Landsch
 bild_prompt: "Close-up of a payroll statement and a printed collective agreement brochure on the desk of a German landscaping company office, calculator and pen beside them, green work gloves at the edge of the frame, natural window light, realistic photo, no readable text."
 bild_caption: "Der Ecklohn markiert die Mitte der Tabelle: 20,24 Euro seit Juli 2025, 20,91 Euro ab Juli 2026."
 relevanz: 66
+kurz:
+  - 'Lohngruppe 1 Baustellenleiter 26,36 Euro, Landschaftsgärtner mit Abschluss 21,27 Euro, Ecklohn (4.2a) 20,24 Euro – ab 1. Juli 2026 plus 3,3 Prozent.'
+  - 'Angestellte: T1 ab 2.516,28 Euro, T5 bis 4.839 Euro; kaufmännisch K1 ab 2.133,41 Euro; Azubis 1.100 bis 1.340 Euro, ab Juli 2026 1.140 bis 1.390 Euro.'
+  - 'Die niedrigste Lohngruppe wird seit Januar 2026 vom Mindestlohn überholt; neben dem Stundenlohn entscheiden Zuschläge, Fahrzeit und Winterbeschäftigung über das Jahresnetto.'
 quellen:
   - t: "B_I galabau: Tarif im GaLaBau 2025/2026 – Löhne, Gehälter und Azubi-Vergütung (Lohngruppen und Gehaltsgruppen ab 1. Juli 2025 und 1. Juli 2026)"
     u: "https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996"
@@ -20,14 +24,15 @@ Wer im GaLaBau über Geld spricht, spricht über den Tarif – auch dann, wenn d
 
 ## Gewerbliche Mitarbeiter: Die Lohngruppen
 
-Die Tabelle reicht von der Lohngruppe 1 für Baustellenleiter bis zur Lohngruppe 7 für ungelernte Kräfte in der Einarbeitung. Der ausgebildete Landschaftsgärtner findet sich in der Lohngruppe 4.
+Die Tabelle reicht von der Lohngruppe 1 für Baustellenleiter bis zur Lohngruppe 7 für ungelernte Kräfte in der Einarbeitung. Der ausgebildete Landschaftsgärtner findet sich in der Lohngruppe 4; der Ecklohn der Lohngruppe 4.2a ist die Referenzgröße, an der sich die übrigen Gruppen orientieren.
 
 <div class="tabelle"><table>
 <thead><tr><th>Lohngruppe</th><th>Beispiel</th><th>seit 1. Juli 2025</th><th>ab 1. Juli 2026</th></tr></thead>
 <tbody>
 <tr><td>1</td><td>Baustellenleiter</td><td>26,36 €</td><td>27,23 €</td></tr>
 <tr><td>4.1</td><td>Landschaftsgärtner mit Abschluss</td><td>21,27 €</td><td>21,97 €</td></tr>
-<tr><td>5.2 (Ecklohn)</td><td>Fahrer, angelernte Kräfte</td><td>20,24 €</td><td>20,91 €</td></tr>
+<tr><td>4.2a (Ecklohn)</td><td>Landschaftsgärtner, Referenzlohn der Tabelle</td><td>20,24 €</td><td>20,91 €</td></tr>
+<tr><td>5.2</td><td>Fahrer, angelernte Kräfte</td><td>20,24 €</td><td>20,91 €</td></tr>
 <tr><td>7.6</td><td>Ungelernte in der Einarbeitung</td><td>13,10 €</td><td>vom Mindestlohn (13,90 €) überholt</td></tr>
 </tbody></table></div>
 

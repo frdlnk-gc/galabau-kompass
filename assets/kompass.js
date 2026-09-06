@@ -13,8 +13,9 @@
     liveHosts: /(^|\.)galabau-kompass\.de$/i,
     previewHosts: /github\.io$|vercel\.app$/i,
     ressorts: [ /* slug, Name, kurz, Leisten-Label */
-      ['betrieb-personal', 'Betrieb & Personal', 'Betrieb', 'Betrieb & Personal'], ['recht-tarif', 'Recht & Tarif', 'Recht', 'Recht & Tarif'], ['technik-digital', 'Technik & Digital', 'Technik', 'Technik & Digital'], ['bauen-pflanzen', 'Bauen & Pflanzen', 'Bauen', 'Bauen & Pflanzen'],
-      ['markt-politik', 'Markt & Politik', 'Markt', 'Markt & Politik'], ['sicherheit-gesundheit', 'Sicherheit & Gesundheit', 'Sicherheit', 'Sicherheit'], ['karriere', 'Karriere & Weiterbildung', 'Karriere', 'Karriere'], ['messe-termine', 'Messe & Termine', 'Termine', 'Messe & Termine']
+      ['betrieb-personal', 'Betrieb & Personal', 'Betrieb', 'Betrieb'], ['recht-tarif', 'Recht & Tarif', 'Recht', 'Recht'], ['technik-digital', 'Technik & Digital', 'Technik', 'Technik'], ['produkte', 'Produkte & Software', 'Produkte', 'Produkte'],
+      ['bauen-pflanzen', 'Bauen & Pflanzen', 'Bauen', 'Bauen'], ['markt-politik', 'Markt & Politik', 'Markt', 'Markt'], ['sicherheit-gesundheit', 'Sicherheit & Gesundheit', 'Sicherheit', 'Sicherheit'], ['karriere', 'Karriere & Weiterbildung', 'Karriere', 'Karriere'],
+      ['messe-termine', 'Messe & Termine', 'Termine', 'Termine'], ['standpunkt', 'Standpunkt', 'Standpunkt', 'Standpunkt']
     ]
   };
   var depth = (document.body.getAttribute('data-depth') || '0') | 0;
@@ -37,9 +38,8 @@
     var pts = '';
     ['E', 'S', 'W'].forEach(function (d, k) { pts += '<path class="pt" d="M32 32L34.4 30 32 12.5 29.6 30Z" transform="rotate(' + ((k + 1) * 90) + ' 32 32)"/>'; });
     [45, 135, 225, 315].forEach(function (r) { pts += '<path class="pt s" d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(' + r + ' 32 32)"/>'; });
-    var mark = '<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="ring-o" cx="32" cy="32" r="30"/><circle class="ring-i" cx="32" cy="32" r="24.6"/>' + ticks + pts +
-      '<path class="leaf" d="M32 8.2C39.4 15.4 41 24.6 32.6 31.6L32 32.2 31.4 31.6C23 24.6 24.6 15.4 32 8.2Z"/><path class="rib" d="M32 11.5V30.5"/><circle class="hub" cx="32" cy="32" r="2.4"/></svg>';
-    var text = opts.word === false ? '' : '<span class="logo-word">GaLaBau <i>Kompass</i></span>';
+    var mark = '<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="kreis" cx="32" cy="32" r="29"/><path class="nadel-n" d="M32 7 42.5 32 32 26.5 21.5 32Z"/><path class="nadel-s" d="M32 57 21.5 32 32 37.5 42.5 32Z"/></svg>';
+    var text = opts.word === false ? '' : '<span class="logo-word">GaLaBau Kompass</span>';
     return '<a class="logo' + (opts.size === 'lg' ? ' lg' : '') + '" href="' + ROOT + '" aria-label="GaLaBau Kompass – Startseite">' + mark + text + '</a>';
   }
   window.kompassLogo = logoSvg;
@@ -51,11 +51,12 @@
   function ressortLinks(kurz) { return CFG.ressorts.map(function (r) { return '<a href="' + ROOT + 'ressort/' + r[0] + '/"' + (isActive('ressort/' + r[0]) ? ' class="active"' : '') + ' title="' + r[1] + '">' + (kurz ? r[3] : r[1]) + '</a>'; }).join(''); }
   function renderHeader(el) {
     var d = new Date();
+    var ausg = document.body.getAttribute('data-ausgabe') || '';
     var top = '<div class="topbar"><div class="container"><span class="datum"><b>' + TAGE[d.getDay()] + '</b>, ' + d.getDate() + '. ' + MONATE[d.getMonth()] + ' ' + d.getFullYear() +
       (IS_LIVE ? '' : '<span class="env">' + (IS_PREVIEW ? 'Vorschau' : 'Lokal') + '</span>') + '</span>' +
-      '<nav aria-label="Service"><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a><a href="' + ROOT + 'ueber-uns/">Über uns</a></nav></div></div>';
-    var mast = '<div class="masthead"><div class="container">' + logoSvg({ size: 'lg' }) +
-      '<div class="rechts"><a class="btn sm ghost abo-btn" href="' + ROOT + 'abo/">Ausgabe per E-Mail</a><button type="button" class="icon-btn nav-toggle" aria-label="Menü öffnen">' + SVG_MENU + '</button></div></div></div>';
+      '<nav aria-label="Service"><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine</a><a href="' + ROOT + 'zahlen/">Zahlen</a><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="' + ROOT + 'merkliste/" data-merk-link>Merkliste<span class="merk-anz" data-merk-anz></span></a></nav></div></div>';
+    var mast = '<div class="masthead"><div class="container"><span class="links">' + (ausg ? ausg + ' · seit 2025' : 'Seit 2025') + '</span><div class="mitte">' + logoSvg({ size: 'lg' }) + '<span class="tagline">Das Magazin für den Garten- und Landschaftsbau</span></div>' +
+      '<div class="rechts"><a class="btn sm ghost abo-btn" href="' + ROOT + 'newsletter/">Der Montagskompass</a><button type="button" class="icon-btn nav-toggle" aria-label="Menü öffnen">' + SVG_MENU + '</button></div></div></div>';
     var nav = '<div class="navbar" data-navbar><div class="container"><span class="mini">' + logoSvg({ word: false }) + '</span>' +
       '<nav aria-label="Ressorts">' + ressortLinks(true) + '</nav>' +
       '<button type="button" class="icon-btn such-btn" aria-label="Suche öffnen" aria-expanded="false">' + SVG_SEARCH + '</button></div>' +
@@ -63,7 +64,7 @@
     var drawer = '<div class="drawer" aria-hidden="true"><div class="scrim"></div><div class="panel"><div class="panel-kopf">' + logoSvg() + '<button type="button" class="icon-btn schliessen" aria-label="Menü schließen">' + SVG_CLOSE + '</button></div>' +
       '<form role="search" action="' + ROOT + 'artikel/" method="get" class="suche"><input type="search" class="input" name="q" placeholder="Suchen …" aria-label="Suche"><button type="submit" class="btn sm">Los</button></form>' +
       '<div class="gruppe"><h4>Ressorts</h4>' + ressortLinks() + '</div>' +
-      '<div class="gruppe"><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'abo/">Ausgabe per E-Mail</a><a href="' + ROOT + 'ueber-uns/">Über uns</a></div>' +
+      '<div class="gruppe"><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'merkliste/">Merkliste</a><a href="' + ROOT + 'ueber-uns/">Über uns</a></div>' +
       '<div class="gruppe"><h4>Service</h4><a class="cta" href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a></div></div></div>';
     el.innerHTML = top + mast + nav + drawer;
     // Ressortleiste aus dem Header lösen, damit position:sticky für die ganze Seite gilt
@@ -87,7 +88,7 @@
     el.innerHTML = '<div class="container"><div class="footer-grid">' +
       '<div class="footer-brand">' + logoSvg() + '<p>Das Online-Magazin für Inhaber, Führungskräfte und Fachkräfte im Garten- und Landschaftsbau. Zahlen, Einordnung und Praxis – jede Woche neue Beiträge, jeden Monat als Ausgabe.</p></div>' +
       '<div><h4>Ressorts</h4>' + CFG.ressorts.map(function (r) { return '<a href="' + ROOT + 'ressort/' + r[0] + '/">' + r[1] + '</a>'; }).join('') + '</div>' +
-      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'abo/">Ausgabe per E-Mail</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
+      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
       '<div><h4>Service &amp; Rechtliches</h4><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a><a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></div>' +
       '</div><div class="footer-bottom"><span>© ' + new Date().getFullYear() + ' GaLaBau Kompass · Das Magazin für den Garten- und Landschaftsbau</span><span>galabau-kompass.de</span></div></div>';
   }
@@ -202,14 +203,16 @@
 
   /* ── Archiv: Suche / Filter / Sortierung ── */
   function teaserHtml(a, extra) {
-    return '<article class="t t-horiz"><a class="t-media" href="' + ROOT + 'artikel/' + a.slug + '/" tabindex="-1" aria-hidden="true"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" srcset="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg 640w, ' + ROOT + 'assets/img/' + a.bild + '.jpg 1600w" sizes="(min-width: 720px) 240px, 112px" alt="" loading="lazy" width="1600" height="1067"></a>' +
-      '<div class="t-body"><div class="t-meta"><a class="t-ressort" href="' + ROOT + 'ressort/' + a.ressort + '/">' + esc(a.ressort_name) + '</a><time datetime="' + a.datum + '">' + esc(a.datum_kurz || kurzDate(a.datum)) + '</time></div>' +
-      '<h3 class="t-h"><a href="' + ROOT + 'artikel/' + a.slug + '/">' + esc(a.title) + '</a></h3><p class="t-dek">' + esc(a.dek) + '</p><div class="t-foot">' + a.lesezeit + ' Min. Lesezeit' + (extra || '') + '</div></div></article>';
+    var media = a.bild ? '<a class="t-media" href="' + ROOT + 'artikel/' + a.slug + '/" tabindex="-1" aria-hidden="true"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" srcset="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg 640w, ' + ROOT + 'assets/img/' + a.bild + '.jpg 1600w" sizes="(min-width: 720px) 240px, 112px" alt="" loading="lazy" width="1600" height="1067"></a>' : '';
+    var fmt = a.format && a.format !== 'artikel' ? '<span class="t-format t-format-' + a.format + '">' + esc(a.format_name || a.format) + '</span>' : '';
+    return '<article class="t t-horiz' + (a.bild ? '' : ' t-ohne-bild') + '" data-slug="' + a.slug + '">' + media +
+      '<div class="t-body"><div class="t-meta">' + fmt + '<a class="t-ressort" href="' + ROOT + 'ressort/' + a.ressort + '/">' + esc(a.ressort_name) + '</a><time datetime="' + a.datum + '">' + esc(a.datum_kurz || kurzDate(a.datum)) + '</time></div>' +
+      '<h3 class="t-h"><a href="' + ROOT + 'artikel/' + a.slug + '/">' + esc(a.title) + '</a></h3><p class="t-dek">' + esc(a.dek) + '</p><div class="t-foot"><span>' + a.lesezeit + ' Min. Lesezeit' + (extra || '') + '</span><button type="button" class="merken" data-merken="' + a.slug + '" aria-label="Beitrag merken" title="Merken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button></div></div></article>';
   }
   function initArchiv(root) {
     var liste = root.querySelector('[data-liste]'), erg = root.querySelector('[data-ergebnis]'), mehr = root.querySelector('[data-mehr]'), reset = root.querySelector('[data-reset]');
     var sortSel = root.querySelector('[data-sort]'), chips = root.querySelectorAll('[data-ressort-chips] .chip'), form = root.querySelector('[data-suche]'), input = form.querySelector('input');
-    var state = { q: params.q || '', ressort: root.dataset.ressort || params.ressort || '', sort: params.sort || 'neu', shown: 12 };
+    var state = { q: params.q || '', ressort: root.dataset.ressort || params.ressort || '', sort: params.sort || 'neu', format: params.format || '', shown: 12 };
     input.value = state.q;
     chips.forEach(function (c) { c.classList.toggle('is-active', c.dataset.r === state.ressort); });
     sortSel.value = state.sort;
@@ -217,7 +220,7 @@
     function render() {
       if (!data) return;
       var terms = norm(state.q).split(/\s+/).filter(function (w) { return w.length > 1; });
-      var rows = data.artikel.map(function (a) { return { a: a, s: terms.length ? score(a, terms) : 0 }; }).filter(function (r) { return (!terms.length || r.s > 0) && (!state.ressort || r.a.ressort === state.ressort); });
+      var rows = data.artikel.map(function (a) { return { a: a, s: terms.length ? score(a, terms) : 0 }; }).filter(function (r) { return (!terms.length || r.s > 0) && (!state.ressort || r.a.ressort === state.ressort) && (!state.format || r.a.format === state.format); });
       var sort = state.sort;
       rows.sort(function (x, y) {
         if (terms.length && sort !== 'alt' && sort !== 'neu') { if (y.s !== x.s) return y.s - x.s; }
@@ -227,19 +230,20 @@
         return y.a.datum > x.a.datum ? 1 : -1;
       });
       var rName = (CFG.ressorts.filter(function (r) { return r[0] === state.ressort; })[0] || ['', ''])[1];
-      erg.textContent = rows.length + (rows.length === 1 ? ' Beitrag' : ' Beiträge') + (state.q ? ' zu „' + state.q + '“' : '') + (state.ressort ? ' in ' + rName : '');
-      reset.hidden = !(state.q || state.ressort);
+      var fName = { meldung: 'Kurz gemeldet', produkt: 'Produkte', standpunkt: 'Standpunkte', praxisfrage: 'Praxisfragen' }[state.format];
+      erg.textContent = rows.length + (rows.length === 1 ? ' Beitrag' : ' Beiträge') + (state.q ? ' zu „' + state.q + '“' : '') + (state.ressort ? ' in ' + rName : '') + (fName ? ' · ' + fName : '');
+      reset.hidden = !(state.q || state.ressort || state.format);
       liste.innerHTML = rows.slice(0, state.shown).map(function (r) { return teaserHtml(r.a, sort === 'gelesen' && views[r.a.slug] ? ' · ' + views[r.a.slug] + ' Leser' : ''); }).join('') || '<p class="muted mt-s">Keine Treffer. Versuchen Sie einen anderen Begriff oder ein anderes Ressort.</p>';
       mehr.hidden = rows.length <= state.shown;
       if (!mehr.hidden) mehr.textContent = 'Mehr laden (' + (rows.length - state.shown) + ' weitere)';
-      try { var u = new URL(location.href); ['q', 'ressort', 'sort'].forEach(function (k) { if (state[k] && !(k === 'sort' && state[k] === 'neu') && !(k === 'ressort' && root.dataset.ressort)) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); }); history.replaceState(null, '', u.toString()); } catch (e) {}
+      try { var u = new URL(location.href); ['q', 'ressort', 'sort', 'format'].forEach(function (k) { if (state[k] && !(k === 'sort' && state[k] === 'neu') && !(k === 'ressort' && root.dataset.ressort)) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); }); history.replaceState(null, '', u.toString()); } catch (e) {}
     }
     form.addEventListener('submit', function (e) { e.preventDefault(); state.q = input.value.trim(); state.shown = 12; if (state.q) track('suche', { q: state.q }); render(); });
     var t; input.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { state.q = input.value.trim(); state.shown = 12; render(); }, 180); });
     chips.forEach(function (c) { c.addEventListener('click', function () { state.ressort = c.dataset.r; state.shown = 12; chips.forEach(function (x) { x.classList.toggle('is-active', x === c); }); render(); }); });
     sortSel.addEventListener('change', function () { state.sort = sortSel.value; state.shown = 12; if (state.sort === 'gelesen') stats().then(function (s) { views = s.views || {}; render(); }); else render(); });
     mehr.addEventListener('click', function () { state.shown += 12; render(); });
-    reset.addEventListener('click', function () { state.q = ''; state.ressort = root.dataset.ressort || ''; input.value = ''; chips.forEach(function (x) { x.classList.toggle('is-active', x.dataset.r === state.ressort); }); render(); });
+    reset.addEventListener('click', function () { state.q = ''; state.format = ''; state.ressort = root.dataset.ressort || ''; input.value = ''; chips.forEach(function (x) { x.classList.toggle('is-active', x.dataset.r === state.ressort); }); render(); });
     root.querySelectorAll('[data-tag]').forEach(function (tg) { tg.addEventListener('click', function (e) { e.preventDefault(); input.value = tg.dataset.tag; state.q = tg.dataset.tag; state.shown = 12; render(); window.scrollTo({ top: root.offsetTop - 60, behavior: 'smooth' }); }); });
     loadIndex().then(function (j) { data = j; if (state.sort === 'gelesen') return stats().then(function (s) { views = s.views || {}; }); }).then(render).catch(function () { erg.textContent = 'Archiv konnte nicht geladen werden.'; });
   }
@@ -298,6 +302,80 @@
     box.querySelectorAll('[data-share]').forEach(function (el) { el.addEventListener('click', function () { track('teilen', { via: el.dataset.share }); }); });
   }
 
+  /* ── Merkliste (localStorage, kein Login) ── */
+  var MK = 'kompass_merkliste';
+  function merkListe() { try { return JSON.parse(localStorage.getItem(MK) || '[]'); } catch (e) { return []; } }
+  function merkSet(l) { try { localStorage.setItem(MK, JSON.stringify(l)); } catch (e) {} merkSync(); }
+  function merkSync() {
+    var l = merkListe();
+    document.querySelectorAll('[data-merken]').forEach(function (b) { var on = l.indexOf(b.dataset.merken) > -1; b.classList.toggle('is-on', on); b.title = on ? 'Gemerkt – zum Entfernen klicken' : 'Merken'; var t = b.querySelector('[data-merken-text]'); if (t) t.textContent = on ? 'Gemerkt' : 'Merken'; });
+    document.querySelectorAll('[data-merk-anz]').forEach(function (el) { el.textContent = l.length ? String(l.length) : ''; });
+  }
+  function initMerken() {
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-merken]'); if (!b) return; e.preventDefault(); e.stopPropagation();
+      var l = merkListe(), slug = b.dataset.merken, i = l.indexOf(slug);
+      if (i > -1) l.splice(i, 1); else { l.unshift(slug); track('merken', { slug: slug }); }
+      merkSet(l);
+    });
+    merkSync();
+  }
+  function initMerkliste(root) {
+    var liste = root.querySelector('[data-merk-liste]'), anz = root.querySelector('[data-merk-anzahl]'), leer = root.querySelector('[data-merk-leer]'), btn = root.querySelector('[data-merk-leeren]');
+    function render() {
+      var l = merkListe();
+      loadIndex().then(function (j) {
+        var by = {}; j.artikel.forEach(function (a) { by[a.slug] = a; });
+        var rows = l.map(function (s) { return by[s]; }).filter(Boolean);
+        anz.textContent = rows.length ? rows.length + (rows.length === 1 ? ' gemerkter Beitrag' : ' gemerkte Beiträge') : 'Keine gemerkten Beiträge';
+        leer.hidden = rows.length > 0; btn.hidden = rows.length === 0;
+        liste.innerHTML = rows.map(function (a) { return teaserHtml(a, ''); }).join('');
+        merkSync();
+      });
+    }
+    btn.addEventListener('click', function () { if (confirm('Merkliste wirklich leeren?')) { merkSet([]); render(); } });
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-merken]')) setTimeout(render, 50); });
+    render();
+  }
+
+  /* ── Vorlesen (Sprachausgabe des Browsers) ── */
+  function initVorlesen(btn) {
+    if (!('speechSynthesis' in window)) { btn.hidden = true; return; }
+    var prose = document.querySelector('[data-prose]'), lesen = false, utter = null;
+    function text() { var h = document.querySelector('.art-head h1'), d = document.querySelector('.art-dek'); return [h && h.textContent, d && d.textContent, prose && prose.innerText].filter(Boolean).join('. '); }
+    function stop() { speechSynthesis.cancel(); lesen = false; btn.classList.remove('is-lesen'); btn.querySelector('span').textContent = 'Vorlesen'; }
+    btn.addEventListener('click', function () {
+      if (lesen) { stop(); return; }
+      utter = new SpeechSynthesisUtterance(text()); utter.lang = 'de-DE'; utter.rate = 1.02;
+      var v = speechSynthesis.getVoices().filter(function (x) { return /^de/i.test(x.lang); }); if (v.length) utter.voice = v.filter(function (x) { return /Anna|Petra|Markus|Google|Microsoft|Premium|Enhanced/i.test(x.name); })[0] || v[0];
+      utter.onend = stop; utter.onerror = stop;
+      speechSynthesis.cancel(); speechSynthesis.speak(utter); lesen = true; btn.classList.add('is-lesen'); btn.querySelector('span').textContent = 'Stopp'; track('vorlesen', {});
+    });
+    window.addEventListener('pagehide', function () { if (lesen) speechSynthesis.cancel(); });
+  }
+
+  /* ── Frage der Woche ── */
+  function initFrage(box) {
+    var id = box.dataset.frage, opts = box.querySelectorAll('.frage-opt'), note = box.querySelector('[data-frage-note]'), key = 'kompass_frage_' + id, mine = null;
+    try { mine = localStorage.getItem(key); } catch (e) {}
+    function show(counts) {
+      var total = 0; opts.forEach(function (o) { total += counts[o.dataset.opt] || 0; });
+      opts.forEach(function (o) { var n = counts[o.dataset.opt] || 0, pct = total ? Math.round(n / total * 100) : 0; o.querySelector('.frage-fill').style.width = pct + '%'; o.querySelector('.frage-pct').textContent = pct + ' %'; o.classList.toggle('is-mine', o.dataset.opt === mine); o.disabled = true; });
+      box.classList.add('is-done'); note.textContent = total + (total === 1 ? ' Stimme' : ' Stimmen') + ' · Ergebnis wird laufend aktualisiert.';
+    }
+    function load() { if (IS_LOCAL) { var c = {}; opts.forEach(function (o, i) { c[o.dataset.opt] = [12, 9, 15, 4, 3][i] || 2; }); if (mine !== null) c[mine] = (c[mine] || 0) + 1; show(c); return; } getJson('/frage?id=' + encodeURIComponent(id)).then(function (j) { show(j.counts || {}); }).catch(function () { note.textContent = 'Ergebnis gerade nicht abrufbar.'; }); }
+    opts.forEach(function (o) { o.addEventListener('click', function () {
+      if (box.classList.contains('is-done')) return;
+      mine = o.dataset.opt; try { localStorage.setItem(key, mine); } catch (e) {}
+      o.disabled = true; note.textContent = 'Stimme wird gezählt …';
+      var body = { poll_id: id, option: mine | 0, session_id: sessionId, env: window.KOMPASS_ENV };
+      track('frage', { id: id, opt: mine });
+      if (IS_LOCAL) { load(); return; }
+      post('/frage', body).then(function (j) { show(j.counts || {}); }).catch(function () { load(); });
+    }); });
+    if (mine !== null) load();
+  }
+
   /* ── Reveal (Tool-Seiten) ── */
   function initReveal() {
     var pending = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
@@ -318,6 +396,10 @@
     document.querySelectorAll('[data-kommentare]').forEach(initKommentare);
     document.querySelectorAll('[data-abo]').forEach(initAbo);
     document.querySelectorAll('[data-teilen]').forEach(initTeilen);
+    initMerken();
+    var ml = document.querySelector('[data-merkliste]'); if (ml) initMerkliste(ml);
+    var vl = document.querySelector('[data-vorlesen]'); if (vl) initVorlesen(vl);
+    document.querySelectorAll('[data-frage]').forEach(initFrage);
     initReveal();
     track('page_view', { title: document.title });
     window.KOMPASS.flushQueue();

@@ -8,6 +8,10 @@ bild_alt: "Pritschenwagen eines Landschaftsbaubetriebs mit Minibagger auf dem An
 bild_prompt: "A green flatbed van of a landscaping company towing a trailer with a mini excavator on a German country road in early spring, seen from a three-quarter rear angle, realistic, no brand logos."
 bild_caption: "Zugfahrzeug plus Anhänger: Ab 3,5 Tonnen zulässiger Gesamtmasse der Kombination wird es kompliziert."
 relevanz: 62
+kurz:
+  - 'Entscheidend ist die zulässige Gesamtmasse der Kombination: B bis 3,5 Tonnen, B96 bis 4,25 Tonnen (eintägige Schulung, 300 bis 500 Euro), BE bis 7 Tonnen (Prüfung, 800 bis 1.000 Euro).'
+  - 'Pritsche mit 3,5 Tonnen plus Tandemanhänger mit 2,7 Tonnen ergeben 6,2 Tonnen – das ist BE, unabhängig vom tatsächlichen Gewicht.'
+  - 'Die EU-Führerscheinrichtlinie von 2025 erlaubt künftig Fahrzeuge bis 4,25 Tonnen mit Klasse B plus Zusatzschulung – relevant für Elektro-Transporter.'
 quellen:
   - t: "ADAC: Anhängerführerschein B96 – So viel dürfen Sie damit ziehen (Kombination bis 4,25 t, eintägige Schulung ohne Prüfung)"
     u: "https://www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/anhaengerfuehrerschein-b96/"

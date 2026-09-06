@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner pflanzen einen jungen Straßenbaum mit Ballen in 
 bild_prompt: "Two landscapers planting a young ball-and-burlap street tree into a prepared tree pit on a German city street, tree stakes and watering bag ready, spring light, realistic documentary photo, no text."
 bild_caption: "Die Art entscheidet, ob der Baum in zehn Jahren noch steht – und wer die Nachpflanzung bezahlt."
 relevanz: 64
+kurz:
+  - 'Die GALK-Straßenbaumliste führt 178 Sorten; BdB und GALK haben daraus 65 Zukunftsbäume für die Stadt ausgewählt.'
+  - 'Kriterien: Trockenstress- und Hitzetoleranz, Frosthärte, geringe Anfälligkeit – gut bewertet werden etwa Hopfenbuche, Zerreiche, Silberlinde, Amberbaum und Baumhasel.'
+  - 'Wer pflanzt, haftet für das Anwachsen: Die Sortenwahl nach Liste ist Gewährleistungsschutz, nicht Geschmackssache.'
 quellen:
   - t: "Deutsche Gartenamtsleiterkonferenz (GALK): Straßenbaumliste (Abfrage 2026, 178 Baumsorten)"
     u: "https://strassenbaumliste.galk.de/"

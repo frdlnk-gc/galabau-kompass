@@ -8,6 +8,10 @@ bild_alt: "Inhaber und Landschaftsgärtner sitzen im Aufenthaltsraum eines Betri
 bild_prompt: "A landscaping company owner and an employee in work clothes having a calm one-on-one conversation at a wooden table in the break room of a German gardening business, coffee cups and a notepad, November light through the window, realistic documentary photo, no text."
 bild_caption: "Kein Formular, keine Bewertung: Das Jahresgespräch fragt, was bleiben soll und was sich ändern muss."
 relevanz: 48
+kurz:
+  - 'Jede zweite Kündigung kommt vom Mitarbeiter, der Wechselzeitpunkt liegt im Winter – das Gespräch im November kommt vor der Kündigung.'
+  - 'Drei Teile, eine Regel: Rückblick, Ausblick, Entwicklung – und der Mitarbeiter redet zuerst; Gehalt bekommt einen eigenen Termin im Januar.'
+  - 'Drei Punkte je Mitarbeiter mit Termin aufschreiben und im Februar Bilanz ziehen: Mitarbeiter verzeihen ein Nein, aber kein Vergessen.'
 quellen:
   - t: "Institut der deutschen Wirtschaft (IW), Holger Schäfer: Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Anteil der Eigenkündigungen an allen Beendigungen 52 Prozent; 84 Prozent mit neuer Stelle in Aussicht)"
     u: "https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html"

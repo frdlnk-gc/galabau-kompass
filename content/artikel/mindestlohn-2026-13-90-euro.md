@@ -8,6 +8,10 @@ bild_alt: "Helfer im Landschaftsbau schaufelt Schotter auf einer Baustelle, Lohn
 bild_prompt: "Two workers shoveling gravel into a wheelbarrow on a German garden construction site, work gloves and high-visibility vests, morning light, realistic documentary style, no text."
 bild_caption: "Helfer und Saisonkräfte: Für sie ist der gesetzliche Mindestlohn die Untergrenze, nicht der Tarif."
 relevanz: 66
+kurz:
+  - '13,90 Euro ab 1. Januar 2026, 14,60 Euro ab 2027 – zusammen plus 13,88 Prozent in zwei Jahren.'
+  - 'Betroffen im GaLaBau: ungelernte Helfer und Saisonkräfte, Minijobs (Grenze 2026: 603 Euro) und Praktikanten außerhalb der Ausnahmen.'
+  - 'Ein Helfer mit 173 Stunden bekommt ab Januar mindestens 2.405 statt 2.218 Euro brutto; der Abstand zum Ecklohn schrumpft.'
 quellen:
   - t: "Bundesministerium für Arbeit und Soziales: Mindestlohn steigt zum 1. Januar 2026 auf 13,90 Euro, Pressemitteilung 2025"
     u: "https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html"

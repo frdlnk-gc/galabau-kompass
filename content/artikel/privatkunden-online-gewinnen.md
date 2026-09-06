@@ -8,6 +8,10 @@ bild_alt: "Ehepaar sitzt am Küchentisch und sucht auf dem Tablet nach einem Gar
 bild_prompt: "A middle-aged German couple at a kitchen table looking at a tablet together, printed garden plans and a coffee pot on the table, garden visible through the window in winter, realistic, warm light, no readable text on screen."
 bild_caption: "Die Entscheidung für einen Betrieb fällt oft, bevor der erste Anruf stattfindet."
 relevanz: 54
+kurz:
+  - 'Privatkunden wählen den Gartenbauer nach zehn Minuten am Smartphone: Wer bei „Gartenbau plus Ort“ nicht mit Bewertungen und Fotos erscheint, existiert für sie nicht.'
+  - 'Das Google-Unternehmensprofil zählt mehr als die Website: nach jedem Projekt um eine Bewertung bitten, auf jede antworten, Fotos echter Projekte zeigen.'
+  - 'Die Website muss auf dem Handy in drei Sekunden drei Fragen beantworten – was, wo, wie erreichbar; der häufigste Fehler sind unbeantwortete Anfragen.'
 quellen:
   - t: "Redaktionelle Einordnung auf Basis von Gesprächen mit GaLaBau-Betrieben; keine Studiendaten"
 ---

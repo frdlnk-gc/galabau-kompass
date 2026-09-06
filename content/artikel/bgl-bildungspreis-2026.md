@@ -8,6 +8,10 @@ bild_alt: "Junge Landschaftsgärtnerin mit Vermessungsgerät auf einer Baustelle
 bild_prompt: "A young female landscape gardener in her early twenties operating a rotating laser level on a construction site of a German landscaping company, colleagues in the background, spring sunshine, realistic."
 bild_caption: "Drei Kategorien, drei Bundesländer je Kategorie: Der BGL-Bildungspreis 2026 zeigt, wo Ausbildung funktioniert."
 relevanz: 48
+kurz:
+  - 'Neun Nachwuchskräfte und erstmals drei Ausbildungsbetriebe werden ausgezeichnet; 15.000 Euro gehen an Nachwuchskräfte, 6.000 Euro an Betriebe.'
+  - 'Fünf der sechs ausgezeichneten Nachwuchskräfte sind Frauen – in einem Beruf mit rund 11 Prozent Frauenanteil unter den Azubis.'
+  - 'Der Betrieb Kreye taucht zweimal auf, als Arbeitgeber und als Ausbildungsbetrieb: gute Ausbildung ist selten Zufall; Verleihung auf der GaLaBau 2026.'
 quellen:
   - t: "B_I galabau: BGL-Bildungspreis 2026 – Das sind die Gewinner im GaLaBau, 27. März 2026 (Preisträger, Kategorien, Preisgelder 15.000 Euro und 6.000 Euro, Zitat Matthias Lösch)"
     u: "https://bau.bi/galabau/nachrichten/auszeichnung-galabau-bundesverband-verleiht-bildungspreis-2026-g21433"

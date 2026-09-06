@@ -8,6 +8,10 @@ bild_alt: "Vorarbeiter bucht auf dem Smartphone die Arbeitszeit seiner Kolonne a
 bild_prompt: "A foreman in high-visibility workwear tapping on a smartphone at the end of the workday on a landscaping site in Germany, crew packing tools in the background, evening light, realistic, no readable text on screen."
 bild_caption: "Stundenzettel auf Papier: laut Entwurf bald nicht mehr ausreichend – außer in Kleinbetrieben."
 relevanz: 68
+kurz:
+  - 'Der Referentenentwurf des Bundesarbeitsministeriums vom Juni 2026 sieht die elektronische Erfassung von Beginn, Ende und Dauer der Arbeitszeit vor; Papierzettel reichen dann nicht mehr.'
+  - 'Für Betriebe mit weniger als zehn Beschäftigten ist eine Ausnahme vorgesehen; die Erfassung kann delegiert werden, der Arbeitgeber bleibt verantwortlich.'
+  - 'Ein Entwurf ist kein Gesetz – aber die Erfassungspflicht gilt seit dem Beschluss des Bundesarbeitsgerichts von 2022 schon heute.'
 quellen:
   - t: "Bundesarbeitsgericht, Beschluss vom 13. September 2022, 1 ABR 22/21 (Pflicht zur Arbeitszeiterfassung)"
     u: "https://www.bundesarbeitsgericht.de/presse/einfuehrung-elektronischer-zeiterfassung/"

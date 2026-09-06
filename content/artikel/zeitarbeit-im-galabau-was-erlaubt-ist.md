@@ -8,6 +8,10 @@ bild_alt: "Zwei Kolonnen verschiedener Betriebe arbeiten gemeinsam auf einer gro
 bild_prompt: "Two crews in different colored workwear working together on a large commercial landscaping site with pavers and planting beds, a German office park in the background, spring light, realistic, no logos."
 bild_caption: "Kollegenhilfe zwischen Baubetrieben: erlaubt, wenn beide unter denselben Tarifvertrag fallen."
 relevanz: 60
+kurz:
+  - '§ 1b Arbeitnehmerüberlassungsgesetz verbietet die Überlassung in Baubetriebe für gewerbliche Arbeiten – der GaLaBau ist Baugewerbe, die klassische Zeitarbeitsfirma fällt aus.'
+  - 'Zulässig ist die Kollegenhilfe zwischen Betrieben, die unter denselben GaLaBau-Tarifverträgen stehen und in die Sozialkasse einzahlen (Verleiher seit mindestens drei Jahren).'
+  - 'Verstöße sind Ordnungswidrigkeiten; das Arbeitsverhältnis kann als eines mit dem Entleiher gelten.'
 quellen:
   - t: "§ 1b Arbeitnehmerüberlassungsgesetz (AÜG) – Einschränkungen im Baugewerbe"
     u: "https://www.gesetze-im-internet.de/a_g/__1b.html"

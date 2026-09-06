@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtner mit Akku-Laubbläser auf einem Gehweg vor Wohnhä
 bild_prompt: "A landscaping worker with a battery-powered leaf blower clearing fallen leaves from a sidewalk in a quiet German residential street, colorful autumn trees, morning light, realistic documentary photo, no text."
 bild_caption: "Werktags von 9 bis 13 und 15 bis 17 Uhr: In Wohngebieten ist der Laubbläser ein Gerät mit Stundenplan."
 relevanz: 50
+kurz:
+  - 'In Wohngebieten dürfen Laubbläser, Laubsammler, Freischneider und Grastrimmer werktags nur von 9 bis 13 und 15 bis 17 Uhr laufen, sonntags nie.'
+  - 'Ausgenommen sind nur Geräte mit EU-Umweltzeichen – ein Akkugerät ist nicht automatisch befreit.'
+  - 'Ausnahmen genehmigt die Kommune; der eigentliche Schaden bei Verstößen ist nicht das Bußgeld, sondern der Auftrag.'
 quellen:
   - t: "Bundesumweltministerium: Lärmschutz – Geräte- und Maschinenlärm (32. BImSchV)"
     u: "https://www.bundesumweltministerium.de/themen/laerm/themenbereiche-laerm/geraete-und-maschinenlaerm"

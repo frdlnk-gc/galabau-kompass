@@ -8,6 +8,10 @@ bild_alt: "Junger Maschinenführer im Minibagger auf einer Gartenbaustelle, Ausb
 bild_prompt: "A young landscaping worker operating a compact excavator on a German residential garden construction site while an instructor stands beside the machine giving hand signals, autumn light, realistic documentary style, no text."
 bild_caption: "Qualifizierung, Unterweisung, Beauftragung: Drei Schritte, bevor jemand allein baggert."
 relevanz: 58
+kurz:
+  - 'Einen amtlichen Baggerschein gibt es nicht – der DGUV Grundsatz 301-005 verlangt Qualifizierung, Unterweisung und Beauftragung.'
+  - 'Richtwert mindestens zehn Unterrichtseinheiten Theorie plus Praxis; das Zertifikat belegt die Qualifizierung, die Beauftragung erteilt jeder Betrieb selbst und schriftlich.'
+  - 'Selbstständiges Führen ab 18; auf der Straße kommt das Fahrerlaubnisrecht dazu (Klasse L bis 25 km/h).'
 quellen:
   - t: "DGUV Grundsatz 301-005: Qualifizierung und Beauftragung von Fahrern und Fahrerinnen von Hydraulikbaggern und Radladern (Stand Januar 2022)"
     u: "https://publikationen.dguv.de/regelwerk/dguv-grundsaetze/4418/qualifizierung-und-beauftragung-von-fahrern-und-fahrerinnen-von-hydraulikbaggern-und-radladern"

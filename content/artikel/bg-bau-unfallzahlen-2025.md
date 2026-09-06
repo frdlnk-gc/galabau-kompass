@@ -9,6 +9,10 @@ bild_alt: "Landschaftsgärtner mit Gehörschutz und Schutzbrille bedient eine R�
 bild_prompt: "A landscaper wearing ear protection, safety glasses and gloves operating a plate compactor on a paving construction site in Germany, dust in the sunlight, realistic documentary photo, no text."
 bild_caption: "Weniger Unfälle, mehr Berufskrankheiten: Lärm, Staub und Vibration wirken über Jahre."
 relevanz: 70
+kurz:
+  - '89.113 meldepflichtige Arbeitsunfälle 2025, 2.700 weniger als 2024 – erstmals unter 90.000; die Quote je 1.000 Vollarbeiter sank auf 42,95.'
+  - 'Tödliche Unfälle 2024: 78, vor allem Absturz (36 Prozent), herabfallende oder umstürzende Bauteile (26 Prozent) und Baumaschinen (15 Prozent).'
+  - 'Über 22.000 Verdachtsanzeigen auf Berufskrankheiten (plus 4,9 Prozent) – im GaLaBau vor allem Hautkrebs durch UV-Strahlung und Lärmschwerhörigkeit.'
 quellen:
   - t: "PCH Technischer Handel: BG BAU-Bilanz 2025 – Arbeitsunfälle sinken, Berufskrankheiten bleiben Herausforderung (89.113 meldepflichtige Arbeitsunfälle 2025, −2.700 / −2,9 %; Tausend-Personen-Quote 42,95 nach 43,76; mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten, +4,9 %)"
     u: "https://www.pch-24.de/bg-bau-bilanz-2025-arbeitsunfaelle-sinken-berufskrankheiten-bleiben-herausforderung/"

@@ -8,6 +8,10 @@ bild_alt: "Schülerpraktikantin und Ausbilder beim Pflanzen von Stauden in einem
 bild_prompt: "A teenage intern and an experienced female landscape gardener planting perennials together in a private garden in Germany in autumn, fallen leaves, warm light, realistic documentary style, no text."
 bild_caption: "Der Praktikant vom Oktober ist der Auszubildende vom nächsten August."
 relevanz: 62
+kurz:
+  - '3.221 Neuverträge auf fast 20.000 Betriebe: Wer 2027 einen Azubi will, entscheidet das im Herbst 2026, nicht im Sommer.'
+  - 'Hebel eins: Praktika in den Herbst- und Winterferien anbieten – wer im Januar Praktikant war, unterschreibt im März.'
+  - 'Hebel zwei: sichtbar sein, wo Jugendliche suchen, mit Fotos vom Team und der Zahl 1.140 Euro; Hebel drei: die Eltern mitdenken.'
 quellen:
   - t: "Gabot.de: GaLaBau – Azubi-Zahlen klettern auf fast 8.100, 25. Februar 2026 (8.089 Auszubildende, 3.221 Neuverträge)"
     u: "https://www.gabot.de/ansicht/galabau-azubi-zahlen-klettern-auf-fast-8100-439688.html"

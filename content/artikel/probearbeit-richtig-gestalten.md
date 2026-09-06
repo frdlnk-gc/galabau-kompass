@@ -8,6 +8,10 @@ bild_alt: "Bewerber arbeitet zur Probe mit einer Kolonne beim Pflastern, Vorarbe
 bild_prompt: "A candidate on a trial work day helping a crew lay pavers on a German residential construction site, a foreman watching attentively with arms crossed, summer light, realistic documentary style, no text."
 bild_caption: "Nach vier Stunden wissen beide Seiten mehr als nach drei Gesprächen."
 relevanz: 56
+kurz:
+  - 'Ein Probearbeitstag ist ein Einfühlungsverhältnis: kein Arbeitsvertrag, keine Weisungen, keine Vergütungspflicht – ein Tag, höchstens zwei.'
+  - 'Unfallversichert ist der Bewerber trotzdem (Bundessozialgericht 2019, B 2 U 1/18 R); eine halbe Seite Dokumentation reicht.'
+  - 'Der Vorarbeiter beurteilt Umgang, Sorgfalt und Fragen – nicht das Tempo; wer am selben Abend ein Angebot machen kann, sollte es tun.'
 quellen:
   - t: "Bundessozialgericht, Urteil vom 20. August 2019, B 2 U 1/18 R (Unfallversicherungsschutz bei Probearbeit als „Wie-Beschäftigter“)"
   - t: "Bundesagentur für Arbeit: Monatsbericht Januar 2026 (abgeschlossene Vakanzzeit 166 Tage)"

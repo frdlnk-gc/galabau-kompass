@@ -1,20 +1,20 @@
-{# Teaser-Bausteine. Varianten: grid (Bild oben) · horiz (Bild links) · lead (großer Aufmacher, Bild links) · list (Miniatur) #}
+{# Teaser-Bausteine v4. Varianten: grid · horiz · lead · list · text · meldung #}
 {% macro img(a, root, big=False, lazy=True) -%}
-<img src="{{ root }}assets/img/{{ a.bild }}{{ '' if big else '-thumb' }}.jpg" srcset="{{ root }}assets/img/{{ a.bild }}-thumb.jpg 640w, {{ root }}assets/img/{{ a.bild }}.jpg 1600w" sizes="{{ '(min-width: 1024px) 760px, 100vw' if big else '(min-width: 1024px) 400px, (min-width: 720px) 50vw, 100vw' }}" alt=""{% if lazy %} loading="lazy" decoding="async"{% endif %} width="1600" height="1067">
+{% if a.bild %}<img src="{{ root }}assets/img/{{ a.bild }}{{ '' if big else '-thumb' }}.jpg" srcset="{{ root }}assets/img/{{ a.bild }}-thumb.jpg 640w, {{ root }}assets/img/{{ a.bild }}.jpg 1600w" sizes="{{ '(min-width: 1024px) 760px, 100vw' if big else '(min-width: 1024px) 400px, (min-width: 720px) 50vw, 100vw' }}" alt=""{% if lazy %} loading="lazy" decoding="async"{% endif %} width="1600" height="1067">{% else %}<span class="t-noimg" aria-hidden="true"></span>{% endif %}
 {%- endmacro %}
 
-{% macro meta(a, root) -%}
-<div class="t-meta"><a class="t-ressort" href="{{ root }}ressort/{{ a.ressort }}/">{{ a.ressort_name }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></div>
+{% macro meta(a, root, format=True) -%}
+<div class="t-meta">{% if format and a.format != 'artikel' %}<span class="t-format t-format-{{ a.format }}">{{ a.format_name }}</span>{% endif %}<a class="t-ressort" href="{{ root }}ressort/{{ a.ressort }}/">{{ a.ressort_name }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></div>
 {%- endmacro %}
 
 {% macro teaser(a, root, v='grid') -%}
-<article class="t t-{{ v }}">
-  <a class="t-media" href="{{ root }}artikel/{{ a.slug }}/" tabindex="-1" aria-hidden="true">{{ img(a, root, big=(v == 'lead')) }}</a>
+<article class="t t-{{ v }}{% if not a.bild %} t-ohne-bild{% endif %} t-f-{{ a.format }}" data-slug="{{ a.slug }}">
+  {% if a.bild %}<a class="t-media" href="{{ root }}artikel/{{ a.slug }}/" tabindex="-1" aria-hidden="true">{{ img(a, root, big=(v == 'lead')) }}</a>{% endif %}
   <div class="t-body">
     {{ meta(a, root) }}
     {% if v == 'lead' %}<h2 class="t-h"><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></h2>{% else %}<h3 class="t-h"><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></h3>{% endif %}
-    {% if v != 'list' %}<p class="t-dek">{{ a.dek }}</p>{% endif %}
-    {% if v in ['lead', 'horiz'] %}<div class="t-foot">{{ a.lesezeit }} Min. Lesezeit</div>{% endif %}
+    {% if v != 'list' %}<p class="t-dek">{{ a.antwort if a.format == 'praxisfrage' and a.antwort else a.dek }}</p>{% endif %}
+    {% if v in ['lead', 'horiz'] %}<div class="t-foot"><span>{{ a.lesezeit }} Min. Lesezeit</span><button type="button" class="merken" data-merken="{{ a.slug }}" aria-label="Beitrag merken" title="Merken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button></div>{% endif %}
   </div>
 </article>
 {%- endmacro %}
@@ -23,4 +23,21 @@
 <ul class="t-textlist">
   {% for a in items %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></li>{% endfor %}
 </ul>
+{%- endmacro %}
+
+{% macro meldungsliste(items, root) -%}
+<ul class="meldungen">
+  {% for a in items %}<li><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time><a href="{{ root }}artikel/{{ a.slug }}/"><b>{{ a.title }}</b><span>{{ a.dek }}</span></a></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro frage_modul(f, root) -%}
+{% if f %}
+<div class="frage" data-frage="{{ f.id }}">
+  <span class="box-title">Frage der Woche</span>
+  <p class="frage-text">{{ f.frage }}</p>
+  <div class="frage-optionen" data-frage-optionen>{% for o in f.optionen %}<button type="button" class="frage-opt" data-opt="{{ loop.index0 }}"><span class="frage-label">{{ o }}</span><span class="frage-bar"><span class="frage-fill"></span></span><span class="frage-pct"></span></button>{% endfor %}</div>
+  <p class="frage-note" data-frage-note>Eine Stimme je Browser. Ergebnis erscheint nach der Abstimmung.</p>
+</div>
+{% endif %}
 {%- endmacro %}

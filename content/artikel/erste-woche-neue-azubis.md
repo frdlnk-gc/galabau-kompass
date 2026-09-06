@@ -8,6 +8,10 @@ bild_alt: "Neuer Auszubildender am ersten Tag auf dem Betriebshof, ein Facharbei
 bild_prompt: "A nervous 16-year-old apprentice on his first day at a German landscaping company, an experienced worker showing him the tool storage in the workshop, morning light, realistic documentary photo, no text."
 bild_caption: "Am ersten Tag entscheidet sich nicht die Prüfung, aber die Frage, ob der Azubi am Montag wiederkommt."
 relevanz: 53
+kurz:
+  - 'Vor dem ersten Tag: Erstuntersuchung nach § 32 JArbSchG, eingetragener Vertrag mit Probezeit (ein bis vier Monate), Ausrüstung in der richtigen Größe, ein Pate aus der Kolonne.'
+  - 'Montag auf dem Hof mit Unterweisung, Dienstag bis Donnerstag Baustelle mit Patin, Freitag Gespräch und Ausbildungsnachweis.'
+  - 'Unter 18: acht Stunden, 40 Stunden, fünf Tage, nicht vor 6 und nach 20 Uhr, 25 bis 30 Tage Urlaub; Abbrüche entstehen in der Kolonne, nicht in der Berufsschule.'
 quellen:
   - t: "Berufsbildungsgesetz, § 20 Probezeit (mindestens ein, höchstens vier Monate), § 13 Pflichten der Auszubildenden (Ausbildungsnachweis), § 15 Freistellung für die Berufsschule"
     u: "https://www.gesetze-im-internet.de/bbig_2005/__20.html"

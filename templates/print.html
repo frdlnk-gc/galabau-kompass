@@ -61,6 +61,16 @@
   .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
   .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
   .art .text a{color:inherit;text-decoration:none;}
+  .art .kurz{background:#F4F2EB;border-left:.8mm solid #15803D;padding:3mm 4mm;margin:0 0 5mm;font-size:9.2pt;border-radius:1.5mm;}
+  .art .kurz b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz ul{margin-left:4mm;}
+  .art .kurz li{margin-bottom:1mm;}
+  .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
+  .art .kurz dt{font-weight:700;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #E5E1D6;break-inside:avoid;}
+  .meld .d{font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:Fraunces,serif;font-weight:600;font-size:12pt;line-height:1.2;margin:1mm 0;}
+  .meld p{font-size:9.2pt;color:#4B5A50;}
   .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
   .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
   .art .quellen ol{margin-left:4mm;}
@@ -76,8 +86,8 @@
   <section class="seite cover">
     <img src="../../assets/img/{{ x.lead.bild }}.jpg" alt="">
     <div class="kopf">
-      <div><div class="wort">GaLaBau <i>Kompass</i></div><div class="claim">{{ site.claim }}</div></div>
-      <div class="nr">Ausgabe<b>{{ x.nr }}</b>{{ x.monat }}</div>
+      <div><div class="wort">GaLaBau Kompass</div><div class="claim">{{ site.claim }}</div></div>
+      <div class="nr">Nr. {{ x.lauf }} · Ausgabe<b>{{ x.nr }}</b>{{ x.monat }}</div>
     </div>
     <div class="titel"><div class="kick">{{ x.lead.ressort_name }}</div><h1>{{ x.lead.title }}</h1><p>{{ x.lead.dek }}</p></div>
     <div class="teaser">{% for a in x.artikel[1:4] %}<span>{{ a.title|truncate(48, True) }}</span>{% endfor %}</div>
@@ -95,13 +105,23 @@
   <!-- Artikel -->
   {% for a in x.artikel %}
   <section class="seite art">
-    <div class="kopf"><div class="r">{{ a.ressort_name }}</div><h1>{{ a.title }}</h1><p class="dek">{{ a.dek }}</p><div class="byline">{{ a.autor }} · {{ a.datum_de }}</div></div>
-    <figure><img src="../../assets/img/{{ a.bild }}.jpg" alt="">{% if a.bild_caption %}<figcaption>{{ a.bild_caption }}</figcaption>{% endif %}</figure>
+    <div class="kopf"><div class="r">{% if a.format != 'artikel' %}{{ a.format_name }} · {% endif %}{{ a.ressort_name }}</div><h1>{{ a.title }}</h1><p class="dek">{{ a.dek }}</p><div class="byline">{{ a.autor }} · {{ a.datum_de }}</div></div>
+    {% if a.bild %}<figure><img src="../../assets/img/{{ a.bild }}.jpg" alt="">{% if a.bild_caption %}<figcaption>{{ a.bild_caption }} · Symbolbild</figcaption>{% endif %}</figure>{% endif %}
+    {% if a.format == 'praxisfrage' and a.antwort %}<div class="kurz"><b>Die kurze Antwort</b><p>{{ a.antwort }}</p></div>{% elif a.kurz %}<div class="kurz"><b>Kurz gesagt</b><ul>{% for k in a.kurz %}<li>{{ k }}</li>{% endfor %}</ul></div>{% endif %}
+    {% if a.format == 'produkt' and a.steckbrief %}<div class="kurz steck"><b>Steckbrief</b><dl>{% for k, v in a.steckbrief.items() %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl></div>{% endif %}
     <div class="text">{{ a.html|safe }}</div>
     {% if a.quellen %}<div class="quellen"><b>Quellen</b><ol>{% for q in a.quellen %}<li>{{ q.t }}{% if q.u %} – <a href="{{ q.u }}">{{ q.u|replace('https://','')|truncate(60, True) }}</a>{% endif %}</li>{% endfor %}</ol></div>{% endif %}
     <div class="kolumne"><span>GaLaBau Kompass · {{ x.label }}</span><span>{{ a.ressort_name }}</span></div>
   </section>
   {% endfor %}
+
+  {% if x.meldungen %}
+  <section class="seite meld">
+    <h2 class="rubrik">Kurz gemeldet · {{ x.monat }}</h2>
+    {% for a in x.meldungen %}<div class="item"><div class="d">{{ a.datum_kurz }} · {{ a.ressort_name }}</div><h3>{{ a.title }}</h3><p>{{ a.dek }}</p></div>{% endfor %}
+    <div class="kolumne"><span>GaLaBau Kompass · {{ x.label }}</span><span>Kurz gemeldet</span></div>
+  </section>
+  {% endif %}
 
   <!-- Impressum -->
   <section class="seite imp">

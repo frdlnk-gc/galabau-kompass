@@ -8,6 +8,10 @@ bild_alt: "Landschaftsgärtnerin in langer Arbeitskleidung mäht eine Böschung 
 bild_prompt: "A female landscaping worker in long-sleeved protective work clothing cutting tall grass on an embankment at the edge of a forest in Germany, late spring, realistic documentary photo, no text."
 bild_caption: "Hohes Gras, Waldrand, Böschung: Der Arbeitsplatz der Zecke ist der Arbeitsplatz der Grünpflege."
 relevanz: 55
+kurz:
+  - '185 FSME-Risikogebiete, mehr als 46 Prozent aller Kreise, neu Nordsachsen und Halle (Saale).'
+  - 'FSME ist impfbar (drei Dosen, Auffrischung alle drei bis fünf Jahre), Borreliose nicht – Wanderröte erkennen und behandeln lassen.'
+  - 'Arbeitsmedizinische Vorsorge mit Impfangebot auf Kosten des Betriebs; jeder Zeckenstich ins Verbandbuch – die Grundlage für die Berufskrankheit 3102.'
 quellen:
   - t: "Robert Koch-Institut: Neue Karte der FSME-Risikogebiete, Meldung vom 25. Februar 2026 (185 Kreise, mehr als 46 Prozent aller Kreise; neu: Landkreis Nordsachsen und Stadt Halle (Saale))"
     u: "https://www.rki.de/DE/Aktuelles/Neuigkeiten-und-Presse/Meldungen-PM/Meldungen/2026-02-25_FSME-Karte.html"

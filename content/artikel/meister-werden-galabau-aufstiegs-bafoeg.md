@@ -8,6 +8,10 @@ bild_alt: "Meisterschüler zeichnen einen Gartenplan im Unterrichtsraum einer Fa
 bild_prompt: "Adult students in a vocational horticulture school classroom in Germany drawing a garden design plan on large paper, plant catalogues and calculators on the tables, winter daylight through big windows, realistic documentary photo, no text."
 bild_caption: "Ein Jahr Vollzeit oder zwei Jahre berufsbegleitend: Die Meisterschule ist die längste Auszeit im Berufsleben eines Landschaftsgärtners."
 relevanz: 57
+kurz:
+  - 'Zulassung mit Gesellenprüfung und Berufspraxis; Vorbereitung ein Schuljahr Vollzeit (Bayern zehn Monate) oder zwei Jahre berufsbegleitend.'
+  - 'Prüfung mit Meisterarbeit, Betriebs- und Unternehmensführung sowie Berufsausbildung und Mitarbeiterführung; Prüfungsgebühr in Niedersachsen 1.210 Euro.'
+  - 'Aufstiegs-BAföG: Lehrgangs- und Prüfungsgebühren bis 15.000 Euro, die Hälfte als Zuschuss, in Vollzeit Unterhaltsbeitrag bis 1.019 Euro monatlich; 50 Prozent Darlehenserlass bei bestandener Prüfung.'
 quellen:
   - t: "Bundesministerium für Bildung, Familie, Senioren, Frauen und Jugend: Aufstiegs-BAföG – Wie wird gefördert? (Maßnahmebeitrag bis 15.000 Euro, 50 Prozent Zuschuss, Unterhaltsbeitrag 1.019 Euro für Alleinstehende in Vollzeit)"
     u: "https://www.aufstiegs-bafoeg.de/aufstiegsbafoeg/de/die-foerderung/wie-wird-gefoerdert/wie-wird-mit-dem-aufstiegs-bafoeg-gefoerdert.html"

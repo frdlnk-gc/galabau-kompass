@@ -8,6 +8,10 @@ bild_alt: "Winterlicher Betriebshof eines Landschaftsbauunternehmens in der Aben
 bild_prompt: "A German landscaping company yard at dusk in December, parked excavators and vans under a thin layer of snow, warm light from the workshop windows, calm atmosphere, realistic documentary photo, no text."
 bild_caption: "Zwischen den Jahren: Zeit, die Zahlen des Jahres nebeneinanderzulegen."
 relevanz: 55
+kurz:
+  - 'Tarif plus 3,2 Prozent, Mindestlohn 13,90 Euro ab 2026, Azubi-Mindestvergütung 724 Euro, stabile Herbstumfrage bei dünnen Margen.'
+  - 'Jede zweite Kündigung kommt vom Mitarbeiter; 623.000 offene Stellen; die Winterdienst-Haftung bleibt beim Betrieb; Gebäudegrün wächst.'
+  - 'Für 2026: Tarifstufe im Juli, Branchenstatistik im Februar, GaLaBau im September – und ein Arbeitsmarkt, der sich weiter zugunsten der Fachkräfte dreht.'
 quellen:
   - t: "B_I galabau: Tarif im GaLaBau 2025/2026 – Löhne, Gehälter und Azubi-Vergütung (+3,2 Prozent zum 1. Juli 2025, +3,3 Prozent zum 1. Juli 2026)"
     u: "https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996"

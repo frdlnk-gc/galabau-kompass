@@ -8,6 +8,10 @@ bild_alt: "Kolonne beendet am späten Abend eine Pflasterfläche, tief stehende 
 bild_prompt: "A landscaping crew finishing a paved terrace late in the evening in a German garden, low golden sun, tools being loaded into a van, tired but content workers, realistic documentary photo, no text."
 bild_caption: "Zehn Stunden sind erlaubt – wenn der Schnitt über sechs Monate bei acht bleibt."
 relevanz: 62
+kurz:
+  - 'Acht Stunden werktäglich, bis zehn mit Ausgleich auf acht im Schnitt über sechs Monate; der Samstag ist Werktag; Fahrzeit vom Betrieb zählt mit.'
+  - 'Pausen 30 Minuten ab sechs, 45 Minuten ab neun Stunden; elf Stunden Ruhezeit; Sonntagsarbeit nur mit Ausnahme und Ersatzruhetag.'
+  - 'Unter 18: acht Stunden, 40 Stunden, nicht vor 6 und nach 20 Uhr; alles über acht Stunden aufzeichnen, seit 2022 die gesamte Arbeitszeit.'
 quellen:
   - t: "Arbeitszeitgesetz (ArbZG), § 3 Arbeitszeit der Arbeitnehmer, § 4 Ruhepausen, § 5 Ruhezeit, § 9 Sonn- und Feiertagsruhe, § 16 Aushang und Arbeitszeitnachweise"
     u: "https://www.gesetze-im-internet.de/arbzg/__3.html"

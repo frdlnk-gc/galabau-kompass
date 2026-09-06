@@ -8,6 +8,10 @@ bild_alt: "Auszubildender zählt mit dem Ausbilder Pflastersteine auf einer Pale
 bild_prompt: "A young apprentice and his trainer checking a pallet of paving stones together on a German landscaping site in autumn, clipboard in hand, realistic documentary photo, no text."
 bild_caption: "Die gesetzliche Untergrenze ist ein Netz, kein Angebot: Im GaLaBau-Tarif liegt das erste Lehrjahr rund 50 Prozent darüber."
 relevanz: 52
+kurz:
+  - '724 Euro im ersten Lehrjahr für Ausbildungsstarts 2026, 854, 977 und 1.014 Euro in den Folgejahren.'
+  - 'Der GaLaBau-Tarif zahlt 1.100 Euro und ab Juli 2026 1.140 Euro – rund 50 Prozent mehr.'
+  - 'Nicht tarifgebundene Betriebe müssen nach § 17 Absatz 4 BBiG mindestens 80 Prozent des Tarifs zahlen: 880 Euro, nicht 724.'
 quellen:
   - t: "Bundesinstitut für Berufsbildung (BIBB): Mindestausbildungsvergütung steigt 2026 auf 724 Euro, Pressemitteilung (Bekanntmachung im Bundesgesetzblatt vom 10. Oktober 2025)"
     u: "https://www.bibb.de/de/pressemitteilung_212952.php"

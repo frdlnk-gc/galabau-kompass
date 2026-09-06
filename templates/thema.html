@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_teaser.html" import teaser, meldungsliste %}
+{% set root = '../' * depth %}
+{% block title %}Dossier: {{ d.titel }} | {{ site.name }}{% endblock %}
+{% block description %}{{ d.intro }}{% endblock %}
+{% block bodyclass %}ressort-seite thema-seite{% endblock %}
+{% block content %}
+<section class="container">
+  <header class="page-head">
+    <span class="t-kicker">Dossier</span>
+    <h1>{{ d.titel }}</h1>
+    <p class="page-dek">{{ d.intro }}</p>
+    <span class="page-count">{{ d.anzahl }} Beiträge</span>
+  </header>
+  {% set lang = d.artikel|rejectattr('format', 'equalto', 'meldung')|list %}
+  {% set meld = d.artikel|selectattr('format', 'equalto', 'meldung')|list %}
+  {% if lang %}
+  {{ teaser(lang[0], root, 'lead') }}
+  {% if lang|length > 1 %}<div class="t-grid3">{% for a in lang[1:7] %}{{ teaser(a, root, 'grid') }}{% endfor %}</div>{% endif %}
+  {% if lang|length > 7 %}
+  <div class="rubrik mt"><h2>Weitere Beiträge</h2></div>
+  <div class="river" data-mehr-liste data-schritt="6">{% for a in lang[7:] %}{{ teaser(a, root, 'horiz') }}{% endfor %}</div>
+  <div class="center mt-s"><button type="button" class="btn ghost" data-mehr-btn hidden>Weitere Beiträge laden</button></div>
+  {% endif %}
+  {% endif %}
+  {% if meld %}
+  <div class="rubrik mt"><h2>Kurz gemeldet</h2></div>
+  <div class="meldungen-breit">{{ meldungsliste(meld, root) }}</div>
+  {% endif %}
+  <div class="rubrik mt"><h2>Weitere Dossiers</h2></div>
+  <div class="dossier-strip">{% for x in dossiers if x.slug != d.slug %}<a class="dossier" href="{{ root }}thema/{{ x.slug }}/"><b>{{ x.kurz }}</b><span>{{ x.anzahl }} Beiträge</span></a>{% endfor %}</div>
+</section>
+{% endblock %}

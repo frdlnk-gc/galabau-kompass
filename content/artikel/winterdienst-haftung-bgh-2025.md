@@ -8,6 +8,10 @@ bild_alt: "Mitarbeiter eines Landschaftsbaubetriebs streut bei Dämmerung mit ei
 bild_prompt: "Worker in winter workwear pushing a salt spreader along a snow-covered sidewalk in front of German apartment buildings at dawn, streetlights still on, cold blue light, realistic."
 bild_caption: "Früh, regelmäßig, dokumentiert: Beim Winterdienst entscheidet der Nachweis der Kontrolle über die Haftung."
 relevanz: 64
+kurz:
+  - 'BGH-Beschluss vom 1. Juli 2025 (VI ZR 357/24): Ein vollständiger Haftungsausschluss wegen Mitverschuldens des Gestürzten kommt nur in Ausnahmefällen in Betracht.'
+  - 'Übernimmt ein Betrieb den Winterdienst, übernimmt er die Räum- und Streupflicht des Eigentümers – der bleibt zur Kontrolle verpflichtet.'
+  - 'Verurteilt wurde ein Dienstleister nicht wegen eines ausgebliebenen Einsatzes, sondern wegen einer ausgebliebenen Streukontrolle: Dokumentation entscheidet.'
 quellen:
   - t: "Bundesgerichtshof, Beschluss vom 1. Juli 2025, VI ZR 357/24 (Mitverschulden bei glättebedingtem Sturz), zitiert nach Haufe: Verkehrssicherungspflicht bei Glatteis und Schnee"
     u: "https://www.haufe.de/immobilien/verwaltung/verkehrssicherungspflicht-bei-eis-und-schnee_258_212208.html"
