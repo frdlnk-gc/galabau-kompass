@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_karte.html" import karte %}
+{% set root = '../' * depth %}
+{% block title %}{{ x.label }}: {{ x.titel }} | {{ site.name }}{% endblock %}
+{% block description %}{{ x.editorial|truncate(150) }}{% endblock %}
+{% block content %}
+<section class="sec-paper">
+  <div class="container ausgabe-box">
+    <a class="ausgabe-cover" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener"><img src="{{ root }}assets/img/{{ x.lead.bild }}.jpg" alt=""><div class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">{{ x.label }}</span><span class="cover-titel">{{ x.titel }}</span></div></a>
+    <div class="ausgabe-info">
+      <span class="kicker">{{ x.monat }}</span>
+      <h1>{{ x.label }}: {{ x.titel }}</h1>
+      {% if x.editorial %}<p class="editorial">{{ x.editorial }}</p>{% endif %}
+      <div class="btn-row"><a class="btn" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn ghost" href="{{ root }}ausgaben/">Alle Ausgaben</a></div>
+    </div>
+  </div>
+</section>
+<section class="sec-light">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title">In dieser Ausgabe</h2><span class="muted small">{{ x.artikel|length }} Beiträge</span></div>
+    <div class="karten-grid">{% for a in x.artikel %}{{ karte(a, root) }}{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

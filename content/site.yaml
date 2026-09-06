@@ -1,0 +1,52 @@
+name: GaLaBau Kompass
+claim: Das Magazin für den Garten- und Landschaftsbau
+domain: galabau-kompass.de
+preview_url: https://frdlnk-gc.github.io/galabau-kompass
+api_base: https://gc-tracking-dashboard.vercel.app/api/public/kompass
+redaktion_mail: redaktion@galabau-kompass.de
+
+# Reihenfolge = Navigation. Die ersten sechs stehen in der Hauptleiste,
+# der Rest unter „Mehr“ und im mobilen Menü.
+ressorts:
+  - slug: betrieb-personal
+    name: Betrieb & Personal
+    kurz: Betrieb
+    beschreibung: "Mitarbeiter gewinnen und halten, Ausbildung, Führung, Organisation – alles, was den Betrieb am Laufen hält."
+  - slug: recht-tarif
+    name: Recht & Tarif
+    kurz: Recht
+    beschreibung: "Tarifabschlüsse, Arbeitsrecht, Haftung, Pflichten – verständlich erklärt und mit Quelle."
+  - slug: technik-digital
+    name: Technik & Digital
+    kurz: Technik
+    beschreibung: "Maschinen, Elektroantriebe, Software, KI, Aufmaß und Dokumentation."
+  - slug: bauen-pflanzen
+    name: Bauen & Pflanzen
+    kurz: Bauen
+    beschreibung: "Klimaanpassung, Gebäudegrün, Baumarten, Bewässerung, Pflanzenschutz."
+  - slug: markt-politik
+    name: Markt & Politik
+    kurz: Markt
+    beschreibung: "Konjunktur, Branchenstatistik, Verbände, Förderung, Vergabe."
+  - slug: sicherheit-gesundheit
+    name: Sicherheit & Gesundheit
+    kurz: Sicherheit
+    beschreibung: "Unfallzahlen, Hitze und UV, Absturz, Lärm, Prävention."
+  - slug: karriere
+    name: Karriere & Weiterbildung
+    kurz: Karriere
+    beschreibung: "Für Fachkräfte, Vorarbeiter und Bauleiter: Wege, Werkzeuge, Weiterbildung."
+  - slug: messe-termine
+    name: Messe & Termine
+    kurz: Termine
+    beschreibung: "GaLaBau in Nürnberg, Gartenschauen, Preise, Veranstaltungen."
+
+service:
+  - href: standort/
+    label: Standort-Check
+  - href: branchenumfrage/
+    label: Branchenumfrage 2026
+  - href: ausgaben/
+    label: Ausgaben (PDF)
+  - href: abo/
+    label: Ausgabe per E-Mail

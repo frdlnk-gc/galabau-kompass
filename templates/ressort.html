@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_karte.html" import karte %}
+{% set root = '../' * depth %}
+{% block title %}{{ ressort.name }} | {{ site.name }}{% endblock %}
+{% block description %}{{ ressort.beschreibung }}{% endblock %}
+{% block content %}
+<section class="sec-light">
+  <div class="container">
+    <div class="ressort-kopf"><span class="kicker">Ressort</span><h1 class="sec-title">{{ ressort.name }}</h1><p class="muted">{{ ressort.beschreibung }} {{ anzahl }} Beiträge.</p></div>
+    {% if artikel %}
+    <div class="ressort-grid mt-3">
+      <div>{{ karte(artikel[0], root, 'lg') }}</div>
+      <div class="karten-grid zwei">{% for a in artikel[1:5] %}{{ karte(a, root) }}{% endfor %}</div>
+    </div>
+    {% if artikel|length > 5 %}
+    <div class="sec-head mt-4"><h2 class="sec-title" style="font-size:1.4rem">Weitere Beiträge</h2></div>
+    <div class="karten-grid">{% for a in artikel[5:] %}{{ karte(a, root) }}{% endfor %}</div>
+    {% endif %}
+    {% else %}<p class="muted mt-3">In diesem Ressort erscheinen in Kürze Beiträge.</p>{% endif %}
+  </div>
+</section>
+{% endblock %}

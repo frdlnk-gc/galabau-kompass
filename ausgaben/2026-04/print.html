@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 04/2026</title>
+<style>
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  /* Cover */
+  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
+  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
+  .cover .wort i{color:#6EE7A0;}
+  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
+  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
+  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
+  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
+  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
+  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
+  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
+  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
+  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
+  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
+  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
+  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
+  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
+  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
+  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
+  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/schwammstadt-regengaerten-praxis.jpg" alt="">
+    <div class="kopf">
+      <div><div class="wort">GaLaBau <i>Kompass</i></div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div class="nr">Ausgabe<b>04/2026</b>April 2026</div>
+    </div>
+    <div class="titel"><div class="kick">Bauen &amp; Pflanzen</div><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p>Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p></div>
+    <div class="teaser"><span>Vier Landesgartenschauen 2026: Neuss, Leinefe...</span><span>Schwammstadt: Vom Fachbegriff zum Auftrag</span><span>Zeitarbeit im GaLaBau: Was erlaubt ist – und ...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Wasser in der Stadt</h2><p>Vier Landesgartenschauen öffnen, Regengärten und Schwammstadt-Konzepte werden vom Fachbegriff zum Auftrag. Außerdem: was Zeitarbeit im GaLaBau darf, was das Arbeitszeitgesetz in der Saison erlaubt – und warum 186.000 Unternehmen bis 2030 einen Nachfolger brauchen.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt – und wo die Grenze liegt</div></div></li><li><span class="s">5</span><div><div class="r">Messe &amp; Termine</div><div class="t">Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad Nenndorf</div></div></li><li><span class="s">7</span><div><div class="r">Bauen &amp; Pflanzen</div><div class="t">Schwammstadt: Vom Fachbegriff zum Auftrag</div></div></li><li><span class="s">9</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Zeitarbeit im GaLaBau: Was erlaubt ist – und wo das Bauverbot greift</div></div></li><li><span class="s">11</span><div><div class="r">Markt &amp; Politik</div><div class="t">Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger – im GaLaBau entscheidet der Meister im eigenen Haus</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt – und wo die Grenze liegt</h1><p class="dek">Im Mai wird gearbeitet, solange es hell ist. Das Gesetz lässt mehr zu, als viele Betriebe denken – aber es verlangt Ausgleich, Pausen, Ruhezeiten und Aufzeichnungen. Die Regeln für Kolonnen, Fahrer und Jugendliche.</p><div class="byline">Redaktion GaLaBau Kompass · 29. April 2026</div></div>
+    <figure><img src="../../assets/img/arbeitszeitgesetz-saison-zehn-stunden.jpg" alt=""><figcaption>Zehn Stunden sind erlaubt – wenn der Schnitt über sechs Monate bei acht bleibt.</figcaption></figure>
+    <div class="text"><p>Die Saison im GaLaBau folgt dem Licht, nicht der Uhr. Von April bis Oktober arbeiten Kolonnen regelmäßig länger als acht Stunden, und die meisten Betriebe wissen ungefähr, dass das erlaubt ist. Die genauen Regeln kennen wenige – und die Berufsgenossenschaft, das Gewerbeaufsichtsamt und im Streitfall das Arbeitsgericht fragen genau danach.</p>
+<h2>Acht Stunden, zehn Stunden, Ausgleich</h2>
+<p>Die werktägliche Arbeitszeit beträgt nach dem Arbeitszeitgesetz acht Stunden. Sie darf auf bis zu zehn Stunden verlängert werden, wenn innerhalb von sechs Kalendermonaten oder 24 Wochen im Durchschnitt acht Stunden werktäglich nicht überschritten werden. Werktage sind Montag bis Samstag – die gesetzliche Wochenarbeitszeit liegt damit bei 48 Stunden, in Spitzen bei 60.</p>
+<p>Für die Saison heißt das: Zehn-Stunden-Tage von Mai bis Juli sind zulässig, wenn im Winter entsprechend kürzer gearbeitet wird oder Freizeitausgleich stattfindet. Wer von April bis Oktober durchgehend zehn Stunden arbeiten lässt und im Winter Saison-Kurzarbeit anmeldet, verlässt den Rahmen des Gesetzes: Kurzarbeit ist kein Ausgleich, weil in dieser Zeit keine Arbeitszeit anfällt, die den Durchschnitt senkt – die Ausgleichsrechnung bezieht sich auf tatsächliche Arbeitstage.</p>
+<h2>Pausen und Ruhezeit</h2>
+<p>Ab sechs Stunden Arbeit sind 30 Minuten Pause Pflicht, ab neun Stunden 45 Minuten; die Pausen können in Abschnitte von mindestens 15 Minuten geteilt werden und müssen im Voraus feststehen. Länger als sechs Stunden ohne Pause darf niemand arbeiten. Zwischen dem Ende eines Arbeitstages und dem Beginn des nächsten liegen mindestens elf Stunden Ruhezeit. Wer um 19 Uhr die Baustelle verlässt, darf am nächsten Morgen um 6 Uhr wieder beginnen – wer um 21 Uhr aufhört, nicht.</p>
+<div class="kasten"><b>Fahrzeit ist Arbeitszeit</b>Die Fahrt vom Betrieb zur Baustelle und zurück zählt zur Arbeitszeit – für den Fahrer und für die Mitfahrer. Nur der Weg von der Wohnung zum Betrieb ist Privatsache. Ob die Fahrzeit vergütet wird, ist eine Frage des Tarif- oder Arbeitsvertrags; ob sie zur gesetzlichen Höchstarbeitszeit zählt, nicht. Zehn Stunden auf der Baustelle plus eine Stunde Fahrt sind elf Stunden – und damit zu viel.</div>
+
+<h2>Samstag, Sonntag, Feiertag</h2>
+<p>Der Samstag ist ein normaler Werktag. Sonn- und Feiertagsarbeit ist grundsätzlich verboten; Ausnahmen gelten für Notfälle und für Tätigkeiten, die die Aufsichtsbehörde genehmigt – etwa eine Gartenschau-Eröffnung oder eine Veranstaltung mit festem Termin. Winterdienst zur Verkehrssicherung gehört zu den Arbeiten, die auch sonntags zulässig sind. Wer sonntags arbeitet, braucht einen Ersatzruhetag innerhalb von zwei Wochen.</p>
+<h2>Jugendliche</h2>
+<p>Für Auszubildende unter 18 Jahren gilt das Jugendarbeitsschutzgesetz: höchstens acht Stunden am Tag und 40 Stunden in der Woche, keine Beschäftigung zwischen 20 und 6 Uhr, nur fünf Tage in der Woche, Pausen von 30 Minuten ab viereinhalb Stunden und 60 Minuten ab sechs Stunden. Der Zehn-Stunden-Tag der Kolonne gilt für den 17-jährigen Azubi nicht – er fährt um 16 Uhr nach Hause, oder der Betrieb hat ein Problem, das der erste Unfall sichtbar macht.</p>
+<h2>Aufzeichnen</h2>
+<p>Arbeitszeiten über acht Stunden werktäglich müssen nach § 16 Arbeitszeitgesetz aufgezeichnet und zwei Jahre aufbewahrt werden. Seit dem Beschluss des Bundesarbeitsgerichts von 2022 gilt darüber hinaus die Pflicht, die gesamte Arbeitszeit zu erfassen – Beginn, Ende, Pausen. Ein Stundenzettel auf der Baustelle erfüllt das; eine Bautagebuch-App mit Zeitstempel ebenfalls. Was nicht reicht, ist die Erinnerung des Vorarbeiters am Monatsende.</p>
+<h2>Tarifvertrag</h2>
+<p>Der Rahmentarifvertrag des GaLaBau enthält Regelungen zur Verteilung der Arbeitszeit über das Jahr – mit längeren Wochen in der Saison und kürzeren im Winter, geführt über ein Arbeitszeitkonto. Tarifgebundene Betriebe arbeiten damit; nicht tarifgebundene können vergleichbare Regelungen im Arbeitsvertrag treffen, bleiben aber an die gesetzlichen Höchstgrenzen gebunden. Ein Arbeitszeitkonto macht die Saison rechtssicher – wenn es geführt wird.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Arbeitszeitgesetz (ArbZG), § 3 Arbeitszeit der Arbeitnehmer, § 4 Ruhepausen, § 5 Ruhezeit, § 9 Sonn- und Feiertagsruhe, § 16 Aushang und Arbeitszeitnachweise – <a href="https://www.gesetze-im-internet.de/arbzg/__3.html">www.gesetze-im-internet.de/arbzg/__3.html</a></li><li>Jugendarbeitsschutzgesetz (JArbSchG), § 8 Dauer der Arbeitszeit, § 14 Nachtruhe – <a href="https://www.gesetze-im-internet.de/jarbschg/__8.html">www.gesetze-im-internet.de/jarbschg/__8.html</a></li><li>Bundesarbeitsgericht, Beschluss vom 13. September 2022, 1 ABR 22/21 (Pflicht zur Erfassung der Arbeitszeit) – <a href="https://www.bundesarbeitsgericht.de/presse/einfuehrung-elektronischer-zeiterfassung-initiativrecht-des-betriebsrats/">www.bundesarbeitsgericht.de/presse/einfuehrung-elektronis...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Messe &amp; Termine</div><h1>Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad Nenndorf</h1><p class="dek">Zwischen dem 16. April und dem 18. Oktober öffnen vier Gartenschauen in vier Bundesländern. Für die Branche sind sie Schaufenster, Auftragsquelle und Ausflugsziel für das Team – ein Überblick mit Terminen.</p><div class="byline">Redaktion GaLaBau Kompass · 23. April 2026</div></div>
+    <figure><img src="../../assets/img/landesgartenschauen-2026.jpg" alt=""><figcaption>Gartenschauen bleiben ein halbes Jahr geöffnet – und ihre Anlagen für Jahrzehnte.</figcaption></figure>
+    <div class="text"><p>Gartenschauen sind für den Garten- und Landschaftsbau das, was Automessen für die Autoindustrie sind – mit dem Unterschied, dass die Exponate danach stehen bleiben. 2026 finden in Deutschland vier Landesgartenschauen statt, verteilt auf Nordrhein-Westfalen, Thüringen, Baden-Württemberg und Niedersachsen.</p>
+<h2>Die Termine</h2>
+<div class="table-wrap"><div class="tabelle"><table>
+<tr><th>Ort</th><th>Bundesland</th><th>Laufzeit</th></tr>
+<tr><td>Neuss</td><td>Nordrhein-Westfalen</td><td>16. April bis 11. Oktober 2026</td></tr>
+<tr><td>Leinefelde-Worbis</td><td>Thüringen</td><td>23. April bis 11. Oktober 2026</td></tr>
+<tr><td>Ellwangen</td><td>Baden-Württemberg</td><td>24. April bis 4. Oktober 2026</td></tr>
+<tr><td>Bad Nenndorf</td><td>Niedersachsen</td><td>29. April bis 18. Oktober 2026</td></tr>
+</table></div>
+
+<p>Ellwangen bespielt 164 Tage lang rund 26 Hektar. Leinefelde-Worbis zeigt, wie aus einer Garagensiedlung ein Landschaftspark wird, und kündigt mehr als tausend Veranstaltungen an. In Neuss und Bad Nenndorf stehen die Verbindung von Stadt und Grün sowie die Kurpark-Tradition im Mittelpunkt.</p>
+<h2>Warum Betriebe hinfahren sollten</h2>
+<p><strong>Als Referenz.</strong> Die Anlagen einer Gartenschau werden von regionalen GaLaBau-Betrieben gebaut – über Ausschreibungen, oft in Losen. Wer 2026 nicht dabei war, kann für die Gartenschauen 2027 und 2028 planen: Die Vergaben laufen in der Regel zwei bis drei Jahre vor der Eröffnung an, die Präqualifikation ist Voraussetzung.</p>
+<p><strong>Als Schaufenster.</strong> Pflanzenverwendung, Materialien, Regenwassermanagement, Spiel- und Sportflächen – Gartenschauen zeigen, was Landschaftsarchitekten aktuell planen und was Auftraggeber in zwei Jahren wollen werden. Der Blick auf die Details lohnt: Belagsübergänge, Baumsubstrate, Bewässerungstechnik.</p>
+<p><strong>Als Ausflug für das Team.</strong> Ein gemeinsamer Tag auf einer Gartenschau kostet weniger als ein Betriebsausflug und wirkt mehr: Die Mannschaft sieht, wozu ihr Beruf fähig ist. Betriebe, die das regelmäßig machen, berichten von Ideen, die ihre Mitarbeiter mitbringen – und von Auszubildenden, die wissen, warum sie den Beruf gewählt haben.</p>
+<div class="kasten"><b>Ausblick</b>2027 folgt unter anderem die Landesgartenschau in Büdingen (Hessen) mit Regengärten nach dem Schwammstadt-Prinzip. Nürnberg plant eine urbane Gartenschau für 2030. Die Bundesgartenschau 2031 ist bereits vergeben.</div>
+
+<h2>Für die Planung</h2>
+<p>Gartenschauen verlangen Tageskarten, die meisten bieten Gruppenrabatte für Betriebe. Wer mit dem Team fährt, sollte einen Wochentag außerhalb der Ferien wählen – die Anlagen sind dann leer genug, um auch die Details anzuschauen, für die man hingefahren ist.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Landesgartenschau Ellwangen 2026: Zeitfenster 24. April bis 4. Oktober 2026 (164 Tage, 26 Hektar) – <a href="https://www.ellwangen2026.de/zeitfenster-fuer-die-landesgartenschau-2026-in-ellwangen-festgelegt/">www.ellwangen2026.de/zeitfenster-fuer-die-landesgartensch...</a></li><li>Landesgartenschau Leinefelde-Worbis 2026 (23. April bis 11. Oktober 2026) – <a href="https://www.lgs-leinefelde-worbis.de/">www.lgs-leinefelde-worbis.de/</a></li><li>Landesgartenschau Neuss 2026 – <a href="https://www.landesgartenschau-neuss.de/">www.landesgartenschau-neuss.de/</a></li><li>mein-eigenheim.de: Alle Bundes- und Landesgartenschauen 2026 im Überblick (Neuss 16. April bis 11. Oktober, Bad Nenndorf 29. April bis 18. Oktober) – <a href="https://www.mein-eigenheim.de/gartengestaltung/buga-und-laga-2026.html">www.mein-eigenheim.de/gartengestaltung/buga-und-laga-2026.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Messe &amp; Termine</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Bauen &amp; Pflanzen</div><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p class="dek">Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p><div class="byline">Redaktion GaLaBau Kompass · 15. April 2026</div></div>
+    <figure><img src="../../assets/img/schwammstadt-regengaerten-praxis.jpg" alt=""><figcaption>Versickerungsmulde im Straßenraum: Das Wasser bleibt, wo es fällt.</figcaption></figure>
+    <div class="text"><p>Eine Stadt, die Regenwasser aufnimmt wie ein Schwamm, es speichert und langsam wieder abgibt – dieses Bild hat es aus der Fachplanung in die Gemeinderäte geschafft. Starkregen und Hitzesommer haben dafür gesorgt. Für den Garten- und Landschaftsbau ist die Schwammstadt kein Trend, sondern ein Leistungsbereich, der in den nächsten Jahren einen wachsenden Teil der kommunalen Aufträge ausmachen wird.</p>
+<h2>Was gebaut wird</h2>
+<p>Die Bausteine sind bekannt, ihre Kombination ist neu:</p>
+<ul>
+<li><strong>Regengärten und Versickerungsmulden</strong>: bepflanzte Senken, in die Regenwasser von Dächern, Wegen und Straßen geleitet wird. Das Wasser versickert, die Pflanzen ertragen Nässe und Trockenheit.</li>
+<li><strong>Baumrigolen</strong>: unterirdische Speicher aus Kies oder Substrat, die Straßenwasser aufnehmen und dem Baum in Trockenphasen zur Verfügung stellen. Der Baum wächst besser, das Kanalnetz wird entlastet.</li>
+<li><strong>Entsiegelung</strong>: Asphalt und Beton weichen wasserdurchlässigen Belägen, Schotterrasen, Fugenpflaster mit Sickerfuge.</li>
+<li><strong>Retentionsdächer und Zisternen</strong>: Speicher, die Wasser zurückhalten und zeitversetzt abgeben oder für die Bewässerung nutzbar machen.</li>
+</ul>
+<p>Die Landesgartenschau 2027 in Büdingen zeigt Regengärten als Kernelement, gefördert vom Land Hessen. Nürnberg plant für seine Gartenschau 2030 am Keßlerplatz Schwammstadt- und Entsiegelungsmaßnahmen. Auf der GaLaBau 2026 in Nürnberg führt der Grün-Blaue Pfad durch die Technik dahinter.</p>
+<h2>Was Betriebe brauchen</h2>
+<div class="kasten"><b>Drei Kompetenzen</b>Erstens Bodenkunde: Versickerung funktioniert nur, wenn der Untergrund es zulässt – die Durchlässigkeit (kf-Wert) entscheidet über Muldenvolumen und Rigolenaufbau. Zweitens Pflanzenkenntnis: Arten, die Nässe und Trockenheit vertragen, sind eine eigene Liste. Drittens Verständnis für Hydraulik: Zuläufe, Notüberläufe, Drosselabflüsse – wer das Regelwerk (DWA-A 138) kennt, spricht mit Planern auf Augenhöhe.</div>
+
+<h2>Der Auftraggeber ist öffentlich</h2>
+<p>Schwammstadt-Projekte werden überwiegend von Kommunen, Stadtwerken und Wohnungsunternehmen beauftragt – über Ausschreibungen. Betriebe, die bisher privat gebaut haben, brauchen dafür Präqualifikation, Zugang zu Vergabeplattformen und die Bereitschaft, nach Leistungsverzeichnis zu kalkulieren. Der Einstieg gelingt oft über kleinere Lose: Muldenbau, Pflanzung, Pflege. Wer Referenzen hat, wird zu größeren Projekten eingeladen.</p>
+<h2>Und die Pflege</h2>
+<p>Ein Regengarten ist keine Pflasterfläche. Er braucht in den ersten Jahren Pflege, später Kontrolle von Zuläufen und Sedimenten. Betriebe, die Bau und Pflege zusammen anbieten, sichern sich wiederkehrende Aufträge – und sehen als Erste, was funktioniert und was nicht. Dieses Wissen ist in einem Feld, das gerade erst entsteht, mehr wert als jede Maschine.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Landesbetrieb Landwirtschaft Hessen: Regengärten – Schwammstadtkonzept auf der Landesgartenschau 2027 in Büdingen erleben – <a href="https://llh.hessen.de/bildung/hessische-gartenakademie/gartenschauen/regengarten-schwammstadtkonzept-lgs-2027/">llh.hessen.de/bildung/hessische-gartenakademie/gartenscha...</a></li><li>Stadt Nürnberg: Urbane Gartenschau Nürnberg 2030 (Keßlerplatz, Schwammstadt und Entsiegelung) – <a href="https://www.nuernberg.de/internet/stadtportal/urbane_gartenschau_nuernberg.html">www.nuernberg.de/internet/stadtportal/urbane_gartenschau_...</a></li><li>Messe Nürnberg: Der GaLaBau als wichtiger Player bei der Klimaanpassung, Mai 2026 – <a href="https://www.galabau-messe.com/de-de/aktuelles/2026/05/player-bei-der-klimaanpassung">www.galabau-messe.com/de-de/aktuelles/2026/05/player-bei-...</a></li><li>Messe Nürnberg: Trendbarometer der GaLaBau 2026 (Grün-Blauer Pfad) – <a href="https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026">www.galabau-messe.com/de-de/presse/pressemitteilungen/202...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Bauen &amp; Pflanzen</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Zeitarbeit im GaLaBau: Was erlaubt ist – und wo das Bauverbot greift</h1><p class="dek">Im Baugewerbe ist Arbeitnehmerüberlassung grundsätzlich verboten. Für den Garten- und Landschaftsbau gibt es eine Ausnahme mit engen Bedingungen: nur zwischen Baubetrieben, nur im selben Tarifbereich, nur mit Sozialkassen-Vorgeschichte. Ein Überblick.</p><div class="byline">Redaktion GaLaBau Kompass · 8. April 2026</div></div>
+    <figure><img src="../../assets/img/zeitarbeit-im-galabau-was-erlaubt-ist.jpg" alt=""><figcaption>Kollegenhilfe zwischen Baubetrieben: erlaubt, wenn beide unter denselben Tarifvertrag fallen.</figcaption></figure>
+    <div class="text"><p>In der Saison fehlen Leute, im Winter sind sie übrig – kaum eine Branche hätte so viel Verwendung für Zeitarbeit wie der Garten- und Landschaftsbau. Und kaum eine ist rechtlich so eingeschränkt. § 1b des Arbeitnehmerüberlassungsgesetzes verbietet die Überlassung von Arbeitnehmern in Betriebe des Baugewerbes für Arbeiten, die üblicherweise von Arbeitern verrichtet werden. Der GaLaBau zählt zum Baugewerbe. Die klassische Zeitarbeitsfirma, die einen Helfer für die Pflasterkolonne stellt, ist damit in der Regel nicht zulässig.</p>
+<h2>Die Ausnahme: Baubetrieb hilft Baubetrieb</h2>
+<p>Das Gesetz kennt eine Ausnahme, die für den GaLaBau gemacht scheint. Zulässig ist die Überlassung zwischen Betrieben des Baugewerbes, wenn beide von denselben Rahmen- und Sozialkassentarifverträgen erfasst werden – im GaLaBau also beide unter den Tarifverträgen des Garten- und Landschaftsbaus stehen und in die Sozialkasse einzahlen. Nach der Auslegung in der Fachliteratur muss der verleihende Betrieb zudem seit mindestens drei Jahren von diesen Tarifverträgen erfasst sein. Im Branchenjargon heißt das Kollegenhilfe: Betrieb A hat im Frühjahr zu wenig Aufträge, Betrieb B zu viele – A überlässt B für einige Wochen eine Kolonne.</p>
+<div class="kasten"><b>Was nicht geht</b>Überlassung aus einem Nicht-Baubetrieb (klassische Zeitarbeitsfirma) in den GaLaBau für gewerbliche Arbeiten. Überlassung aus einem anderen Bautarifbereich, etwa dem Bauhauptgewerbe, in den GaLaBau – die Tarifbereiche müssen übereinstimmen. Verstöße gegen § 1b AÜG sind Ordnungswidrigkeiten und können mit Geldbußen geahndet werden; das Arbeitsverhältnis kann zudem als eines mit dem Entleiher gelten.</div>
+
+<h2>Die allgemeinen Regeln gelten trotzdem</h2>
+<p>Wo Überlassung zulässig ist, greifen die Regeln des AÜG:</p>
+<ul>
+<li><strong>Erlaubnis.</strong> Wer Arbeitnehmer überlässt, braucht eine Erlaubnis der Bundesagentur für Arbeit – auch bei Kollegenhilfe, sofern sie nicht nur gelegentlich erfolgt. Für die gelegentliche Überlassung zwischen Betrieben gibt es eine Erleichterung, die aber eng ausgelegt wird.</li>
+<li><strong>Höchstüberlassungsdauer.</strong> Derselbe Leiharbeitnehmer darf höchstens 18 Monate an denselben Entleiher überlassen werden; danach ist eine Unterbrechung von mehr als drei Monaten nötig.</li>
+<li><strong>Equal Pay.</strong> Spätestens nach neun Monaten hat der überlassene Mitarbeiter Anspruch auf das Entgelt vergleichbarer Stammkräfte des Entleihers. Bei Kollegenhilfe im selben Tarifbereich ist das meist ohnehin gegeben.</li>
+<li><strong>Vertrag.</strong> Der Überlassungsvertrag muss vor Beginn schriftlich vorliegen und als solcher bezeichnet sein; verdeckte Überlassung – etwa als „Werkvertrag&rdquo; getarnt – ist ein häufiger und teurer Fehler.</li>
+</ul>
+<h2>Praktische Alternativen</h2>
+<p>Viele Betriebe lösen Kapazitätsspitzen ohne Überlassung: über echte Werk- oder Nachunternehmerverträge, bei denen der Nachunternehmer eine abgegrenzte Leistung mit eigenen Leuten und eigener Weisung erbringt; über Arbeitsgemeinschaften für größere Projekte; und über Saison-Kurzarbeit im Winter, die die eigene Mannschaft hält, statt sie im Frühjahr neu zu suchen. Wer Kollegenhilfe nutzen will, sollte den Vertrag vom Verband oder einem Fachanwalt prüfen lassen – die Abgrenzung entscheidet über Erlaubnis oder Bußgeld.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>§ 1b Arbeitnehmerüberlassungsgesetz (AÜG) – Einschränkungen im Baugewerbe – <a href="https://www.gesetze-im-internet.de/a_g/__1b.html">www.gesetze-im-internet.de/a_g/__1b.html</a></li><li>HK2 / zeitarbeit-und-recht.de: Arbeitnehmerüberlassung in der Baubranche – Baugewerbe, Abbruchgewerbe, Gerüstbaugewerbe, Dachdeckerhandwerk sowie Garten- und Landschaftsbau – <a href="https://www.zeitarbeit-und-recht.de/archive/die-arbeitnehmerueberlassung-im-baugewerbe/">www.zeitarbeit-und-recht.de/archive/die-arbeitnehmerueber...</a></li><li>Haufe: Arbeitnehmerüberlassung – Dauer auf 18 Monate begrenzt (Höchstüberlassungsdauer, Equal Pay nach neun Monaten) – <a href="https://www.haufe.de/personal/arbeitsrecht/reform-der-zeitarbeit/arbeitnehmerueberlassung-dauer-auf-18-monate-begrenzt_76_433684.html">www.haufe.de/personal/arbeitsrecht/reform-der-zeitarbeit/...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger – im GaLaBau entscheidet der Meister im eigenen Haus</h1><p class="dek">Das IfM Bonn hat seine Schätzung für die Jahre 2026 bis 2030 vorgelegt. Weniger Übergaben als erwartet, weil viele Betriebe wirtschaftlich unattraktiv geworden sind. Was das für Inhaber bedeutet, die in fünf Jahren aufhören wollen.</p><div class="byline">Redaktion GaLaBau Kompass · 2. April 2026</div></div>
+    <figure><img src="../../assets/img/betriebsnachfolge-186000-unternehmen.jpg" alt=""><figcaption>Die wahrscheinlichste Nachfolgerin steht oft schon auf dem Hof – wenn der Inhaber fünf Jahre vorher fragt.</figcaption></figure>
+    <div class="text"><p>Rund 186.000 Unternehmen in Deutschland stehen zwischen 2026 und 2030 vor der Übergabe, weil ihre Inhaber aus Altersgründen, wegen Krankheit oder durch Tod ausscheiden. Das ist die aktuelle Schätzung des Instituts für Mittelstandsforschung (IfM) Bonn – und sie liegt unter der vorherigen Prognose: rund 800 Übergaben pro Jahr weniger als für den Zeitraum 2022 bis 2026 erwartet. Nicht, weil die Inhaber jünger geworden wären, sondern weil sich die wirtschaftliche Lage vieler Betriebe verschlechtert hat und Übernahmen damit weniger attraktiv sind. Ein Betrieb, der keinen Nachfolger findet, wird nicht übergeben. Er wird geschlossen.</p>
+<h2>Was das für den GaLaBau heißt</h2>
+<p>Die Branche zählt knapp 20.000 Betriebe, die meisten inhabergeführt, viele in der ersten oder zweiten Generation. Das IfM weist keine Zahlen für den Landschaftsbau aus, aber die Altersstruktur der Inhaber unterscheidet sich nicht von der des Handwerks: Ein erheblicher Teil ist über 55. Auf die Branche übertragen bedeutet die Schätzung, dass in den kommenden fünf Jahren mehrere tausend GaLaBau-Betriebe einen Nachfolger brauchen – in einer Phase, in der Insolvenzen zunehmen und Banken Übernahmen kritischer prüfen.</p>
+<p>Der Anteil der familieninternen Übergaben geht nach den Daten des IfM leicht zurück; externe Lösungen – Verkauf an Mitarbeiter, an Wettbewerber, an Investoren – gewinnen an Bedeutung. Für den GaLaBau ist der naheliegende externe Nachfolger meistens intern: der Meister, die Bauleiterin, der Vorarbeiter, der den Betrieb seit fünfzehn Jahren kennt.</p>
+<h2>Der Fünf-Jahres-Plan</h2>
+<p>Eine Übergabe, die gelingt, beginnt fünf Jahre vor dem Ausstieg. Nicht wegen der Bürokratie, sondern wegen der Menschen: Der Nachfolger muss Kunden, Mitarbeiter und Lieferanten übernehmen, und das geht nur, wenn er sie kennt, bevor der Inhaber geht.</p>
+<p><strong>Jahr 1: Klären.</strong> Will jemand aus der Familie? Wenn nicht: Wer im Betrieb könnte es? Ein offenes Gespräch mit der Bauleitung ist der erste Schritt – und oft der, der am längsten hinausgezögert wird. Parallel: Was ist der Betrieb wert? Ein Steuerberater mit Branchenerfahrung liefert eine erste Bewertung; die Kammern und die Nachfolgebörse nexxt-change bieten Beratung.</p>
+<p><strong>Jahr 2 und 3: Aufbauen.</strong> Der Nachfolger übernimmt Verantwortung, die sichtbar ist: eigene Kunden, eigene Kalkulationen, die Personalführung einer Abteilung. Der Inhaber zieht sich aus dem Tagesgeschäft zurück, bleibt aber erreichbar. Gleichzeitig wird der Betrieb übergabefähig gemacht: dokumentierte Abläufe, saubere Verträge, bereinigte Bilanz, geklärte Immobilienfragen.</p>
+<p><strong>Jahr 4: Finanzieren.</strong> Kaufpreis, Ratenzahlung, Beteiligung in Stufen, Nießbrauch für den Inhaber – die Varianten sind zahlreich, und keine funktioniert ohne Bank. Förderkredite der KfW und der Landesbanken für Übernahmen existieren, brauchen aber einen Businessplan und einen Nachfolger, der ihn vertreten kann.</p>
+<p><strong>Jahr 5: Übergeben.</strong> Mit Termin, mit Kommunikation an Kunden und Mitarbeiter, mit einem klaren Ende der Rolle des Alt-Inhabers. Übergaben scheitern selten am Vertrag und häufig daran, dass der Senior nach der Übergabe weiter entscheidet.</p>
+<div class="kasten"><b>Der häufigste Fehler</b>Zu spät anfangen. Wer mit 63 beginnt, einen Nachfolger zu suchen, verhandelt aus der schwächsten Position: Der Betrieb ist auf ihn zugeschnitten, die Kunden kennen nur ihn, die Bank sieht ein Risiko. Wer mit 58 beginnt, hat Zeit, den Betrieb vom Inhaber unabhängig zu machen – und das ist der eigentliche Wert, den ein Nachfolger kauft.</div>
+
+<h2>Wenn niemand will</h2>
+<p>Nicht jeder Betrieb findet einen Nachfolger. Dann bleibt der Verkauf an einen Wettbewerber, der Mitarbeiter, Fuhrpark und Kundenstamm übernimmt, oder die geordnete Schließung mit rechtzeitiger Information der Belegschaft. Beides ist besser als das, was das IfM in seinen Zahlen sichtbar macht: Betriebe, die ohne Plan auslaufen, weil ihr Inhaber zu lange gehofft hat.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Institut für Mittelstandsforschung Bonn: Unternehmensnachfolgen in Deutschland 2026 bis 2030, Daten und Fakten Nr. 37 (rund 186.000 Unternehmen mit anstehender Nachfolge; rund 800 weniger pro Jahr als in der Schätzung 2022 bis 2026) – <a href="https://www.ifm-bonn.org/fileadmin/data/redaktion/publikationen/daten_und_fakten/dokumente/Daten-und-Fakten-37_2025.pdf">www.ifm-bonn.org/fileadmin/data/redaktion/publikationen/d...</a></li><li>IfM Bonn: Business successions stagnate despite demographic change (Meldung) – <a href="https://www.ifm-bonn.org/en/news/meldung/business-successions-stagnate-despite-demographic-change">www.ifm-bonn.org/en/news/meldung/business-successions-sta...</a></li><li>BGL: GaLaBau-Branchenstatistik 2025 (19.898 Betriebe, 133 Insolvenzen), Pressemitteilung vom 27. Februar 2026 – <a href="https://www.presseportal.de/pm/117960/6225203">www.presseportal.de/pm/117960/6225203</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Markt &amp; Politik</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

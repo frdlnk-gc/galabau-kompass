@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Alle Artikel | {{ site.name }}{% endblock %}
+{% block description %}Archiv: alle Artikel von {{ site.name }}, sortierbar nach Datum, Relevanz und Lesern, filterbar nach Ressort und Thema.{% endblock %}
+{% block content %}
+<section class="sec-light archiv" data-archiv{% if preset_ressort %} data-ressort="{{ preset_ressort }}"{% endif %}>
+  <div class="container">
+    <div class="archiv-kopf">
+      <div><span class="kicker">Archiv</span><h1 class="sec-title">Alle Artikel</h1><p class="muted">{{ anzahl }} Beiträge seit Oktober 2025. Suchen, filtern, sortieren.</p></div>
+      <form class="suche" data-suche role="search"><input type="search" class="input" name="q" placeholder="Suchbegriff, z. B. Tarif, Bagger, Azubi" aria-label="Suche"><button type="submit" class="btn sm">Suchen</button></form>
+    </div>
+    <div class="filter-leiste">
+      <div class="chips" data-ressort-chips><button type="button" class="chip is-active" data-r="">Alle Ressorts</button>{% for r in site.ressorts %}<button type="button" class="chip" data-r="{{ r.slug }}">{{ r.name }}</button>{% endfor %}</div>
+      <label class="sortier">Sortieren <select data-sort class="input"><option value="neu">Neueste zuerst</option><option value="relevanz">Relevanz</option><option value="gelesen">Meistgelesen</option><option value="alt">Älteste zuerst</option></select></label>
+    </div>
+    <div class="ergebnis-zeile"><span data-ergebnis>{{ anzahl }} Artikel</span><button type="button" class="btn-link" data-reset hidden>Filter zurücksetzen</button></div>
+    <div class="karten-grid" data-liste></div>
+    <div class="center mt-3"><button type="button" class="btn ghost" data-mehr hidden>Mehr laden</button></div>
+    <div class="tag-wolke mt-4">{% for t in top_tags %}<a href="?q={{ t|urlencode }}" data-tag="{{ t }}">{{ t }}</a>{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

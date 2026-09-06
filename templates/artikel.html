@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% from "_karte.html" import karte %}
+{% set root = '../' * depth %}
+{% block title %}{{ a.title }} | {{ site.name }}{% endblock %}
+{% block description %}{{ a.dek }}{% endblock %}
+{% block ogtype %}article{% endblock %}
+{% block og %}<meta property="og:image" content="https://{{ site.domain }}/assets/img/{{ a.bild }}.jpg">
+  <meta property="article:published_time" content="{{ a.datum_iso }}">
+  <meta property="article:section" content="{{ a.ressort_name }}">{% endblock %}
+{% block bodyclass %}artikel-seite{% endblock %}
+{% block content %}
+<article class="artikel" data-slug="{{ a.slug }}">
+  <header class="artikel-kopf sec-light">
+    <div class="container narrow">
+      <nav class="brotkrumen" aria-label="Pfad"><a href="{{ root }}">Start</a><span>/</span><a href="{{ root }}ressort/{{ a.ressort }}/">{{ a.ressort_name }}</a></nav>
+      <h1>{{ a.title }}</h1>
+      <p class="dek">{{ a.dek }}</p>
+      <div class="byline"><span class="autor">{{ a.autor }}</span><time datetime="{{ a.datum_iso }}">{{ a.datum_de }}</time><span>{{ a.lesezeit }} Min. Lesezeit</span></div>
+    </div>
+    <div class="container">
+      <figure class="artikel-bild"><img src="{{ root }}assets/img/{{ a.bild }}.jpg" alt="{{ a.bild_alt }}" width="1600" height="1067">{% if a.bild_caption %}<figcaption>{{ a.bild_caption }}</figcaption>{% endif %}</figure>
+    </div>
+  </header>
+
+  <div class="sec-light artikel-body">
+    <div class="container narrow">
+      <div class="prose">
+        {{ a.html|safe }}
+      </div>
+
+      {% if a.stimmen %}
+      <aside class="stimmen">
+        <h3>Stimmen aus der Branche</h3>
+        <p class="stimmen-hinweis">Aus Gesprächen der Redaktion mit Betrieben, anonymisiert und mit Zustimmung wiedergegeben.</p>
+        {% for s in a.stimmen %}<blockquote><p>{{ s.text }}</p><footer>{{ s.name }}{% if s.ort %}, {{ s.ort }}{% endif %}</footer></blockquote>{% endfor %}
+      </aside>
+      {% endif %}
+
+      {% if a.quellen %}
+      <div class="quellen">
+        <h4>Quellen</h4>
+        <ol>{% for q in a.quellen %}<li>{{ q.t }}{% if q.u %} – <a href="{{ q.u }}" target="_blank" rel="noopener">{{ q.u|replace('https://','')|replace('http://','')|truncate(70, True) }}</a>{% endif %}</li>{% endfor %}</ol>
+      </div>
+      {% endif %}
+
+      <div class="artikel-fuss">
+        {% if a.tags %}<div class="tags">{% for t in a.tags %}<a href="{{ root }}artikel/?q={{ t|urlencode }}">{{ t }}</a>{% endfor %}</div>{% endif %}
+        <div class="teilen" data-teilen data-title="{{ a.title }}">
+          <span>Teilen</span>
+          <button type="button" data-share="copy">Link kopieren</button>
+          <a data-share="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a data-share="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a data-share="mail" href="#">E-Mail</a>
+        </div>
+      </div>
+
+      <section class="kommentare" id="kommentare" data-kommentare="{{ a.slug }}">
+        <h3>Kommentare <span class="k-anzahl" data-k-anzahl></span></h3>
+        <div class="k-liste" data-k-liste><p class="k-leer">Noch keine Kommentare. Schreiben Sie den ersten.</p></div>
+        <form class="k-form" data-k-form>
+          <div class="row-2">
+            <div class="field"><label class="label" for="k-name">Name (optional)</label><input type="text" class="input" id="k-name" name="name" placeholder="Anonym" maxlength="60"></div>
+            <div class="field"><label class="label" for="k-ort">Ort / Betrieb (optional)</label><input type="text" class="input" id="k-ort" name="ort" placeholder="z. B. GaLaBau-Betrieb, Bayern" maxlength="60"></div>
+          </div>
+          <div class="field"><label class="label" for="k-text">Ihr Kommentar</label><textarea class="input" id="k-text" name="text" rows="4" minlength="10" maxlength="1500" required placeholder="Was ist Ihre Erfahrung dazu?"></textarea></div>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="k-actions"><button type="submit" class="btn sm">Kommentar senden</button><span class="k-note">Kommentare erscheinen nach kurzer Prüfung. Kein Login nötig.</span></div>
+          <div class="error" data-k-error></div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  {% if mehr %}
+  <section class="sec-paper">
+    <div class="container">
+      <div class="sec-head"><h2 class="sec-title">Mehr aus {{ a.ressort_name }}</h2><a class="sec-more" href="{{ root }}ressort/{{ a.ressort }}/">Zum Ressort</a></div>
+      <div class="karten-grid">{% for m in mehr %}{{ karte(m, root) }}{% endfor %}</div>
+    </div>
+  </section>
+  {% endif %}
+  {% if ausgabe %}
+  <section class="sec-light">
+    <div class="container">
+      <div class="ausgabe-hinweis"><span class="kicker">Aus {{ ausgabe.label }}</span><a href="{{ root }}ausgaben/{{ ausgabe.ym }}/">Alle Beiträge der Ausgabe „{{ ausgabe.titel }}“</a><a class="btn sm ghost" href="{{ root }}{{ ausgabe.pdf }}" target="_blank" rel="noopener">PDF</a></div>
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

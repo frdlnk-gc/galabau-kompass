@@ -25,13 +25,9 @@ PEOPLE = [
     {"slug": "julian", "name": "Julian Kohansal"},
     {"slug": "liam",   "name": "Liam Quick"},
 ]
-CREME, HONIG, BLACK = "#F4F2EB", "#D4A63C", "#000000"
+CREME, HONIG, BLACK = "#F4F2EB", "#6EE7A0", "#000000"  # HONIG = Akzent (jetzt Mint aus der Q4-Palette)
 
-MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
-<circle cx="32" cy="32" r="28.5" fill="none" stroke="{ink}" stroke-width="3.4"/>
-<path d="M32 4.5v6M32 53.5v6M4.5 32h6M53.5 32h6" stroke="{ink}" stroke-width="3" stroke-linecap="round"/>
-<g transform="rotate(-38 32 32)"><path d="M32 9.5C39.2 17.5 40.6 25.4 32 32.5C23.4 25.4 24.8 17.5 32 9.5Z" fill="{accent}"/><path d="M32 12.5V31" stroke="{bg}" stroke-width="1.2" fill="none" opacity=".55"/><path d="M32 54.5L27.2 32.5H36.8L32 54.5Z" fill="{ink}" opacity=".82"/></g>
-<circle cx="32" cy="32" r="3.3" fill="{accent}"/></svg>'''
+MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="none" stroke="{ink}" stroke-width="1.6" opacity=".9"/><circle cx="32" cy="32" r="24.6" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 2v3.6" transform="rotate(0.0 32 32)" stroke="{ink}" stroke-width="1.6" stroke-linecap="round" opacity=".9"/><path d="M32 3v2" transform="rotate(22.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(45.0 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(67.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 2v3.6" transform="rotate(90.0 32 32)" stroke="{ink}" stroke-width="1.6" stroke-linecap="round" opacity=".9"/><path d="M32 3v2" transform="rotate(112.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(135.0 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(157.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 2v3.6" transform="rotate(180.0 32 32)" stroke="{ink}" stroke-width="1.6" stroke-linecap="round" opacity=".9"/><path d="M32 3v2" transform="rotate(202.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(225.0 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(247.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 2v3.6" transform="rotate(270.0 32 32)" stroke="{ink}" stroke-width="1.6" stroke-linecap="round" opacity=".9"/><path d="M32 3v2" transform="rotate(292.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(315.0 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 3v2" transform="rotate(337.5 32 32)" stroke="{ink}" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M32 32L34.4 30 32 12.5 29.6 30Z" transform="rotate(90 32 32)" fill="{ink}"/><path d="M32 32L34.4 30 32 12.5 29.6 30Z" transform="rotate(180 32 32)" fill="{ink}"/><path d="M32 32L34.4 30 32 12.5 29.6 30Z" transform="rotate(270 32 32)" fill="{ink}"/><path d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(45 32 32)" fill="{ink}" opacity=".45"/><path d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(135 32 32)" fill="{ink}" opacity=".45"/><path d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(225 32 32)" fill="{ink}" opacity=".45"/><path d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(315 32 32)" fill="{ink}" opacity=".45"/><path d="M32 8.2C39.4 15.4 41 24.6 32.6 31.6L32 32.2 31.4 31.6C23 24.6 24.6 15.4 32 8.2Z" fill="{accent}"/><path d="M32 11.5V30.5" stroke="{bg}" stroke-width="1" fill="none" opacity=".55"/><circle cx="32" cy="32" r="2.4" fill="{ink}"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -54,7 +50,7 @@ def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
   <div class="arrow">↑</div>
   <div class="line1">Standort-Check<br>für GaLaBau-Betriebe</div>
   <div class="line2">Wie viele Fachkräfte gibt es bei Ihnen?<br>Kostenlos scannen.</div>
-  <div class="foot">In Kooperation mit dem Karrierenetzwerk GreenCareers</div>
+  <div class="foot">galabau-kompass.de</div>
 </section>'''
 
 def spec(person: dict, size: str, url: str) -> str:
@@ -65,7 +61,7 @@ def spec(person: dict, size: str, url: str) -> str:
     <tr><th>Träger</th><td>{person["name"]} · Kürzel <b>{person["slug"]}</b></td></tr>
     <tr><th>Polo-Größe</th><td><b>{size}</b></td></tr>
     <tr><th>Polo-Farbe</th><td>Schwarz (dunkler Grund, Baumwoll-Piqué)</td></tr>
-    <tr><th>Druckfarben</th><td>Creme <b>{CREME}</b> (Pantone 7527 C nahe) · Honig <b>{HONIG}</b> (Pantone 7407 C nahe) · QR-Kachel Creme mit Modulen Schwarz</td></tr>
+    <tr><th>Druckfarben</th><td>Creme <b>{CREME}</b> · Mint <b>{HONIG}</b> (Sonderfarbe nach HEX, Pantone/HKS mit der Druckerei abstimmen) · QR-Kachel Creme mit Modulen Schwarz</td></tr>
     <tr><th>Seite 1 – VORNE</th><td>Druckfläche 250 × 300 mm, mittig, Oberkante 8 cm unter dem Kragenansatz. Motiv komplett (Logo, QR, Textzeilen).</td></tr>
     <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett.</td></tr>
     <tr><th>QR-Code</th><td>Ziel: <b>{url}</b> — Kachel nicht verkleinern, nicht spiegeln, nicht invertieren, keine Farbänderung. Vor dem Druck einmal vom Andruck scannen (Ergebnis: Standort-Check-Seite).</td></tr>

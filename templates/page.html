@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}{{ p.title }} | {{ site.name }}{% endblock %}
+{% block description %}{{ p.description or p.title }}{% endblock %}
+{% block content %}
+<section class="sec-light">
+  <div class="container narrow">
+    <div class="seite-kopf"><span class="kicker">{{ p.kicker or 'GaLaBau Kompass' }}</span><h1>{{ p.title }}</h1>{% if p.dek %}<p class="dek">{{ p.dek }}</p>{% endif %}</div>
+    <div class="prose {{ 'legal' if p.legal else '' }}">{{ html|safe }}</div>
+    {% if slug == 'abo' %}
+    <div class="abo-block card mt-4">
+      <h3 class="sl-title">Kostenlos anmelden</h3>
+      <form class="abo-form" data-abo>
+        <div class="row-2"><input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email"><button type="submit" class="btn">Ausgabe per E-Mail erhalten</button></div>
+        <div class="abo-note" data-abo-note></div>
+      </form>
+      <p class="small muted mt-2">Mit der Anmeldung stimmen Sie zu, dass wir Ihnen die monatliche Ausgabe und redaktionelle Hinweise per E-Mail senden. Abmeldung jederzeit über den Link in jeder E-Mail. Details in der <a href="{{ root }}datenschutz/">Datenschutzerklärung</a>.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

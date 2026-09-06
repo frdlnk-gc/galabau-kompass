@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 05/2026</title>
+<style>
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  /* Cover */
+  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
+  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
+  .cover .wort i{color:#6EE7A0;}
+  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
+  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
+  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
+  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
+  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
+  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
+  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
+  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
+  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
+  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
+  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
+  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
+  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
+  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
+  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
+  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/fruehjahrsumfrage-2026-galabau.jpg" alt="">
+    <div class="kopf">
+      <div><div class="wort">GaLaBau <i>Kompass</i></div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div class="nr">Ausgabe<b>05/2026</b>Mai 2026</div>
+    </div>
+    <div class="titel"><div class="kick">Markt &amp; Politik</div><h1>Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026</h1><p>Nur noch gut die Hälfte der Betriebe bewertet die Geschäftslage als gut – vor einem Jahr waren es zwei Drittel. Die Auftragsbücher bleiben trotzdem voll. 699 Betriebe haben dem BGL geantwortet.</p></div>
+    <div class="teaser"><span>Die ersten 90 Tage: Warum neue Mitarbeiter im...</span><span>Zecken: 185 Risikogebiete – was Betriebe für ...</span><span>Zukunftsbäume: Welche Arten Hitze, Trockenhei...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Stimmung und Substanz</h2><p>Die Frühjahrsumfrage zeigt volle Auftragsbücher bei dünnen Erträgen. Wir schauen auf die Zukunftsbäume der GALK-Liste, auf ein Onboarding über 90 Tage, auf die Rolle des Vorarbeiters als wichtigste Führungskraft im Betrieb – und auf 185 FSME-Risikogebiete, in denen Kolonnen jeden Tag arbeiten.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Markt &amp; Politik</div><div class="t">Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026</div></div></li><li><span class="s">5</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Die ersten 90 Tage: Warum neue Mitarbeiter im GaLaBau in der Probezeit gehen</div></div></li><li><span class="s">7</span><div><div class="r">Sicherheit &amp; Gesundheit</div><div class="t">Zecken: 185 Risikogebiete – was Betriebe für ihre Kolonnen tun müssen</div></div></li><li><span class="s">9</span><div><div class="r">Bauen &amp; Pflanzen</div><div class="t">Zukunftsbäume: Welche Arten Hitze, Trockenheit und Frost aushalten</div></div></li><li><span class="s">11</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Der Vorarbeiter: Die wichtigste Führungskraft, die kaum ein Betrieb ausbildet</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026</h1><p class="dek">Nur noch gut die Hälfte der Betriebe bewertet die Geschäftslage als gut – vor einem Jahr waren es zwei Drittel. Die Auftragsbücher bleiben trotzdem voll. 699 Betriebe haben dem BGL geantwortet.</p><div class="byline">Redaktion GaLaBau Kompass · 28. Mai 2026</div></div>
+    <figure><img src="../../assets/img/fruehjahrsumfrage-2026-galabau.jpg" alt=""><figcaption>18 Wochen Auslastung in Pflege und Neubau: Die Nachfrage ist da – der Ertrag oft nicht.</figcaption></figure>
+    <div class="text"><p>Der BGL befragt seine Mitgliedsbetriebe zweimal im Jahr zur Konjunktur. An der Frühjahrsumfrage 2026 haben sich 699 Betriebe aus den elf Landesverbänden beteiligt. Das Ergebnis ist zweigeteilt: Die Nachfrage hält, die Zufriedenheit sinkt.</p>
+<h2>Geschäftslage: von 65 auf 51,8 Prozent</h2>
+<p>51,8 Prozent der Betriebe bewerten ihre gegenwärtige Geschäftslage als gut. Im Frühjahr 2025 waren es noch 65 Prozent. 40,1 Prozent nennen die Lage befriedigend (2025: 32,1 Prozent), 8,2 Prozent schlecht (2025: 2,8 Prozent). Der Anteil der Betriebe mit schlechter Lage hat sich damit fast verdreifacht – von niedrigem Niveau aus.</p>
+<div class="table-wrap"><div class="tabelle"><table>
+<tr><th>Geschäftslage</th><th>Frühjahr 2026</th><th>Frühjahr 2025</th></tr>
+<tr><td>gut</td><td>51,8 %</td><td>65,0 %</td></tr>
+<tr><td>befriedigend</td><td>40,1 %</td><td>32,1 %</td></tr>
+<tr><td>schlecht</td><td>8,2 %</td><td>2,8 %</td></tr>
+</table></div>
+
+<h2>Erwartungen: mehr Skepsis für das zweite Halbjahr</h2>
+<p>Für die kommenden sechs Monate rechnen 7,3 Prozent mit einer günstigeren Entwicklung, 70,5 Prozent mit einer gleichbleibenden und 22,2 Prozent mit einer ungünstigeren. Im Vorjahr lag der Anteil der Pessimisten bei 12,5 Prozent. Die Auftragslage widerspricht dieser Stimmung nur teilweise: Zwei Drittel der Betriebe bewerten sie als gleich gut oder besser als im Vorjahr, ein Drittel berichtet von einer schlechteren Lage. Die Auslastung liegt in Pflege und Neubau bei jeweils 18 Wochen.</p>
+<h2>Ertragslage: der eigentliche Befund</h2>
+<p>65,2 Prozent der Betriebe bewerten ihre Ertragslage als unbefriedigend oder verbesserungsbedürftig. Nur 34,8 Prozent sagen, die Gewinne entsprächen den Erwartungen. Zusammen mit der stabilen Auftragslage ergibt das ein klares Bild: Es wird gearbeitet, aber es bleibt zu wenig hängen. Die Betriebe beschäftigen im Schnitt 22 Mitarbeiter; 48 Prozent haben ihre Mitarbeiterzahl im Jahresverlauf angepasst, überwiegend moderat.</p>
+<blockquote>
+<p>„Der GaLaBau zeigt sich auch unter schwierigen wirtschaftlichen Rahmenbedingungen noch immer robust&rdquo;, sagt BGL-Präsident Thomas Banzhaf.</p>
+</blockquote>
+<h2>Langfristig bleibt die Branche optimistisch</h2>
+<p>84,2 Prozent geben dem Jahr 2026 die Schulnoten 1 bis 3. 81,5 Prozent rechnen für die kommenden fünf Jahre mit einer positiven Entwicklung, 88,5 Prozent bewerten ihre aktuelle betriebliche Situation positiv. Die Schere zwischen kurzfristiger Stimmung und langfristiger Zuversicht ist typisch für eine Branche, die von Klimaanpassung, Städtebau und privater Nachfrage getragen wird – und deren Engpass nicht die Nachfrage ist, sondern die Kapazität.</p>
+<div class="kasten"><b>Für die Praxis</b>Wer 18 Wochen Vorlauf hat und trotzdem zu wenig verdient, hat ein Kalkulations- oder ein Kapazitätsproblem. In beiden Fällen ist Personal der Hebel: Mit einem zusätzlichen Vorarbeiter lassen sich Kolonnen anders aufteilen, mit einem Bauleiter Aufträge besser auswählen. Beide Positionen sind laut Trendbarometer der Messe europaweit die knappsten.</div></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): Frühjahrsumfrage 2026 unter 699 Mitgliedsbetrieben, veröffentlicht 28. Mai 2026, zitiert nach B_I galabau – <a href="https://bau.bi/galabau/nachrichten/fruehjahrsumfrage-2026-darum-trotzt-der-garten-und-landschaftsbau-der-wirtschaftskrise-g21750">bau.bi/galabau/nachrichten/fruehjahrsumfrage-2026-darum-t...</a></li><li>Messe Nürnberg: Trendbarometer der GaLaBau 2026 (Fachkräftemangel bei Bauleitern) – <a href="https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026">www.galabau-messe.com/de-de/presse/pressemitteilungen/202...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Markt &amp; Politik</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Die ersten 90 Tage: Warum neue Mitarbeiter im GaLaBau in der Probezeit gehen</h1><p class="dek">Die Suche war lang, der Vertrag ist unterschrieben – und nach sechs Wochen kündigt der neue Landschaftsgärtner. Meist liegt es nicht an ihm. Ein Plan für die ersten drei Monate, der sich in Betrieben bewährt hat.</p><div class="byline">Redaktion GaLaBau Kompass · 20. Mai 2026</div></div>
+    <figure><img src="../../assets/img/onboarding-90-tage-galabau.jpg" alt=""><figcaption>Der erste Tag entscheidet mehr als das Gehalt: Wer Anschluss findet, bleibt.</figcaption></figure>
+    <div class="text"><p>Eine Stelle im Baugewerbe zu besetzen dauert im Schnitt 166 Tage, sagt die Bundesagentur. Wenn der neue Mitarbeiter dann nach sechs Wochen wieder geht, beginnt die Rechnung von vorn – und die meisten Betriebe wissen nicht einmal, warum. Gespräche mit Betriebsinhabern und Vorarbeitern zeigen ein Muster: Es liegt selten am Gehalt, häufig am Anfang.</p>
+<h2>Was in den ersten Wochen schiefgeht</h2>
+<p>Der neue Kollege kommt am Montag um sieben auf den Hof, niemand hat ihn eingeplant, der Chef ist auf einer Baustelle. Er fährt mit irgendeiner Kolonne mit, bekommt eine Schaufel und erfährt am Mittwoch beiläufig, dass er eigentlich für die Pflasterkolonne gedacht war. Nach zwei Wochen kennt er die Namen, aber nicht die Regeln: Wer bestellt Material, wer entscheidet auf der Baustelle, wann ist Feierabend, was passiert bei Regen? Nach vier Wochen hat er den Eindruck, dass es keinen interessiert, ob er bleibt. Nach sechs Wochen ruft der alte Betrieb an.</p>
+<div class="kasten"><b>Der Fehler</b>Onboarding wird als Formalität verstanden – Arbeitsvertrag, Sicherheitsunterweisung, Kleidung. Es ist aber vor allem eine soziale Aufgabe: Der Neue muss in sechs Wochen das Gefühl bekommen, Teil des Betriebs zu sein. Das passiert nicht von allein.</div>
+
+<h2>Ein Plan für 90 Tage</h2>
+<p><strong>Vor dem ersten Tag.</strong> Der Neue bekommt eine Woche vorher eine Nachricht: Wann, wo, bei wem er sich meldet, was er mitbringt, mit welcher Kolonne er startet. Kleidung und Ausrüstung liegen bereit, der Name steht auf dem Spind.</p>
+<p><strong>Tag 1.</strong> Der Inhaber oder Bauleiter ist da. Eine halbe Stunde Rundgang, Vorstellung im Team, dann die Kolonne, in der er die ersten vier Wochen bleibt – nicht wechselnd. Ein fester Ansprechpartner (Pate) wird benannt: ein erfahrener Mitarbeiter, der Fragen beantwortet, die man dem Chef nicht stellt.</p>
+<p><strong>Woche 1.</strong> Sicherheitsunterweisung, Maschineneinweisung, die ungeschriebenen Regeln des Betriebs. Am Freitag ein kurzes Gespräch mit dem Paten: Was war gut, was fehlt?</p>
+<p><strong>Woche 4.</strong> Gespräch mit dem Inhaber oder Bauleiter: Wie läuft es, was hat der Neue erwartet, was hat er vorgefunden? Jetzt kommen die Punkte auf den Tisch, die sonst zur Kündigung führen.</p>
+<p><strong>Woche 8.</strong> Erste eigene Verantwortung: ein Teilbereich der Baustelle, eine Maschine, ein Lehrling, der ihm zugeordnet wird. Wer Verantwortung bekommt, bleibt.</p>
+<p><strong>Woche 12.</strong> Probezeitgespräch mit Entscheidung – und mit dem Blick nach vorn: Was sind die nächsten Schritte im Betrieb, welche Weiterbildung, welche Rolle in der nächsten Saison?</p>
+<h2>Was das kostet</h2>
+<p>Rund vier Stunden Zeit des Inhabers oder Bauleiters, verteilt auf drei Monate, und die Bereitschaft eines erfahrenen Mitarbeiters, Pate zu sein. Gegenüber 166 Tagen erneuter Suche ist das die günstigste Personalmaßnahme, die ein Betrieb ergreifen kann.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Institut der deutschen Wirtschaft (IW): Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Eigenkündigungen 52 %) – <a href="https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html">www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuend...</a></li><li>Bundesagentur für Arbeit: Monatsbericht Januar 2026 (abgeschlossene Vakanzzeit 166 Tage) – <a href="https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/arbeitsmarktberichte/monatsbericht-monatsbericht/monatsbericht-d-0-202601-pdf.pdf">statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Sicherheit &amp; Gesundheit</div><h1>Zecken: 185 Risikogebiete – was Betriebe für ihre Kolonnen tun müssen</h1><p class="dek">Das Robert Koch-Institut hat die FSME-Karte erweitert: Nordsachsen und Halle sind neu dabei, fast jeder zweite Landkreis ist Risikogebiet. Für Landschaftsgärtner ist die Zecke ein Berufsrisiko – mit Vorsorgepflicht, Impfangebot und Berufskrankheit.</p><div class="byline">Redaktion GaLaBau Kompass · 13. Mai 2026</div></div>
+    <figure><img src="../../assets/img/zecken-fsme-185-risikogebiete-kolonnen.jpg" alt=""><figcaption>Hohes Gras, Waldrand, Böschung: Der Arbeitsplatz der Zecke ist der Arbeitsplatz der Grünpflege.</figcaption></figure>
+    <div class="text"><p>Seit Ende Februar weist das Robert Koch-Institut 185 Kreise als FSME-Risikogebiete aus – mehr als 46 Prozent aller Landkreise und kreisfreien Städte. Neu hinzugekommen sind der Landkreis Nordsachsen und die Stadt Halle an der Saale. Die Schwerpunkte liegen weiter in Bayern, Baden-Württemberg, Südhessen, Südostthüringen, Sachsen, dem Südosten Brandenburgs und dem Osten Sachsen-Anhalts; einzelne Risikogebiete gibt es in Mittelhessen, im Saarland, in Rheinland-Pfalz, Niedersachsen und Nordrhein-Westfalen.</p>
+<p>Für Betriebe der Grünpflege ist das keine Randnotiz. Wer Böschungen mäht, Gehölze schneidet, Waldränder pflegt oder Regenrückhaltebecken freihält, arbeitet dort, wo Zecken sitzen: in Gras und niedriger Vegetation bis etwa Kniehöhe, von März bis Oktober, an feuchten und warmen Tagen besonders.</p>
+<h2>Zwei Krankheiten, zwei Strategien</h2>
+<p><strong>FSME</strong> – die Frühsommer-Meningoenzephalitis – ist eine Virusinfektion, die in schweren Fällen Gehirn und Hirnhäute befällt. Es gibt keine Behandlung, aber eine Impfung: drei Dosen zur Grundimmunisierung, Auffrischungen im Abstand von drei bis fünf Jahren. In Risikogebieten empfiehlt die Ständige Impfkommission die Impfung allen, die sich beruflich oder privat in der Natur aufhalten.</p>
+<p><strong>Borreliose</strong> wird von Bakterien verursacht, kommt bundesweit vor und lässt sich nicht durch Impfung verhindern, aber mit Antibiotika behandeln – wenn sie erkannt wird. Das typische Zeichen ist die Wanderröte, ein sich ausbreitender roter Ring um die Stichstelle, Tage bis Wochen nach dem Stich. Wer sie sieht, geht zum Arzt; wer sie übersieht, riskiert Gelenk- und Nervenbeteiligung Monate später.</p>
+<h2>Was der Betrieb tun muss</h2>
+<p>Die Verordnung zur arbeitsmedizinischen Vorsorge stuft Tätigkeiten mit Zeckenexposition in FSME-Risikogebieten – Arbeiten in Wäldern, Parks, Gartenanlagen und ähnlichem Gelände – als Anlass für arbeitsmedizinische Vorsorge ein. Der Betrieb muss sie über den Betriebsarzt organisieren; Bestandteil der Vorsorge ist das Impfangebot, dessen Kosten der Arbeitgeber trägt. Die Impfung selbst ist freiwillig. Wer sie ablehnt, arbeitet trotzdem – dokumentiert wird das Angebot.</p>
+<div class="kasten"><b>Die Kette im Betrieb</b>Gefährdungsbeurteilung: Welche Kolonnen arbeiten in Risikogebieten und in zeckenreicher Vegetation? Unterweisung: Schutzkleidung, Kontrolle, Entfernung, Wanderröte. Vorsorge: Betriebsarzt, Impfangebot, Dokumentation. Ausrüstung: lange Hosen, geschlossene Schuhe, Repellent, Zeckenzange im Verbandkasten. Meldung: Jeder Zeckenstich wird im Verbandbuch notiert – das ist der Nachweis, wenn später eine Berufskrankheit anerkannt werden soll.</div>
+
+<h2>Berufskrankheit</h2>
+<p>FSME und Borreliose können als Berufskrankheit anerkannt werden – unter der Nummer 3102 der Berufskrankheitenliste, „von Tieren auf Menschen übertragbare Krankheiten“. Voraussetzung ist der Nachweis, dass die Infektion mit hoher Wahrscheinlichkeit bei der Arbeit erfolgt ist. Genau dafür ist der Eintrag im Verbandbuch da: Datum, Baustelle, Tätigkeit, Stichstelle. Ohne Eintrag steht der Mitarbeiter Jahre später vor der Frage, ob es die Böschung oder der Sonntagsspaziergang war.</p>
+<h2>Der Alltag auf der Baustelle</h2>
+<p>Zecken suchen nach dem Andocken oft Stunden nach einer geeigneten Stelle; die Kontrolle am Abend – Kniekehlen, Leisten, Achseln, Haaransatz – findet die meisten, bevor sie stechen. Eine Zecke, die bereits sitzt, wird mit Zange oder Karte hautnah gefasst und gerade herausgezogen, ohne Öl, ohne Kleber, ohne Drehen. Die Stelle wird desinfiziert und markiert; ein Foto mit dem Handy hilft, die Wanderröte später zu erkennen.</p>
+<p>Betriebe, die in Risikogebieten arbeiten, tun gut daran, das Thema jedes Frühjahr in die Unterweisung zu nehmen – nicht als Vortrag, sondern als fünf Minuten am Fahrzeug, mit der Zeckenzange in der Hand.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Robert Koch-Institut: Neue Karte der FSME-Risikogebiete, Meldung vom 25. Februar 2026 (185 Kreise, mehr als 46 Prozent aller Kreise; neu: Landkreis Nordsachsen und Stadt Halle (Saale)) – <a href="https://www.rki.de/DE/Aktuelles/Neuigkeiten-und-Presse/Meldungen-PM/Meldungen/2026-02-25_FSME-Karte.html">www.rki.de/DE/Aktuelles/Neuigkeiten-und-Presse/Meldungen-...</a></li><li>Robert Koch-Institut: Epidemiologisches Bulletin 9/2026 vom 26. Februar 2026 – FSME-Risikogebiete in Deutschland – <a href="https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.html">www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-B...</a></li><li>Verordnung zur arbeitsmedizinischen Vorsorge (ArbMedVV), Anhang Teil 2 – Tätigkeiten mit biologischen Arbeitsstoffen, und § 5 Abs. 2 (Impfangebot) – <a href="https://www.gesetze-im-internet.de/arbmedvv/">www.gesetze-im-internet.de/arbmedvv/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Sicherheit &amp; Gesundheit</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Bauen &amp; Pflanzen</div><h1>Zukunftsbäume: Welche Arten Hitze, Trockenheit und Frost aushalten</h1><p class="dek">Die GALK-Straßenbaumliste führt 178 geeignete Straßenbaumsorten, die Broschüre von BdB und GALK filtert daraus 65 Zukunftsbäume. Für Betriebe, die Bäume pflanzen und für ihr Anwachsen haften, ist die Auswahl eine Frage des Geldes.</p><div class="byline">Redaktion GaLaBau Kompass · 6. Mai 2026</div></div>
+    <figure><img src="../../assets/img/zukunftsbaeume-galk-strassenbaumliste.jpg" alt=""><figcaption>Die Art entscheidet, ob der Baum in zehn Jahren noch steht – und wer die Nachpflanzung bezahlt.</figcaption></figure>
+    <div class="text"><p>Die Linde vor dem Rathaus, der Ahorn in der Allee, die Rosskastanie am Biergarten – viele der Bäume, die das Bild deutscher Städte prägen, kommen mit dem Klima nicht mehr zurecht. Trockenheit, Strahlung und veränderte Niederschläge setzen ihnen zu, Schädlinge und Pilze kommen dazu. Die Deutsche Gartenamtsleiterkonferenz (GALK) beobachtet deshalb seit Jahrzehnten, welche Arten im Straßenraum funktionieren, und veröffentlicht die Ergebnisse in ihrer Straßenbaumliste.</p>
+<h2>178 Sorten, 65 Zukunftsbäume</h2>
+<p>Die Liste weist aktuell 178 Baumsorten als taugliche Straßenbäume aus, mit Bewertungen zu Standort, Kronenform, Salztoleranz und Erfahrungen aus den Städten. Der Bund deutscher Baumschulen hat gemeinsam mit der GALK daraus die Broschüre „Zukunftsbäume für die Stadt&rdquo; entwickelt: 65 Arten und Sorten, die als besonders geeignet für die Stadt der Zukunft gelten. Die Kriterien sind eindeutig: hohe Trockenstresstoleranz und Hitzeresistenz, gleichzeitig Frosthärte und eine geringe Anfälligkeit für Schädlinge und Krankheiten.</p>
+<p>Zu den Arten, die in den Listen regelmäßig gut abschneiden, gehören Hopfenbuche, Zerreiche, Silberlinde, Amberbaum, Baumhasel, Blumenesche und mehrere Ahorn- und Eichenarten aus trockeneren Herkünften. Welche Sorte an welchen Standort gehört, entscheidet die Liste – nicht die Verfügbarkeit in der nächsten Baumschule.</p>
+<h2>Warum das Betriebe betrifft</h2>
+<p>Wer einen Baum pflanzt, haftet in der Regel für sein Anwachsen – die Fertigstellungs- und Entwicklungspflege läuft über Jahre. Eine ungeeignete Art kostet den Betrieb Nachpflanzung, Pflege und Ruf. Drei Konsequenzen:</p>
+<ol>
+<li><strong>Die Liste ist ein Argument.</strong> Wenn der Auftraggeber eine Art wünscht, die für den Standort ungeeignet ist, hilft der Verweis auf GALK und BdB. Wer schriftlich auf die Listen hinweist, ist im Streitfall besser gestellt.</li>
+<li><strong>Der Standort ist mehr als die Art.</strong> Zukunftsbäume brauchen Zukunfts-Standorte: ausreichend Wurzelraum, geeignetes Substrat, Wasserzufuhr in den ersten Jahren. Eine Baumrigole verbessert die Bilanz mehr als die beste Sorte im schlechten Boden.</li>
+<li><strong>Früh bestellen.</strong> Die gefragten Zukunftsarten sind in großen Stückzahlen und Sortierungen knapp. Wer für Projekte 2027 pflanzt, sollte jetzt mit Baumschulen sprechen.</li>
+</ol>
+<div class="kasten"><b>Praxis</b>Die GALK-Straßenbaumliste ist online frei abrufbar und lässt sich nach Standortkriterien filtern. Die BdB-Broschüre gibt es als PDF. Beides gehört in jeden Betrieb, der Bäume pflanzt – und auf den Tisch jedes Gesprächs mit Kommunen und Planern.</div></div>
+<div class="quellen"><b>Quellen</b><ol><li>Deutsche Gartenamtsleiterkonferenz (GALK): Straßenbaumliste (Abfrage 2026, 178 Baumsorten) – <a href="https://strassenbaumliste.galk.de/">strassenbaumliste.galk.de/</a></li><li>Bund deutscher Baumschulen (BdB) und GALK: Zukunftsbäume für die Stadt – Auswahl aus der GALK-Straßenbaumliste (65 Straßenbäume) – <a href="https://www.gruen-ist-leben.de/themen-produkte/oeffentliches-gruen/zukunftsbaeume/">www.gruen-ist-leben.de/themen-produkte/oeffentliches-grue...</a></li><li>GALK: Zukunftsbäume für die Stadt (Kriterien: Trockenstresstoleranz, Hitzeresistenz, Frosthärte, geringe Anfälligkeit) – <a href="https://galk.de/arbeitskreise/stadtbaeume/themenuebersicht/zukunftsbaeume-fuer-die-stadt/">galk.de/arbeitskreise/stadtbaeume/themenuebersicht/zukunf...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Bauen &amp; Pflanzen</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Der Vorarbeiter: Die wichtigste Führungskraft, die kaum ein Betrieb ausbildet</h1><p class="dek">Er entscheidet, ob eine Kolonne funktioniert, ob der Azubi bleibt und ob die Baustelle Ertrag bringt. Trotzdem wird die Rolle meist nach Dienstalter vergeben und ohne Vorbereitung übertragen. Was ein Vorarbeiter braucht – und was der Betrieb ihm schuldet.</p><div class="byline">Redaktion GaLaBau Kompass · 5. Mai 2026</div></div>
+    <figure><img src="../../assets/img/vorarbeiter-die-wichtigste-fuehrungskraft.jpg" alt=""><figcaption>Die Kolonne kündigt nicht dem Betrieb. Sie kündigt dem Vorarbeiter – oder bleibt seinetwegen.</figcaption></figure>
+    <div class="text"><p>In einem Betrieb mit vier Kolonnen gibt es vier Menschen, die täglich über Qualität, Tempo, Sicherheit und Stimmung entscheiden. Der Inhaber sieht jede Baustelle zweimal die Woche, die Bauleiterin einmal am Tag. Der Vorarbeiter ist zehn Stunden dort. Er verteilt die Arbeit, er zeigt dem Azubi den Fugenschnitt, er entscheidet, ob um 15 Uhr noch die letzte Reihe gelegt wird oder ob es morgen weitergeht – und er ist derjenige, mit dem der Facharbeiter im Winter über Kündigung nachdenkt, oder eben nicht.</p>
+<h2>Wie die Rolle vergeben wird</h2>
+<p>In den meisten Betrieben wird Vorarbeiter, wer am längsten da ist und am besten pflastert. Beides sind Qualifikationen für den Facharbeiter, nicht für die Führung. Der beste Pflasterer hat oft wenig Geduld mit denen, die es noch lernen; der Dienstälteste hat manchmal wenig Interesse an Verantwortung, nimmt sie aber, weil sie mit Geld verbunden ist. Das Ergebnis sind Kolonnen, in denen der Vorarbeiter selbst am meisten arbeitet und am wenigsten führt.</p>
+<p>Die Alternative kostet ein Gespräch: Wer will die Rolle? Wer kann erklären, zuteilen, entscheiden, auch wenn es unbequem ist? Ein Facharbeiter mit fünf Jahren Erfahrung, der Freude daran hat, den Azubi anzuleiten, ist der bessere Kandidat als der beste Maschinenführer mit zwanzig.</p>
+<h2>Was der Vorarbeiter tatsächlich tut</h2>
+<p><strong>Planen.</strong> Morgens auf dem Hof: Was wird heute gebaut, mit welchem Material, in welcher Reihenfolge, wer macht was. Zehn Minuten am Fahrzeug sparen zwei Stunden auf der Baustelle.</p>
+<p><strong>Anleiten.</strong> Zeigen, kontrollieren, korrigieren – ohne es selbst zu machen. Die schwerste Umstellung für Facharbeiter, die schneller sind als jeder Azubi.</p>
+<p><strong>Sichern.</strong> Der Vorarbeiter ist auf der Baustelle der Aufsichtführende im Sinne der Unfallverhütung. Die DGUV Vorschrift 1 erlaubt es dem Unternehmer, Pflichten schriftlich auf ihn zu übertragen: Unterweisung, Kontrolle der Schutzausrüstung, Absperrung, Verkehrssicherung. Wer die Pflichten überträgt, muss die Person dafür befähigen – und das steht in derselben Vorschrift.</p>
+<p><strong>Melden.</strong> Material fehlt, der Plan passt nicht, der Kunde will etwas anderes, der Azubi hat ein Problem. Der Vorarbeiter ist die Verbindung zwischen Baustelle und Büro, und wenn sie nicht funktioniert, erfährt der Betrieb vom Nachtrag erst bei der Schlussrechnung.</p>
+<div class="kasten"><b>Was er nicht tun sollte</b>Kalkulieren, Angebote schreiben, mit dem Kunden über Preise verhandeln. Das ist Sache der Bauleitung. Ein Vorarbeiter, der dem Kunden „das machen wir eben mit“ zusagt, verschenkt Leistung, die keiner berechnet hat.</div>
+
+<h2>Was der Betrieb ihm schuldet</h2>
+<p><strong>Geld.</strong> Der Tarif sieht für Vorarbeiter eine eigene Lohngruppe zwischen Facharbeiter und Baustellenleiter vor. Wer die Rolle überträgt, ohne sie zu bezahlen, bekommt einen Facharbeiter mit Zusatzaufgaben – und den Ärger der Kolonne, die sieht, dass Verantwortung nichts wert ist.</p>
+<p><strong>Vorbereitung.</strong> Ein Tag Einweisung durch die Bauleitung, bevor die erste Kolonne übernommen wird: Baustellendokumentation, Stundenzettel, Materialabruf, Umgang mit Kunden, Unterweisung. Bildungsträger der Branche bieten mehrtägige Vorarbeiterlehrgänge an; die DEULA und die Bildungswerke der Verbände haben sie im Winterprogramm.</p>
+<p><strong>Rückendeckung.</strong> Wenn der Vorarbeiter entscheidet, die Baustelle wegen Frost abzubrechen, und der Inhaber ihn vor der Kolonne korrigiert, hat er die Rolle verloren. Korrekturen finden unter vier Augen statt.</p>
+<p><strong>Zeit.</strong> Ein Vorarbeiter, der genauso viel produzieren muss wie seine Leute, führt nicht. In der Kalkulation muss die Führungszeit stehen – eine Stunde am Tag für eine Kolonne von vier.</p>
+<h2>Warum das die beste Bindungsmaßnahme ist</h2>
+<p>Jede zweite Kündigung in Deutschland geht inzwischen vom Mitarbeiter aus. Im GaLaBau nennen Wechsler selten den Lohn als ersten Grund, sondern die Kolonne, den Ton, das Gefühl, nicht gesehen zu werden. All das entsteht auf der Baustelle, nicht im Büro. Wer seine Vorarbeiter auswählt, vorbereitet, bezahlt und deckt, arbeitet an der Stelle, an der Personal gehalten wird – und nicht an der Stellenanzeige, die danach nötig ist.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>DGUV Vorschrift 1: Grundsätze der Prävention, § 13 Pflichtenübertragung (schriftliche Übertragung von Unternehmerpflichten an Aufsichtführende) – <a href="https://publikationen.dguv.de/regelwerk/dguv-vorschriften/">publikationen.dguv.de/regelwerk/dguv-vorschriften/</a></li><li>Institut der deutschen Wirtschaft: Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Eigenkündigungen 52 Prozent aller Beendigungen) – <a href="https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html">www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuend...</a></li><li>B_I galabau: Tarif im GaLaBau 2025/2026 – Lohngruppen (Vorarbeiter zwischen Facharbeiter und Baustellenleiter) – <a href="https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996">bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 05/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

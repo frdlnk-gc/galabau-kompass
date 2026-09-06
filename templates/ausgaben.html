@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Ausgaben | {{ site.name }}{% endblock %}
+{% block description %}Alle Monatsausgaben von {{ site.name }} als PDF – kostenlos.{% endblock %}
+{% block content %}
+<section class="sec-light">
+  <div class="container">
+    <div class="ressort-kopf"><span class="kicker">Ausgaben</span><h1 class="sec-title">Jeden Monat eine Ausgabe</h1><p class="muted">Alle Beiträge eines Monats, gesetzt als PDF zum Lesen, Drucken und Weitergeben. Kostenlos. Wer die Ausgabe automatisch bekommen möchte, trägt sich unter <a href="{{ root }}abo/">Ausgabe per E-Mail</a> ein.</p></div>
+    <div class="ausgaben-grid">
+      {% for x in ausgaben %}
+      <div class="ausgabe-karte">
+        <a class="ausgabe-cover" href="{{ root }}ausgaben/{{ x.ym }}/"><img src="{{ root }}assets/img/{{ x.lead.bild }}-thumb.jpg" alt="" loading="lazy"><div class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">{{ x.label }}</span><span class="cover-titel">{{ x.titel }}</span></div></a>
+        <div class="ausgabe-karte-body">
+          <h3><a href="{{ root }}ausgaben/{{ x.ym }}/">{{ x.label }} · {{ x.titel }}</a></h3>
+          <p class="small muted">{{ x.artikel|length }} Beiträge · {{ x.monat }}</p>
+          <div class="btn-row"><a class="btn sm" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">PDF öffnen</a><a class="btn sm ghost" href="{{ root }}ausgaben/{{ x.ym }}/">Inhalt</a></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

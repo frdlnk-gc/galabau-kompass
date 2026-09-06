@@ -4,144 +4,417 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex">
-  <title>GaLaBau Kompass – Das Magazin für Betriebe im Garten- und Landschaftsbau</title>
-  <meta name="description" content="Zahlen, Einordnung und Praxis für Inhaber und Führungskräfte im GaLaBau: Markt, Personal, Tarif, Messe. Plus Branchenumfrage 2026 und kostenloser Standort-Check.">
+  <title>GaLaBau Kompass – Das Magazin für den Garten- und Landschaftsbau</title>
+  <meta name="description" content="Das Magazin für den Garten- und Landschaftsbau: Betrieb, Recht, Technik, Bauen, Markt, Sicherheit, Karriere.">
+  <meta property="og:site_name" content="GaLaBau Kompass">
   <meta property="og:title" content="GaLaBau Kompass – Das Magazin für den Garten- und Landschaftsbau">
-  <meta property="og:description" content="Zahlen, Einordnung und Praxis für GaLaBau-Betriebe. Branchenumfrage 2026 und Standort-Check.">
+  <meta property="og:description" content="Das Magazin für den Garten- und Landschaftsbau: Betrieb, Recht, Technik, Bauen, Markt, Sicherheit, Karriere.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/kompass.css">
-  <style>
-    .hero-mag{padding:34px 0 30px;}
-    @media(min-width:1024px){.hero-mag{padding:54px 0 48px;}}
-    .hero-mag .kicker-line{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.74rem;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
-    .hero-mag .kicker-line b{color:var(--accent);}
-    .quick{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:26px;}
-    @media(min-width:720px){.quick{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}}
-    .quick a{display:flex;gap:14px;align-items:center;background:rgba(244,241,232,.06);border:1px solid var(--line);border-radius:var(--radius-s);padding:16px 18px;color:var(--ink);text-decoration:none;transition:background .15s,transform .12s;}
-    .quick a:hover{background:rgba(244,241,232,.1);transform:translateY(-1px);}
-    .quick .ic{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--accent-line);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
-    .quick b{display:block;font-size:.98rem;}
-    .quick span{display:block;font-size:.78rem;color:var(--ink-dim);margin-top:2px;}
-    .topic-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
-    .topic-row a{font-size:.76rem;font-weight:700;color:var(--q-dim);text-decoration:none;border:1px solid var(--line-light);background:#fff;border-radius:999px;padding:7px 13px;}
-    .topic-row a:hover{border-color:var(--accent);color:var(--accent-ink);}
-  </style>
 </head>
-<body data-depth="0">
+<body data-depth="0" class="home">
   <header data-kompass-header></header>
+  <main>
 
-  <!-- ===== AUFMACHER ===== -->
-  <section class="hero hero-mag sec-dark">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="kicker-line rise"><span><b>Ausgabe</b> September 2026</span><span>Garten- &amp; Landschaftsbau</span><span>Markt · Personal · Betrieb</span></div>
-      <div class="lead-grid">
-        <a class="lead-story rise d1" href="artikel/galabau-2026-nuernberg/">
-          <img src="assets/img/foto-1352551526.jpg" alt="Pflasterarbeiten auf einer GaLaBau-Baustelle" width="1000" height="472">
-          <div class="lead-copy">
-            <span class="tag">Messe · Leitartikel</span>
-            <h2>GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</h2>
-            <p>Vom 15. bis 18. September trifft sich die Branche zur Leitmesse. Klimaanpassung und Technik stehen im Programm – die Frage, wie Betriebe Leute finden und halten, steht in jeder Halle im Raum.</p>
-            <div class="meta">Redaktion · 5. September 2026 · 4 Min.</div>
-          </div>
+<!-- ===== SLIDER ===== -->
+<section class="slider sec-dark" id="slider" aria-roledescription="Karussell" aria-label="Aufmacher">
+  <div class="slides">
+    <a class="slide is-active" href="artikel/galabau-2026-nuernberg/" data-i="0">
+      <img src="assets/img/galabau-2026-nuernberg.jpg" alt="Fachbesucher vor dem Messezentrum Nürnberg am Morgen des ersten Messetags" width="1600" height="1067">
+      <div class="slide-copy container">
+        <div class="slide-meta"><span class="ressort-tag light">Messe &amp; Termine</span><time datetime="2026-09-04">4. September 2026</time></div>
+        <h2>GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</h2>
+        <p>Vom 15. bis 18. September trifft sich die Branche zur Leitmesse. Klimaanpassung und emissionsfreie Technik stehen im Programm – die Frage, wie Betriebe Leute finden und halten, steht in jeder Halle im Raum.</p>
+        <span class="slide-cta">Artikel lesen</span>
+      </div>
+    </a>
+    <a class="slide" href="artikel/e-maschinen-galabau-2026/" data-i="1">
+      <img src="assets/img/e-maschinen-galabau-2026.jpg" alt="Elektrischer Minibagger arbeitet in einem engen Innenhof zwischen Wohnhäusern, Kabel an einer Ladestation" width="1600" height="1067" loading="lazy">
+      <div class="slide-copy container">
+        <div class="slide-meta"><span class="ressort-tag light">Technik &amp; Digital</span><time datetime="2026-09-02">2. September 2026</time></div>
+        <h2>Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026 wirklich können</h2>
+        <p>Vier bis sechs Betriebsstunden, eine Stunde Laden, keine Abgase im Innenhof: Die Hersteller bringen elektrische Kompaktmaschinen nach Nürnberg, die für innerstädtische Baustellen gemacht sind. Ein Blick auf Daten, Einsatzfelder und die Frage nach den Kosten.</p>
+        <span class="slide-cta">Artikel lesen</span>
+      </div>
+    </a>
+    <a class="slide" href="artikel/wasserentnahmeverbote-sommer-2026/" data-i="2">
+      <img src="assets/img/wasserentnahmeverbote-sommer-2026.jpg" alt="Landschaftsgärtner bewässert junge Bäume mit einem Wasserfass auf dem Anhänger, ausgedörrter Rasen im Hintergrund" width="1600" height="1067" loading="lazy">
+      <div class="slide-copy container">
+        <div class="slide-meta"><span class="ressort-tag light">Bauen &amp; Pflanzen</span><time datetime="2026-08-14">14. August 2026</time></div>
+        <h2>Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</h2>
+        <p>Der Sommer 2026 hat Böden und Flüsse ausgetrocknet. Landkreise von Baden-Württemberg bis Brandenburg untersagen die Entnahme aus Bächen und Flüssen, teils bis Oktober. Für GaLaBau-Betriebe wird Bewässerung damit zur Planungs- und Haftungsfrage.</p>
+        <span class="slide-cta">Artikel lesen</span>
+      </div>
+    </a>
+    <a class="slide" href="artikel/bg-bau-unfallzahlen-2025/" data-i="3">
+      <img src="assets/img/bg-bau-unfallzahlen-2025.jpg" alt="Landschaftsgärtner mit Gehörschutz und Schutzbrille bedient eine Rüttelplatte auf einer Pflasterbaustelle" width="1600" height="1067" loading="lazy">
+      <div class="slide-copy container">
+        <div class="slide-meta"><span class="ressort-tag light">Sicherheit &amp; Gesundheit</span><time datetime="2026-07-14">14. Juli 2026</time></div>
+        <h2>Erstmals unter 90.000: Die Unfallzahlen der BG BAU sinken – die Berufskrankheiten steigen</h2>
+        <p>89.113 meldepflichtige Arbeitsunfälle zählte die Berufsgenossenschaft der Bauwirtschaft 2025, 2,9 Prozent weniger als im Vorjahr. Absturz bleibt die häufigste Todesursache. Mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten zeigen das andere Risiko: Haut, Rücken, Lunge.</p>
+        <span class="slide-cta">Artikel lesen</span>
+      </div>
+    </a>
+    <a class="slide" href="artikel/tarif-2026-ecklohn-20-91/" data-i="4">
+      <img src="assets/img/tarif-2026-ecklohn-20-91.jpg" alt="Landschaftsgärtner beim Setzen von Randsteinen, Nahaufnahme der Hände mit Gummihammer" width="1600" height="1067" loading="lazy">
+      <div class="slide-copy container">
+        <div class="slide-meta"><span class="ressort-tag light">Recht &amp; Tarif</span><time datetime="2026-07-01">1. Juli 2026</time></div>
+        <h2>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h2>
+        <p>Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente.</p>
+        <span class="slide-cta">Artikel lesen</span>
+      </div>
+    </a>
+  </div>
+  <div class="slider-nav container">
+    <button type="button" class="slider-btn" data-dir="-1" aria-label="Vorheriger Beitrag">‹</button>
+    <div class="slider-dots"><button type="button" class="dot is-active" data-i="0" aria-label="Beitrag 1"></button><button type="button" class="dot" data-i="1" aria-label="Beitrag 2"></button><button type="button" class="dot" data-i="2" aria-label="Beitrag 3"></button><button type="button" class="dot" data-i="3" aria-label="Beitrag 4"></button><button type="button" class="dot" data-i="4" aria-label="Beitrag 5"></button></div>
+    <button type="button" class="slider-btn" data-dir="1" aria-label="Nächster Beitrag">›</button>
+  </div>
+</section>
+
+<!-- ===== AKTUELL ===== -->
+<section class="sec-light" id="aktuell">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title">Aktuell</h2><a class="sec-more" href="artikel/">Alle 60 Artikel</a></div>
+    <div class="karten-grid">
+<a class="karte " href="artikel/ausbildung-drei-hebel-fuer-den-herbst/" data-slug="ausbildung-drei-hebel-fuer-den-herbst">
+  <div class="karte-bild"><img src="assets/img/ausbildung-drei-hebel-fuer-den-herbst-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Betrieb &amp; Personal</span><time datetime="2026-09-03">3. September 2026</time></div>
+    <h3>Azubis für 2027: Drei Hebel, die Betriebe jetzt im Herbst umlegen</h3>
+<p>Die Ausbildungsverträge für den Start im August 2027 werden im Winter geschlossen. Wer im Herbst Praktika anbietet, in der Berufsschule sichtbar ist und die Eltern mitdenkt, hat im März unterschriebene Verträge.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+<a class="karte " href="artikel/winterdienst-personal-bereitschaft-regeln/" data-slug="winterdienst-personal-bereitschaft-regeln">
+  <div class="karte-bild"><img src="assets/img/winterdienst-personal-bereitschaft-regeln-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Betrieb &amp; Personal</span><time datetime="2026-09-01">1. September 2026</time></div>
+    <h3>Winterdienst-Personal: Bereitschaft regeln, bevor der erste Schnee fällt</h3>
+<p>Winterdienstverträge werden im September unterschrieben, die Bereitschaft der Mitarbeiter im November improvisiert. Was Rufbereitschaft von Bereitschaftsdienst unterscheidet, welche Ruhezeiten auch nachts gelten und wie Betriebe die Einsätze vergüten.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+<a class="karte " href="artikel/ifo-august-2026-bau-weniger-pessimismus/" data-slug="ifo-august-2026-bau-weniger-pessimismus">
+  <div class="karte-bild"><img src="assets/img/ifo-august-2026-bau-weniger-pessimismus-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Markt &amp; Politik</span><time datetime="2026-08-27">27. August 2026</time></div>
+    <h3>ifo im August: Weniger Pessimismus am Bau, mehr Stornierungen im Wohnungsbau</h3>
+<p>Der ifo-Geschäftsklimaindex steigt auf 88,8 Punkte, das Bauhauptgewerbe blickt weniger düster nach vorn. Im Wohnungsbau sinkt der Anteil der Betriebe mit Auftragsmangel – aber jedes achte Unternehmen meldet Stornierungen. Was das für die Außenanlagen bedeutet.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+<a class="karte " href="artikel/erste-woche-neue-azubis/" data-slug="erste-woche-neue-azubis">
+  <div class="karte-bild"><img src="assets/img/erste-woche-neue-azubis-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Betrieb &amp; Personal</span><time datetime="2026-08-26">26. August 2026</time></div>
+    <h3>Die erste Woche: Wie neue Azubis ankommen – und was in den ersten Tagen entscheidet, ob sie bleiben</h3>
+<p>Anfang August beginnen im GaLaBau die Ausbildungsverhältnisse. Die Abbrüche fallen meist in den ersten Monaten. Was das Gesetz für Jugendliche verlangt, was der Betrieb vorbereiten sollte und warum der Pate wichtiger ist als der Ausbilder.</p>    <div class="karte-foot"><span>3 Min. Lesezeit</span></div>
+  </div>
+</a>
+<a class="karte " href="artikel/werkzeuge-fuer-bauleiter-apps/" data-slug="werkzeuge-fuer-bauleiter-apps">
+  <div class="karte-bild"><img src="assets/img/werkzeuge-fuer-bauleiter-apps-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Karriere &amp; Weiterbildung</span><time datetime="2026-08-19">19. August 2026</time></div>
+    <h3>Werkzeugkasten für Bauleiter: Sechs digitale Helfer, die den Tag kürzer machen</h3>
+<p>Aufmaß, Bautagebuch, Fotodokumentation, Zeiterfassung, Wetter, Material – für jede Aufgabe gibt es Apps. Welche Kategorien sich im Alltag von GaLaBau-Bauleitern bewähren, worauf es bei der Auswahl ankommt und warum weniger oft mehr ist.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+<a class="karte " href="artikel/e-rechnung-pflicht-2027/" data-slug="e-rechnung-pflicht-2027">
+  <div class="karte-bild"><img src="assets/img/e-rechnung-pflicht-2027-thumb.jpg" alt="" loading="lazy" width="640" height="427"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Recht &amp; Tarif</span><time datetime="2026-08-05">5. August 2026</time></div>
+    <h3>E-Rechnung: Ab 2027 müssen größere Betriebe elektronisch versenden – eine PDF reicht nicht</h3>
+<p>Empfangen müssen alle Betriebe seit 2025. Ab dem 1. Januar 2027 gilt die Versandpflicht für Unternehmen mit mehr als 800.000 Euro Umsatz, ab 2028 für alle. Was eine E-Rechnung ist, wer betroffen ist und wie Betriebe die Umstellung im Winter angehen.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUSGABE + MEISTGELESEN ===== -->
+<section class="sec-paper" id="ausgabe">
+  <div class="container zweispalt">
+    <div>
+      <div class="ausgabe-box">
+        <a class="ausgabe-cover" href="ausgaben/2026-09/">
+          <img src="assets/img/galabau-2026-nuernberg.jpg" alt="" loading="lazy">
+          <div class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">Ausgabe 09/2026</span><span class="cover-titel">Nürnberg</span></div>
         </a>
-        <div class="side-stack rise d2">
-          <a class="side-card" href="artikel/galabau-in-zahlen-2025/">
-            <img src="assets/img/foto-1173837738-thumb.jpg" alt="" width="92" height="92">
-            <div><span class="tag">Markt</span><h3>11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</h3><div class="meta">BGL-Branchenstatistik 2025</div></div>
-          </a>
-          <a class="side-card" href="artikel/tarif-2026-ecklohn/">
-            <img src="assets/img/foto-644119116-thumb.jpg" alt="" width="92" height="92">
-            <div><span class="tag">Tarif</span><h3>Ecklohn 20,91 Euro: Was der Tarifabschluss für Betriebe bedeutet</h3><div class="meta">Seit 1. Juli 2026</div></div>
-          </a>
-          <a class="side-card" href="artikel/q4-effekt-mitarbeiter-finden/">
-            <img src="assets/img/foto-1987251457-thumb.jpg" alt="" width="92" height="92">
-            <div><span class="tag">Personal</span><h3>Warum Betriebe im vierten Quartal leichter Mitarbeiter finden</h3><div class="meta">Zahlen von BA und Indeed</div></div>
-          </a>
+        <div class="ausgabe-info">
+          <span class="kicker">Die aktuelle Ausgabe</span>
+          <h2>Ausgabe 09/2026: Nürnberg</h2>
+          <p>Vom 15. bis 18. September trifft sich die Branche zur GaLaBau. Wir haben das Messeprogramm gelesen, die E-Maschinen der Aussteller angeschaut, den Winterdienst-Plan vorgezogen und die Frage mitgenommen, die in jeder Halle gestellt wird: Wo kommen die Leute her? Unsere Branchenumfrage 2026 sucht Antworten.</p>
+          <ul class="inhalt-liste"><li><a href="artikel/galabau-2026-nuernberg/">GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</a></li><li><a href="artikel/ausbildung-drei-hebel-fuer-den-herbst/">Azubis für 2027: Drei Hebel, die Betriebe jetzt im Herbst umlegen</a></li><li><a href="artikel/e-maschinen-galabau-2026/">Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026 wirklich können</a></li><li><a href="artikel/winterdienst-personal-bereitschaft-regeln/">Winterdienst-Personal: Bereitschaft regeln, bevor der erste Schnee fällt</a></li></ul>
+          <div class="btn-row"><a class="btn" href="ausgaben/pdf/galabau-kompass-2026-09.pdf" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn ghost" href="ausgaben/">Alle Ausgaben</a></div>
         </div>
       </div>
-      <div class="quick rise d3">
-        <a href="umfrage/"><span class="ic">📋</span><div><b>Branchenumfrage 2026: Mitarbeitergewinnung im GaLaBau</b><span>12 Fragen, 3 Minuten. Ergebnisse im Oktober – Dankeschön: der Standort-Check.</span></div></a>
-        <a href="standort/"><span class="ic">📍</span><div><b>Standort-Check für Ihren Betrieb</b><span>Wie viele Fachkräfte wohnen in Ihrem Umkreis? Kostenlos, Ergebnis sofort.</span></div></a>
-      </div>
     </div>
-  </section>
-
-  <!-- ===== AKTUELL ===== -->
-  <section class="sec-light" id="aktuell">
-    <div class="container">
-      <div class="section-label reveal">Aktuell</div>
-      <h2 class="section-title reveal">Was Betriebe <em class="accent">jetzt wissen müssen.</em></h2>
-      <div class="topic-row reveal"><a href="artikel/">Alle Artikel</a><a href="artikel/#markt">Markt &amp; Zahlen</a><a href="artikel/#personal">Personal</a><a href="artikel/#tarif">Tarif &amp; Recht</a><a href="artikel/#messe">Messe</a></div>
-      <div class="article-grid">
-        <a class="article-card reveal" href="artikel/galabau-in-zahlen-2025/">
-          <div class="thumb"><img src="assets/img/foto-1173837738.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Markt &amp; Zahlen</span><h3>11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</h3><p>19.898 Betriebe, 131.746 Beschäftigte, 8.089 Auszubildende – und ein Insolvenzanstieg von 101 auf 133. Was die BGL-Statistik 2025 über den Markt sagt.</p><div class="meta"><span>BGL-Branchenstatistik</span><span>4 Min.</span></div></div>
-        </a>
-        <a class="article-card reveal" href="artikel/tarif-2026-ecklohn/">
-          <div class="thumb"><img src="assets/img/foto-644119116.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Tarif &amp; Recht</span><h3>Ecklohn 20,91 Euro: Was der Tarifabschluss 2026 für Betriebe bedeutet</h3><p>Seit dem 1. Juli gelten 3,3 Prozent mehr Lohn, die Ausbildungsvergütung steigt auf bis zu 1.390 Euro. Wie Betriebe die Zahlen im Bewerbergespräch nutzen.</p><div class="meta"><span>IG BAU / BGL</span><span>3 Min.</span></div></div>
-        </a>
-        <a class="article-card reveal" href="artikel/q4-effekt-mitarbeiter-finden/">
-          <div class="thumb"><img src="assets/img/foto-1987251457.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Personal</span><h3>Warum Betriebe im vierten Quartal leichter Mitarbeiter finden</h3><p>Im Januar steigt die Arbeitslosigkeit um 177.000, die Bewerbungen nehmen um 25 Prozent zu. Wer im Herbst plant, hat zum Saisonstart die Leute.</p><div class="meta"><span>BA, Indeed Hiring Lab</span><span>5 Min.</span></div></div>
-        </a>
-        <a class="article-card reveal" href="artikel/konjunktur-fruehjahr-2026/">
-          <div class="thumb"><img src="assets/img/foto-1692163621.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Markt &amp; Zahlen</span><h3>Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026</h3><p>Nur noch gut die Hälfte der Betriebe bewertet die Lage als gut, die Auftragsbücher bleiben trotzdem voll. Was hinter der Schere steckt.</p><div class="meta"><span>BGL-Konjunkturumfrage</span><span>3 Min.</span></div></div>
-        </a>
-        <a class="article-card reveal" href="artikel/ausbildung-galabau/">
-          <div class="thumb"><img src="assets/img/foto-1208302334.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Personal</span><h3>8.089 Auszubildende: Wie Betriebe die nächste Generation gewinnen</h3><p>Die Ausbildungsvergütung steigt, die Bewerberzahlen nicht von allein. Drei Hebel, die in der Praxis den Unterschied machen.</p><div class="meta"><span>BGL, IG BAU</span><span>4 Min.</span></div></div>
-        </a>
-        <a class="article-card reveal" href="artikel/galabau-2026-nuernberg/">
-          <div class="thumb"><img src="assets/img/foto-1352551526.jpg" alt="" loading="lazy"></div>
-          <div class="body"><span class="tag">Messe</span><h3>GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</h3><p>Termine, Öffnungszeiten, Tickets – und warum das Thema Personal in diesem Jahr jede Halle betrifft.</p><div class="meta"><span>15. bis 18. September</span><span>4 Min.</span></div></div>
-        </a>
+    <aside class="seitenleiste">
+      <div class="sl-block">
+        <h3 class="sl-title">Meistgelesen</h3>
+        <ol class="rang-liste" id="meistgelesen"><li><a href="artikel/galabau-2026-nuernberg/" data-slug="galabau-2026-nuernberg"><span class="rang">1</span><span>GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</span></a></li><li><a href="artikel/tarif-2026-ecklohn-20-91/" data-slug="tarif-2026-ecklohn-20-91"><span class="rang">2</span><span>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</span></a></li><li><a href="artikel/wasserentnahmeverbote-sommer-2026/" data-slug="wasserentnahmeverbote-sommer-2026"><span class="rang">3</span><span>Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</span></a></li><li><a href="artikel/branchenstatistik-2025-galabau-in-zahlen/" data-slug="branchenstatistik-2025-galabau-in-zahlen"><span class="rang">4</span><span>11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</span></a></li><li><a href="artikel/jahresauftakt-2026-bewerbungen-plus-25-prozent/" data-slug="jahresauftakt-2026-bewerbungen-plus-25-prozent"><span class="rang">5</span><span>Jahresauftakt: 25 Prozent mehr Bewerbungen, 3 Prozent weniger Stellen</span></a></li><li><a href="artikel/e-maschinen-galabau-2026/" data-slug="e-maschinen-galabau-2026"><span class="rang">6</span><span>Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026 wirklich können</span></a></li></ol>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== BRANCHENUMFRAGE ===== -->
-  <section class="sec-dark" id="umfrage">
-    <div class="container">
-      <div class="promo-grid">
-        <div class="promo reveal">
-          <span class="tag">Branchenumfrage 2026</span>
-          <h3 style="margin-top:8px;">Wie finden GaLaBau-Betriebe <i>2026 Mitarbeiter?</i></h3>
-          <p>GaLaBau Kompass befragt Inhaber und Führungskräfte auf der GaLaBau 2026 in Nürnberg und online: Welche Wege funktionieren, was kostet die Suche, wo hakt es. 12 Fragen, drei Minuten, anonymisierte Auswertung im Oktober.</p>
-          <a class="btn" href="umfrage/">An der Umfrage teilnehmen →</a>
-          <div class="promo-note">Dankeschön für jede Teilnahme: der kostenlose Standort-Check.</div>
-        </div>
-        <div class="promo reveal">
-          <span class="tag">Standort-Check</span>
-          <h3 style="margin-top:8px;">Wie gut ist Ihr Standort <i>für Fachkräfte?</i></h3>
-          <p>PLZ eingeben und sehen, wie viele Landschaftsgärtner, Vorarbeiter und Bauleiter im Umkreis von 30 Kilometern registriert sind – und welche drei Voraussetzungen an Ihrem Standort den Unterschied machen.</p>
-          <a class="btn" href="standort/">Standort jetzt prüfen →</a>
-          <div class="promo-note">In Kooperation mit dem Karrierenetzwerk GreenCareers · kostenlos</div>
-        </div>
+      <div class="sl-block">
+        <h3 class="sl-title">Themen</h3>
+        <div class="tag-wolke"><a href="artikel/?q=Recht">Recht</a><a href="artikel/?q=Ausbildung">Ausbildung</a><a href="artikel/?q=BGL">BGL</a><a href="artikel/?q=F%C3%BChrung">Führung</a><a href="artikel/?q=Winter">Winter</a><a href="artikel/?q=Arbeitsschutz">Arbeitsschutz</a><a href="artikel/?q=Azubis">Azubis</a><a href="artikel/?q=Klimaanpassung">Klimaanpassung</a><a href="artikel/?q=Markt">Markt</a><a href="artikel/?q=Mitarbeiterbindung">Mitarbeiterbindung</a><a href="artikel/?q=Arbeitsmarkt">Arbeitsmarkt</a><a href="artikel/?q=GaLaBau%202026">GaLaBau 2026</a><a href="artikel/?q=Konjunktur">Konjunktur</a><a href="artikel/?q=Nachwuchs">Nachwuchs</a><a href="artikel/?q=Tarif">Tarif</a><a href="artikel/?q=Arbeitszeit">Arbeitszeit</a><a href="artikel/?q=Auftragslage">Auftragslage</a><a href="artikel/?q=Ausbildungsverg%C3%BCtung">Ausbildungsvergütung</a></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== BRANCHE IN ZAHLEN ===== -->
-  <section class="sec-paper" id="zahlen">
-    <div class="container">
-      <div class="section-label reveal">Die Branche in Zahlen</div>
-      <h2 class="section-title reveal">Garten- und Landschaftsbau 2025 <em class="accent">auf einen Blick.</em></h2>
-      <div class="stats reveal">
-        <div class="stat"><b>19.898</b><span>Betriebe in Deutschland</span><small>BGL-Statistik 2025</small></div>
-        <div class="stat"><b>131.746</b><span>Beschäftigte</span><small>BGL-Statistik 2025</small></div>
-        <div class="stat"><b>11,11 Mrd. €</b><span>Umsatz 2025</span><small>BGL-Statistik 2025</small></div>
-        <div class="stat"><b>8.089</b><span>Auszubildende</span><small>BGL-Statistik 2025</small></div>
+      <div class="sl-block abo-block">
+        <h3 class="sl-title">Ausgabe per E-Mail</h3>
+        <p>Jeden Monat die neue Ausgabe als PDF und die wichtigsten Meldungen der Woche. Kostenlos, jederzeit abbestellbar.</p>
+        <form class="abo-form" data-abo>
+          <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email">
+          <button type="submit" class="btn block">Anmelden</button>
+          <div class="abo-note" data-abo-note></div>
+        </form>
       </div>
-      <p class="small muted mt-2 reveal">Quelle: Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL), Branchenstatistik 2025, Pressemitteilung vom 27. Februar 2026.</p>
-    </div>
-  </section>
+    </aside>
+  </div>
+</section>
 
+<!-- ===== RESSORTS ===== -->
+<section class="sec-light ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/betrieb-personal/">Betrieb &amp; Personal</a></h2><a class="sec-more" href="ressort/betrieb-personal/">Mehr aus Betrieb</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/ausbildung-drei-hebel-fuer-den-herbst/" data-slug="ausbildung-drei-hebel-fuer-den-herbst">
+  <div class="karte-bild"><img src="assets/img/ausbildung-drei-hebel-fuer-den-herbst.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Betrieb &amp; Personal</span><time datetime="2026-09-03">3. September 2026</time></div>
+    <h3>Azubis für 2027: Drei Hebel, die Betriebe jetzt im Herbst umlegen</h3>
+<p>Die Ausbildungsverträge für den Start im August 2027 werden im Winter geschlossen. Wer im Herbst Praktika anbietet, in der Berufsschule sichtbar ist und die Eltern mitdenkt, hat im März unterschriebene Verträge.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/winterdienst-personal-bereitschaft-regeln/" data-slug="winterdienst-personal-bereitschaft-regeln">
+  <img src="assets/img/winterdienst-personal-bereitschaft-regeln-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Betrieb &amp; Personal</span><h4>Winterdienst-Personal: Bereitschaft regeln, bevor der erste Schnee fällt</h4><time datetime="2026-09-01">1. September 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/erste-woche-neue-azubis/" data-slug="erste-woche-neue-azubis">
+  <img src="assets/img/erste-woche-neue-azubis-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Betrieb &amp; Personal</span><h4>Die erste Woche: Wie neue Azubis ankommen – und was in den ersten Tagen entscheidet, ob sie bleiben</h4><time datetime="2026-08-26">26. August 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/probearbeit-richtig-gestalten/" data-slug="probearbeit-richtig-gestalten">
+  <img src="assets/img/probearbeit-richtig-gestalten-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Betrieb &amp; Personal</span><h4>Probearbeit: Ein Tag, der die Fehlbesetzung verhindert</h4><time datetime="2026-07-22">22. Juli 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-paper ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/recht-tarif/">Recht &amp; Tarif</a></h2><a class="sec-more" href="ressort/recht-tarif/">Mehr aus Recht</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/e-rechnung-pflicht-2027/" data-slug="e-rechnung-pflicht-2027">
+  <div class="karte-bild"><img src="assets/img/e-rechnung-pflicht-2027.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Recht &amp; Tarif</span><time datetime="2026-08-05">5. August 2026</time></div>
+    <h3>E-Rechnung: Ab 2027 müssen größere Betriebe elektronisch versenden – eine PDF reicht nicht</h3>
+<p>Empfangen müssen alle Betriebe seit 2025. Ab dem 1. Januar 2027 gilt die Versandpflicht für Unternehmen mit mehr als 800.000 Euro Umsatz, ab 2028 für alle. Was eine E-Rechnung ist, wer betroffen ist und wie Betriebe die Umstellung im Winter angehen.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/tarif-2026-ecklohn-20-91/" data-slug="tarif-2026-ecklohn-20-91">
+  <img src="assets/img/tarif-2026-ecklohn-20-91-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Recht &amp; Tarif</span><h4>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h4><time datetime="2026-07-01">1. Juli 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/zeiterfassung-referentenentwurf-2026/" data-slug="zeiterfassung-referentenentwurf-2026">
+  <img src="assets/img/zeiterfassung-referentenentwurf-2026-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Recht &amp; Tarif</span><h4>Zeiterfassung: Der Referentenentwurf will die elektronische Pflicht – Papierzettel hätten ausgedient</h4><time datetime="2026-06-18">18. Juni 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/arbeitszeitgesetz-saison-zehn-stunden/" data-slug="arbeitszeitgesetz-saison-zehn-stunden">
+  <img src="assets/img/arbeitszeitgesetz-saison-zehn-stunden-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Recht &amp; Tarif</span><h4>Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt – und wo die Grenze liegt</h4><time datetime="2026-04-29">29. April 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-light ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/technik-digital/">Technik &amp; Digital</a></h2><a class="sec-more" href="ressort/technik-digital/">Mehr aus Technik</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/e-maschinen-galabau-2026/" data-slug="e-maschinen-galabau-2026">
+  <div class="karte-bild"><img src="assets/img/e-maschinen-galabau-2026.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Technik &amp; Digital</span><time datetime="2026-09-02">2. September 2026</time></div>
+    <h3>Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026 wirklich können</h3>
+<p>Vier bis sechs Betriebsstunden, eine Stunde Laden, keine Abgase im Innenhof: Die Hersteller bringen elektrische Kompaktmaschinen nach Nürnberg, die für innerstädtische Baustellen gemacht sind. Ein Blick auf Daten, Einsatzfelder und die Frage nach den Kosten.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/ki-angebote-aufmass-praxis/" data-slug="ki-angebote-aufmass-praxis">
+  <img src="assets/img/ki-angebote-aufmass-praxis-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Technik &amp; Digital</span><h4>KI im GaLaBau: Angebot per Prompt, Aufmaß per Drohne – was heute schon funktioniert</h4><time datetime="2026-06-10">10. Juni 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/fuehrerschein-anhaenger-b96-be/" data-slug="fuehrerschein-anhaenger-b96-be">
+  <img src="assets/img/fuehrerschein-anhaenger-b96-be-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Technik &amp; Digital</span><h4>Transporter mit Anhänger: Wann B reicht, wann B96, wann BE – und was die EU ändert</h4><time datetime="2026-03-12">12. März 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/saisonstart-maschinen-check-pruefpflichten/" data-slug="saisonstart-maschinen-check-pruefpflichten">
+  <img src="assets/img/saisonstart-maschinen-check-pruefpflichten-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Technik &amp; Digital</span><h4>Saisonstart: Der Maschinen-Check vor dem ersten Einsatz – und welche Prüfungen Pflicht sind</h4><time datetime="2026-03-10">10. März 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-paper ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/bauen-pflanzen/">Bauen &amp; Pflanzen</a></h2><a class="sec-more" href="ressort/bauen-pflanzen/">Mehr aus Bauen</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/wasserentnahmeverbote-sommer-2026/" data-slug="wasserentnahmeverbote-sommer-2026">
+  <div class="karte-bild"><img src="assets/img/wasserentnahmeverbote-sommer-2026.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Bauen &amp; Pflanzen</span><time datetime="2026-08-14">14. August 2026</time></div>
+    <h3>Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</h3>
+<p>Der Sommer 2026 hat Böden und Flüsse ausgetrocknet. Landkreise von Baden-Württemberg bis Brandenburg untersagen die Entnahme aus Bächen und Flüssen, teils bis Oktober. Für GaLaBau-Betriebe wird Bewässerung damit zur Planungs- und Haftungsfrage.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/anwachsen-sichern-bewaesserung-jungbaeume/" data-slug="anwachsen-sichern-bewaesserung-jungbaeume">
+  <img src="assets/img/anwachsen-sichern-bewaesserung-jungbaeume-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Bauen &amp; Pflanzen</span><h4>Anwachsen sichern: Wie junge Bäume den ersten Sommer überstehen</h4><time datetime="2026-07-08">8. Juli 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/zukunftsbaeume-galk-strassenbaumliste/" data-slug="zukunftsbaeume-galk-strassenbaumliste">
+  <img src="assets/img/zukunftsbaeume-galk-strassenbaumliste-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Bauen &amp; Pflanzen</span><h4>Zukunftsbäume: Welche Arten Hitze, Trockenheit und Frost aushalten</h4><time datetime="2026-05-06">6. Mai 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/schwammstadt-regengaerten-praxis/" data-slug="schwammstadt-regengaerten-praxis">
+  <img src="assets/img/schwammstadt-regengaerten-praxis-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Bauen &amp; Pflanzen</span><h4>Schwammstadt: Vom Fachbegriff zum Auftrag</h4><time datetime="2026-04-15">15. April 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-light ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/markt-politik/">Markt &amp; Politik</a></h2><a class="sec-more" href="ressort/markt-politik/">Mehr aus Markt</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/ifo-august-2026-bau-weniger-pessimismus/" data-slug="ifo-august-2026-bau-weniger-pessimismus">
+  <div class="karte-bild"><img src="assets/img/ifo-august-2026-bau-weniger-pessimismus.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Markt &amp; Politik</span><time datetime="2026-08-27">27. August 2026</time></div>
+    <h3>ifo im August: Weniger Pessimismus am Bau, mehr Stornierungen im Wohnungsbau</h3>
+<p>Der ifo-Geschäftsklimaindex steigt auf 88,8 Punkte, das Bauhauptgewerbe blickt weniger düster nach vorn. Im Wohnungsbau sinkt der Anteil der Betriebe mit Auftragsmangel – aber jedes achte Unternehmen meldet Stornierungen. Was das für die Außenanlagen bedeutet.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/insolvenzen-erstes-halbjahr-2026-bau/" data-slug="insolvenzen-erstes-halbjahr-2026-bau">
+  <img src="assets/img/insolvenzen-erstes-halbjahr-2026-bau-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Markt &amp; Politik</span><h4>Insolvenzen: Höchster Stand seit 2013 – der Bau liegt 4,5 Prozent über dem Vorjahr</h4><time datetime="2026-06-25">25. Juni 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/fruehjahrsumfrage-2026-galabau/" data-slug="fruehjahrsumfrage-2026-galabau">
+  <img src="assets/img/fruehjahrsumfrage-2026-galabau-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Markt &amp; Politik</span><h4>Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026</h4><time datetime="2026-05-28">28. Mai 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/betriebsnachfolge-186000-unternehmen/" data-slug="betriebsnachfolge-186000-unternehmen">
+  <img src="assets/img/betriebsnachfolge-186000-unternehmen-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Markt &amp; Politik</span><h4>Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger – im GaLaBau entscheidet der Meister im eigenen Haus</h4><time datetime="2026-04-02">2. April 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-paper ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/sicherheit-gesundheit/">Sicherheit &amp; Gesundheit</a></h2><a class="sec-more" href="ressort/sicherheit-gesundheit/">Mehr aus Sicherheit</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/krankenstand-2026-langzeitfaelle-bau/" data-slug="krankenstand-2026-langzeitfaelle-bau">
+  <div class="karte-bild"><img src="assets/img/krankenstand-2026-langzeitfaelle-bau.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Sicherheit &amp; Gesundheit</span><time datetime="2026-07-21">21. Juli 2026</time></div>
+    <h3>Krankenstand: 5,3 Prozent im ersten Halbjahr – und was die Langzeitfälle für Betriebe bedeuten</h3>
+<p>Die DAK meldet einen leichten Rückgang, psychische Erkrankungen liegen erstmals vorn. Für körperlich arbeitende Betriebe bleibt das Muskel-Skelett-System das Thema: Ausfälle sind selten, aber lang. Was Betriebe beim Wiedereinstieg tun müssen – und was sie vorher tun können.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/bg-bau-unfallzahlen-2025/" data-slug="bg-bau-unfallzahlen-2025">
+  <img src="assets/img/bg-bau-unfallzahlen-2025-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Sicherheit &amp; Gesundheit</span><h4>Erstmals unter 90.000: Die Unfallzahlen der BG BAU sinken – die Berufskrankheiten steigen</h4><time datetime="2026-07-14">14. Juli 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/hitze-uv-schutz-pflichten/" data-slug="hitze-uv-schutz-pflichten">
+  <img src="assets/img/hitze-uv-schutz-pflichten-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Sicherheit &amp; Gesundheit</span><h4>Hitze und UV: Was Betriebe ab UV-Index 3 tun müssen – und was die BG BAU dazuzahlt</h4><time datetime="2026-06-24">24. Juni 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/zecken-fsme-185-risikogebiete-kolonnen/" data-slug="zecken-fsme-185-risikogebiete-kolonnen">
+  <img src="assets/img/zecken-fsme-185-risikogebiete-kolonnen-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Sicherheit &amp; Gesundheit</span><h4>Zecken: 185 Risikogebiete – was Betriebe für ihre Kolonnen tun müssen</h4><time datetime="2026-05-13">13. Mai 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-light ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/karriere/">Karriere &amp; Weiterbildung</a></h2><a class="sec-more" href="ressort/karriere/">Mehr aus Karriere</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/werkzeuge-fuer-bauleiter-apps/" data-slug="werkzeuge-fuer-bauleiter-apps">
+  <div class="karte-bild"><img src="assets/img/werkzeuge-fuer-bauleiter-apps.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Karriere &amp; Weiterbildung</span><time datetime="2026-08-19">19. August 2026</time></div>
+    <h3>Werkzeugkasten für Bauleiter: Sechs digitale Helfer, die den Tag kürzer machen</h3>
+<p>Aufmaß, Bautagebuch, Fotodokumentation, Zeiterfassung, Wetter, Material – für jede Aufgabe gibt es Apps. Welche Kategorien sich im Alltag von GaLaBau-Bauleitern bewähren, worauf es bei der Auswahl ankommt und warum weniger oft mehr ist.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/pflanzenkenntnis-pruefung-50-pflanzen/" data-slug="pflanzenkenntnis-pruefung-50-pflanzen">
+  <img src="assets/img/pflanzenkenntnis-pruefung-50-pflanzen-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Karriere &amp; Weiterbildung</span><h4>50 Pflanzen in 30 Minuten: Wie die Pflanzenkenntnis-Prüfung läuft – und wie Betriebe ihre Azubis vorbereiten</h4><time datetime="2026-03-24">24. März 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/vom-landschaftsgaertner-zum-bauleiter/" data-slug="vom-landschaftsgaertner-zum-bauleiter">
+  <img src="assets/img/vom-landschaftsgaertner-zum-bauleiter-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Karriere &amp; Weiterbildung</span><h4>Vom Landschaftsgärtner zum Bauleiter: Drei Wege, ein Ziel</h4><time datetime="2026-03-18">18. März 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/azubi-zahlen-2025-galabau/" data-slug="azubi-zahlen-2025-galabau">
+  <img src="assets/img/azubi-zahlen-2025-galabau-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Karriere &amp; Weiterbildung</span><h4>8.089 Auszubildende: Der GaLaBau bildet so viele Landschaftsgärtner aus wie lange nicht</h4><time datetime="2026-02-25">25. Februar 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+<section class="sec-paper ressort-block">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title"><a href="ressort/messe-termine/">Messe &amp; Termine</a></h2><a class="sec-more" href="ressort/messe-termine/">Mehr aus Termine</a></div>
+    <div class="ressort-grid">
+      <div><a class="karte lg" href="artikel/galabau-2026-nuernberg/" data-slug="galabau-2026-nuernberg">
+  <div class="karte-bild"><img src="assets/img/galabau-2026-nuernberg.jpg" alt="" loading="lazy" width="1600" height="1067"></div>
+  <div class="karte-body">
+    <div class="karte-meta"><span class="ressort-tag">Messe &amp; Termine</span><time datetime="2026-09-04">4. September 2026</time></div>
+    <h3>GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</h3>
+<p>Vom 15. bis 18. September trifft sich die Branche zur Leitmesse. Klimaanpassung und emissionsfreie Technik stehen im Programm – die Frage, wie Betriebe Leute finden und halten, steht in jeder Halle im Raum.</p>    <div class="karte-foot"><span>2 Min. Lesezeit</span></div>
+  </div>
+</a>
+</div>
+      <div class="listen"><a class="listen-item" href="artikel/landesgartenschauen-2026/" data-slug="landesgartenschauen-2026">
+  <img src="assets/img/landesgartenschauen-2026-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Messe &amp; Termine</span><h4>Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad Nenndorf</h4><time datetime="2026-04-23">23. April 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/bgl-bildungspreis-2026/" data-slug="bgl-bildungspreis-2026">
+  <img src="assets/img/bgl-bildungspreis-2026-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Messe &amp; Termine</span><h4>BGL-Bildungspreis 2026: Neun Nachwuchskräfte, drei Ausbildungsbetriebe, 21.000 Euro</h4><time datetime="2026-03-27">27. März 2026</time></div>
+</a>
+<a class="listen-item" href="artikel/trendbarometer-galabau-2026/" data-slug="trendbarometer-galabau-2026">
+  <img src="assets/img/trendbarometer-galabau-2026-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+  <div><span class="ressort-tag">Messe &amp; Termine</span><h4>Trendbarometer 2026: Klimaanpassung, Fachkräfte, emissionsfreie Technik</h4><time datetime="2026-01-20">20. Januar 2026</time></div>
+</a>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE ===== -->
+<section class="sec-dark" id="service">
+  <div class="container promo-grid">
+    <div class="promo"><span class="tag">Standort-Check</span><h3>Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?</h3><p>Postleitzahl eingeben, Fachkräfte-Potenzial im 30-Kilometer-Umkreis sehen, dazu Standorttyp und drei Voraussetzungen für die Mitarbeitersuche. Kostenlos.</p><a class="btn" href="standort/">Standort prüfen</a></div>
+    <div class="promo"><span class="tag">Branchenumfrage 2026</span><h3>Wie finden Betriebe 2026 Mitarbeiter?</h3><p>Zwölf Fragen, drei Minuten. Die Ergebnisse veröffentlichen wir im Oktober. Als Dankeschön erhalten Teilnehmer den Standort-Check.</p><a class="btn ghost" href="umfrage/">An der Umfrage teilnehmen</a></div>
+  </div>
+</section>
+  </main>
   <footer data-kompass-footer></footer>
   <script src="assets/kompass.js"></script>
 </body>

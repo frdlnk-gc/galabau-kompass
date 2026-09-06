@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 06/2026</title>
+<style>
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  /* Cover */
+  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
+  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
+  .cover .wort i{color:#6EE7A0;}
+  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
+  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
+  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
+  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
+  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
+  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
+  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
+  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
+  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
+  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
+  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
+  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
+  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
+  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
+  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
+  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/ki-angebote-aufmass-praxis.jpg" alt="">
+    <div class="kopf">
+      <div><div class="wort">GaLaBau <i>Kompass</i></div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div class="nr">Ausgabe<b>06/2026</b>Juni 2026</div>
+    </div>
+    <div class="titel"><div class="kick">Technik &amp; Digital</div><h1>KI im GaLaBau: Angebot per Prompt, Aufmaß per Drohne – was heute schon funktioniert</h1><p>Softwareanbieter versprechen automatische Angebote und Pflanzempfehlungen aus Standortdaten. Zwischen Messe-Demo und Betriebsalltag liegt ein Stück Weg. Was 2026 praxistauglich ist, was in der Entwicklung steckt und wo die Grenzen liegen.</p></div>
+    <div class="teaser"><span>Hitze und UV: Was Betriebe ab UV-Index 3 tun ...</span><span>Zeiterfassung: Der Referentenentwurf will die...</span><span>KI im GaLaBau: Angebot per Prompt, Aufmaß per...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Hitze, Extras, Insolvenzen</h2><p>Ab UV-Index 3 gelten Pflichten, der Referentenentwurf zur Zeiterfassung liegt vor, Creditreform meldet die meisten Insolvenzen seit 2013. Dazu: steuerfreie Extras, die nach dem Ende der Inflationsausgleichsprämie noch möglich sind, und KI-gestützte Angebote, die heute schon funktionieren.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Markt &amp; Politik</div><div class="t">Insolvenzen: Höchster Stand seit 2013 – der Bau liegt 4,5 Prozent über dem Vorjahr</div></div></li><li><span class="s">5</span><div><div class="r">Sicherheit &amp; Gesundheit</div><div class="t">Hitze und UV: Was Betriebe ab UV-Index 3 tun müssen – und was die BG BAU dazuzahlt</div></div></li><li><span class="s">7</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Zeiterfassung: Der Referentenentwurf will die elektronische Pflicht – Papierzettel hätten ausgedient</div></div></li><li><span class="s">9</span><div><div class="r">Technik &amp; Digital</div><div class="t">KI im GaLaBau: Angebot per Prompt, Aufmaß per Drohne – was heute schon funktioniert</div></div></li><li><span class="s">11</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Steuerfreie Extras statt Lohnrunde: Was Betriebe 2026 noch geben können</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>Insolvenzen: Höchster Stand seit 2013 – der Bau liegt 4,5 Prozent über dem Vorjahr</h1><p class="dek">Creditreform zählt für das erste Halbjahr 12.900 Unternehmensinsolvenzen. Der Bau steigt moderater als die Dienstleister, aber von hohem Niveau. Was GaLaBau-Betriebe jetzt für ihre Forderungen tun sollten.</p><div class="byline">Redaktion GaLaBau Kompass · 25. Juni 2026</div></div>
+    <figure><img src="../../assets/img/insolvenzen-erstes-halbjahr-2026-bau.jpg" alt=""><figcaption>Wenn der Bauträger fällt, bleibt die Außenanlage liegen – und die letzte Abschlagsrechnung offen.</figcaption></figure>
+    <div class="text"><p>Die Zahl der Unternehmensinsolvenzen in Deutschland ist im ersten Halbjahr 2026 auf rund 12.900 gestiegen – 7,8 Prozent mehr als im Vorjahreszeitraum und der höchste Halbjahreswert seit 2013. Das meldet die Wirtschaftsauskunftei Creditreform. Betroffen sind rund 165.000 Arbeitsplätze, nach 143.000 im ersten Halbjahr 2025; die Schadenssumme schätzt Creditreform auf rund 28,5 Milliarden Euro.</p>
+<div class="stats" style="margin:10px 0 26px;">
+<div class="stat"><b>12.900</b><span>Unternehmensinsolvenzen H1 2026</span></div>
+<div class="stat"><b>+7,8 %</b><span>gegenüber H1 2025</span></div>
+<div class="stat"><b>+4,5 %</b><span>Baugewerbe</span></div>
+<div class="stat"><b>+12,6 %</b><span>Dienstleistungen</span></div>
+</div>
+
+<h2>Der Bau: Hoch, aber nicht am stärksten</h2>
+<p>Das Baugewerbe verzeichnet ein Plus von 4,5 Prozent – deutlich weniger als der Dienstleistungssektor, auf den mit rund 7.900 Fällen und einem Anstieg um 12,6 Prozent mehr als 60 Prozent aller Insolvenzen entfallen. Der Handel ist als einziger Bereich rückläufig. Für den Bau ist der moderatere Anstieg allerdings kein Zeichen der Entspannung: Er kommt auf ein Niveau, das seit dem Einbruch des Wohnungsbaus 2023 ohnehin hoch ist. Im GaLaBau hatte der Bundesverband für 2025 bereits 133 Insolvenzen gezählt, nach 101 im Jahr davor.</p>
+<p>Creditreform-Analyst Patrik-Ludwig Hantzsch spricht von einer tiefen strukturellen Krise, verschärft durch die Konflikte im Nahen Osten und Energiepreisschocks. Eine Stabilisierung erwartet das Institut frühestens 2027, abhängig von der wirtschaftlichen Erholung.</p>
+<h2>Was das für GaLaBau-Betriebe bedeutet</h2>
+<p>Die eigene Insolvenz ist für die meisten Betriebe der Branche nicht das akute Risiko – die Auftragslage ist stabil, die Erträge sind dünn, aber die Bücher voll. Das Risiko sitzt beim Kunden. Bauträger, Generalunternehmer, Projektentwickler und Gewerbekunden stellen einen wachsenden Anteil der Insolvenzen, und die Außenanlage ist das letzte Gewerk – die Rechnung des Landschaftsbauers ist die, die am Ende offen bleibt.</p>
+<div class="kasten"><b>Drei Regeln für Forderungen</b>Erstens: Abschlagsrechnungen in kurzen Abständen, nach VOB/B § 16 oder nach § 632a BGB, statt einer Schlussrechnung nach Fertigstellung. Zweitens: Bonitätsprüfung vor Vertragsschluss bei allen Auftraggebern, die nicht Privatkunden mit Eigenheim sind – die Auskunft kostet wenige Euro. Drittens: Die Bauhandwerkersicherung nach § 650f BGB. Sie erlaubt es dem Unternehmer, vom Auftraggeber eine Sicherheit für die vereinbarte Vergütung zu verlangen – eine Bürgschaft in Höhe von zehn Prozent über der noch offenen Summe. Wird sie nicht gestellt, darf die Arbeit eingestellt und der Vertrag gekündigt werden. Gegenüber Verbrauchern beim Bau des eigenen Hauses gilt sie nicht, gegenüber Bauträgern und Gewerbekunden sehr wohl.</div>
+
+<h2>Wenn der Kunde fällt</h2>
+<p>Meldet der Auftraggeber Insolvenz an, sind offene Forderungen Insolvenzforderungen – mit Quoten, die im Baubereich meist im einstelligen Prozentbereich liegen. Was noch eingebaut, aber nicht abgenommen ist, gehört dem Insolvenzverwalter; Material, das noch auf dem Hof liegt, gehört dem Betrieb. Wer Eigentumsvorbehalt an geliefertem Material vereinbart hat, kann es unter Umständen zurückholen – das setzt eine Klausel im Vertrag voraus, nicht auf der Rechnung.</p>
+<p>Der wichtigste Schutz ist die Reaktionszeit: Zahlungsverzögerungen sind das Frühwarnsignal. Wer beim zweiten Verzug die Arbeit unterbricht und die Sicherheit verlangt, verliert vielleicht den Auftrag. Wer weiterbaut, verliert das Geld.</p>
+<h2>Der Blick nach vorn</h2>
+<p>Für die zweite Jahreshälfte rechnet Creditreform mit weiter steigenden Zahlen. GaLaBau-Betriebe mit hohem Anteil an Bauträgergeschäft sollten ihr Portfolio prüfen: Privatkunden, Kommunen und Bestandsgewerbe zahlen langsamer, aber sicherer. Die Mischung entscheidet, ob ein Kundenausfall ein Ärgernis ist oder eine Existenzfrage.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Creditreform: Insolvenzen in Deutschland, 1. Halbjahr 2026, 23. Juni 2026 (12.900 Unternehmensinsolvenzen, +7,8 Prozent; Baugewerbe +4,5 Prozent; Dienstleistungen +12,6 Prozent; Handel −1,3 Prozent; rund 165.000 betroffene Arbeitsplätze; rund 28,5 Milliarden Euro Schäden; rund 38.800 Verbraucherinsolvenzen, +2,3 Prozent) – <a href="https://www.creditreform.de/aktuelles-wissen/pressemeldungen-fachbeitraege/news-details/show/insolvenzen-in-deutschland-1-halbjahr-2026">www.creditreform.de/aktuelles-wissen/pressemeldungen-fach...</a></li><li>BGL: GaLaBau-Branchenstatistik 2025 (133 Insolvenzen nach 101 im Vorjahr) – <a href="https://www.presseportal.de/pm/117960/6225203">www.presseportal.de/pm/117960/6225203</a></li><li>Bürgerliches Gesetzbuch, § 650f Bauhandwerkersicherung; VOB/B § 16 Zahlung – <a href="https://www.gesetze-im-internet.de/bgb/__650f.html">www.gesetze-im-internet.de/bgb/__650f.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Markt &amp; Politik</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Sicherheit &amp; Gesundheit</div><h1>Hitze und UV: Was Betriebe ab UV-Index 3 tun müssen – und was die BG BAU dazuzahlt</h1><p class="dek">Sonnenschutz ist keine Frage der Fürsorge, sondern des Arbeitsschutzgesetzes. Von März bis Oktober gehört der UV-Index in die Baustellenplanung. Die BG BAU fördert Kühlwesten, UV-Shirts und Brillen mit festen Beträgen.</p><div class="byline">Redaktion GaLaBau Kompass · 24. Juni 2026</div></div>
+    <figure><img src="../../assets/img/hitze-uv-schutz-pflichten.jpg" alt=""><figcaption>Schatten, Wasser, Kleidung, Zeitplan: Die vier Hebel gegen Hitze auf der Baustelle.</figcaption></figure>
+    <div class="text"><p>Landschaftsgärtner arbeiten dort, wo die Sonne hinkommt. Weißer Hautkrebs durch UV-Strahlung ist im Bau und in den grünen Berufen eine anerkannte Berufskrankheit, Hitzeerkrankungen kommen jeden Sommer dazu. Nach § 3 Arbeitsschutzgesetz ist der Arbeitgeber verpflichtet, seine Beschäftigten davor zu schützen – nicht freiwillig, sondern als Teil der Gefährdungsbeurteilung.</p>
+<h2>Ab UV-Index 3 wird es Pflicht</h2>
+<p>Die BG BAU empfiehlt, den UV-Index von März bis Oktober zu beobachten. Ab einem Wert von 3 sind Schutzmaßnahmen erforderlich – und der Wert wird an einem klaren Tag in Deutschland bereits im April überschritten. Die Rangfolge der Maßnahmen ist dieselbe wie im gesamten Arbeitsschutz: technisch vor organisatorisch vor persönlich.</p>
+<ul>
+<li><strong>Technisch:</strong> Schatten schaffen – Sonnensegel, Pavillons, Arbeit im Schatten von Gebäuden und Bäumen planen.</li>
+<li><strong>Organisatorisch:</strong> Arbeitszeiten anpassen – früher beginnen, die Mittagsstunden für Arbeiten im Schatten oder in der Halle nutzen, Pausen im Schatten, Trinkwasser bereitstellen. Nach Arbeitsstättenverordnung gilt: Auf Baustellen muss Trinkwasser oder ein alkoholfreies Getränk verfügbar sein.</li>
+<li><strong>Persönlich:</strong> UV-Schutzkleidung, Kopfbedeckung mit Krempe und Nackenschutz, Sonnenbrille und Sonnenschutzmittel mit mindestens Lichtschutzfaktor 30, besser 50. Diese Ausrüstung ist persönliche Schutzausrüstung und vom Arbeitgeber zu stellen – Creme eingeschlossen.</li>
+</ul>
+<div class="kasten"><b>Prämien der BG BAU</b>Die Berufsgenossenschaft fördert Sonnenschutz über ihre Arbeitsschutzprämien: 50 Prozent der Anschaffungskosten bis 100 Euro je Kühlweste, 30 Euro je UV-Schutz-Funktionsshirt und 20 Euro je UV-Schutzbrille. Anträge stellen Mitgliedsbetriebe über das Prämienportal der BG BAU; die Mittel sind begrenzt und werden nach Eingang vergeben.</div>
+
+<h2>Hitze: die unterschätzte Gefahr</h2>
+<p>Hitzeerschöpfung kündigt sich an – Kopfschmerz, Schwindel, Übelkeit, Krämpfe –, wird aber auf Baustellen häufig ignoriert, weil der Kollege „nur ein bisschen blass&rdquo; ist. Ein Hitzschlag ist ein Notfall. Betriebe sollten ihre Vorarbeiter darin schulen, die Zeichen zu erkennen, und eine klare Regel haben: Bei Symptomen raus aus der Sonne, kühlen, trinken, im Zweifel den Notruf wählen.</p>
+<h2>Vier Dinge für die Sommerplanung</h2>
+<ol>
+<li>Den UV-Index in die Tagesplanung aufnehmen – die Wetter-Apps zeigen ihn an.</li>
+<li>Arbeitszeiten für Juli und August im Team besprechen: Frühstart, lange Mittagspause, früher Feierabend.</li>
+<li>Die PSA-Liste um Hut, UV-Shirt, Brille und Creme erweitern und die BG-BAU-Prämie beantragen.</li>
+<li>Unterweisung dokumentieren – sie ist Teil der Gefährdungsbeurteilung und im Fall eines Unfalls das erste, was geprüft wird.</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>BG BAU: UV-Strahlung und Hitze – Schutzmaßnahmen (Arbeitgeberpflichten nach § 3 ArbSchG, UV-Index ab 3, PSA) – <a href="https://www.bgbau.de/themen/sicherheit-und-gesundheit/uv-strahlung-hitze">www.bgbau.de/themen/sicherheit-und-gesundheit/uv-strahlung-hitze</a></li><li>BG BAU: Sonne und Hitze – Mit diesen Maßnahmen verhindern Sie hitzebedingte Erkrankungen am Arbeitsplatz – <a href="https://www.bgbau.de/themen/sicherheit-und-gesundheit/uv-strahlung-hitze/sonne-und-hitze-mit-diesen-massnahmen-verhindern-sie-hitzebedingte-erkrankungen-am-arbeitsplatz">www.bgbau.de/themen/sicherheit-und-gesundheit/uv-strahlun...</a></li><li>Handwerksblatt: Sommer auf der Baustelle – BG BAU fördert Sonnenschutz (Arbeitsschutzprämien: 50 % bis 100 Euro je Kühlweste, 30 Euro je UV-Schutz-Funktionsshirt, 20 Euro je UV-Schutzbrille) – <a href="https://www.handwerksblatt.de/betriebsfuehrung/sommer-auf-der-baustelle-bg-bau-foerdert-sonnenschutz">www.handwerksblatt.de/betriebsfuehrung/sommer-auf-der-bau...</a></li><li>Bauwirtschaft Hessen: Arbeitsschutz – Sonne und Hitze auf der Baustelle – <a href="https://bauwirtschaft-hessen.de/arbeitsschutz-sonne-und-hitze-auf-der-baustelle/">bauwirtschaft-hessen.de/arbeitsschutz-sonne-und-hitze-auf...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Sicherheit &amp; Gesundheit</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Zeiterfassung: Der Referentenentwurf will die elektronische Pflicht – Papierzettel hätten ausgedient</h1><p class="dek">Seit dem BAG-Urteil von 2022 müssen Betriebe Arbeitszeiten erfassen. Ein Referentenentwurf des Bundesarbeitsministeriums vom Juni 2026 soll festlegen, wie: elektronisch, mit Ausnahme für Betriebe unter zehn Beschäftigten. Was das für Kolonnen auf der Baustelle bedeutet.</p><div class="byline">Redaktion GaLaBau Kompass · 18. Juni 2026</div></div>
+    <figure><img src="../../assets/img/zeiterfassung-referentenentwurf-2026.jpg" alt=""><figcaption>Stundenzettel auf Papier: laut Entwurf bald nicht mehr ausreichend – außer in Kleinbetrieben.</figcaption></figure>
+    <div class="text"><p>Die Pflicht, die Arbeitszeit der Beschäftigten zu erfassen, gilt bereits – seit das Bundesarbeitsgericht sie 2022 aus dem Arbeitsschutzgesetz abgeleitet hat. Offen war seither, wie: Papier, Excel, App? Ein Referentenentwurf des Bundesarbeitsministeriums, der im Juni 2026 bekannt geworden ist, soll das regeln. Kern: Die Erfassung muss elektronisch erfolgen.</p>
+<h2>Was der Entwurf vorsieht</h2>
+<p>Nach den bislang bekannten Eckpunkten sollen Beginn, Ende und Dauer der täglichen Arbeitszeit elektronisch erfasst werden – objektiv, verlässlich und für die Beschäftigten zugänglich. Papier-Stundenzettel würden dann nicht mehr ausreichen. Für Betriebe mit weniger als zehn Beschäftigten ist eine Ausnahme vorgesehen; sie dürften weiterhin auf Papier erfassen. Die Erfassung kann an die Beschäftigten delegiert werden, der Arbeitgeber bleibt verantwortlich.</p>
+<div class="kasten"><b>Stand der Dinge</b>Ein Referentenentwurf ist kein Gesetz. Er geht in die Verbändeanhörung, dann ins Kabinett, dann in den Bundestag. Fristen, Ausnahmen und Übergangsregelungen können sich ändern. Die Pflicht zur Erfassung als solche gilt aber unabhängig davon schon heute – wer gar nicht erfasst, verstößt bereits jetzt gegen das Arbeitsschutzgesetz.</div>
+
+<h2>Was das für den GaLaBau heißt</h2>
+<p>Die Branche arbeitet in Kolonnen, weit weg vom Büro, mit Fahrzeiten, Pausen auf der Baustelle und Überstunden bei gutem Wetter. Genau diese Situationen sind es, die eine Erfassung schwierig und – aus Sicht des Gesetzgebers – nötig machen. Drei praktische Fragen:</p>
+<ol>
+<li><strong>Wer erfasst?</strong> In den meisten Betrieben der Vorarbeiter für die Kolonne, per App auf dem Smartphone oder Tablet. Das ist zulässig, wenn die Beschäftigten Einsicht haben und der Betrieb die Daten kontrolliert.</li>
+<li><strong>Was ist Arbeitszeit?</strong> Fahrzeit von der Baustelle zur Baustelle ja, vom Wohnort zum Betrieb in der Regel nein, vom Betrieb zur Baustelle in der Regel ja. Diese Fragen sind unabhängig von der Erfassungsform zu klären – am besten schriftlich in einer Betriebsvereinbarung oder Arbeitsanweisung.</li>
+<li><strong>Was passiert mit den Daten?</strong> Sie dienen der Lohnabrechnung, dem Nachweis gegenüber Behörden und – oft übersehen – der Nachkalkulation. Wer Stunden je Baustelle erfasst, weiß am Ende des Jahres, welche Aufträge Geld gebracht haben.</li>
+</ol>
+<h2>Was jetzt zu tun ist</h2>
+<p>Betriebe ab zehn Beschäftigten, die noch mit Papier arbeiten, sollten die Umstellung nicht vom Gesetz abhängig machen. Die Anbieter sind zahlreich, die Kosten überschaubar, und die Nebeneffekte – Baustellenzuordnung, Nachkalkulation, Lohnabrechnung ohne Nachtragen – rechnen sich unabhängig von der Pflicht. Wer im Sommer umstellt, hat bis zum Winter Routine.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesarbeitsgericht, Beschluss vom 13. September 2022, 1 ABR 22/21 (Pflicht zur Arbeitszeiterfassung) – <a href="https://www.bundesarbeitsgericht.de/presse/einfuehrung-elektronischer-zeiterfassung/">www.bundesarbeitsgericht.de/presse/einfuehrung-elektronis...</a></li><li>Crewmeister Magazin: Zeiterfassungspflicht 2026 – Referentenentwurf des BMAS (elektronische Erfassung, Ausnahme für Betriebe unter zehn Mitarbeitern) – <a href="https://crewmeister.com/de/magazin/zeiterfassungspflicht-2026-was-sie-wissen-muessen">crewmeister.com/de/magazin/zeiterfassungspflicht-2026-was...</a></li><li>StempelZeit: Zeiterfassung Pflicht 2026 – Was Baubetriebe wissen müssen (Referentenentwurf bekannt geworden am 18. Juni 2026) – <a href="https://die-stempelzeit.de/ratgeber/zeiterfassung-pflicht-bau-2026">die-stempelzeit.de/ratgeber/zeiterfassung-pflicht-bau-2026</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Technik &amp; Digital</div><h1>KI im GaLaBau: Angebot per Prompt, Aufmaß per Drohne – was heute schon funktioniert</h1><p class="dek">Softwareanbieter versprechen automatische Angebote und Pflanzempfehlungen aus Standortdaten. Zwischen Messe-Demo und Betriebsalltag liegt ein Stück Weg. Was 2026 praxistauglich ist, was in der Entwicklung steckt und wo die Grenzen liegen.</p><div class="byline">Redaktion GaLaBau Kompass · 10. Juni 2026</div></div>
+    <figure><img src="../../assets/img/ki-angebote-aufmass-praxis.jpg" alt=""><figcaption>Drohne, Laserscanner oder Messapp: Das Aufmaß ist der Bereich, in dem Digitalisierung im GaLaBau am schnellsten Geld spart.</figcaption></figure>
+    <div class="text"><p>Künstliche Intelligenz ist auf der GaLaBau 2026 ein Messethema, in den meisten Betrieben aber noch keine Betriebspraxis. Das liegt weniger an der Technik als an der Frage, wo sie im Alltag eines Landschaftsbaubetriebs tatsächlich Zeit spart. Drei Bereiche haben sich 2026 herauskristallisiert.</p>
+<h2>1. Aufmaß: Drohne, Scanner, Messapp</h2>
+<p>Das Aufmaß ist der Bereich mit dem klarsten Nutzen. Drohnen, Laserscanner und Messapps auf dem Smartphone erleichtern die Flächenermittlung, die Dokumentation und die Kalkulation erheblich, wie die Messe Nürnberg in ihrem Überblick zur Handwerkersoftware festhält. Ein Grundstück, das früher mit Maßband und Skizze eine Stunde brauchte, ist per Drohne in Minuten aufgenommen – mit Höhenmodell, Flächen und Volumen. Die Auswertung übernimmt die Software; KI hilft dabei, Kanten, Beläge und Vegetation automatisch zu erkennen.</p>
+<p>Praxistauglich sind vor allem Messapps, die aus Fotos oder LiDAR-Daten des Smartphones Flächen berechnen, und Drohnen mit Auswertungssoftware für größere Grundstücke. Voraussetzung für Drohnen: Kompetenznachweis, Registrierung und Beachtung der Flugregeln – über Wohngebieten gelten Abstände und Höhenbegrenzungen.</p>
+<h2>2. Angebote: der Prompt als Startpunkt</h2>
+<p>Beim Angebot geht die Entwicklung am weitesten. Der Anbieter Craftview hat mit auraNexus ein KI-Modul integriert; das Werkzeug Aura-Quote erstellt aus einer Projektbeschreibung – dem Prompt – oder aus einer generierten Visualisierung einen weitgehend automatisierten Angebotsentwurf. Der Betrieb beschreibt in Sätzen, was gebaut werden soll, und bekommt Positionen, Mengen und Preise als Vorschlag, den er prüft und anpasst.</p>
+<div class="kasten"><b>Einordnung</b>Ein KI-Angebot ist ein Entwurf, kein Angebot. Die Preise kommen aus den Stammdaten des Betriebs, die Mengen aus dem Aufmaß, die Verantwortung bleibt beim Kalkulator. Wer die eigenen Einheitspreise nicht gepflegt hat, bekommt schnelle, aber falsche Angebote – schneller als bisher.</div>
+
+<h2>3. Planung: Pflanzempfehlungen aus Standortdaten</h2>
+<p>KI-gestützte Planungswerkzeuge, die aus Standortdaten automatisch Pflanzen empfehlen, sind laut Messe in der Entwicklung. Die Idee: Bodenart, Exposition, Wasserverfügbarkeit und Klimaprognose ergeben eine Artenliste, die zum Standort passt – ein Werkzeug, das mit den Zukunftsbaum-Listen von GALK und BdB zusammenwächst. Im Betriebsalltag ist das noch nicht angekommen.</p>
+<h2>Was sich für Betriebe lohnt</h2>
+<ol>
+<li><strong>Aufmaß digitalisieren</strong> – der schnellste Gewinn, unabhängig von KI.</li>
+<li><strong>Stammdaten pflegen</strong> – Einheitspreise, Leistungspositionen, Textbausteine. Ohne sie bleibt jede KI ein Spielzeug.</li>
+<li><strong>Klein anfangen</strong> – ein Werkzeug, ein Prozess, ein Mitarbeiter, der es verantwortet. Wer alles auf einmal umstellt, stellt nach drei Monaten alles wieder zurück.</li>
+<li><strong>Auf der Messe die Frage stellen</strong>, die zählt: Welcher Betrieb in meiner Größe arbeitet damit seit einem Jahr – und darf ich ihn anrufen?</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>Messe Nürnberg: Handwerkersoftware und KI im GaLaBau nutzen, Juni 2026 (Drohnenvermessung, Aufmaß, KI-gestützte Planung; Softwareanbieter wie KS21 auf der GaLaBau 2026) – <a href="https://www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkersoftware-und-ki-im-galabau">www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkers...</a></li><li>B_I galabau: KI im GaLaBau – GaLaBau-Software mit KI: Craftview und auraNexus automatisieren Planung (Aura-Quote: KI-gestützte Angebote aus Prompt oder Visualisierung) – <a href="https://bau.bi/galabau/nachrichten/ki-im-galabau-galabau-software-mit-ki-craftview-und-aura-nexus-automatisieren-planung-g21977">bau.bi/galabau/nachrichten/ki-im-galabau-galabau-software...</a></li><li>B_I galabau: digitalBAU 2026 – Neue KI-Lösungen als Schwerpunkt – <a href="https://bau.bi/baumagazin/betriebsfuehrung/digitalbau-2026-neue-ki-loesungen-als-schwerpunkt-b20891">bau.bi/baumagazin/betriebsfuehrung/digitalbau-2026-neue-k...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Technik &amp; Digital</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Steuerfreie Extras statt Lohnrunde: Was Betriebe 2026 noch geben können</h1><p class="dek">Die Inflationsausgleichsprämie ist Geschichte, der Tarif steigt im Juli um 3,3 Prozent. Dazwischen liegt eine Reihe von Zuwendungen, die beim Mitarbeiter fast vollständig ankommen und den Betrieb weniger kosten als ein Lohnplus. Ein Überblick mit Beträgen und Paragrafen.</p><div class="byline">Redaktion GaLaBau Kompass · 3. Juni 2026</div></div>
+    <figure><img src="../../assets/img/steuerfreie-extras-statt-lohnrunde-2026.jpg" alt=""><figcaption>Ein Dienstrad, ein 50-Euro-Gutschein, ein Fahrtkostenzuschuss: Drei Positionen, die auf der Abrechnung fast ohne Abzug ankommen.</figcaption></figure>
+    <div class="text"><p>Von 100 Euro Lohnerhöhung kommen bei einem Facharbeiter mit Steuerklasse I rund 55 Euro an; den Betrieb kosten sie mit Arbeitgeberanteilen etwa 120 Euro. Das ist die Rechnung, die Extras attraktiv macht: Bei Sachbezügen und pauschal versteuerten Zuschüssen liegt die Quote zwischen Aufwand und Ankommen deutlich besser. Seit die Inflationsausgleichsprämie zum Jahresende 2024 ausgelaufen ist, bleiben die klassischen Instrumente – und die sind überschaubar.</p>
+<h2>Der 50-Euro-Sachbezug</h2>
+<p>Sachbezüge bis 50 Euro im Monat bleiben steuer- und beitragsfrei. In der Praxis sind das Gutscheine oder Guthabenkarten, die nur bei bestimmten Händlern einlösbar sind – seit 2022 müssen sie die Kriterien des Zahlungsdiensteaufsichtsgesetzes erfüllen, eine frei verfügbare Kreditkarte fällt nicht darunter. Die Grenze ist eine Freigrenze, keine Freibetrag: Bei 50,01 Euro ist der gesamte Betrag steuerpflichtig. Und der Sachbezug muss zusätzlich zum Lohn gewährt werden; eine Umwandlung von Barlohn ist ausgeschlossen.</p>
+<h2>Fahrtkostenzuschuss</h2>
+<p>Zuschüsse für die Fahrt zwischen Wohnung und Betrieb kann der Arbeitgeber bis zur Höhe der Entfernungspauschale mit 15 Prozent pauschal versteuern – beitragsfrei in der Sozialversicherung. Für einen Mitarbeiter mit 25 Kilometern Anfahrt ergibt das einen Betrag, der im dreistelligen Bereich pro Monat liegen kann. Der Zuschuss mindert allerdings die Werbungskosten des Mitarbeiters in seiner Steuererklärung – für Facharbeiter ohne weitere Werbungskosten in der Regel ohne Bedeutung.</p>
+<h2>Das Dienstrad</h2>
+<p>Überlässt der Betrieb ein Fahrrad oder E-Bike zusätzlich zum Lohn, ist die private Nutzung nach § 3 Nr. 37 EStG steuerfrei. Bei Gehaltsumwandlung – der Mitarbeiter verzichtet auf Lohn in Höhe der Leasingrate – wird die Nutzung mit einem stark reduzierten geldwerten Vorteil besteuert. Im GaLaBau, wo viele Mitarbeiter nah am Betrieb wohnen, ist das Dienstrad das Extra mit der höchsten Nachfrage in den letzten Jahren.</p>
+<div class="kasten"><b>Erholungsbeihilfe</b>Einmal im Jahr, pauschal mit 25 Prozent versteuert, beitragsfrei: 156 Euro für den Mitarbeiter, 104 Euro für den Ehepartner, 52 Euro je Kind. Die Zahlung muss in zeitlichem Zusammenhang mit einem Urlaub stehen – im GaLaBau der Sommerurlaub oder die Winterpause. Für eine vierköpfige Familie sind das 364 Euro, die fast vollständig ankommen.</div>
+
+<h2>Betriebliche Altersversorgung</h2>
+<p>Beiträge in eine Direktversicherung, Pensionskasse oder einen Pensionsfonds sind bis 8 Prozent der Beitragsbemessungsgrenze der Rentenversicherung steuerfrei, bis 4 Prozent auch beitragsfrei. Bei Entgeltumwandlung muss der Arbeitgeber 15 Prozent zuschießen, soweit er Sozialversicherungsbeiträge spart. Für Betriebe, die Mitarbeiter über Jahre binden wollen, ist ein Arbeitgeberbeitrag zur bAV das Instrument mit der längsten Wirkung – und das mit dem geringsten Bekanntheitsgrad in der Kolonne.</p>
+<h2>Kinderbetreuung, Handy, Fortbildung</h2>
+<p>Zuschüsse zur Betreuung nicht schulpflichtiger Kinder in Kita oder Tagespflege sind unbegrenzt steuerfrei, wenn sie zusätzlich zum Lohn gezahlt werden. Die private Nutzung eines betrieblichen Handys oder Laptops ist steuerfrei. Fortbildungen im betrieblichen Interesse – Motorsägenlehrgang, Baggerqualifizierung, Führerscheinklasse BE – sind kein Arbeitslohn, sondern Betriebsausgabe, und zugleich das Extra, das Mitarbeiter in Bewerbungsgesprächen am häufigsten nennen.</p>
+<h2>Was nicht mehr geht</h2>
+<p>Die Inflationsausgleichsprämie – bis zu 3.000 Euro steuer- und beitragsfrei – war auf Zahlungen bis zum 31. Dezember 2024 begrenzt. Seit 2025 ist sie nicht mehr möglich, auch nicht rückwirkend. Wer sie in Arbeitsverträgen oder Zusagen noch führt, sollte sie bereinigen; eine Zahlung unter diesem Titel ist heute normaler Arbeitslohn.</p>
+<h2>Die Rechnung für den Betrieb</h2>
+<p>Ein Paket aus 50-Euro-Gutschein, Fahrtkostenzuschuss und Dienstrad ersetzt keine Tariferhöhung – die kommt im Juli ohnehin. Es ergänzt sie um Bausteine, die der Wettbewerber im Nachbarort oft nicht anbietet und die der Mitarbeiter jeden Monat auf der Abrechnung sieht. Der Steuerberater richtet sie in einer Stunde ein. Die Lohnbuchhaltung muss sie sauber führen – vor allem die Grenze von 50 Euro.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Einkommensteuergesetz, § 8 Abs. 2 Satz 11 (Sachbezugsfreigrenze 50 Euro monatlich), § 3 Nr. 37 (Überlassung betrieblicher Fahrräder), § 3 Nr. 33 (Kinderbetreuung), § 3 Nr. 63 (betriebliche Altersversorgung), § 40 Abs. 2 (Pauschalierung für Fahrtkostenzuschüsse und Erholungsbeihilfen) – <a href="https://www.gesetze-im-internet.de/estg/__8.html">www.gesetze-im-internet.de/estg/__8.html</a></li><li>Inflationsausgleichsprämie (§ 3 Nr. 11c EStG): Begünstigungszeitraum bis 31. Dezember 2024 abgelaufen – <a href="https://www.gesetze-im-internet.de/estg/__3.html">www.gesetze-im-internet.de/estg/__3.html</a></li><li>B_I galabau: Tarif im GaLaBau 2025/2026 – Erhöhung um 3,3 Prozent zum 1. Juli 2026 – <a href="https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996">bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 06/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

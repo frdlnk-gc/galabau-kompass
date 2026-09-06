@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 08/2026</title>
+<style>
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
+  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  /* Cover */
+  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
+  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
+  .cover .wort i{color:#6EE7A0;}
+  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
+  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
+  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
+  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
+  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
+  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
+  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
+  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
+  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
+  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
+  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
+  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
+  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
+  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
+  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
+  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/wasserentnahmeverbote-sommer-2026.jpg" alt="">
+    <div class="kopf">
+      <div><div class="wort">GaLaBau <i>Kompass</i></div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div class="nr">Ausgabe<b>08/2026</b>August 2026</div>
+    </div>
+    <div class="titel"><div class="kick">Bauen &amp; Pflanzen</div><h1>Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</h1><p>Der Sommer 2026 hat Böden und Flüsse ausgetrocknet. Landkreise von Baden-Württemberg bis Brandenburg untersagen die Entnahme aus Bächen und Flüssen, teils bis Oktober. Für GaLaBau-Betriebe wird Bewässerung damit zur Planungs- und Haftungsfrage.</p></div>
+    <div class="teaser"><span>Die erste Woche: Wie neue Azubis ankommen – u...</span><span>Werkzeugkasten für Bauleiter: Sechs digitale ...</span><span>Über 80 Landkreise verbieten die Wasserentnah...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Werkzeuge für den Herbst</h2><p>E-Rechnung, Wasserentnahmeverbote, Werkzeuge für Bauleiter, die erste Woche der neuen Azubis und ein ifo-Index, der weniger Pessimismus zeigt: Diese Ausgabe ist ein Werkzeugkasten. Wer im Herbst umstellt, arbeitet ab Januar ruhiger.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Markt &amp; Politik</div><div class="t">ifo im August: Weniger Pessimismus am Bau, mehr Stornierungen im Wohnungsbau</div></div></li><li><span class="s">5</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Die erste Woche: Wie neue Azubis ankommen – und was in den ersten Tagen entscheidet, ob sie bleiben</div></div></li><li><span class="s">7</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">Werkzeugkasten für Bauleiter: Sechs digitale Helfer, die den Tag kürzer machen</div></div></li><li><span class="s">9</span><div><div class="r">Bauen &amp; Pflanzen</div><div class="t">Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</div></div></li><li><span class="s">11</span><div><div class="r">Recht &amp; Tarif</div><div class="t">E-Rechnung: Ab 2027 müssen größere Betriebe elektronisch versenden – eine PDF reicht nicht</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>ifo im August: Weniger Pessimismus am Bau, mehr Stornierungen im Wohnungsbau</h1><p class="dek">Der ifo-Geschäftsklimaindex steigt auf 88,8 Punkte, das Bauhauptgewerbe blickt weniger düster nach vorn. Im Wohnungsbau sinkt der Anteil der Betriebe mit Auftragsmangel – aber jedes achte Unternehmen meldet Stornierungen. Was das für die Außenanlagen bedeutet.</p><div class="byline">Redaktion GaLaBau Kompass · 27. August 2026</div></div>
+    <figure><img src="../../assets/img/ifo-august-2026-bau-weniger-pessimismus.jpg" alt=""><figcaption>Wo Baugenehmigungen zu Baustellen werden, kommt die Außenanlage ein Jahr später.</figcaption></figure>
+    <div class="text"><p>Das ifo-Geschäftsklima ist im August deutlicher gestiegen als erwartet: 88,8 Punkte nach 86,7 im Juli. Industrie, Handel, Dienstleister und Bau zeigen sich zuversichtlicher. Im Bauhauptgewerbe geht der Anstieg auf merklich weniger pessimistische Erwartungen zurück; die Urteile zur aktuellen Lage wurden dagegen leicht nach unten korrigiert. Die Stimmung dreht – das Geschäft noch nicht.</p>
+<h2>Wohnungsbau: Zwei Zahlen, zwei Richtungen</h2>
+<p>Genauer hingesehen hat das ifo Institut Mitte August beim Wohnungsbau, dem Segment, das für den GaLaBau als Vorlauf der Privatgarten- und Außenanlagenaufträge entscheidend ist. Das Geschäftsklima lag im Juli bei −29,3 Punkten, nach −30,6 im Juni – eine leichte Verbesserung auf tiefem Niveau. Der Anteil der Unternehmen, die über zu wenige Aufträge klagen, sank von 43,7 auf 41,2 Prozent. Gleichzeitig stieg der Anteil der Betriebe mit stornierten Projekten von 11,4 auf 13,1 Prozent. Materialengpässe meldeten noch 8,5 Prozent, nach 9,7 im Vormonat.</p>
+<p>„Der Anstieg der Baugenehmigungen arbeitet sich langsam durch die Branche“, sagt Klaus Wohlrabe, Leiter der ifo-Umfragen. Bis daraus eine breite Erholung werde, sei es noch ein weiter Weg. Die Auftragslage bewege sich in die richtige Richtung, zugleich würden wieder mehr Projekte abgesagt – ein Zeichen dafür, wie fragil die Erholung im Wohnungsbau bleibe.</p>
+<div class="stats" style="margin:10px 0 26px;">
+<div class="stat"><b>88,8</b><span>ifo-Geschäftsklima August (Juli: 86,7)</span></div>
+<div class="stat"><b>41,2 %</b><span>Wohnungsbau: zu wenige Aufträge (Juni: 43,7 %)</span></div>
+<div class="stat"><b>13,1 %</b><span>Wohnungsbau: Stornierungen (Juni: 11,4 %)</span></div>
+<div class="stat"><b>−29,3</b><span>Geschäftsklima Wohnungsbau Juli</span></div>
+</div>
+
+<h2>Was das für GaLaBau-Betriebe heißt</h2>
+<p>Die Außenanlage kommt am Ende. Zwischen Baugenehmigung und Pflanzung liegen bei Einfamilienhäusern in der Regel ein bis zwei Jahre, bei Wohnanlagen länger. Steigende Genehmigungen sind deshalb ein Signal für 2027, nicht für den Herbst 2026. Die steigenden Stornierungen sind dagegen ein Signal für jetzt: Wer Außenanlagen für Bauträger im Auftragsbestand hat, sollte die Projekte durchgehen und bei den Auftraggebern nachfragen, ob sie stehen. Ein storniertes Bauvorhaben nimmt die Außenanlage mit – und wer Material dafür bestellt hat, sitzt darauf.</p>
+<p>Für das Privatkundengeschäft im Bestand gilt die Konjunktur nur eingeschränkt. Gartenumbauten, Terrassen und Pflegeverträge hängen von den Einkommen und der Stimmung der Eigentümer ab, nicht von Genehmigungen; die Frühjahrs- und Herbstumfragen des BGL zeigen hier seit Jahren stabile Auftragsbücher bei dünnen Margen. Die Betriebe, die 2026 gut ausgelastet sind, haben ihre Kundenstruktur in Richtung Bestand und Kommune verschoben – und warten mit dem Neubau, bis er kommt.</p>
+<h2>Der Blick nach Nürnberg</h2>
+<p>In drei Wochen beginnt die GaLaBau in Nürnberg, und die Stimmung auf der Messe wird besser sein als die Zahlen. Das war 2024 so, das wird 2026 so sein. Der Unterschied zu 2024: Die Erwartungen der Bauunternehmen haben aufgehört zu sinken. Das ist noch kein Aufschwung. Es ist der Punkt, an dem Betriebe ihre Kapazitäten für 2027 planen sollten – und der Punkt, an dem Fachkräfte wieder knapper werden, weil auch die Wettbewerber ihn sehen.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>ifo Institut: Geschäftsklima im Wohnungsbau leicht verbessert, Konjunkturumfrage vom 17. August 2026 (Juli: −29,3 Punkte nach −30,6; Auftragsmangel 41,2 Prozent nach 43,7; Stornierungen 13,1 Prozent nach 11,4; Materialengpässe 8,5 Prozent nach 9,7; Zitate Klaus Wohlrabe) – <a href="https://www.ifo.de/en/facts/2026-08-17/business-climate-residential-construction-germany-improves-slightly">www.ifo.de/en/facts/2026-08-17/business-climate-residenti...</a></li><li>ifo Geschäftsklimaindex August 2026: 88,8 Punkte nach 86,7 im Juli, zitiert nach finanzen.net – <a href="https://www.finanzen.net/nachricht/aktien/ifo-index-im-blick-ifo-geschaeftsklima-im-august-staerker-gestiegen-als-erwartet-15898676">www.finanzen.net/nachricht/aktien/ifo-index-im-blick-ifo-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Markt &amp; Politik</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Die erste Woche: Wie neue Azubis ankommen – und was in den ersten Tagen entscheidet, ob sie bleiben</h1><p class="dek">Anfang August beginnen im GaLaBau die Ausbildungsverhältnisse. Die Abbrüche fallen meist in den ersten Monaten. Was das Gesetz für Jugendliche verlangt, was der Betrieb vorbereiten sollte und warum der Pate wichtiger ist als der Ausbilder.</p><div class="byline">Redaktion GaLaBau Kompass · 26. August 2026</div></div>
+    <figure><img src="../../assets/img/erste-woche-neue-azubis.jpg" alt=""><figcaption>Am ersten Tag entscheidet sich nicht die Prüfung, aber die Frage, ob der Azubi am Montag wiederkommt.</figcaption></figure>
+    <div class="text"><p>Der erste Tag beginnt meist so: Der Azubi steht um sieben auf dem Hof, kennt niemanden, bekommt Handschuhe und steigt in ein Fahrzeug zu einer Kolonne, die ihn nicht erwartet hat. Um zehn hat er Kies geschaufelt, um zwölf weiß er nicht, wo er essen soll, um vier fragt er sich, ob das der Beruf ist. Betriebe, die ihre Abbruchquote senken wollen, fangen hier an – nicht bei der Prüfungsvorbereitung.</p>
+<h2>Was vor dem ersten Tag geklärt sein muss</h2>
+<p><strong>Erstuntersuchung.</strong> Jugendliche unter 18 dürfen nur beschäftigt werden, wenn eine ärztliche Erstuntersuchung nach § 32 Jugendarbeitsschutzgesetz vorliegt, nicht älter als 14 Monate. Ohne Bescheinigung kein Arbeitsbeginn – die zuständige Stelle prüft das bei der Eintragung des Vertrags.</p>
+<p><strong>Vertrag und Eintragung.</strong> Der Ausbildungsvertrag ist vor Beginn bei der zuständigen Stelle – der Landwirtschaftskammer oder dem Regierungspräsidium – eingetragen, die Berufsschule ist informiert, die Probezeit steht drin: mindestens ein, höchstens vier Monate.</p>
+<p><strong>Ausrüstung.</strong> Sicherheitsschuhe, Arbeitskleidung, Regenkleidung, Handschuhe, Gehörschutz, Helm – in der richtigen Größe, am ersten Tag, ohne Eigenanteil. Ein Azubi in Turnschuhen ist ein Unfall und ein Signal.</p>
+<p><strong>Der Pate.</strong> Ein Facharbeiter oder Azubi im dritten Jahr, der für die ersten Wochen Ansprechpartner ist. Nicht der Ausbilder, nicht der Inhaber – jemand, der in derselben Kolonne arbeitet und dem man Fragen stellen kann, die man dem Chef nicht stellt.</p>
+<h2>Die erste Woche</h2>
+<p><strong>Montag: Hof, nicht Baustelle.</strong> Rundgang, Werkzeuglager, Fahrzeuge, Werkstatt, Sozialräume. Die Unterweisung nach DGUV Vorschrift 1 – Schutzausrüstung, Verhalten auf der Baustelle, Erste Hilfe, wer ist Ersthelfer – gehört an den ersten Tag, vor der ersten Tätigkeit, und wird unterschrieben. Dann Mittagessen mit der Kolonne, nicht allein.</p>
+<p><strong>Dienstag bis Donnerstag: Baustelle mit Pate.</strong> Eine Baustelle, auf der etwas fertig wird – ein Weg, eine Pflanzung –, nicht die Rodung im Regen. Der Azubi arbeitet mit, sieht das Ergebnis und wird abends gefragt, wie es war.</p>
+<p><strong>Freitag: Gespräch.</strong> Zwanzig Minuten mit dem Ausbilder: Was hat gepasst, was war schwer, was kommt nächste Woche. Und der Ausbildungsnachweis: Der Azubi führt ihn von der ersten Woche an, der Ausbilder zeichnet ihn wöchentlich ab. Wer im dritten Jahr ein leeres Berichtsheft hat, wird nicht zur Prüfung zugelassen.</p>
+<div class="kasten"><b>Die Regeln für unter 18-Jährige</b>Höchstens acht Stunden am Tag und 40 Stunden in der Woche, an fünf Tagen. Keine Beschäftigung vor 6 Uhr und nach 20 Uhr. Pausen: 30 Minuten ab viereinhalb Stunden, 60 Minuten ab sechs Stunden. Urlaub: 30 Werktage für 15-Jährige, 27 für 16-Jährige, 25 für 17-Jährige. Berufsschultage mit mehr als fünf Unterrichtsstunden sind ganze Arbeitstage. Der Zehn-Stunden-Tag der Kolonne gilt nicht – der Azubi fährt früher, oder der Betrieb organisiert die Rückfahrt.</div>
+
+<h2>Die ersten Monate</h2>
+<p>Die Probezeit ist für beide Seiten da. Wer nach acht Wochen merkt, dass es nicht passt, sagt es – und zwar der Betrieb ebenso wie der Azubi. Ein Abbruch in der Probezeit ist für einen 16-Jährigen kein Makel, ein Abbruch im zweiten Jahr schon. Was in den ersten Monaten außerdem zählt: der Kontakt zu den Eltern. Ein Anruf nach vier Wochen – „läuft gut, er ist pünktlich, er fragt“ – ist für viele Eltern das erste Feedback aus einem Betrieb überhaupt, und es entscheidet mit darüber, wie zu Hause über den Beruf gesprochen wird.</p>
+<h2>Was Betriebe unterschätzen</h2>
+<p>Der häufigste Grund für Abbrüche im GaLaBau ist nicht die Arbeit, sondern die Kolonne: ein Vorarbeiter, der Azubis als Schaufelhalter sieht, ein Ton, der zu Hause nicht üblich ist, das Gefühl, nichts zu lernen. Betriebe, die ihre Azubis halten, haben das organisiert: eine Kolonne, in der ausgebildet wird, einen Vorarbeiter, der es will, und einen festen Wechsel zwischen Wegebau, Pflanzung, Pflege und Maschinen über die drei Jahre. Das steht im Ausbildungsplan – und der wird in der ersten Woche gemeinsam angeschaut, damit der Azubi weiß, dass der Kies nicht das Ende ist.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Berufsbildungsgesetz, § 20 Probezeit (mindestens ein, höchstens vier Monate), § 13 Pflichten der Auszubildenden (Ausbildungsnachweis), § 15 Freistellung für die Berufsschule – <a href="https://www.gesetze-im-internet.de/bbig_2005/__20.html">www.gesetze-im-internet.de/bbig_2005/__20.html</a></li><li>Jugendarbeitsschutzgesetz, § 8 Dauer der Arbeitszeit, § 14 Nachtruhe, § 19 Urlaub, § 32 Erstuntersuchung – <a href="https://www.gesetze-im-internet.de/jarbschg/__32.html">www.gesetze-im-internet.de/jarbschg/__32.html</a></li><li>DGUV Vorschrift 1, § 4 Unterweisung (vor Aufnahme der Tätigkeit) – <a href="https://publikationen.dguv.de/regelwerk/dguv-vorschriften/">publikationen.dguv.de/regelwerk/dguv-vorschriften/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Karriere &amp; Weiterbildung</div><h1>Werkzeugkasten für Bauleiter: Sechs digitale Helfer, die den Tag kürzer machen</h1><p class="dek">Aufmaß, Bautagebuch, Fotodokumentation, Zeiterfassung, Wetter, Material – für jede Aufgabe gibt es Apps. Welche Kategorien sich im Alltag von GaLaBau-Bauleitern bewähren, worauf es bei der Auswahl ankommt und warum weniger oft mehr ist.</p><div class="byline">Redaktion GaLaBau Kompass · 19. August 2026</div></div>
+    <figure><img src="../../assets/img/werkzeuge-fuer-bauleiter-apps.jpg" alt=""><figcaption>Ein Foto mit Zeitstempel ersetzt im Streitfall zehn Seiten Schriftverkehr.</figcaption></figure>
+    <div class="text"><p>Ein Bauleiter im Garten- und Landschaftsbau verantwortet an einem Tag drei bis fünf Baustellen, zwei Kolonnen, ein Dutzend Lieferungen und die Frage, warum der Kunde die Terrasse anders in Erinnerung hat als gezeichnet. Das meiste davon ist Kommunikation und Dokumentation. Genau dort helfen digitale Werkzeuge – wenn sie zum Betrieb passen.</p>
+<h2>Sechs Kategorien</h2>
+<ol>
+<li><strong>Aufmaß und Vermessung.</strong> Messapps, die aus Fotos oder LiDAR-Daten des Smartphones Flächen und Längen berechnen, ersetzen bei kleinen Projekten das Maßband. Für größere Grundstücke lohnt die Drohne mit Auswertungssoftware. Kriterium: Export in die Kalkulationssoftware des Betriebs.</li>
+<li><strong>Bautagebuch.</strong> Wetter, anwesende Mitarbeiter, ausgeführte Arbeiten, Besonderheiten – täglich, in zwei Minuten, mit Zeitstempel. Im Streitfall über Verzögerungen oder Mängel ist das Bautagebuch das Dokument, das zählt. Kriterium: Offline nutzbar, PDF-Export je Baustelle.</li>
+<li><strong>Fotodokumentation.</strong> Fotos vor, während und nach den Arbeiten, automatisch der Baustelle zugeordnet, mit Datum und Standort. Besonders wichtig bei verdeckten Leistungen: Frostschutzschicht, Drainage, Fundamente. Kriterium: Zuordnung ohne manuelles Sortieren.</li>
+<li><strong>Zeiterfassung.</strong> Kommen, Gehen, Pausen, Baustellenwechsel – je Mitarbeiter und je Baustelle. Sie ist Pflicht, und sie ist die Grundlage der Nachkalkulation. Kriterium: Schnittstelle zur Lohnabrechnung.</li>
+<li><strong>Material und Lieferungen.</strong> Bestellungen, Lieferscheine, Reklamationen an einem Ort statt in drei Whatsapp-Gruppen. Kriterium: Lieferscheine per Foto erfassbar.</li>
+<li><strong>Wetter und Planung.</strong> Regenradar, Frostwarnung, UV-Index – die Planung der Woche hängt daran. Kriterium: stündliche Vorhersage für den Baustellenort.</li>
+</ol>
+<div class="kasten"><b>Ein System oder viele Apps?</b>Branchenlösungen für den GaLaBau bündeln mehrere dieser Funktionen in einem Programm und verbinden sie mit Angebot, Rechnung und Buchhaltung. Einzelapps sind günstiger und schneller eingeführt, erzeugen aber Doppelarbeit an den Übergängen. Faustregel: Ab zwei Bauleitern lohnt das System, darunter genügen zwei bis drei gute Einzelwerkzeuge.</div>
+
+<h2>Worauf es bei der Einführung ankommt</h2>
+<p>Die meisten Digitalprojekte in Betrieben scheitern nicht an der Software, sondern am dritten Monat: Die Kolonnen tragen nicht mehr ein, der Bauleiter pflegt nach, und im Winter ist alles wieder auf Papier. Drei Regeln, die sich bewährt haben:</p>
+<ul>
+<li><strong>Ein Werkzeug nach dem anderen.</strong> Erst die Zeiterfassung, wenn sie läuft die Fotodokumentation, dann das Bautagebuch.</li>
+<li><strong>Der Vorarbeiter entscheidet mit.</strong> Wer die App auf der Baustelle bedienen soll, muss sie vorher ausprobiert haben – mit Handschuhen, bei Regen, mit schlechtem Netz.</li>
+<li><strong>Der Nutzen muss auf der Baustelle ankommen.</strong> Wenn nur das Büro profitiert, trägt die Kolonne nicht ein. Wenn der Vorarbeiter am Freitag seine Stunden nicht mehr nachtragen muss, trägt er ein.</li>
+</ul>
+<p>Gute Bauleiter sind knapp. Werkzeuge, die ihnen eine Stunde am Tag zurückgeben, sind die günstigste Entlastung, die ein Betrieb kaufen kann.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Messe Nürnberg: Handwerkersoftware und KI im GaLaBau nutzen, Juni 2026 (Drohnenvermessung, Aufmaß, Messapps) – <a href="https://www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkersoftware-und-ki-im-galabau">www.galabau-messe.com/de-de/aktuelles/2026/06/handwerkers...</a></li><li>handwerk-digitalisieren.de: GaLaBau-Software für effiziente Gartenprojekte, Juni 2026 – <a href="https://www.handwerk-digitalisieren.de/garten-und-landschaftsbau-galabau-software/">www.handwerk-digitalisieren.de/garten-und-landschaftsbau-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Bauen &amp; Pflanzen</div><h1>Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanzungen und Pflege bedeutet</h1><p class="dek">Der Sommer 2026 hat Böden und Flüsse ausgetrocknet. Landkreise von Baden-Württemberg bis Brandenburg untersagen die Entnahme aus Bächen und Flüssen, teils bis Oktober. Für GaLaBau-Betriebe wird Bewässerung damit zur Planungs- und Haftungsfrage.</p><div class="byline">Redaktion GaLaBau Kompass · 14. August 2026</div></div>
+    <figure><img src="../../assets/img/wasserentnahmeverbote-sommer-2026.jpg" alt=""><figcaption>Wasser aus dem Fass statt aus dem Bach: In mehr als 80 Landkreisen gelten im Sommer 2026 Entnahmeverbote.</figcaption></figure>
+    <div class="text"><p>Wer in diesem Sommer eine Pflanzung fertiggestellt hat, kennt das Problem: Die Fertigstellungspflege verlangt Wasser, und Wasser ist knapp. Nach Wochen ohne flächigen Regen und mit anhaltend hohen Temperaturen haben mehr als 80 Landkreise, Städte und Wasserversorger die Entnahme von Wasser aus Bächen, Flüssen und Seen verboten, Bewässerungsauflagen erlassen oder zum Sparen aufgerufen.</p>
+<h2>Wo was gilt</h2>
+<p>Die Regelungen unterscheiden sich von Kreis zu Kreis. Einige Beispiele mit Stand Mitte August:</p>
+<ul>
+<li><strong>Baden-Württemberg:</strong> Böblingen verbietet die Entnahme aus Bächen und Flüssen für Garten- und Feldbewässerung vom 1. Juni bis 30. September. Tuttlingen, Schwarzwald-Baar-Kreis, Zollernalbkreis und Esslingen gelten ebenfalls bis Ende September; Biberach, Bodenseekreis, Rottweil und Ravensburg bis Ende August.</li>
+<li><strong>Nordrhein-Westfalen:</strong> Die Bezirksregierung Arnsberg hat Entnahmeverbote für Ruhr, Lenne und Sieg erlassen, die voraussichtlich bis zum 30. November gelten.</li>
+<li><strong>Bayern:</strong> Passau und Kitzingen bis 31. August.</li>
+<li><strong>Brandenburg:</strong> Potsdam-Mittelmark, Potsdam, Havelland und Brandenburg an der Havel bis Ende September beziehungsweise Anfang Oktober.</li>
+</ul>
+<p>Verstöße kosten: In Baden-Württemberg sind Bußgelder bis 10.000 Euro vorgesehen, Köln nennt bis zu 50.000 Euro. Ausgenommen sind in der Regel das Tränken von Vieh, das Schöpfen mit Gießkanne oder Eimer, die Bewässerung aus der Regentonne und Tropfbewässerung im Wurzelbereich.</p>
+<div class="kasten"><b>Für Betriebe</b>Maßgeblich ist die Allgemeinverfügung des jeweiligen Landkreises – sie steht auf dessen Website und ändert sich im Sommer mehrfach. Wer Wasser aus Oberflächengewässern nutzt, braucht ohnehin eine wasserrechtliche Erlaubnis; das Entnahmeverbot setzt sie für die Dauer der Trockenheit außer Kraft. Trinkwasser aus dem Netz ist von den Verboten meist nicht erfasst, aber teuer und teils mit Auflagen belegt.</div>
+
+<h2>Was das für Pflanzungen heißt</h2>
+<p>Die Fertigstellungspflege ist Vertragsbestandteil. Kann sie wegen eines Entnahmeverbots nicht wie geplant erfolgen, muss der Betrieb das dokumentieren, den Auftraggeber informieren und Alternativen vorschlagen – Wasserfass, Tankwagen, Bewässerungssäcke, Tropfbewässerung. Wer schweigt und im Herbst tote Bäume abliefert, trägt das Risiko.</p>
+<h2>Drei Konsequenzen für die nächste Saison</h2>
+<ol>
+<li><strong>Pflanzzeit verschieben.</strong> Herbstpflanzungen kommen mit den Winterniederschlägen an, Frühjahrspflanzungen laufen in den Sommer. Wo möglich, gehört die Pflanzung in den Oktober.</li>
+<li><strong>Wasser einplanen wie Material.</strong> Bewässerungssäcke, Zisternen, Tropfschläuche und der Tankwagen sind Positionen im Angebot – nicht Kulanz.</li>
+<li><strong>Arten wechseln.</strong> Die Zukunftsbaum-Listen von GALK und BdB nennen Arten, die Trockenheit vertragen. Wer sie pflanzt, gießt weniger und haftet seltener.</li>
+</ol>
+<p>Der Sommer 2026 ist nicht der letzte trockene. Betriebe, die Bewässerung als Teil der Bauleistung begreifen, verkaufen sie – und werden nicht von ihr überrascht.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>t-online: Wasserentnahme-Verbot ausgeweitet – Welche Landkreise betroffen sind, Stand 14. August 2026 (über 80 Landkreise, Städte und Wasserversorger; Zeiträume je Region; Bußgelder bis 10.000 Euro in Baden-Württemberg, bis 50.000 Euro in Köln; Ausnahmen) – <a href="https://www.t-online.de/heim-garten/aktuelles/id_101387108/wasserentnahme-verbot-ausgeweitet-welche-landkreise-betroffen-sind.html">www.t-online.de/heim-garten/aktuelles/id_101387108/wasser...</a></li><li>agrarheute: Hitze verursacht Wassernotstand – Diese Landkreise verbieten Landwirten zu bewässern (Bezirksregierung Arnsberg: Verbote für Ruhr, Lenne und Sieg bis 30. November 2026) – <a href="https://www.agrarheute.com/management/hitze-verursacht-wassernotstand-diese-landkreise-verbieten-landwirten-bewaessern-641389">www.agrarheute.com/management/hitze-verursacht-wassernots...</a></li><li>t-online: Trockenheit – Landkreise verbieten Wasserentnahme aus Flüssen und Gewässern (Böblingen: 1. Juni bis 30. September 2026) – <a href="https://www.t-online.de/heim-garten/garten/gartenarbeit/id_100790026/trockenheit-landkreise-verbieten-wasserentnahme-aus-fluessen-und-gewaessern.html">www.t-online.de/heim-garten/garten/gartenarbeit/id_100790...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Bauen &amp; Pflanzen</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>E-Rechnung: Ab 2027 müssen größere Betriebe elektronisch versenden – eine PDF reicht nicht</h1><p class="dek">Empfangen müssen alle Betriebe seit 2025. Ab dem 1. Januar 2027 gilt die Versandpflicht für Unternehmen mit mehr als 800.000 Euro Umsatz, ab 2028 für alle. Was eine E-Rechnung ist, wer betroffen ist und wie Betriebe die Umstellung im Winter angehen.</p><div class="byline">Redaktion GaLaBau Kompass · 5. August 2026</div></div>
+    <figure><img src="../../assets/img/e-rechnung-pflicht-2027.jpg" alt=""><figcaption>Strukturierte Daten statt Papier: Die E-Rechnung ist eine XML-Datei, keine PDF.</figcaption></figure>
+    <div class="text"><p>Die E-Rechnung ist seit dem 1. Januar 2025 Realität – zumindest beim Empfang. Jeder Unternehmer in Deutschland muss seither in der Lage sein, elektronische Rechnungen von anderen Unternehmen anzunehmen. Für den Versand gilt ein Stufenplan, der 2027 die größeren Betriebe erreicht und 2028 alle.</p>
+<h2>Der Stufenplan</h2>
+<div class="table-wrap"><div class="tabelle"><table>
+<tr><th>Ab</th><th>Pflicht</th><th>Für wen</th></tr>
+<tr><td>1. Januar 2025</td><td>E-Rechnungen empfangen und verarbeiten</td><td>alle Unternehmen (B2B)</td></tr>
+<tr><td>1. Januar 2027</td><td>E-Rechnungen versenden</td><td>Unternehmen mit mehr als 800.000 Euro Gesamtumsatz im Jahr 2026</td></tr>
+<tr><td>1. Januar 2028</td><td>E-Rechnungen versenden</td><td>alle Unternehmen (B2B)</td></tr>
+</table></div>
+
+<p>Die Pflicht gilt für Rechnungen zwischen inländischen Unternehmen. Rechnungen an Privatkunden – im GaLaBau ein großer Teil des Geschäfts – sind nicht betroffen; sie dürfen weiter auf Papier oder als PDF gestellt werden. Rechnungen an Kommunen laufen ohnehin seit Jahren über XRechnung.</p>
+<h2>Was eine E-Rechnung ist – und was nicht</h2>
+<p>Eine E-Rechnung ist eine Datei in einem strukturierten, maschinenlesbaren Format nach der europäischen Norm EN 16931. In Deutschland sind das vor allem XRechnung (reines XML) und ZUGFeRD (eine PDF mit eingebettetem XML). Eine per E-Mail verschickte PDF ohne XML-Teil ist keine E-Rechnung, auch wenn sie elektronisch ankommt. Umgekehrt muss ein Betrieb, der eine XRechnung erhält, sie lesen können – ein Viewer oder die Buchhaltungssoftware übernehmen das.</p>
+<div class="kasten"><b>Wer ist 2027 betroffen?</b>Maßgeblich ist der Gesamtumsatz des Jahres 2026. Ein GaLaBau-Betrieb mit 22 Beschäftigten liegt in der Regel deutlich über 800.000 Euro und fällt damit in die erste Versandstufe. Kleinere Betriebe haben bis Ende 2027 Zeit – sollten die Umstellung aber nicht verschieben, weil die Software ohnehin gebraucht wird.</div>
+
+<h2>Umstellung im Winter</h2>
+<p>Die meisten Branchenprogramme für den GaLaBau können XRechnung und ZUGFeRD inzwischen erzeugen; Buchhaltungssoftware und Steuerberater verarbeiten sie. Drei Schritte:</p>
+<ol>
+<li><strong>Empfang prüfen.</strong> Kommen E-Rechnungen von Lieferanten an, werden sie gelesen, archiviert und gebucht? Eine E-Mail-Adresse allein reicht nicht – die Datei muss zehn Jahre unverändert aufbewahrt werden.</li>
+<li><strong>Versand testen.</strong> Mit dem Steuerberater klären, welches Format die Software erzeugt, und eine Testrechnung an einen gewerblichen Kunden schicken.</li>
+<li><strong>Stammdaten pflegen.</strong> Leitweg-ID bei öffentlichen Auftraggebern, USt-IdNr. der Kunden, korrekte Leistungsbeschreibungen – Fehler in den Stammdaten machen aus der E-Rechnung eine Rückfrage.</li>
+</ol>
+<p>Wer die Umstellung in der Schlechtwetterzeit erledigt, startet 2027 ohne Nachfragen vom Finanzamt.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>sevdesk: E-Rechnung Pflicht für Handwerker – Was gilt 2026? (Empfangspflicht seit 1. Januar 2025; Versandpflicht ab 2027 bei Vorjahresumsatz über 800.000 Euro; ab 2028 für alle; Formate XRechnung und ZUGFeRD) – <a href="https://sevdesk.de/ratgeber/buchhaltung-finanzen/rechnungen/e-rechnung/e-rechnung-handwerker/">sevdesk.de/ratgeber/buchhaltung-finanzen/rechnungen/e-rec...</a></li><li>Deutsche Handwerks Zeitung / kostenlose-erechnung.de: E-Rechnung für Handwerker 2026 – Pflicht, Ausnahmen, Lösung – <a href="https://kostenlose-erechnung.de/ratgeber/e-rechnung-handwerker/">kostenlose-erechnung.de/ratgeber/e-rechnung-handwerker/</a></li><li>e-rechnungs-studio.de: E-Rechnungspflicht 2026 – Fristen 2027/2028 und Ausnahmen – <a href="https://e-rechnungs-studio.de/de/ratgeber/e-rechnung-pflicht-deutschland">e-rechnungs-studio.de/de/ratgeber/e-rechnung-pflicht-deutschland</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 08/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>
