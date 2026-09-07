@@ -206,6 +206,18 @@ def build():
         zahlen.append({**z, "wert_fmt": z.get("wert_text") or fmt_zahl(z["wert"], z.get("einheit", "")), "svg": chart_svg(z), "quelle": q, "quelle_titel": z.get("quelle_titel") or (q["title"] if q else "")})
     env.globals["zahlen"] = zahlen
 
+    # ── Vorlagen (Club) ──────────────────────────────────────────
+    vorlagen = []
+    vdir = os.path.join(CONTENT, "vorlagen")
+    if os.path.isdir(vdir):
+        for fn in sorted(os.listdir(vdir)):
+            if not fn.endswith(".md"): continue
+            meta, body = load_md(os.path.join(vdir, fn))
+            slug = meta.get("slug") or fn[:-3]; stand = to_date(meta.get("stand", heute))
+            vorlagen.append({"slug": slug, "title": meta["title"], "dek": meta.get("dek", ""), "typ": meta.get("typ", "Vorlage"), "stand": stand, "stand_de": de_date(stand),
+                             "quelle": by_slug.get(meta.get("quelle_slug")), "html": render_md(body), "pdf": f"vorlagen/pdf/{slug}.pdf"})
+    env.globals["vorlagen"] = vorlagen
+
     # ── Frage der Woche ──────────────────────────────────────────
     fragen = sorted(fragen_raw, key=lambda f: str(f.get("seit", "")), reverse=True)
     env.globals["frage"] = fragen[0] if fragen else None
@@ -228,7 +240,7 @@ def build():
     standpunkte = [a for a in lang if a["format"] == "standpunkt"][:2]
     praxisfragen = [a for a in lang if a["format"] == "praxisfrage"][:4]
     write("index.html", env.get_template("home.html").render(depth=0, featured=featured, river=river, meldungen=meldungen[:8], bloecke=ressort_bloecke, top_tags=top_tags,
-                                                               produkte=produkte, standpunkte=standpunkte, praxisfragen=praxisfragen, anzahl=len(artikel)))
+                                                               produkte=produkte, standpunkte=standpunkte, praxisfragen=praxisfragen, anzahl=len(artikel), ausgaben_anzahl=len(ausgaben)))
 
     # ── Artikelseiten ────────────────────────────────────────────
     for a in artikel:
@@ -262,6 +274,11 @@ def build():
     write("zahlen/index.html", env.get_template("zahlen.html").render(depth=1))
     write("merkliste/index.html", env.get_template("merkliste.html").render(depth=1))
     write("club/index.html", env.get_template("club.html").render(depth=1))
+    write("boerse/index.html", env.get_template("boerse.html").render(depth=1))
+    write("vorlagen/index.html", env.get_template("vorlagen.html").render(depth=1))
+    for v in vorlagen:
+        write(f"vorlagen/{v['slug']}/index.html", env.get_template("vorlage.html").render(depth=2, v=v))
+        write(f"vorlagen/{v['slug']}/print.html", env.get_template("vorlage_print.html").render(depth=2, v=v))
     seiten_dir = os.path.join(CONTENT, "seiten")
     for fn in sorted(os.listdir(seiten_dir)):
         if not fn.endswith(".md"): continue
@@ -273,27 +290,28 @@ def build():
 
     # ── Sitemap ──────────────────────────────────────────────────
     base = f"https://{site['domain']}"
-    urls = [""] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/"] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
+    urls = [""] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/", "boerse/", "vorlagen/"] + [f"vorlagen/{v['slug']}/" for v in vorlagen] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{base}/{u}</loc></url>" for u in urls) + "\n</urlset>\n")
 
-    print(f"✓ {len(lang)} Beiträge + {len(meldungen)} Meldungen · {len(ressorts)} Ressorts · {len(dossiers)} Dossiers · {len(ausgaben)} Ausgaben · {len(kommende)} Termine · {len(zahlen)} Zahlen")
-    return ausgaben
+    print(f"✓ {len(lang)} Beiträge + {len(meldungen)} Meldungen · {len(ressorts)} Ressorts · {len(dossiers)} Dossiers · {len(ausgaben)} Ausgaben · {len(kommende)} Termine · {len(zahlen)} Zahlen · {len(vorlagen)} Vorlagen")
+    return ausgaben, vorlagen
 
-def render_pdfs(ausgaben):
+def render_pdfs(ausgaben, vorlagen=()):
     out = os.path.join(ROOT, "ausgaben", "pdf"); os.makedirs(out, exist_ok=True)
-    for x in ausgaben:
-        src = os.path.join(ROOT, "ausgaben", x["ym"], "print.html")
-        pdf = os.path.join(out, f"galabau-kompass-{x['ym']}.pdf")
+    vout = os.path.join(ROOT, "vorlagen", "pdf"); os.makedirs(vout, exist_ok=True)
+    jobs = [(os.path.join(ROOT, "ausgaben", x["ym"], "print.html"), os.path.join(out, f"galabau-kompass-{x['ym']}.pdf"), x["label"]) for x in ausgaben]
+    jobs += [(os.path.join(ROOT, "vorlagen", v["slug"], "print.html"), os.path.join(vout, f"{v['slug']}.pdf"), "Vorlage " + v["slug"]) for v in vorlagen]
+    for src, pdf, label in jobs:
         cmd = [CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=12000", f"--print-to-pdf={pdf}", f"file://{src}"]
         for versuch in range(2):  # Chrome hängt gelegentlich nach dem Druck → Zeitlimit + ein Wiederholungsversuch
             try:
                 subprocess.run(cmd, check=True, capture_output=True, timeout=150); break
             except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
                 if versuch: raise
-                print("  PDF", x["label"], "Wiederholung nach", type(e).__name__)
-        print("  PDF", x["label"], f"{os.path.getsize(pdf) // 1024} KB")
+                print("  PDF", label, "Wiederholung nach", type(e).__name__)
+        print("  PDF", label, f"{os.path.getsize(pdf) // 1024} KB")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("--pdf", action="store_true"); a = ap.parse_args()
-    ausg = build()
-    if a.pdf: render_pdfs(ausg)
+    ausg, vorl = build()
+    if a.pdf: render_pdfs(ausg, vorl)

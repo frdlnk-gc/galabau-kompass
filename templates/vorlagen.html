@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Vorlagen für den Betrieb – Kompass Club | {{ site.name }}{% endblock %}
+{% block description %}Vorlagen und Checklisten für GaLaBau-Betriebe: Winterdienst-Bereitschaft, erste Azubi-Woche, Probearbeit – mit Paragraf und Quelle, kostenlos für Club-Mitglieder.{% endblock %}
+{% block bodyclass %}seite vorlagen-seite{% endblock %}
+{% block content %}
+<section class="container">
+  <header class="page-head">
+    <span class="t-kicker">Vorlagen · Kompass Club</span>
+    <h1>Vorlagen für den Betrieb</h1>
+    <p class="page-dek">Muster-Regelungen, Einarbeitungspläne und Checklisten aus den Beiträgen des Magazins – zum Ausfüllen, mit Paragraf und Quelle. Kostenlos für Club-Mitglieder, als PDF und online.</p>
+  </header>
+  <div class="gate-box nur-gast mt-3">
+    <h3>Die Vorlagen sind für Club-Mitglieder.</h3>
+    <p>Die Mitgliedschaft ist kostenlos und dauert eine Minute. Danach sind alle Vorlagen hier und auf jeder Vorlagenseite freigeschaltet.</p>
+    <a class="btn" href="{{ root }}club/#beitreten">Kostenlos Mitglied werden</a>
+  </div>
+  <div class="vorlagen">
+    {% for v in vorlagen %}
+    <div class="vorlage">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg></span>
+      <span class="vorlage-meta">{{ v.typ }} · Stand {{ v.stand_de }}</span>
+      <h3><a href="{{ root }}vorlagen/{{ v.slug }}/">{{ v.title }}</a></h3>
+      <p>{{ v.dek }}</p>
+      <div class="btn-row nur-mitglied"><a class="btn sm" href="{{ root }}{{ v.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="mehr-link" href="{{ root }}vorlagen/{{ v.slug }}/">Online lesen</a></div>
+      <p class="gate-note nur-gast small muted">Für Club-Mitglieder kostenlos.</p>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="muted mt">Fehlt eine Vorlage, die Ihr Betrieb braucht? <a href="{{ root }}club/#praxisfrage">Stellen Sie die Frage an die Redaktion</a> – aus häufigen Fragen entstehen neue Vorlagen.</p>
+</section>
+{% endblock %}

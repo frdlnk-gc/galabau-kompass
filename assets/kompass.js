@@ -64,11 +64,12 @@
   }
 
   /* ── Kompass Club: Mitgliedschaft, Punkte, Stufen ── */
-  var STUFEN = [[0, 'Samen', '🌰'], [20, 'Keimling', '🌱'], [60, 'Setzling', '🪴'], [150, 'Jungbaum', '🌳'], [300, 'Baum', '🌲'], [600, 'Alte Eiche', '🏆']];
-  var REGELN = { lesen: 2, frage: 5, kommentar: 8, teilen: 3, merken: 1, beitritt: 10, abo: 5 };
+  /* Status-Stufen wie bei Wettbewerben der Branche: Mitglied → Bronze → Silber → Gold → Platin */
+  var STUFEN = [[0, 'Mitglied', 'mitglied'], [25, 'Bronze', 'bronze'], [75, 'Silber', 'silber'], [200, 'Gold', 'gold'], [500, 'Platin', 'platin']];
+  var REGELN = { lesen: 2, frage: 5, kommentar: 8, teilen: 3, merken: 1, beitritt: 10, abo: 5, inserat: 15, praxisfrage: 10 };
   function mitglied() { return lsJson('kompass_mitglied', null); }
   function punkte() { return lsJson('kompass_punkte', { p: 0, k: {} }); }
-  function stufe(p) { var s = STUFEN[0], next = null; for (var i = 0; i < STUFEN.length; i++) { if (p >= STUFEN[i][0]) s = STUFEN[i]; else { next = STUFEN[i]; break; } } return { name: s[1], icon: s[2], ab: s[0], next: next }; }
+  function stufe(p) { var s = STUFEN[0], next = null; for (var i = 0; i < STUFEN.length; i++) { if (p >= STUFEN[i][0]) s = STUFEN[i]; else { next = STUFEN[i]; break; } } return { name: s[1], cls: s[2], ab: s[0], next: next }; }
   function addPunkte(art, key) {
     var n = REGELN[art] || 0; if (!n) return;
     var st = punkte(); var k = art + (key ? ':' + key : ''); if (st.k[k]) return;
@@ -81,7 +82,7 @@
     var m = mitglied();
     if (!m) return '<a class="btn sm ghost club-btn" href="' + ROOT + 'club/">Kompass Club</a>';
     var p = punkte().p | 0, s = stufe(p);
-    return '<a class="club-chip" href="' + ROOT + 'club/" title="Kompass Club · ' + p + ' Punkte · Stufe ' + s.name + '"><span class="club-dot">✓</span>Mitglied Nr. ' + nrFmt(m.nr) + '<small>· ' + s.icon + ' ' + esc(s.name) + '</small></a>';
+    return '<a class="club-chip" href="' + ROOT + 'club/" title="Kompass Club · ' + p + ' Punkte · Status ' + s.name + '"><span class="club-dot">✓</span>Nr. ' + nrFmt(m.nr) + '<small>· ' + esc(s.name) + '</small></a>';
   }
 
   /* ── Kopf / Fuß ── */
@@ -357,12 +358,12 @@
     if (n) n.textContent = m ? m.name : 'Ihr Name';
     if (nr) nr.textContent = 'Mitglied Nr. ' + (m ? nrFmt(m.nr) : '····');
     if (seit) { var d = m ? new Date(m.seit) : new Date(); seit.textContent = 'seit ' + MONATE[d.getMonth()] + ' ' + d.getFullYear(); }
-    if (st) st.textContent = s.icon + ' ' + s.name;
+    if (st) { st.textContent = s.name; st.className = 'ausweis-stufe st-' + s.cls; }
   }
   function renderStufen(root) {
     var p = punkte().p | 0, s = stufe(p);
     root.querySelectorAll('[data-punkte]').forEach(function (el) { el.textContent = p; });
-    root.querySelectorAll('[data-stufe-name]').forEach(function (el) { el.textContent = s.icon + ' ' + s.name; });
+    root.querySelectorAll('[data-stufe-name]').forEach(function (el) { el.textContent = s.name; el.className = 'ausweis-stufe st-' + s.cls; });
     var bar = root.querySelector('[data-punkte-balken]'), zeile = root.querySelector('[data-punkte-zeile]');
     if (bar) { var lo = s.ab, hi = s.next ? s.next[0] : Math.max(p, lo + 1); bar.style.width = Math.min(100, Math.round((p - lo) / (hi - lo) * 100)) + '%'; }
     if (zeile) zeile.textContent = s.next ? (s.next[0] - p) + ' Punkte bis „' + s.next[1] + '“' : 'Höchste Stufe erreicht';
@@ -371,7 +372,7 @@
   function initClub(root) {
     var form = root.querySelector('[data-club-form]'), note = form && form.querySelector('[data-abo-note]'), danke = root.querySelector('[data-club-danke]'), ausweis = root.querySelector('[data-ausweis]');
     var m = mitglied();
-    function zeige() { m = mitglied(); root.classList.toggle('is-mitglied', !!m); if (danke) danke.classList.toggle('active', !!m); renderAusweis(ausweis, m); renderStufen(root); if (m) { var dn = root.querySelector('[data-danke-name]'); if (dn) dn.textContent = m.name; var dnr = root.querySelector('[data-danke-nr]'); if (dnr) dnr.textContent = nrFmt(m.nr); } }
+    function zeige() { m = mitglied(); root.classList.toggle('is-mitglied', !!m); document.body.classList.toggle('is-mitglied', !!m); if (danke) danke.classList.toggle('active', !!m); renderAusweis(ausweis, m); renderStufen(root); if (m) { var dn = root.querySelector('[data-danke-name]'); if (dn) dn.textContent = m.name; var dnr = root.querySelector('[data-danke-nr]'); if (dnr) dnr.textContent = nrFmt(m.nr); } }
     window.KOMPASS.onPunkte = function () { renderAusweis(ausweis, mitglied()); renderStufen(root); };
     zeige();
     if (!form) return;
@@ -388,7 +389,7 @@
       var body = { name: name, email: email, telefon: k.wa() ? tel : null, betrieb: form.betrieb.value.trim(), rolle: form.rolle.value, plz: form.plz.value.trim(), kanal: k.kanal(), consent: true, website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV, page_url: location.href, quelle: location.pathname, vertriebler: window.KOMPASS.vertriebler() };
       var ok = function (j) {
         btn.disabled = false; btn.textContent = 'Kostenlos Mitglied werden';
-        ls('kompass_mitglied', JSON.stringify({ nr: j.nr, name: name, seit: j.seit || new Date().toISOString() }));
+        ls('kompass_mitglied', JSON.stringify({ nr: j.nr, name: name, email: email, seit: j.seit || new Date().toISOString() }));
         addPunkte('beitritt'); if (k.mail() || k.wa()) addPunkte('abo');
         track('club', { nr: j.nr, kanal: body.kanal, neu: j.neu !== false });
         document.querySelectorAll('[data-club-chip]').forEach(function (el) { el.innerHTML = clubChip(); });
@@ -505,6 +506,90 @@
   /* ── Social-Box (nur wenn Kanäle konfiguriert sind) ── */
   function initSocialBox(box) { var s = socialLinks(true); if (!s) return; box.querySelector('[data-social-links]').innerHTML = s; box.hidden = false; }
 
+
+  /* ── Kompass-Börse (Inserate der Mitglieder) ── */
+  var KATS = { maschine: 'Maschine', geraet: 'Gerät', material: 'Material & Pflanzen', fahrzeug: 'Fahrzeug', sonstiges: 'Sonstiges' };
+  var ARTEN = { verkauf: 'Zu verkaufen', verschenken: 'Zu verschenken', suche: 'Gesucht' };
+  function inseratHtml(x) {
+    var preis = x.art === 'verschenken' ? 'Kostenlos' : (x.art === 'suche' ? '' : (x.preis || 'Preis auf Anfrage'));
+    return '<article class="inserat" data-id="' + esc(x.id) + '"><div class="inserat-kopf"><span class="pill ' + (x.art === 'suche' ? 'blau' : (x.art === 'verschenken' ? 'lime' : 'gruen')) + '">' + esc(ARTEN[x.art] || x.art) + '</span><span class="pill">' + esc(KATS[x.kategorie] || x.kategorie) + '</span></div>' +
+      '<h3>' + esc(x.titel) + '</h3>' + (preis ? '<div class="inserat-preis">' + esc(preis) + '</div>' : '') + '<p class="inserat-text">' + esc(x.beschreibung) + '</p>' +
+      '<div class="inserat-meta">' + esc([x.plz, x.ort].filter(Boolean).join(' ')) + (x.plz || x.ort ? ' · ' : '') + kurzDate(x.created_at) + '</div>' +
+      '<div class="inserat-kontakt" data-kontakt>' + (mitglied() ? '<button type="button" class="btn sm ghost" data-kontakt-btn>Kontakt anzeigen</button>' : '<span class="gate-note">Kontaktdaten sehen nur Club-Mitglieder. <a href="' + ROOT + 'club/#beitreten">Kostenlos beitreten</a></span>') + '</div></article>';
+  }
+  function initBoerse(root) {
+    var liste = root.querySelector('[data-inserate]'), leer = root.querySelector('[data-boerse-leer]'), chips = root.querySelectorAll('[data-kat]'), anz = root.querySelector('[data-inserate-anzahl]'), form = root.querySelector('[data-inserat-form]'), limit = root.dataset.limit | 0;
+    var daten = [], kat = '';
+    function render() {
+      var rows = daten.filter(function (x) { return !kat || x.kategorie === kat; }); if (limit) rows = rows.slice(0, limit);
+      liste.innerHTML = rows.map(inseratHtml).join('');
+      if (leer) leer.hidden = rows.length > 0;
+      if (anz) anz.textContent = daten.length ? daten.length + (daten.length === 1 ? ' Inserat' : ' Inserate') : 'Noch keine Inserate';
+    }
+    function load() {
+      if (IS_LOCAL) { daten = [{ id: 'demo-1', titel: 'Beispiel: Rüttelplatte 90 kg, Baujahr 2021', kategorie: 'geraet', art: 'verkauf', preis: '650 €', beschreibung: 'So sieht ein Inserat aus (nur lokale Vorschau).', plz: '50670', ort: 'Köln', created_at: new Date().toISOString() }]; render(); return; }
+      getJson('/inserate').then(function (j) { daten = j.inserate || []; render(); }).catch(function () { if (anz) anz.textContent = 'Börse gerade nicht erreichbar.'; });
+    }
+    chips.forEach(function (c) { c.addEventListener('click', function () { kat = c.dataset.kat; chips.forEach(function (x) { x.classList.toggle('is-active', x === c); }); render(); }); });
+    liste.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-kontakt-btn]'); if (!b) return;
+      var m = mitglied(); if (!m) return;
+      var box = b.closest('[data-kontakt]'), id = b.closest('.inserat').dataset.id; b.disabled = true; b.textContent = 'Wird geladen …';
+      var show = function (k) { box.innerHTML = '<b>' + esc(k.name || 'Inserent') + '</b>' + (k.telefon ? ' · <a href="tel:' + esc(k.telefon) + '">' + esc(k.telefon) + '</a>' : '') + (k.email ? ' · <a href="mailto:' + esc(k.email) + '">' + esc(k.email) + '</a>' : ''); track('inserat', { kontakt: id }); };
+      if (IS_LOCAL) { show({ name: 'Max Muster', telefon: '+49 170 0000000', email: 'max@beispiel.de' }); return; }
+      getJson('/inserate?kontakt=' + encodeURIComponent(id) + '&email=' + encodeURIComponent(m.email || '')).then(function (j) { if (j.ok && j.kontakt) show(j.kontakt); else { box.innerHTML = '<span class="gate-note">' + esc(j.error || 'Kontakt nicht verfügbar.') + '</span>'; } }).catch(function () { box.innerHTML = '<span class="gate-note">Kontakt gerade nicht abrufbar.</span>'; });
+    });
+    if (form) {
+      var note = form.querySelector('[data-abo-note]'), m0 = mitglied();
+      if (m0) { if (form.kontakt_name && !form.kontakt_name.value) form.kontakt_name.value = m0.name || ''; if (form.kontakt_email && !form.kontakt_email.value) form.kontakt_email.value = m0.email || ''; }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); note.classList.remove('err');
+        var m = mitglied(); if (!m) { note.textContent = 'Inserate können nur Club-Mitglieder aufgeben.'; note.classList.add('err'); return; }
+        var titel = form.titel.value.trim(), text = form.beschreibung.value.trim();
+        if (titel.length < 5) { note.textContent = 'Bitte einen aussagekräftigen Titel eintragen.'; note.classList.add('err'); form.titel.focus(); return; }
+        if (text.length < 20) { note.textContent = 'Bitte mindestens zwanzig Zeichen Beschreibung.'; note.classList.add('err'); form.beschreibung.focus(); return; }
+        if (/https?:\/\/|www\./i.test(titel + ' ' + text)) { note.textContent = 'Bitte keine Links – die Börse ist werbefrei.'; note.classList.add('err'); return; }
+        var tel = normPhone(form.kontakt_telefon.value), mail = form.kontakt_email.value.trim();
+        if (!tel && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { note.textContent = 'Bitte Telefonnummer oder E-Mail für Interessenten angeben.'; note.classList.add('err'); return; }
+        if (!window.KOMPASS.realUser()) { note.textContent = 'Bitte versuchen Sie es in einem Moment erneut.'; note.classList.add('err'); return; }
+        var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Wird eingestellt …';
+        var body = { titel: titel, kategorie: form.kategorie.value, art: form.art.value, preis: form.preis.value.trim(), beschreibung: text, plz: form.plz.value.trim(), ort: form.ort.value.trim(), kontakt_name: form.kontakt_name.value.trim(), kontakt_email: mail, kontakt_telefon: tel, email: m.email || '', website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV };
+        var ok = function (j) { btn.disabled = false; btn.textContent = 'Inserat einstellen'; form.reset(); if (form.kontakt_name) form.kontakt_name.value = m.name || ''; if (form.kontakt_email) form.kontakt_email.value = m.email || ''; note.textContent = j.pending ? 'Danke – Ihr Inserat erscheint nach kurzer Prüfung.' : 'Danke – Ihr Inserat ist online. Es läuft 60 Tage.'; if (j.inserat && !j.pending) { daten.unshift(j.inserat); render(); } track('inserat', { neu: true }); addPunkte('inserat', (j.inserat && j.inserat.id) || Date.now()); };
+        if (IS_LOCAL) { setTimeout(function () { ok({ ok: true, inserat: Object.assign({ id: 'l' + Date.now(), created_at: new Date().toISOString() }, body) }); }, 400); return; }
+        post('/inserate', body).then(ok).catch(function (e2) { btn.disabled = false; btn.textContent = 'Inserat einstellen'; note.textContent = /HTTP 403/.test(e2.message) ? 'Diese E-Mail ist nicht als Mitglied eingetragen. Bitte zuerst dem Club beitreten.' : (/HTTP 429/.test(e2.message) ? 'Zu viele Inserate in kurzer Zeit.' : 'Das hat nicht geklappt. Bitte erneut versuchen.'); note.classList.add('err'); });
+      });
+    }
+    load();
+  }
+
+  /* ── Praxisfrage an die Redaktion (Mitglieder) ── */
+  function initPraxisfrage(form) {
+    var note = form.querySelector('[data-abo-note]'), m0 = mitglied();
+    if (m0 && form.betrieb && !form.betrieb.value) form.betrieb.value = '';
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); note.classList.remove('err');
+      var m = mitglied(); if (!m) { note.textContent = 'Praxisfragen können Club-Mitglieder stellen – der Beitritt ist kostenlos.'; note.classList.add('err'); return; }
+      var frage = form.frage.value.trim(); if (frage.length < 20) { note.textContent = 'Bitte die Frage etwas ausführlicher stellen (mindestens zwanzig Zeichen).'; note.classList.add('err'); form.frage.focus(); return; }
+      if (!window.KOMPASS.realUser()) { note.textContent = 'Bitte versuchen Sie es in einem Moment erneut.'; note.classList.add('err'); return; }
+      var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Wird gesendet …';
+      var body = { frage: frage, kontext: form.kontext ? form.kontext.value.trim() : '', betrieb: form.betrieb ? form.betrieb.value.trim() : '', anonym: form.anonym ? form.anonym.checked : true, name: m.name || '', email: m.email || '', website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV };
+      var ok = function () { btn.disabled = false; btn.textContent = 'Frage an die Redaktion senden'; form.frage.value = ''; if (form.kontext) form.kontext.value = ''; note.textContent = 'Danke – die Redaktion meldet sich, sobald die Antwort steht. Veröffentlichte Antworten erscheinen unter Praxisfragen.'; track('praxisfrage', {}); addPunkte('praxisfrage', Date.now()); };
+      if (IS_LOCAL) { setTimeout(ok, 400); return; }
+      post('/praxisfrage', body).then(ok).catch(function () { btn.disabled = false; btn.textContent = 'Frage an die Redaktion senden'; note.textContent = 'Das hat nicht geklappt. Bitte erneut versuchen.'; note.classList.add('err'); });
+    });
+  }
+
+  /* ── Mitglieder-Gate (Vorlagen, Börse-Formular) ── */
+  function initGate() { document.body.classList.toggle('is-mitglied', !!mitglied()); }
+
+
+  /* ── Seitenleiste: klebt mit der Unterkante, wenn sie höher als das Fenster ist ── */
+  function initStickySide() {
+    var side = document.querySelector('.main-grid .col-side'); if (!side) return;
+    function upd() { if (window.innerWidth < 1024) { side.style.top = ''; return; } var h = side.offsetHeight, vh = window.innerHeight; side.style.top = (h + 100 > vh ? Math.min(76, vh - h - 24) : 76) + 'px'; }
+    window.addEventListener('resize', upd); window.addEventListener('load', upd); upd(); setTimeout(upd, 800);
+  }
+
   /* ── Reveal (Tool-Seiten) ── */
   function initReveal() {
     var pending = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
@@ -529,7 +614,11 @@
     var ml = document.querySelector('[data-merkliste]'); if (ml) initMerkliste(ml);
     var vl = document.querySelector('[data-vorlesen]'); if (vl) initVorlesen(vl);
     document.querySelectorAll('[data-frage]').forEach(initFrage);
+    initGate();
+    initStickySide();
     var cl = document.querySelector('[data-club]'); if (cl) initClub(cl);
+    document.querySelectorAll('[data-boerse]').forEach(initBoerse);
+    document.querySelectorAll('[data-praxisfrage-form]').forEach(initPraxisfrage);
     document.querySelectorAll('[data-ausweis-vorschau]').forEach(function (el) { renderAusweis(el, mitglied()); });
     document.querySelectorAll('[data-social-box]').forEach(initSocialBox);
     initTermine();
