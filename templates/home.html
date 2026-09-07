@@ -111,7 +111,8 @@
         <h2>{{ aktuelle_ausgabe.label }}: {{ aktuelle_ausgabe.titel }}</h2>
         <p>{{ aktuelle_ausgabe.monat }} · {{ aktuelle_ausgabe.artikel|length }} Beiträge{% if aktuelle_ausgabe.meldungen %} und {{ aktuelle_ausgabe.meldungen|length }} Meldungen{% endif %}, gesetzt zum Lesen am Tablet und zum Drucken für den Aufenthaltsraum.</p>
         <ul class="inhalt-kurz">{% for a in aktuelle_ausgabe.artikel[:4] %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></li>{% endfor %}</ul>
-        <div class="btn-row"><a class="btn" href="{{ root }}{{ aktuelle_ausgabe.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="mehr-link" href="{{ root }}ausgaben/">Alle {{ ausgaben_anzahl }} Ausgaben</a></div>
+        <div class="btn-row"><a class="btn nur-mitglied" href="{{ root }}{{ aktuelle_ausgabe.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn nur-gast" href="{{ root }}club/">PDF für Club-Mitglieder</a><a class="mehr-link" href="{{ root }}ausgaben/">Alle {{ ausgaben_anzahl }} Ausgaben</a></div>
+        <p class="pdf-gate nur-gast">Die Monatsausgabe als PDF gibt es für Mitglieder – kostenlos, in einer Minute. <a href="{{ root }}club/">Beitreten</a></p>
       </div>
     </div>
     <div class="meist-card">
@@ -167,7 +168,7 @@
       <div class="btn-row"><a class="btn light" href="{{ root }}club/#beitreten">Kostenlos Mitglied werden</a><a class="btn ghost light" href="{{ root }}club/">Was der Club bietet</a></div>
       <p class="hinweis">Kein Beitrag, keine Werbung, Austritt jederzeit per E-Mail.</p>
     </div>
-    {{ ausweis() }}
+    {{ ausweis('data-ausweis-vorschau', root) }}
   </div>
 </section>
 

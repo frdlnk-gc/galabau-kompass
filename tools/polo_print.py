@@ -3,7 +3,7 @@
 GaLaBau Kompass · Polo-Druckdateien (Messe GaLaBau 2026)
 
 Erzeugt je Vertriebler eine Druck-PDF (Vektor, Fonts eingebettet) mit
-  Seite 1  VORNE   – Druckfläche 250 × 300 mm
+  Seite 1  VORNE   – Brustlogo, Druckfläche 90 × 100 mm (Variante C)
   Seite 2  HINTEN  – Druckfläche 300 × 380 mm
   Seite 3  SPEC    – A4-Datenblatt für den Textildrucker (Name, Größe,
                      Farben, Platzierung, QR-Ziel)
@@ -25,9 +25,12 @@ PEOPLE = [
     {"slug": "julian", "name": "Julian Kohansal"},
     {"slug": "liam",   "name": "Liam Quick"},
 ]
-CREME, HONIG, BLACK = "#F4F2EB", "#6EE7A0", "#000000"  # HONIG = Akzent (jetzt Mint aus der Q4-Palette)
+CREME, HONIG, BLACK = "#F2F7F3", "#CDF47A", "#000000"  # Hell, Lime (Akzent der v5-Farbwelt), Polo-Grund
+GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
+# Handgezeichneter Pfeil („mit Edding“): zwei leicht versetzte Striche + offene Spitze, zeigt auf den QR-Code
+PFEIL = '''<svg class="pfeil" viewBox="0 0 120 130" fill="none" stroke="{accent}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 C 36 2, 64 14, 78 44 S 92 96, 80 116"/><path d="M12 15 C 38 6, 62 18, 76 46" stroke-width="3" opacity=".55"/><path d="M60 100 L 80 118 L 100 98"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -36,21 +39,23 @@ def qr_svg(url: str) -> str:
     return buf.getvalue().decode("utf-8")
 
 def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
-    big = kind == "back"
-    qr_mm = 170 if big else 128
-    logo_mm = 36 if big else 30
+    """Variante C (Freddy, 07.09.): vorne Marke + kleine Wortmarke auf der Brust, hinten Frage, QR mit Edding-Pfeil, Wortmarke."""
+    if kind == "front":
+        return f'''
+<section class="page front" style="width:{w}mm;height:{h}mm;">
+  <div class="marke">{MARK.format(ink=CREME, accent=GRUEN)}</div>
+  <div class="word klein">GaLaBau Kompass</div>
+</section>'''
     return f'''
-<section class="page {kind}" style="width:{w}mm;height:{h}mm;">
-  <div class="top">
-    <div class="eyebrow">Branchenumfrage 2026 · Mitarbeitergewinnung im GaLaBau</div>
-    <div class="logo">{MARK.format(ink=CREME, accent=HONIG, bg=BLACK)}<div class="word">GaLaBau Kompass</div></div>
-    <div class="tagline">Das Magazin für den Garten- und Landschaftsbau</div>
+<section class="page back" style="width:{w}mm;height:{h}mm;">
+  <div class="frage">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
+  <div class="qrwrap" style="width:190mm;height:190mm;">{qr_svg(url)}</div>
+  {PFEIL.format(accent=HONIG)}
+  <div class="unten">
+    <div class="line2">Kostenlos scannen · Standort-Check</div>
+    <div class="logo">{MARK.format(ink=CREME, accent=GRUEN)}<div class="word">GaLaBau Kompass</div></div>
+    <div class="foot">galabau-kompass.de</div>
   </div>
-  <div class="qrwrap" style="width:{qr_mm}mm;height:{qr_mm}mm;">{qr_svg(url)}</div>
-  <div class="arrow">↑</div>
-  <div class="line1">Standort-Check<br>für GaLaBau-Betriebe</div>
-  <div class="line2">Wie viele Fachkräfte gibt es bei Ihnen?<br>Kostenlos scannen.</div>
-  <div class="foot">galabau-kompass.de</div>
 </section>'''
 
 def spec(person: dict, size: str, url: str) -> str:
@@ -61,11 +66,11 @@ def spec(person: dict, size: str, url: str) -> str:
     <tr><th>Träger</th><td>{person["name"]} · Kürzel <b>{person["slug"]}</b></td></tr>
     <tr><th>Polo-Größe</th><td><b>{size}</b></td></tr>
     <tr><th>Polo-Farbe</th><td>Schwarz (dunkler Grund, Baumwoll-Piqué)</td></tr>
-    <tr><th>Druckfarben</th><td>Creme <b>{CREME}</b> · Mint <b>{HONIG}</b> (Sonderfarbe nach HEX, Pantone/HKS mit der Druckerei abstimmen) · QR-Kachel Creme mit Modulen Schwarz</td></tr>
-    <tr><th>Seite 1 – VORNE</th><td>Druckfläche 250 × 300 mm, mittig, Oberkante 8 cm unter dem Kragenansatz. Motiv komplett (Logo, QR, Textzeilen).</td></tr>
-    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett.</td></tr>
+    <tr><th>Druckfarben</th><td>Hell <b>{CREME}</b> · Grün <b>{GRUEN}</b> (Nadel) · Lime <b>{HONIG}</b> (Pfeil, Zeile) – Sonderfarben nach HEX, Pantone/HKS mit der Druckerei abstimmen · QR-Kachel Hell mit Modulen Schwarz</td></tr>
+    <tr><th>Seite 1 – VORNE</th><td>Brustlogo links: Druckfläche 90 × 100 mm, Marke 60 mm, darunter Wortmarke. Platzierung auf Höhe des untersten Knopfs, Mitte der linken Brustseite (aus Trägersicht links).</td></tr>
+    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett: Frage, QR-Code mit Pfeil, Zeile, Wortmarke.</td></tr>
     <tr><th>QR-Code</th><td>Ziel: <b>{url}</b> — Kachel nicht verkleinern, nicht spiegeln, nicht invertieren, keine Farbänderung. Vor dem Druck einmal vom Andruck scannen (Ergebnis: Standort-Check-Seite).</td></tr>
-    <tr><th>Verfahren</th><td>Vektordaten (PDF, Schriften eingebettet). Empfehlung: Siebdruck oder DTF; bei Flex nur zweifarbig (Creme + Honig), QR-Kachel als Creme-Fläche mit schwarzen Modulen aus dem Polo-Grund lösen.</td></tr>
+    <tr><th>Verfahren</th><td>Vektordaten (PDF, Schriften eingebettet). Empfehlung: Siebdruck oder DTF (drei Farben + QR-Kachel); bei Flex Marke und Wortmarke einfarbig Hell, QR-Kachel als helle Fläche mit schwarzen Modulen aus dem Polo-Grund lösen.</td></tr>
     <tr><th>Stück</th><td>1 (je Vertriebler ein eigener QR-Code – Dateien NICHT vertauschen)</td></tr>
     <tr><th>Auftraggeber</th><td>GreenCareers GmbH · Hansaring 61 · 50670 Köln · Ansprechpartnerin Jana Heinlein</td></tr>
     <tr><th>Termin</th><td>Lieferung bis Montag, 14. September 2026 (Messe 15.–18.09.2026, Nürnberg)</td></tr>
@@ -80,7 +85,15 @@ CSS = f'''
 *{{margin:0;padding:0;box-sizing:border-box;}}
 html,body{{background:#fff;}}
 .page{{page-break-after:always;position:relative;overflow:hidden;font-family:Inter,sans-serif;}}
-.front,.back{{background:{BLACK};color:{CREME};display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14mm 10mm 12mm;}}
+.front,.back{{background:{BLACK};color:{CREME};display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14mm 10mm 12mm;position:relative;}}
+.front{{justify-content:center;gap:5mm;padding:4mm;}}
+.front .marke .mark{{height:60mm;width:auto;}}
+.word.klein{{font-size:7.8mm;white-space:nowrap;}}
+.frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
+.pfeil{{position:absolute;right:26mm;top:44mm;width:64mm;height:auto;transform:rotate(-6deg);}}
+.unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
+.unten .logo .mark{{height:16mm;}}
+.unten .word{{font-size:16mm;}}
 .top{{display:flex;flex-direction:column;align-items:center;gap:4mm;}}
 .eyebrow{{font-size:4.2mm;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:{HONIG};}}
 .back .eyebrow{{font-size:5mm;}}
@@ -112,7 +125,7 @@ def build(person: dict, size: str, domain: str, outdir: str) -> dict:
     url = f"https://{domain}/s/{person['slug']}/"
     html = f'''<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Polo {person["name"]}</title>
 <style>{CSS}@page{{margin:0;}}</style></head><body>
-{page("front", person, url, 250, 300)}
+{page("front", person, url, 90, 100)}
 {page("back", person, url, 300, 380)}
 {spec(person, size, url)}
 </body></html>'''
@@ -124,7 +137,7 @@ def build(person: dict, size: str, domain: str, outdir: str) -> dict:
     # Chrome druckt jede Section mit ihrer eigenen Größe? Nein – @page size ist global.
     # Deshalb je Seite eine eigene Datei mit passender @page-Größe, dann zusammenfügen.
     parts = []
-    for kind, (w, h) in {"front": (250, 300), "back": (300, 380), "spec": (210, 297)}.items():
+    for kind, (w, h) in {"front": (90, 100), "back": (300, 380), "spec": (210, 297)}.items():
         one = html.replace("@page{margin:0;}", f"@page{{size:{w}mm {h}mm;margin:0;}}")
         # nur die gewünschte Section behalten
         import re
@@ -133,9 +146,9 @@ def build(person: dict, size: str, domain: str, outdir: str) -> dict:
         one = re.sub(r"<body>.*</body>", "<body>" + keep.replace("page-break-after:always;", "") + "</body>", one, flags=re.S)
         p = os.path.join(work, f"polo-{person['slug']}-{kind}.html"); open(p, "w", encoding="utf-8").write(one)
         out = os.path.join(work, f"polo-{person['slug']}-{kind}.pdf")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", f"--print-to-pdf={out}", f"file://{p}"], check=True, capture_output=True)
+        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=4000", f"--print-to-pdf={out}", f"file://{p}"], check=True, capture_output=True, timeout=120)
         png = os.path.join(outdir, f"polo-{person['slug']}-{kind}.png")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files", f"--window-size={int(w*3.78)},{int(h*3.78)}", f"--screenshot={png}", f"file://{p}"], check=True, capture_output=True)
+        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files", "--virtual-time-budget=4000", f"--window-size={int(w*3.78)},{int(h*3.78)}", f"--screenshot={png}", f"file://{p}"], check=True, capture_output=True, timeout=120)
         parts.append(out)
     import fitz
     doc = fitz.open()

@@ -20,9 +20,10 @@
   <div class="rubrik mt" id="inserieren"><h2>Inserat aufgeben</h2><span class="rubrik-note">Kostenlos · 60 Tage · nur Mitglieder</span></div>
   <div class="club-form-wrap">
     <div class="club-form nur-mitglied">
-      <h2>Was bieten oder suchen Sie?</h2>
-      <p class="intro">Titel, Kategorie, Beschreibung, Preis – und wie Interessenten Sie erreichen. Ihr Inserat ist sofort online, sofern es keine Links enthält.</p>
+      <h2 data-boerse-form-titel>Was bieten oder suchen Sie?</h2>
+      <p class="intro">Titel, Kategorie, Beschreibung, Preis – und wie Interessenten Sie erreichen. Ihr Inserat ist sofort online, sofern es keine Links enthält. Sie verwalten es selbst: bearbeiten, reservieren, als verkauft markieren, löschen.</p>
       <form data-inserat-form novalidate>
+        <input type="hidden" name="id" value="">
         <div class="field"><label class="label" for="i-titel">Titel</label><input type="text" class="input" id="i-titel" name="titel" maxlength="120" placeholder="z. B. Rüttelplatte 90 kg, Baujahr 2021, wenig Stunden" required></div>
         <div class="row-2">
           <div class="field"><label class="label" for="i-kat">Kategorie</label><select class="input" id="i-kat" name="kategorie"><option value="maschine">Maschine</option><option value="geraet" selected>Gerät</option><option value="material">Material &amp; Pflanzen</option><option value="fahrzeug">Fahrzeug</option><option value="sonstiges">Sonstiges</option></select></div>
@@ -52,14 +53,19 @@
       <a class="btn" href="{{ root }}club/#beitreten">Kostenlos Mitglied werden</a>
     </div>
     <aside class="club-side">
+      <div class="box nur-mitglied">
+        <span class="box-title">Meine Inserate</span>
+        <ul class="mein-liste" data-meine-inserate><li class="mein-leer">Wird geladen …</li></ul>
+        <p class="small muted mt-2">Status setzen, bearbeiten oder löschen – jederzeit, ohne Rückfrage.</p>
+      </div>
       <div class="box">
         <span class="box-title">Regeln der Börse</span>
         <ul class="boerse-regeln">
           <li>Kostenlos für Betriebe und Fachkräfte der Branche, 60 Tage Laufzeit.</li>
           <li>Keine Händlerlisten, keine Neuware von Anbietern, keine Links.</li>
           <li>Kontaktdaten sehen nur Mitglieder – das hält Spam fern.</li>
-          <li>Verkauf, Übergabe und Gewährleistung regeln die Beteiligten untereinander.</li>
-          <li>Die Redaktion prüft Inserate und entfernt, was nicht hierher gehört. Löschung eines eigenen Inserats: kurze Mail an <a href="mailto:{{ site.redaktion_mail }}">{{ site.redaktion_mail }}</a>.</li>
+          <li>Sie verwalten Ihr Inserat selbst: bearbeiten, reserviert, verkauft, löschen. Neue Inserate tragen sieben Tage die Markierung „Neu“.</li>
+          <li>Verkauf, Übergabe und Gewährleistung regeln die Beteiligten untereinander. Die Redaktion entfernt, was nicht in eine Branchenbörse gehört.</li>
         </ul>
       </div>
     </aside>

@@ -21,6 +21,7 @@ WORK = os.path.join(OUT, "_work"); os.makedirs(WORK, exist_ok=True)
 LIGHT, GREEN, LIME, BLACK = "#F2F7F3", "#23A551", "#CDF47A", "#000000"
 PX_MM = 3.78          # Render-Auflösung der Druckmotive (96 dpi)
 MOCK_PX_CM = 12.9     # Mockup: Rumpfbreite ≈ 56 cm ≙ 720 px
+PFEIL = '<svg class="pfeil" viewBox="0 0 120 130" fill="none" stroke="{accent}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 C 36 2, 64 14, 78 44 S 92 96, 80 116"/><path d="M12 15 C 38 6, 62 18, 76 46" stroke-width="3" opacity=".55"/><path d="M60 100 L 80 118 L 100 98"/></svg>'
 MARK = '<svg class="mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'
 
 def qr_svg(url):
@@ -43,6 +44,7 @@ html,body{{background:{BLACK};}}
 .qrwrap svg{{width:100%;height:100%;display:block;}}
 .arrow{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:{LIME};line-height:.9;}}
 .line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;}}
+.pfeil{{width:100%;height:auto;display:block;}}
 .line2{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;line-height:1.25;color:{LIME};}}
 .foot{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,247,243,.6);}}
 '''
@@ -71,15 +73,16 @@ def motiv_brust(w, h):
 </section>'''
 
 def motiv_marke(w, h):
-    """Nur die Marke (Variante C vorn)."""
-    mark = MARK.format(ink=LIGHT, accent=GREEN).replace('class="mark"', 'class="mark" style="height:%smm"' % h)
-    return f'''<section class="art" style="width:{w}mm;height:{h}mm;">{mark}</section>'''
+    """Variante C vorn: Marke, darunter klein die Wortmarke."""
+    mark = MARK.format(ink=LIGHT, accent=GREEN).replace('class="mark"', 'class="mark" style="height:60mm;width:auto"')
+    return f'''<section class="art" style="width:{w}mm;height:{h}mm;gap:5mm;">{mark}<div class="word" style="font-size:8.6mm;">GaLaBau Kompass</div></section>'''
 
 def motiv_reduziert(url, w, h):
-    """Rücken Variante C: QR groß, eine Frage, Wortmarke klein."""
-    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:space-between;">
-  <div class="line1" style="font-size:18mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
+    """Rücken Variante C: Frage, QR groß mit handgezeichnetem Pfeil, Zeile, Wortmarke."""
+    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:space-between;position:relative;">
+  <div class="line1" style="font-size:19mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
   <div class="qrwrap" style="width:190mm;height:190mm;">{qr_svg(url)}</div>
+  <div style="position:absolute;right:26mm;top:44mm;width:64mm;transform:rotate(-6deg);">{PFEIL.format(accent=LIME)}</div>
   <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;">
     <div class="line2" style="font-size:10.5mm;">Kostenlos scannen · Standort-Check</div>
     <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=GREEN)}<div class="word">GaLaBau Kompass</div></div>
@@ -123,7 +126,7 @@ def variante(key, url):
         auflegen(front, render("B-front", motiv_brust(120, 32), 120, 32), 12, 600, cx=640)
         auflegen(back, render("B-back", motiv_voll(url, 300, 380, True), 300, 380), 30, 430)
     else:
-        auflegen(front, render("C-front", motiv_marke(70, 70), 70, 70), 7, 590, cx=640)
+        auflegen(front, render("C-front", motiv_marke(90, 100), 90, 100), 9, 575, cx=640)
         auflegen(back, render("C-back", motiv_reduziert(url, 300, 380), 300, 380), 30, 430)
     fp = os.path.join(OUT, f"variante-{key}-vorne.jpg"); bp = os.path.join(OUT, f"variante-{key}-hinten.jpg")
     front.save(fp, quality=86, optimize=True); back.save(bp, quality=86, optimize=True)
@@ -137,8 +140,8 @@ VARIANTEN = {
           [("Vorne", "Komplettes Motiv 25 × 30 cm, mittig, Oberkante ca. 3 cm unter der Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Zeilen, Pfeil) · QR-Kachel hell mit schwarzen Modulen")]),
     "B": ("Klassisch", "Vorne ein Brustlogo links wie bei einem Firmenpolo, hinten das große Motiv mit QR-Code. Wirkt von vorn seriös, von hinten fordert es zum Scannen auf – die Variante mit dem besten Verhältnis aus Auftreten und Wirkung.",
           [("Vorne", "Brustlogo links 12 × 3,5 cm (Marke + Wortmarke, darunter Claim), auf Höhe der untersten Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 · Lime #CDF47A · QR-Kachel hell mit schwarzen Modulen")]),
-    "C": ("Reduziert", "Vorne nur die Kompassnadel als Marke, hinten der große QR-Code mit einer einzigen Frage: Wie viele Fachkräfte gibt es bei Ihnen? Ruhig, hochwertig, wenig Text – und die Frage ist der Aufhänger fürs Gespräch.",
-          [("Vorne", "Marke 7 × 7 cm, Brust links, 3 cm unter dem Kragenansatz (optional: „galabau-kompass.de“ auf dem Ärmel)"), ("Hinten", "QR 19 cm mit Frage darüber und Wortmarke darunter, Fläche 30 × 38 cm, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 · Lime #CDF47A · QR-Kachel hell mit schwarzen Modulen")]),
+    "C": ("Reduziert", "Vorne die Kompassnadel mit der Wortmarke darunter, hinten die Frage „Wie viele Fachkräfte gibt es bei Ihnen?“, der große QR-Code mit handgezeichnetem Pfeil und die Wortmarke. Ruhig, hochwertig, wenig Text – die Frage ist der Aufhänger fürs Gespräch.",
+          [("Vorne", "Brustlogo links: Marke 6 cm, darunter Wortmarke, Druckfläche 9 × 10 cm, auf Höhe des untersten Knopfs"), ("Hinten", "Frage, QR 19 cm mit Edding-Pfeil, Zeile „Kostenlos scannen · Standort-Check“, Wortmarke – Fläche 30 × 38 cm, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Pfeil, Zeile) · QR-Kachel hell mit schwarzen Modulen")]),
 }
 GROESSEN = [("Fabio Zindel", "Vertrieb, Messe", ""), ("Niklas Kühme", "Vertrieb, Messe", ""), ("Nick Scheffler", "Vertrieb, Messe", ""), ("Julian Kohansal", "Geschäftsführung (optional)", ""), ("Liam Quick", "Geschäftsführung (optional)", "")]
 
@@ -202,11 +205,31 @@ def pdf(bilder, domain):
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=8000", f"--print-to-pdf={out}", f"file://{src}"], check=True, capture_output=True, timeout=180)
     return out
 
+
+def pdf_final(bilder, domain):
+    name, text, spec = VARIANTEN["C"]
+    front, back = bilder["C"]
+    rows = "".join(f'<tr><td>{n}</td><td>{r}</td><td class="feld">{s}</td><td>Schwarz · Variante C</td></tr>' for n, r, s in GROESSEN)
+    pages = [f'''<div class="p">{kopf("Messe GaLaBau 2026 · Polo · Variante C")}<h1>Das Messe-Polo: Variante C</h1>
+<p class="dek">{text} Schwarzes Piqué-Polo, Druck in Hell, Grün und Lime. Jeder Träger bekommt seinen eigenen QR-Code (Ziel: {domain}/s/&lt;kürzel&gt;/ → Standort-Check mit Zuordnung).</p>
+<div class="bilder" style="margin-top:8mm;grid-template-columns:1fr 1fr;gap:10mm;"><div><img src="file://{front}"><div class="l">Vorne</div></div><div><img src="file://{back}"><div class="l">Hinten</div></div></div>{fuss(1)}</div>''',
+     f'''<div class="p">{kopf("Druckangaben")}<div class="var"><div><h2>Druckangaben</h2><div class="spec"><table>''' + "".join(f"<tr><th>{a}</th><td>{b}</td></tr>" for a, b in spec) + f'''<tr><th>Polo</th><td>Schwarz, Baumwoll-Piqué, Kragen und Knopfleiste</td></tr><tr><th>Verfahren</th><td>Siebdruck oder DTF (Vektordaten, Schriften eingebettet); QR-Kachel als helle Fläche mit schwarzen Modulen, nicht invertieren, nicht verkleinern; Andruck einmal scannen</td></tr><tr><th>Druckdaten</th><td>print/&lt;kürzel&gt;/polo-&lt;kürzel&gt;.pdf – Seite 1 vorne (90 × 100 mm), Seite 2 hinten (300 × 380 mm), Seite 3 Datenblatt. Je Person eigener QR – Dateien nicht vertauschen.</td></tr><tr><th>Termin</th><td>Lieferung bis Montag, 14. September 2026 (Messe 15.–18.09., Nürnberg)</td></tr></table></div></div>
+<div class="g"><h2>Größenliste</h2><p class="dek" style="font-size:9.5pt">Herrengrößen S bis 3XL, Piqué fällt normal aus. Freddy nimmt kein Polo.</p><table><tr><th>Name</th><th>Rolle</th><th>Größe</th><th>Polo</th></tr>{rows}</table></div></div>{fuss(2)}</div>''']
+    html = f'<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><style>{PDF_CSS}</style></head><body>{"".join(pages)}</body></html>'
+    src = os.path.join(WORK, "variante-c.html"); open(src, "w", encoding="utf-8").write(html)
+    out = os.path.join(OUT, "polo-variante-c.pdf")
+    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=8000", f"--print-to-pdf={out}", f"file://{src}"], check=True, capture_output=True, timeout=180)
+    return out
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--domain", default="galabau-kompass.de"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--domain", default="galabau-kompass.de"); ap.add_argument("--final", action="store_true", help="nur Variante C als finales PDF"); a = ap.parse_args()
     url = f"https://{a.domain}/s/fabio/"
-    bilder = {k: variante(k, url) for k in "ABC"}
-    out = pdf(bilder, a.domain)
+    if a.final:
+        bilder = {"C": variante("C", url)}
+        out = pdf_final(bilder, a.domain)
+    else:
+        bilder = {k: variante(k, url) for k in "ABC"}
+        out = pdf(bilder, a.domain)
     print("✓", os.path.relpath(out, ROOT), f"{os.path.getsize(out) // 1024} KB")
 
 if __name__ == "__main__":

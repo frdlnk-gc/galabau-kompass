@@ -8,7 +8,7 @@
   <header class="page-head">
     <span class="t-kicker">Ausgaben</span>
     <h1>Jeden Monat eine Ausgabe</h1>
-    <p class="page-dek">Alle Beiträge eines Monats, gesetzt als PDF zum Lesen am Tablet, zum Drucken für den Aufenthaltsraum und zum Weitergeben. Kostenlos. Wer die Ausgabe automatisch bekommen möchte, trägt sich unter <a href="{{ root }}abo/">Ausgabe per E-Mail</a> ein.</p>
+    <p class="page-dek">Alle Beiträge eines Monats, gesetzt als PDF zum Lesen am Tablet, zum Drucken für den Aufenthaltsraum und zum Weitergeben. Kostenlos. Die PDF-Ausgaben sind für Mitglieder des <a href="{{ root }}club/">Kompass Club</a> – die Mitgliedschaft ist kostenlos, Mitglieder bekommen jede Ausgabe automatisch.</p>
   </header>
   <div class="hefte">
     {% for x in ausgaben %}
@@ -18,7 +18,7 @@
         <span class="t-meta"><span class="t-ressort">Ausgabe {{ x.nr }}</span><span>{{ x.artikel|length }} Beiträge</span></span>
         <h3><a href="{{ root }}ausgaben/{{ x.ym }}/">{{ x.titel }}</a></h3>
         <p class="t-dek">{{ x.editorial|truncate(120, True) }}</p>
-        <div class="btn-row"><a class="btn sm" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="mehr-link" href="{{ root }}ausgaben/{{ x.ym }}/">Inhalt</a></div>
+        <div class="btn-row"><a class="btn sm nur-mitglied" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="btn sm ghost nur-gast" href="{{ root }}club/">PDF für Mitglieder</a><a class="mehr-link" href="{{ root }}ausgaben/{{ x.ym }}/">Inhalt</a></div>
       </div>
     </div>
     {% endfor %}

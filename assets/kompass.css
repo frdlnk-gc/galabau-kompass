@@ -61,10 +61,10 @@ h1{font-weight:800;}
 .mt{margin-top:64px;}
 @media(min-width:1024px){.mt{margin-top:88px;}} .mt-s{margin-top:22px;} .mt-1{margin-top:8px;} .mt-2{margin-top:16px;} .mt-3{margin-top:24px;} .mt-4{margin-top:40px;}
 .center{text-align:center;} .muted{color:var(--ink-2);} .small{font-size:.84rem;}
-section{padding:52px 0;}
-@media(min-width:1024px){section{padding:72px 0;}}
-/* Magazin-Seiten steuern Abstände selbst – nur die vertikalen Abstände zurücksetzen, die Ränder bleiben */
-.home section,.artikel-seite section,.ressort-seite section,.archiv-seite section,.ausgaben-seite section,.ausgabe-seite section,.seite section,.club-seite section{padding-top:0;padding-bottom:0;}
+/* Nur die Werkzeugseiten (Standort-Check, Umfrage: <body> ohne Klasse) bekommen den generischen Sektionsabstand;
+   Magazinseiten steuern ihre Abstände je Modul selbst. */
+body:not([class]) section{padding:52px 0;}
+@media(min-width:1024px){body:not([class]) section{padding:72px 0;}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;}}
 
 /* ===== Typo-Bausteine ===== */
@@ -1034,3 +1034,61 @@ a.club-vorteil{text-decoration:none;color:inherit;transition:background .15s,tra
 a.club-vorteil:hover{background:var(--green-mist);transform:translateY(-2px);}
 a.club-vorteil h3{color:var(--ink);}
 @media(max-width:639px){.praxis-band{margin-top:56px;}.pf-grid .pf:nth-child(n+3){display:none;}}
+
+/* ===== v5.2: Mitgliedschaft auf der Karte, Login, Mitgliederbereich, PDF-Gate ===== */
+.ausweis-name-input{display:block;width:100%;background:transparent;border:0;border-bottom:1.5px dashed rgba(242,247,243,.45);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,4.6cqw,1.5rem);letter-spacing:-.02em;line-height:1.1;padding:0 0 4px;outline:none;border-radius:0;}
+.ausweis-name-input::placeholder{color:rgba(242,247,243,.55);font-weight:700;}
+.ausweis-name-input:focus{border-bottom-color:var(--lime);}
+.ausweis.is-mitglied .ausweis-name-input,.ausweis.is-mitglied .ausweis-form,.ausweis.is-mitglied .ausweis-hinweis{display:none;}
+.ausweis:not(.is-mitglied) .ausweis-name{display:none;}
+.ausweis-hinweis{font-size:.72rem;color:var(--light-dim);margin-top:8px;}
+.ausweis-form{display:none;gap:8px;margin-top:12px;}
+.ausweis.is-form{aspect-ratio:auto;}
+.ausweis.is-form .ausweis-form{display:grid;}
+.ausweis.is-form .ausweis-hinweis{display:none;}
+.ausweis-form .input{background:rgba(242,247,243,.1);border-color:rgba(242,247,243,.3);color:#fff;border-radius:10px;padding:10px 12px;font-size:15px;}
+.ausweis-form .input::placeholder{color:rgba(242,247,243,.5);}
+.ausweis-form .input:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(205,244,122,.2);}
+.ausweis-form .abo-kanal{gap:6px;}
+.ausweis-form .kanal{background:rgba(242,247,243,.08);border-color:rgba(242,247,243,.28);color:var(--light);height:32px;font-size:.74rem;padding:0 11px;}
+.ausweis-form .kanal.is-on{background:var(--lime);border-color:var(--lime);color:var(--green-ink);}
+.ausweis-form .check{font-size:.68rem;color:var(--light-dim);line-height:1.4;}
+.ausweis-form .check a{color:var(--mint);}
+.ausweis-form .check input{width:15px;height:15px;margin-top:1px;}
+.ausweis-form .btn{width:100%;margin-top:2px;}
+.ausweis-form .abo-note{color:var(--mint);font-size:.74rem;}
+.ausweis-form .abo-note.err{color:#FCA5A5;}
+.ausweis-form .hp{position:absolute;left:-9999px;}
+.ausweis-willkommen{font-size:.78rem;color:var(--mint);margin-top:6px;line-height:1.4;}
+.ausweis-willkommen:empty{display:none;}
+.login-box{background:var(--bg-2);border-radius:var(--r-box);padding:26px;}
+.login-box h3{font-size:1.15rem;letter-spacing:-.02em;margin-bottom:4px;}
+.login-box p{font-size:.9rem;color:var(--ink-2);margin-bottom:14px;}
+.login-form{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);align-items:end;}
+.login-form .btn{width:100%;}
+.mein-grid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);margin-top:28px;}
+@media(min-width:900px){.mein-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}}
+.mein-liste{list-style:none;margin:0;padding:0;}
+.mein-liste li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-top:1px solid var(--hair);font-size:.92rem;}
+.mein-liste li:first-child{border-top:0;}
+.mein-liste b{font-family:var(--display);font-weight:700;}
+.mein-liste .st{font-family:var(--display);font-size:.64rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--green-deep);white-space:nowrap;}
+.mein-leer{font-size:.88rem;color:var(--ink-3);}
+.pdf-gate{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--ink-3);}
+.pdf-gate a{color:var(--green-deep);font-weight:700;}
+.ausgabe-teaser .pdf-gate{margin-top:14px;}
+
+/* Börse: Status-Pillen, eigene Inserate verwalten */
+.pill.grau{background:var(--bg-3);color:var(--ink-3);}
+.inserat.is-verkauft{opacity:.72;}
+.inserat.is-verkauft h3{text-decoration:line-through;text-decoration-thickness:1px;}
+.mein-liste li{display:grid;gap:8px;}
+.mein-zeile{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.mein-akt{display:flex;flex-wrap:wrap;gap:6px;}
+.mein-akt button,.mein-akt a{font-family:var(--display);font-size:.7rem;font-weight:700;border:1.5px solid var(--hair);background:#fff;border-radius:var(--pill);padding:5px 11px;cursor:pointer;color:var(--ink-2);text-decoration:none;}
+.mein-akt button:hover,.mein-akt a:hover{border-color:var(--green-deep);color:var(--green-deep);}
+.mein-akt .is-on{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+.mein-akt .del{color:#B91C1C;}
+.mein-akt .del:hover{border-color:#B91C1C;color:#B91C1C;}
+
+@media(max-width:600px){.ausweis-kopf .logo-word{font-size:.92rem;}.ausweis-kopf .logo svg{height:24px;}.ausweis-label{white-space:nowrap;font-size:.56rem;}}

@@ -11,7 +11,9 @@
   <meta property="og:title" content="GaLaBau Kompass – Das Magazin für den Garten- und Landschaftsbau">
   <meta property="og:description" content="Das Magazin für den Garten- und Landschaftsbau: Betrieb, Recht, Technik, Produkte, Bauen, Markt, Sicherheit, Karriere.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="assets/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/jakarta-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -224,7 +226,8 @@
         <h2>Ausgabe 09/2026: Nürnberg</h2>
         <p>September 2026 · 5 Beiträge und 1 Meldungen, gesetzt zum Lesen am Tablet und zum Drucken für den Aufenthaltsraum.</p>
         <ul class="inhalt-kurz"><li><a href="artikel/galabau-2026-nuernberg/">GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproblem</a></li><li><a href="artikel/standpunkt-bleibeproblem-statt-nachwuchsproblem/">Die Branche hat kein Nachwuchsproblem. Sie hat ein Bleibeproblem.</a></li><li><a href="artikel/ausbildung-drei-hebel-fuer-den-herbst/">Azubis für 2027: Drei Hebel, die Betriebe jetzt im Herbst umlegen</a></li><li><a href="artikel/e-maschinen-galabau-2026/">Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026 wirklich können</a></li></ul>
-        <div class="btn-row"><a class="btn" href="ausgaben/pdf/galabau-kompass-2026-09.pdf" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="mehr-link" href="ausgaben/">Alle 12 Ausgaben</a></div>
+        <div class="btn-row"><a class="btn nur-mitglied" href="ausgaben/pdf/galabau-kompass-2026-09.pdf" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn nur-gast" href="club/">PDF für Club-Mitglieder</a><a class="mehr-link" href="ausgaben/">Alle 12 Ausgaben</a></div>
+        <p class="pdf-gate nur-gast">Die Monatsausgabe als PDF gibt es für Mitglieder – kostenlos, in einer Minute. <a href="club/">Beitreten</a></p>
       </div>
     </div>
     <div class="meist-card">
@@ -308,7 +311,22 @@
     </div>
     <div class="ausweis leer" data-ausweis-vorschau>
   <div class="ausweis-kopf"><span class="logo" aria-hidden="true"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="kreis" cx="32" cy="32" r="29"/><path class="nadel-n" d="M32 7 42.5 32 32 26.5 21.5 32Z"/><path class="nadel-s" d="M32 57 21.5 32 32 37.5 42.5 32Z"/></svg><span class="logo-word">GaLaBau Kompass</span></span><span class="ausweis-label">Kompass Club</span></div>
-  <div><div class="ausweis-name" data-aw-name>Ihr Name</div><div class="ausweis-nr" data-aw-nr>Mitglied Nr. ····</div></div>
+  <div>
+    <div class="ausweis-name" data-aw-name>Ihr Name</div>
+    <input class="ausweis-name-input" data-aw-input type="text" placeholder="Ihren Namen eintippen …" autocomplete="name" maxlength="120" aria-label="Ihr Name">
+    <div class="ausweis-nr" data-aw-nr>Mitglied Nr. ····</div>
+    <div class="ausweis-hinweis" data-aw-hinweis>Name eintippen, E-Mail dazu, fertig – die Mitgliedschaft ist kostenlos.</div>
+    <form class="ausweis-form" data-ausweis-form novalidate>
+      <input type="email" class="input" name="email" placeholder="ihre@firma.de" autocomplete="email" aria-label="E-Mail-Adresse">
+      <div class="abo-kanal" role="group" aria-label="Montagskompass per"><label class="kanal is-on"><input type="checkbox" name="k_mail" checked><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>E-Mail</span></label><label class="kanal"><input type="checkbox" name="k_wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6a3.6 3.6 0 0 0 1.7.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg><span>WhatsApp</span></label></div>
+      <div data-abo-tel hidden><input type="tel" class="input" name="telefon" placeholder="Handynummer für WhatsApp" autocomplete="tel" aria-label="Handynummer"></div>
+      <label class="check"><input type="checkbox" name="consent"><span>Ich stimme zu, dass GaLaBau Kompass meine Angaben für die Club-Mitgliedschaft und den Montagskompass auf dem gewählten Weg speichert. Austritt jederzeit per E-Mail. <a href="datenschutz/">Datenschutz</a></span></label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn light">Jetzt Mitglied werden</button>
+      <div class="abo-note" data-abo-note></div>
+    </form>
+    <div class="ausweis-willkommen" data-aw-willkommen></div>
+  </div>
   <div class="ausweis-fuss"><span data-aw-seit>seit heute</span><span class="ausweis-stufe st-mitglied" data-aw-stufe>Mitglied</span></div>
 </div>
   </div>

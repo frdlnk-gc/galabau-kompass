@@ -109,7 +109,7 @@
         <span class="box-title">Aus {{ ausgabe.label }}</span>
         <div class="box-ausgabe-grid klein">
           <a class="cover" href="{{ root }}ausgaben/{{ ausgabe.ym }}/"><img src="{{ root }}assets/img/{{ ausgabe.lead.bild }}-thumb.jpg" alt="" loading="lazy" width="640" height="427"><span class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">Nr. {{ ausgabe.lauf }}</span><span class="cover-titel">{{ ausgabe.titel }}</span></span></a>
-          <div class="box-ausgabe-text"><b>{{ ausgabe.titel }}</b><span>{{ ausgabe.monat }} · {{ ausgabe.artikel|length }} Beiträge</span><div class="btn-row"><a class="btn sm" href="{{ root }}{{ ausgabe.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="mehr-link" href="{{ root }}ausgaben/{{ ausgabe.ym }}/">Inhalt</a></div></div>
+          <div class="box-ausgabe-text"><b>{{ ausgabe.titel }}</b><span>{{ ausgabe.monat }} · {{ ausgabe.artikel|length }} Beiträge</span><div class="btn-row"><a class="btn sm nur-mitglied" href="{{ root }}{{ ausgabe.pdf }}" target="_blank" rel="noopener">PDF laden</a><a class="btn sm ghost nur-gast" href="{{ root }}club/">PDF für Mitglieder</a><a class="mehr-link" href="{{ root }}ausgaben/{{ ausgabe.ym }}/">Inhalt</a></div></div>
         </div>
       </div>
       {% endif %}

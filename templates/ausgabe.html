@@ -12,7 +12,7 @@
       <span class="t-kicker">{{ x.monat }} · {{ x.artikel|length }} Beiträge</span>
       <h1>{{ x.label }}: {{ x.titel }}</h1>
       {% if x.editorial %}<p class="editorial">{{ x.editorial }}</p><p class="editorial-sig">Redaktion GaLaBau Kompass</p>{% endif %}
-      <div class="btn-row"><a class="btn" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn ghost" href="{{ root }}ausgaben/">Alle Ausgaben</a></div>
+      <div class="btn-row"><a class="btn nur-mitglied" href="{{ root }}{{ x.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn nur-gast" href="{{ root }}club/">PDF für Club-Mitglieder</a><a class="btn ghost" href="{{ root }}ausgaben/">Alle Ausgaben</a></div>
       <ol class="inhalt">
         {% for a in x.artikel %}<li><a href="{{ root }}artikel/{{ a.slug }}/"><span class="inhalt-nr">{{ loop.index }}</span><span class="inhalt-text"><span class="t-ressort">{{ a.ressort_name }}</span><b>{{ a.title }}</b></span><span class="inhalt-min">{{ a.lesezeit }} Min.</span></a></li>{% endfor %}
       </ol>

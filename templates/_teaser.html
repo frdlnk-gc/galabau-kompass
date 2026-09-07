@@ -71,11 +71,26 @@
 {% endif %}
 {%- endmacro %}
 
-{# Digitaler Mitgliedsausweis (Inhalt füllt das Script aus dem Browser-Speicher) #}
-{% macro ausweis(attr='data-ausweis-vorschau') -%}
+{# Digitaler Mitgliedsausweis: Gäste tippen ihren Namen und werden direkt auf der Karte Mitglied; das Script füllt den Zustand aus dem Browser-Speicher #}
+{% macro ausweis(attr='data-ausweis-vorschau', root='') -%}
 <div class="ausweis leer" {{ attr }}>
   <div class="ausweis-kopf"><span class="logo" aria-hidden="true">{{ LOGO_MARK|safe }}<span class="logo-word">GaLaBau Kompass</span></span><span class="ausweis-label">Kompass Club</span></div>
-  <div><div class="ausweis-name" data-aw-name>Ihr Name</div><div class="ausweis-nr" data-aw-nr>Mitglied Nr. ····</div></div>
+  <div>
+    <div class="ausweis-name" data-aw-name>Ihr Name</div>
+    <input class="ausweis-name-input" data-aw-input type="text" placeholder="Ihren Namen eintippen …" autocomplete="name" maxlength="120" aria-label="Ihr Name">
+    <div class="ausweis-nr" data-aw-nr>Mitglied Nr. ····</div>
+    <div class="ausweis-hinweis" data-aw-hinweis>Name eintippen, E-Mail dazu, fertig – die Mitgliedschaft ist kostenlos.</div>
+    <form class="ausweis-form" data-ausweis-form novalidate>
+      <input type="email" class="input" name="email" placeholder="ihre@firma.de" autocomplete="email" aria-label="E-Mail-Adresse">
+      <div class="abo-kanal" role="group" aria-label="Montagskompass per"><label class="kanal is-on"><input type="checkbox" name="k_mail" checked>{{ ICON_MAIL|safe }}<span>E-Mail</span></label><label class="kanal"><input type="checkbox" name="k_wa">{{ ICON_WA|safe }}<span>WhatsApp</span></label></div>
+      <div data-abo-tel hidden><input type="tel" class="input" name="telefon" placeholder="Handynummer für WhatsApp" autocomplete="tel" aria-label="Handynummer"></div>
+      <label class="check"><input type="checkbox" name="consent"><span>Ich stimme zu, dass GaLaBau Kompass meine Angaben für die Club-Mitgliedschaft und den Montagskompass auf dem gewählten Weg speichert. Austritt jederzeit per E-Mail. <a href="{{ root }}datenschutz/">Datenschutz</a></span></label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn light">Jetzt Mitglied werden</button>
+      <div class="abo-note" data-abo-note></div>
+    </form>
+    <div class="ausweis-willkommen" data-aw-willkommen></div>
+  </div>
   <div class="ausweis-fuss"><span data-aw-seit>seit heute</span><span class="ausweis-stufe st-mitglied" data-aw-stufe>Mitglied</span></div>
 </div>
 {%- endmacro %}

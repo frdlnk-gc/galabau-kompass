@@ -10,10 +10,20 @@
   <div>
     <span class="t-kicker">Kompass Club · kostenlos</span>
     <h1>Der Club für alle, die den GaLaBau voranbringen.</h1>
-    <p class="page-dek">Inhaber, Bauleiter, Vorarbeiter, Fachkräfte, Azubis: Wer im Garten- und Landschaftsbau arbeitet, bekommt hier Mitgliedsnummer, Ausweis, Börse, Vorlagen und den direkten Draht zur Redaktion – kostenlos, ohne Kündigungsfrist.</p>
+    <p class="page-dek">Inhaber, Bauleiter, Vorarbeiter, Fachkräfte, Azubis: Als Mitglied bekommen Sie, was Gäste nicht bekommen – die Kontaktdaten in der Börse, die Vorlagen, jede Monatsausgabe als PDF, den Draht zur Redaktion und Ihren Ausweis mit Status. Kostenlos, ohne Kündigungsfrist.</p>
     <div class="btn-row"><a class="btn" href="#beitreten">Kostenlos Mitglied werden</a><span class="kostenlos">✓ Kein Beitrag, keine Werbung</span></div>
   </div>
-  {{ ausweis('data-ausweis') }}
+  {{ ausweis('data-ausweis', root) }}
+</section>
+
+<section class="container" id="mein-kompass" data-mein hidden>
+  <div class="rubrik mt"><h2>Mein Kompass</h2><button type="button" class="btn-link" data-abmelden>Auf diesem Gerät abmelden</button></div>
+  <div class="mein-grid">
+    <div class="box"><span class="box-title">Meine Inserate</span><ul class="mein-liste" data-mein-inserate><li class="mein-leer">Wird geladen …</li></ul></div>
+    <div class="box"><span class="box-title">Meine Praxisfragen</span><ul class="mein-liste" data-mein-fragen><li class="mein-leer">Wird geladen …</li></ul></div>
+    <div class="box"><span class="box-title">Der Montagskompass</span><p class="small" data-mein-kanal>Wird geladen …</p><p class="small muted mt-1">Kanal ändern oder abmelden: kurze Mail an <a href="mailto:{{ site.redaktion_mail }}">{{ site.redaktion_mail }}</a>.</p></div>
+    <div class="box"><span class="box-title">Für Mitglieder</span><ul class="regeln"><li><span>Alle Monatsausgaben als PDF</span><b><a href="{{ root }}ausgaben/">→</a></b></li><li><span>Vorlagen für den Betrieb</span><b><a href="{{ root }}vorlagen/">→</a></b></li><li><span>Kompass-Börse mit Kontaktdaten</span><b><a href="{{ root }}boerse/">→</a></b></li><li><span>Praxisfrage stellen</span><b><a href="#praxisfrage">→</a></b></li></ul></div>
+  </div>
 </section>
 
 <section class="container">
@@ -128,6 +138,16 @@
       </div>
     </div>
     <aside class="club-side">
+      <div class="login-box nur-gast">
+        <h3>Bereits Mitglied?</h3>
+        <p>Auf einem neuen Gerät anmelden: E-Mail-Adresse und Mitgliedsnummer genügen. Die Nummer steht auf Ihrem Ausweis und in der Bestätigung.</p>
+        <form class="login-form" data-login-form novalidate>
+          <div class="field"><label class="label" for="l-email">E-Mail</label><input type="email" class="input" id="l-email" name="email" placeholder="ihre@firma.de" autocomplete="email"></div>
+          <div class="field"><label class="label" for="l-nr">Mitgliedsnummer</label><input type="text" class="input" id="l-nr" name="nr" placeholder="z. B. 0042" inputmode="numeric"></div>
+          <div class="field"><button type="submit" class="btn">Anmelden</button></div>
+          <div class="abo-note" data-abo-note></div>
+        </form>
+      </div>
       <div class="box">
         <span class="box-title">Ihr Status</span>
         <div class="punkte-zeile"><span><b data-punkte>0</b> Kompass-Punkte</span><span class="ausweis-stufe st-mitglied" data-stufe-name>Mitglied</span></div>
@@ -164,7 +184,7 @@
   <div class="rubrik mt"><h2>Häufige Fragen</h2></div>
   <div class="faq">
     <details><summary>Was kostet die Mitgliedschaft?</summary><p>Nichts. Es gibt keinen Beitrag, keine Probezeit und keine Kündigungsfrist. Wer austreten möchte, schreibt eine E-Mail an {{ site.redaktion_mail }}, und wir löschen die Daten.</p></details>
-    <details><summary>Wer darf in der Börse inserieren?</summary><p>Jedes Mitglied – Betriebe wie Fachkräfte. Kostenlos, 60 Tage Laufzeit, keine Händlerlisten, keine Links. Kontaktdaten sehen nur Mitglieder. Die Redaktion prüft Inserate und entfernt, was nicht in eine Branchenbörse gehört.</p></details>
+    <details><summary>Wer darf in der Börse inserieren?</summary><p>Jedes Mitglied – Betriebe wie Fachkräfte. Kostenlos, 60 Tage Laufzeit, keine Händlerlisten, keine Links. Kontaktdaten sehen nur Mitglieder. Sie verwalten Ihr Inserat selbst unter „Mein Kompass“: bearbeiten, reservieren, als verkauft markieren, löschen. Die Redaktion entfernt, was nicht in eine Branchenbörse gehört.</p></details>
     <details><summary>Wer steht hinter dem Club?</summary><p>Die Redaktion von GaLaBau Kompass. Herausgeber und Verantwortliche finden Sie im <a href="{{ root }}impressum/">Impressum</a>.</p></details>
     <details><summary>Was passiert mit meinen Daten?</summary><p>Name, E-Mail und die optionalen Angaben nutzen wir ausschließlich für die Mitgliedschaft, die Börse und den Versand des Montagskompass. Keine Weitergabe an Dritte, keine Werbung von Herstellern. Details in der <a href="{{ root }}datenschutz/">Datenschutzerklärung</a>.</p></details>
     <details><summary>Brauche ich ein Passwort?</summary><p>Nein. Ausweis, Punkte und Status liegen in Ihrem Browser. Ein Login mit Übernahme auf andere Geräte ist in Vorbereitung.</p></details>
