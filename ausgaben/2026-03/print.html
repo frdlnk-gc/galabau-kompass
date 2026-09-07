@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 03/2026</title>
+<style>
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
+  /* Cover */
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz ul{margin-left:4mm;}
+  .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
+  .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
+  .art .kurz dt{font-weight:700;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/vom-landschaftsgaertner-zum-bauleiter.jpg" alt="">
+    <div class="kopf">
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
+      <div class="nr">Nr. 6 · Ausgabe<b>03/2026</b>März 2026</div>
+    </div>
+    <div class="titel"><span class="kick">Karriere &amp; Weiterbildung</span><h1>Vom Landschaftsgärtner zum Bauleiter: Drei Wege, ein Ziel</h1><p>Bauleiter sind laut Trendbarometer der Messe die knappste Position im GaLaBau. Meister, Techniker oder Studium – welcher Weg zu wem passt, was er kostet und wie das Aufstiegs-BAföG hilft.</p></div>
+    <div class="teaser"><span>BGL-Bildungspreis 2026: Neun Nachwuchskräfte,...</span><span>50 Pflanzen in 30 Minuten: Wie die Pflanzenke...</span><span>Das Einwanderungsrecht ist fertig. Die Visast...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Saisonstart</h2><p>Sechs Themen aus dem Betriebsalltag, die gern liegen bleiben: der Maschinen-Check mit seinen Prüfpflichten, die Fortbildungspflicht im Pflanzenschutz, die Führerscheinfrage beim Anhänger, die Pflanzenkenntnis-Prüfung der Azubis und der Weg vom Landschaftsgärtner zum Bauleiter. Dazu die Preisträger des BGL-Bildungspreises 2026.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Produkte &amp; Software</div><div class="t">Wacker Neuson EZ17e: Der Elektro-Minibagger, der einen Arbeitstag ohne Steckdose schafft</div></div></li><li><span class="s">5</span><div><div class="r">Messe &amp; Termine</div><div class="t">BGL-Bildungspreis 2026: Neun Nachwuchskräfte, drei Ausbildungsbetriebe, 21.000 Euro</div></div></li><li><span class="s">7</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">50 Pflanzen in 30 Minuten: Wie die Pflanzenkenntnis-Prüfung läuft – und wie Betriebe ihre Azubis vorbereiten</div></div></li><li><span class="s">9</span><div><div class="r">Standpunkt</div><div class="t">Das Einwanderungsrecht ist fertig. Die Visastellen sind es nicht.</div></div></li><li><span class="s">11</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">Vom Landschaftsgärtner zum Bauleiter: Drei Wege, ein Ziel</div></div></li><li><span class="s">13</span><div><div class="r">Technik &amp; Digital</div><div class="t">Transporter mit Anhänger: Wann B reicht, wann B96, wann BE – und was die EU ändert</div></div></li><li><span class="s">15</span><div><div class="r">Technik &amp; Digital</div><div class="t">Saisonstart: Der Maschinen-Check vor dem ersten Einsatz – und welche Prüfungen Pflicht sind</div></div></li><li><span class="s">17</span><div><div class="r">Bauen &amp; Pflanzen</div><div class="t">Sachkunde im Pflanzenschutz: Alle drei Jahre Fortbildung – sonst ist Schluss mit Spritzen</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><span class="r">Produkt · Produkte &amp; Software</span><h1>Wacker Neuson EZ17e: Der Elektro-Minibagger, der einen Arbeitstag ohne Steckdose schafft</h1><p class="dek">1,7-Tonnen-Klasse, 23,4 Kilowattstunden Akku, Zero Tail: Der EZ17e ist die Maschine, mit der viele Betriebe zum ersten Mal elektrisch baggern. Was er kann, was er kostet und wo er an Grenzen stößt.</p><div class="byline">Redaktion GaLaBau Kompass · 31. März 2026</div></div>
+<figure><img src="../../assets/img/wacker-neuson-ez17e-elektro-minibagger.jpg" alt=""><figcaption>Kein Abgas, wenig Lärm: Im Innenhof spielt der Elektroantrieb seinen Vorteil aus. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Batterie mit 23,4 kWh, laut Hersteller ausreichend für einen normalen Arbeitstag ohne Zwischenladen; Laden an jeder Stromquelle von 100 bis 415 Volt.</li><li>Grabtiefe 2,49 Meter, Losbrechkraft 20,5 kN, Betriebsgewicht 1,8 bis 2,2 Tonnen – die Leistungswerte entsprechen dem Diesel-Schwestermodell.</li><li>Lohnt sich für Innenräume, Innenstädte, Nachtarbeit und Ausschreibungen mit Emissionsauflagen; auf dem freien Feld entscheidet der Preis.</li></ul></div><div class="kurz steck"><b>Steckbrief</b><dl><dt>Hersteller</dt><dd>Wacker Neuson SE, München</dd><dt>Kategorie</dt><dd>Elektrischer Zero-Tail-Minibagger, 1,7-t-Klasse</dd><dt>Antrieb</dt><dd>Lithium-Ionen-Batterie 23,4 kWh, Betrieb wahlweise im Akku- oder Netzbetrieb</dd><dt>Leistungsdaten</dt><dd>Grabtiefe max. 2.490 mm, Grabradius max. 4.060 mm, Losbrechkraft max. 20,5 kN, Betriebsgewicht 1.797 bis 2.152 kg</dd><dt>Laden</dt><dd>100 bis 415 Volt, integrierte Batterieheizung, im Netzbetrieb gleichzeitig laden und arbeiten</dd><dt>Preis</dt><dd>Auf Anfrage über Händler oder Miete; deutlich über dem Diesel-Pendant (Herstellerangabe zum Aufpreis liegt uns nicht vor)</dd><dt>Für wen</dt><dd>Betriebe mit Aufträgen in Innenräumen, Innenstädten, Nachtbaustellen und emissionsbeschränkten Ausschreibungen</dd><dt>Stand</dt><dd>Herstellerangaben, abgerufen September 2026</dd></dl></div>    <div class="text"><p>Der EZ17e ist kein Konzeptfahrzeug, sondern seit Jahren im Vermietpark und auf Baustellen unterwegs. Wacker Neuson hat das Diesel-Schwestermodell EZ17 elektrifiziert, ohne die Geometrie zu ändern: gleicher Ausleger, gleiche Grabtiefe, gleicher Zero-Tail-Aufbau, bei dem das Heck beim Schwenken nicht über die Ketten hinausragt. Wer die Maschine kennt, findet sich sofort zurecht.</p>
+<h2>Was den Unterschied macht</h2>
+<p>Die Batterie fasst 23,4 Kilowattstunden. Nach Herstellerangaben reicht das für einen normalen Arbeitstag ohne Zwischenladen – im GaLaBau-Alltag mit Pausen, Umsetzen und Handarbeit ist das plausibel, bei durchgehendem Lösen von schwerem Boden nicht. Zwei Details sind für die Praxis entscheidender als die Kapazität: Die Maschine lädt an jeder Stromquelle zwischen 100 und 415 Volt, also auch an der Haushaltssteckdose über Nacht, und sie kann am Kabel arbeiten und dabei laden. Auf einer Innenhof-Baustelle mit Stromanschluss ist die Reichweitenfrage damit erledigt.</p>
+<p>Eine integrierte Batterieheizung sorgt dafür, dass der Akku auch im Winter geladen werden kann. Das wartungsfreie Batteriesystem ist patentiert; Ölwechsel, Filter und Kühlflüssigkeit für den Motor entfallen.</p>
+<h2>Leistung</h2>
+<p>Grabtiefe 2,49 Meter, Grabradius 4,06 Meter, Losbrechkraft 20,5 kN, Betriebsgewicht je nach Ausstattung zwischen 1,8 und 2,2 Tonnen: Das sind die Werte der Diesel-Klasse. Der Elektromotor liefert sein Drehmoment sofort, was beim Anreißen von verdichtetem Boden angenehm ist. Was fehlt, ist das Motorgeräusch – wer neben der Maschine arbeitet, hört Hydraulik und Ketten, nicht mehr. In Wohngebieten und bei Nachtarbeit ist das der eigentliche Grund, warum Betriebe die Maschine anfragen.</p>
+<div class="kasten"><b>Rechnen statt glauben</b>Die Maschine kostet in der Anschaffung deutlich mehr als das Diesel-Modell; eine belastbare Herstellerangabe zum Aufpreis liegt uns nicht vor, Händler nennen die Zahl auf Anfrage. Dagegen stehen: keine Kraftstoffkosten, geringere Wartung, Zugang zu Baustellen, die für Verbrenner gesperrt sind, und Ausschreibungen, die emissionsfreie Geräte verlangen oder bevorzugen. Wer zwei bis drei solcher Aufträge im Jahr hat, sollte rechnen – wer keinen hat, mietet die Maschine für den Einzelfall.</div>
+
+<h2>Grenzen</h2>
+<p>Die Ladeinfrastruktur auf der Baustelle ist die erste Grenze: Ohne Stromanschluss braucht die Maschine abends einen Platz an der Steckdose, und der Transport zum Hof kostet Zeit. Die zweite ist das Gewicht beim Transport – mit Anhängerklasse BE ist die 1,7-Tonnen-Klasse gut zu bewegen, mit B96 wird es eng. Die dritte ist der Preis, der ohne konkrete Aufträge schwer zu rechtfertigen ist.</p>
+<h2>Für wen</h2>
+<p>Für Betriebe mit Innenraum- und Innenstadtprojekten, für Kommunalaufträge mit Emissionsvorgaben, für Nachtbaustellen und für alle, die ihren Fuhrpark in den nächsten Jahren ohnehin umstellen müssen. Für den reinen Privatgartenbetrieb im ländlichen Raum ist der Diesel vorerst die wirtschaftlichere Wahl – bis die Preise fallen oder die Auflagen steigen.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Wacker Neuson: Elektrischer Zero Tail Kettenbagger EZ17e (technische Daten, Ladekonzept) – <a href="https://www.wackerneuson.de/zero-emission/elektro-bagger/ez17e">www.wackerneuson.de/zero-emission/elektro-bagger/ez17e</a></li><li>electrive.net: Wacker Neuson zeigt E-Minibagger EZ17e, 13. August 2020 – <a href="https://www.electrive.net/2020/08/13/wacker-neuson-zeigt-e-minibagger-ez17e/">www.electrive.net/2020/08/13/wacker-neuson-zeigt-e-miniba...</a></li><li>HKL Baumaschinen: Wacker Neuson EZ17e (Betriebsgewicht, Abmessungen) – <a href="https://www.hkl-baumaschinen.de/neuson-ez17e">www.hkl-baumaschinen.de/neuson-ez17e</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Produkte &amp; Software</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Messe &amp; Termine</span><h1>BGL-Bildungspreis 2026: Neun Nachwuchskräfte, drei Ausbildungsbetriebe, 21.000 Euro</h1><p class="dek">Der Bundesverband zeichnet 2026 erstmals auch Ausbildungsbetriebe aus. Die Preise werden auf der GaLaBau in Nürnberg verliehen. Wer gewonnen hat – und was die Betriebe anders machen.</p><div class="byline">Redaktion GaLaBau Kompass · 27. März 2026</div></div>
+<figure><img src="../../assets/img/bgl-bildungspreis-2026.jpg" alt=""><figcaption>Drei Kategorien, drei Bundesländer je Kategorie: Der BGL-Bildungspreis 2026 zeigt, wo Ausbildung funktioniert. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Neun Nachwuchskräfte und erstmals drei Ausbildungsbetriebe werden ausgezeichnet; 15.000 Euro gehen an Nachwuchskräfte, 6.000 Euro an Betriebe.</li><li>Fünf der sechs ausgezeichneten Nachwuchskräfte sind Frauen – in einem Beruf mit rund 11 Prozent Frauenanteil unter den Azubis.</li><li>Der Betrieb Kreye taucht zweimal auf, als Arbeitgeber und als Ausbildungsbetrieb: gute Ausbildung ist selten Zufall; Verleihung auf der GaLaBau 2026.</li></ul></div>    <div class="text"><p>Der Bundesverband Garten-, Landschafts- und Sportplatzbau (BGL) hat die Preisträger des Bildungspreises 2026 bekanntgegeben. Zum ersten Mal gibt es neben den Kategorien Ausbildung und Fortbildung eine dritte: den Ausbildungsbetrieb. Insgesamt 15.000 Euro gehen an Nachwuchskräfte, 6.000 Euro an Betriebe. Verliehen werden die Preise auf der GaLaBau 2026 in Nürnberg.</p>
+<h2>Die Preisträger</h2>
+<p><strong>Kategorie Ausbildung</strong></p>
+<ul>
+<li>Hanna Kanzelmeier, Garten- und Landschaftsbau Kreye (Niedersachsen-Bremen)</li>
+<li>Sebastian Murrmann, Rauch Garten- und Landschaftsbau (Bayern)</li>
+<li>Miriam Rieger, Blattwerk Gartengestaltung (Baden-Württemberg)</li>
+</ul>
+<p><strong>Kategorie Fortbildung</strong></p>
+<ul>
+<li>Verena-Maria Alt, Pohl Gärten (Bayern)</li>
+<li>Mischa Engels, Büscher Garten- &amp; Landschaftsbau (Nordrhein-Westfalen)</li>
+<li>Sophie Spindler, Tetje Böger Garten- und Landschaftsbau (Niedersachsen-Bremen)</li>
+</ul>
+<p><strong>Kategorie Ausbildungsbetrieb (Premiere)</strong></p>
+<ul>
+<li>BOHR – Ihr Gärtner von Eden (Rheinland-Pfalz/Saarland)</li>
+<li>Erhardt Garten- und Landschaftsbau (Baden-Württemberg)</li>
+<li>Garten- und Landschaftsbau Kreye (Niedersachsen-Bremen)</li>
+</ul>
+<p>BGL-Vizepräsident Matthias Lösch sieht im Preis einen Beleg dafür, wie viel Engagement, Können und Verantwortungsbewusstsein im Nachwuchs der Branche stecken.</p>
+<h2>Was auffällt</h2>
+<p>Zwei Dinge fallen an der Liste auf. Erstens: Fünf der sechs ausgezeichneten Nachwuchskräfte sind Frauen – in einem Beruf, in dem der Frauenanteil unter den Auszubildenden bei rund 11 Prozent liegt. Wer als Betrieb junge Frauen gewinnen will, findet hier die Vorbilder, die in Anzeigen und auf Berufsmessen fehlen. Zweitens: Der Betrieb Kreye taucht zweimal auf, als Arbeitgeber einer Preisträgerin und als ausgezeichneter Ausbildungsbetrieb. Gute Ausbildung ist selten Zufall; sie ist Organisation.</p>
+<div class="kasten"><b>Was ausgezeichnete Ausbildungsbetriebe gemeinsam haben</b>Feste Ausbildungsbeauftragte statt „der Vorarbeiter macht das mit". Ein Ausbildungsplan, der die Inhalte der drei Jahre auf Baustellen und Jahreszeiten verteilt. Regelmäßige Gespräche mit den Auszubildenden, nicht nur vor der Prüfung. Und die Bereitschaft, Azubis in Wettbewerbe und Prüfungen zu schicken, bei denen sie sich mit anderen messen.</div>
+
+<h2>Für Betriebe</h2>
+<p>Die neue Kategorie ist eine Einladung. Betriebe, die systematisch ausbilden, können sich für 2028 bewerben – und schon vorher mit der Auszeichnung ihrer Landesverbände arbeiten. In einem Markt, in dem 3.221 Jugendliche pro Jahr eine Ausbildung im GaLaBau beginnen und Betriebe um jeden von ihnen konkurrieren, ist „ausgezeichneter Ausbildungsbetrieb&rdquo; ein Argument, das auf jede Stellenanzeige gehört.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>B_I galabau: BGL-Bildungspreis 2026 – Das sind die Gewinner im GaLaBau, 27. März 2026 (Preisträger, Kategorien, Preisgelder 15.000 Euro und 6.000 Euro, Zitat Matthias Lösch) – <a href="https://bau.bi/galabau/nachrichten/auszeichnung-galabau-bundesverband-verleiht-bildungspreis-2026-g21433">bau.bi/galabau/nachrichten/auszeichnung-galabau-bundesver...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Messe &amp; Termine</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Karriere &amp; Weiterbildung</span><h1>50 Pflanzen in 30 Minuten: Wie die Pflanzenkenntnis-Prüfung läuft – und wie Betriebe ihre Azubis vorbereiten</h1><p class="dek">Pflanzenkenntnisse sind das Prüfungsfach, an dem Landschaftsgärtner am häufigsten scheitern. Was die Pflanzenliste verlangt, warum der botanische Name zählt und wie fünf Minuten pro Woche den Unterschied machen.</p><div class="byline">Redaktion GaLaBau Kompass · 24. März 2026</div></div>
+<figure><img src="../../assets/img/pflanzenkenntnis-pruefung-50-pflanzen.jpg" alt=""><figcaption>Gattung, Art, deutscher Name: Die Prüfung fragt alle drei. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Abschlussprüfung: 50 Pflanzen in 30 Minuten erkennen und mit Gattung, Art und deutschem Namen benennen, dazu 30 Minuten schriftlich.</li><li>Grundlage sind die Pflanzenlisten der Länder mit mehreren hundert Arten; vorrangig markierte Pflanzen bilden den Schwerpunkt der Zwischenprüfung.</li><li>Betriebe sind zuständig: fünf Pflanzen pro Woche, Herbarium ab dem ersten Lehrjahr, Baumschulbesuch, Pflanzplan als Übung, Simulation zwei Monate vor der Prüfung.</li></ul></div>    <div class="text"><p>In der Abschlussprüfung zum Landschaftsgärtner ist Pflanzenkenntnis ein eigenes Fach – und das mit der höchsten Durchfallquote. Der Prüfling bekommt 50 Pflanzen vorgelegt, als Zweige, Töpfe, Blätter oder Früchte, und hat 30 Minuten, sie zu erkennen und mit Gattung, Art und deutschem Namen zu benennen. Danach folgen 30 Minuten schriftliche Fragen zu Verwendung, Standort, Pflege und Eigenschaften. Wer im Betrieb drei Jahre lang Pflaster verlegt hat und im dritten Lehrjahr anfängt, Pflanzen zu lernen, hat ein Problem.</p>
+<h2>Die Pflanzenliste</h2>
+<p>Grundlage ist die Pflanzenliste des jeweiligen Landes, im Garten- und Landschaftsbau mit mehreren hundert Arten: Laub- und Nadelgehölze, Stauden, Gräser, Zwiebelpflanzen, Rasengräser, Kletterpflanzen. Die Listen der Länder unterscheiden sich im Detail, ähneln sich aber im Kern. In Bayern sind die Pflanzen, die vorrangig gelernt werden sollen, markiert – sie bilden den Schwerpunkt der Zwischenprüfung. Für die Abschlussprüfung gilt die ganze Liste, und dazu kommen Wildkräuter, Gründüngungspflanzen und geschützte Arten, die nicht in der Liste stehen, aber gefragt werden können.</p>
+<p>Botanische Namen sind Pflicht. „Buche“ reicht nicht, wenn <em>Fagus sylvatica</em> verlangt ist; „Hainbuche“ ist <em>Carpinus betulus</em> und mit der Buche nicht verwandt. Die Prüfer wissen, dass die Rechtschreibung lateinischer Namen schwerfällt – sie bewerten den Namen, nicht jeden Buchstaben.</p>
+<h2>Warum Betriebe zuständig sind</h2>
+<p>Die Berufsschule vermittelt die Systematik, den Alltag mit Pflanzen vermittelt der Betrieb – oder eben nicht. Wer seine Auszubildenden überwiegend im Wegebau einsetzt, muss die Pflanzen anders in die Ausbildung holen. Vier Methoden haben sich bewährt.</p>
+<p><strong>Fünf Pflanzen pro Woche.</strong> Der Ausbilder oder Vorarbeiter benennt am Montag fünf Pflanzen von der aktuellen Baustelle oder dem Hof, mit Zettel am Zweig. Am Freitag werden sie abgefragt. Über drei Jahre sind das mehr als 600 Begegnungen mit der Liste.</p>
+<p><strong>Das Herbarium.</strong> Die meisten Berufsschulen verlangen es ohnehin: gepresste Blätter, Zweige, Blüten, mit Fundort und Datum. Wer es im ersten Lehrjahr beginnt, hat im dritten eine eigene Pflanzenliste in der Hand.</p>
+<p><strong>Baumschule und Staudengärtnerei.</strong> Ein halber Tag im Frühjahr und einer im Herbst, mit einer Liste der 50 wichtigsten Gehölze und Stauden – Betriebe, die von diesen Lieferanten kaufen, bekommen den Termin meist gern.</p>
+<p><strong>Die Baustelle als Prüfung.</strong> Jeder Pflanzplan ist eine Übung: Der Azubi ordnet die gelieferte Ware anhand der Etiketten dem Plan zu und benennt sie, bevor gepflanzt wird. Das kostet zehn Minuten und trainiert genau das, was die Prüfung verlangt.</p>
+<div class="kasten"><b>Apps und Bestimmungsbücher</b>Bestimmungs-Apps sind im Alltag nützlich und in der Prüfung nicht erlaubt. Sie ersetzen das Lernen nicht, weil sie erkennen, statt zu erklären. Als Kontrolle beim Herbarium und als Nachschlagewerk für die Verwendung sind sie in Ordnung – als Lernmethode nicht.</div>
+
+<h2>Die Prüfung im Betrieb üben</h2>
+<p>Zwei Monate vor der Zwischen- und vor der Abschlussprüfung lohnt eine Simulation: 50 Pflanzen aus Hof, Baustelle und Baumschule, 30 Minuten, Zettel und Stift, danach gemeinsame Korrektur. Der Azubi weiß anschließend, wo er steht; der Betrieb weiß, ob er in den letzten Wochen Zeit freischaufeln muss. Ein Prüfling, der an den Pflanzen scheitert, wiederholt die gesamte Prüfung ein halbes Jahr später – und ist in dieser Zeit kein Facharbeiter. Das ist der teuerste halbe Tag im Betrieb, den man mit fünf Pflanzen pro Woche verhindern kann.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Landwirtschaftskammer Nordrhein-Westfalen: Informationen zur schriftlichen Abschlussprüfung im Beruf Gärtner/Gärtnerin (Pflanzenkenntnisse: 50 Pflanzen erkennen und benennen in 30 Minuten, dazu 30 Minuten schriftlicher Teil) – <a href="https://www.landwirtschaftskammer.de/bildung/gaertner/pruefungen/aufgaben.htm">www.landwirtschaftskammer.de/bildung/gaertner/pruefungen/...</a></li><li>Bayerisches Staatsministerium für Ernährung, Landwirtschaft, Forsten und Tourismus: Pflanzenliste Garten- und Landschaftsbau (Stand Mai 2022) – <a href="https://www.stmelf.bayern.de/mam/cms01/berufsbildung/dateien/pflanzenliste_gala.pdf">www.stmelf.bayern.de/mam/cms01/berufsbildung/dateien/pfla...</a></li><li>Landwirtschaftskammer Niedersachsen: Gärtner/Gärtnerin – Prüfung: Beispielfragen aus allen Wissensgebieten – <a href="https://www.lwk-niedersachsen.de/lwk/news/31692_GaertnerGaertnerin_-_Pruefung_Beispielfragen_aus_allen_Wissensgebieten">www.lwk-niedersachsen.de/lwk/news/31692_GaertnerGaertneri...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Standpunkt · Standpunkt</span><h1>Das Einwanderungsrecht ist fertig. Die Visastellen sind es nicht.</h1><p class="dek">Westbalkanregelung, Chancenkarte, Anerkennungspartnerschaft: Seit Juni 2024 hat die Branche alle Instrumente, um Fachkräfte aus dem Ausland zu holen. Woran es scheitert, steht in keinem Gesetz – es steht in den Wartelisten der Botschaften.</p><div class="byline">Redaktion GaLaBau Kompass · 20. März 2026</div></div>
+<figure><img src="../../assets/img/standpunkt-einwanderungsrecht-fertig-visastellen-nicht.jpg" alt=""><figcaption>Vertrag unterschrieben, Kleidung bestellt, Platz frei: Die Fachkraft wartet auf einen Termin bei der Botschaft. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Das Recht ist praktikabel: 50.000 Zustimmungen pro Jahr über die Westbalkanregelung, die Chancenkarte, die Anerkennungspartnerschaft.</li><li>Betriebe berichten von monatelangen Wartezeiten auf Visumtermine – die Fachkraft ist eingestellt, aber nicht da.</li><li>Die Redaktion meint: Wer Fachkräfte einlädt, muss Termine liefern. Digitale Verfahren und Priorität für Mangelberufe wären der nächste Schritt, nicht das nächste Gesetz.</li></ul></div>    <div class="text"><p>Selten hat ein Gesetz so gut zu einer Branche gepasst. Die Westbalkanregelung erlaubt Betrieben, Arbeitskräfte aus sechs Ländern ohne Anerkennung und ohne Qualifikationsnachweis einzustellen – 50.000 Zustimmungen pro Jahr, seit Juni 2024 verdoppelt und unbefristet. Die Anerkennungspartnerschaft holt Fachkräfte mit Abschluss ins Land, bevor das Anerkennungsverfahren abgeschlossen ist. Die Chancenkarte bringt Suchende her, die man zur Probe arbeiten lassen darf. Für einen Beruf, den es in den Herkunftsländern kaum als formalen Abschluss gibt, ist das ein maßgeschneidertes Instrument.</p>
+<p>Und dann passiert Folgendes: Der Betrieb hat den Bewerber gefunden, den Vertrag unterschrieben, die Wohnung organisiert, die Bundesagentur hat zugestimmt – und die Fachkraft wartet auf einen Termin bei der deutschen Auslandsvertretung. Wochen. Monate. Betriebe berichten von Vertragsbeginnen, die zweimal verschoben wurden, von Bewerbern, die in der Wartezeit ein Angebot aus einem anderen Land angenommen haben, von Wohnungen, die leer bezahlt wurden.</p>
+<h2>Das Problem ist keine Rechtsfrage</h2>
+<p>Kein Paragraf verlangt, dass ein Visumtermin Monate dauert. Es fehlt an Personal in den Botschaften, an digitalen Verfahren, an einer Priorisierung für Berufe, in denen der Mangel amtlich festgestellt ist. Jedes weitere Gesetz, das die Einreise erleichtert, verlängert die Schlange vor derselben Tür.</p>
+<p>Was helfen würde, ist unspektakulär: Termine, die online gebucht und innerhalb von Wochen vergeben werden. Anträge, die digital vollständig eingereicht werden, statt in Papierform bei einem Dienstleister. Eine Spur für Bewerber mit Arbeitsvertrag in Mangelberufen, so wie es sie für Hochqualifizierte längst gibt. Und Kammern, die Betriebe durch das Verfahren lotsen, statt sie auf Merkblätter zu verweisen.</p>
+<h2>Was Betriebe bis dahin tun</h2>
+<p>Früh anfangen – ein halbes Jahr vor dem gewünschten Arbeitsbeginn. Unterlagen vollständig und beglaubigt vorbereiten, bevor der Termin kommt. Verträge mit Beginn „nach Erteilung des Visums“ datieren. Und in der Wartezeit Kontakt halten: Ein Bewerber, der monatelang nichts hört, ist ein Bewerber, der woanders anfängt.</p>
+<p>Die Branche hat ihre Hausaufgaben gemacht. Jetzt wäre die Verwaltung dran.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesministerium des Innern: Punktesystem für die Chancenkarte gilt ab 1. Juni 2024, Pressemitteilung vom 31. Mai 2024 – <a href="https://www.bmi.bund.de/SharedDocs/pressemitteilungen/DE/2024/05/chancenkarte-feg.html">www.bmi.bund.de/SharedDocs/pressemitteilungen/DE/2024/05/...</a></li><li>Arbeitsmarktzugang für Geflüchtete: Kontingent nach Westbalkanregelung auf 50.000 Personen pro Jahr erhöht – <a href="https://arbeitsmarktzugang.de/seit-1-juni-gibt-es-die-chancenkarte-und-kontingent-nach-westbalkanregelung-wird-auf-50-000-personen-jahr-erhoeht/">arbeitsmarktzugang.de/seit-1-juni-gibt-es-die-chancenkart...</a></li><li>GaLaBau Kompass: Fachkräfte aus dem Ausland – was Chancenkarte, Westbalkanregelung und Anerkennungspartnerschaft taugen (Beitrag vom 3. Dezember 2025) – <a href="../../artikel/fachkraefte-aus-dem-ausland-chancenkarte-westbalkan/">../../artikel/fachkraefte-aus-dem-ausland-chancenkarte-we...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Standpunkt</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Karriere &amp; Weiterbildung</span><h1>Vom Landschaftsgärtner zum Bauleiter: Drei Wege, ein Ziel</h1><p class="dek">Bauleiter sind laut Trendbarometer der Messe die knappste Position im GaLaBau. Meister, Techniker oder Studium – welcher Weg zu wem passt, was er kostet und wie das Aufstiegs-BAföG hilft.</p><div class="byline">Redaktion GaLaBau Kompass · 18. März 2026</div></div>
+<figure><img src="../../assets/img/vom-landschaftsgaertner-zum-bauleiter.jpg" alt=""><figcaption>Bauleiter wachsen im Betrieb – wenn der Betrieb den Weg dorthin sichtbar macht. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Bauleiter werden nicht ausgebildet, sie wachsen aus Landschaftsgärtnern – drei Wege: Meister, Techniker, Studium.</li><li>Meister: ein Jahr Vollzeit oder zwei bis drei Jahre berufsbegleitend; Techniker: zwei Jahre Fachschule mit Hochschulzugang; Bachelor: sechs bis sieben Semester, auch ohne Abitur möglich.</li><li>Das Trendbarometer nennt Bauleiter als die Position, an der es europaweit am stärksten fehlt – wer intern entwickelt, hat sie.</li></ul></div>    <div class="text"><p>Wer im Garten- und Landschaftsbau Bauleiter sucht, findet selten einen auf dem Markt. Das Trendbarometer der GaLaBau 2026 nennt Bauleiter und Projektverantwortliche als die Positionen, an denen es europaweit am stärksten fehlt. Die Erklärung ist einfach: Bauleiter werden nicht ausgebildet, sie wachsen – aus Landschaftsgärtnern, die Verantwortung übernehmen und sich weiterbilden. Drei Wege führen dorthin.</p>
+<h2>Weg 1: Der Meister</h2>
+<p>Die Fortbildung zum Gärtnermeister der Fachrichtung Garten- und Landschaftsbau ist der klassische Weg. Sie setzt eine abgeschlossene Ausbildung und in der Regel Berufspraxis voraus und vermittelt Fachtheorie, Betriebswirtschaft, Recht und Ausbildereignung. Angeboten wird sie in Vollzeit (meist ein Jahr) oder berufsbegleitend über zwei bis drei Jahre. Der Meister qualifiziert für Bauleitung, Ausbildung und Betriebsführung – und ist die Voraussetzung, um selbst einen Betrieb zu gründen und auszubilden.</p>
+<h2>Weg 2: Der Techniker</h2>
+<p>Der staatlich geprüfte Techniker für Garten- und Landschaftsbau ist die schulische Alternative: zwei Jahre Vollzeit an einer Fachschule, mit Schwerpunkt auf Planung, Kalkulation, Bautechnik und Baurecht. Techniker arbeiten häufig in größeren Betrieben in der Arbeitsvorbereitung, Kalkulation und Bauleitung. Der Abschluss berechtigt zudem zum Hochschulzugang.</p>
+<h2>Weg 3: Das Studium</h2>
+<p>Landschaftsbau und -management, Landschaftsarchitektur oder Bauingenieurwesen mit Vertiefung Freiraum – Bachelorstudiengänge an Hochschulen dauern sechs bis sieben Semester und führen in Planung, Projektleitung und größere Unternehmen. Für Landschaftsgärtner mit Gesellenbrief und Berufspraxis ist der Zugang auch ohne Abitur möglich; viele Hochschulen bieten duale oder berufsbegleitende Modelle.</p>
+<div class="tabelle"><table>
+<tr><th></th><th>Dauer</th><th>Schwerpunkt</th><th>Typische Rolle danach</th></tr>
+<tr><td>Meister</td><td>1 Jahr Vollzeit oder 2–3 Jahre berufsbegleitend</td><td>Praxis, Führung, Ausbildung, Betriebsführung</td><td>Bauleiter, Betriebsleiter, Ausbilder, Gründer</td></tr>
+<tr><td>Techniker</td><td>2 Jahre Vollzeit</td><td>Planung, Kalkulation, Bautechnik</td><td>Bauleiter, Kalkulator, Arbeitsvorbereitung</td></tr>
+<tr><td>Studium</td><td>3–3,5 Jahre</td><td>Planung, Projektleitung, Management</td><td>Projektleiter, Planer, größere Unternehmen</td></tr>
+</table></div>
+
+<h2>Was es kostet – und wer zahlt</h2>
+<p>Meister- und Technikerfortbildungen werden über das Aufstiegs-BAföG gefördert. Die Lehrgangs- und Prüfungsgebühren werden bis zu einem Höchstbetrag bezuschusst, ein Teil als Zuschuss, der Rest als zinsgünstiges Darlehen, von dem bei bestandener Prüfung ein weiterer Teil erlassen wird; Vollzeitteilnehmer erhalten zusätzlich einen Beitrag zum Lebensunterhalt. Die aktuellen Sätze und Voraussetzungen stehen auf aufstiegs-bafoeg.de. Viele Betriebe beteiligen sich zusätzlich – mit Freistellung, Kostenübernahme oder einer Rückkehrvereinbarung.</p>
+<h2>Für Fachkräfte: die Frage vorher</h2>
+<p>Bevor der Weg beginnt, lohnt ein Gespräch mit dem Betrieb: Gibt es die Position, auf die die Fortbildung zielt? Betriebe, die Bauleiter suchen, sind in der Regel bereit, in Mitarbeiter zu investieren, die bleiben. Wer den Weg ohne Betrieb geht, hat nach dem Abschluss die Wahl – und in einem Markt, in dem Bauleiter fehlen, ist das keine schlechte Position.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Messe Nürnberg: Trendbarometer der GaLaBau 2026 (Fachkräftemangel besonders bei Bauleitern und Projektverantwortlichen) – <a href="https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026">www.galabau-messe.com/de-de/presse/pressemitteilungen/202...</a></li><li>Bundesministerium für Bildung und Forschung: Aufstiegs-BAföG (AFBG) – Förderung von Meister- und Technikerfortbildungen – <a href="https://www.aufstiegs-bafoeg.de/">www.aufstiegs-bafoeg.de/</a></li><li>IG BAU: Tarifabschluss Garten- und Landschaftsbau (Ecklohn 20,91 Euro ab 1. Juli 2026) – <a href="https://igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Geld-fuer-alle.html">igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Ge...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Technik &amp; Digital</span><h1>Transporter mit Anhänger: Wann B reicht, wann B96, wann BE – und was die EU ändert</h1><p class="dek">Ein Pritschenwagen mit Bagger auf dem Anhänger ist Alltag im GaLaBau. Ob der Fahrer ihn führen darf, hängt von 4,25 Tonnen ab. Ein Überblick über die Führerscheinklassen, die Kosten und die EU-Novelle.</p><div class="byline">Redaktion GaLaBau Kompass · 12. März 2026</div></div>
+<figure><img src="../../assets/img/fuehrerschein-anhaenger-b96-be.jpg" alt=""><figcaption>Zugfahrzeug plus Anhänger: Ab 3,5 Tonnen zulässiger Gesamtmasse der Kombination wird es kompliziert. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Entscheidend ist die zulässige Gesamtmasse der Kombination: B bis 3,5 Tonnen, B96 bis 4,25 Tonnen (eintägige Schulung, 300 bis 500 Euro), BE bis 7 Tonnen (Prüfung, 800 bis 1.000 Euro).</li><li>Pritsche mit 3,5 Tonnen plus Tandemanhänger mit 2,7 Tonnen ergeben 6,2 Tonnen – das ist BE, unabhängig vom tatsächlichen Gewicht.</li><li>Die EU-Führerscheinrichtlinie von 2025 erlaubt künftig Fahrzeuge bis 4,25 Tonnen mit Klasse B plus Zusatzschulung – relevant für Elektro-Transporter.</li></ul></div>    <div class="text"><p>Die Frage kommt in fast jedem Betrieb irgendwann auf, meistens bei einer Polizeikontrolle: Darf der neue Mitarbeiter mit seinem Autoführerschein den Transporter mit dem Baggeranhänger fahren? Die Antwort hängt von der zulässigen Gesamtmasse der Kombination ab – und die ist schnell überschritten.</p>
+<h2>Die Klassen im Überblick</h2>
+<div class="tabelle"><table>
+<tr><th>Klasse</th><th>Erlaubt</th><th>Aufwand</th></tr>
+<tr><td>B</td><td>Zugfahrzeug bis 3,5 t; Anhänger bis 750 kg – oder schwerer, wenn die Kombination 3,5 t nicht übersteigt</td><td>vorhanden</td></tr>
+<tr><td>B96</td><td>Kombination bis 4,25 t (Anhänger über 750 kg bis 3,5 t)</td><td>eintägige Schulung, keine Prüfung, rund 300 bis 500 Euro</td></tr>
+<tr><td>BE</td><td>Zugfahrzeug bis 3,5 t plus Anhänger bis 3,5 t, Kombination bis 7 t</td><td>Fahrschule, praktische Prüfung, rund 800 bis 1.000 Euro</td></tr>
+</table></div>
+
+<p>Ein typischer Pritschenwagen mit 3,5 Tonnen zulässiger Gesamtmasse und ein Tandemanhänger mit 2,7 Tonnen ergeben eine Kombination von 6,2 Tonnen – das ist BE. Mit einem leichten Anhänger von 750 Kilogramm bleibt es bei B. Entscheidend ist nicht das tatsächliche Gewicht, sondern die eingetragene zulässige Gesamtmasse beider Fahrzeuge.</p>
+<h2>Was die EU-Novelle ändert</h2>
+<p>Die EU hat 2025 eine neue Führerscheinrichtlinie verabschiedet. Sie erlaubt künftig, mit Klasse B und einer kurzen Zusatzschulung Fahrzeuge bis 4,25 Tonnen zu führen – gedacht für Wohnmobile und Fahrzeuge mit alternativen Antrieben, deren Batterien Gewicht kosten. Mit einem 750-Kilogramm-Anhänger darf die Kombination dann unter 5 Tonnen liegen. Für den GaLaBau interessant: Elektro-Transporter, die durch die Batterie über 3,5 Tonnen kommen, wären damit mit B fahrbar. Die Umsetzung in deutsches Recht steht aus; bis dahin gilt die Tabelle oben.</p>
+<div class="kasten"><b>Praxis</b>Wer regelmäßig Bagger, Rüttelplatte oder Pflanzen mit dem Anhänger bewegt, kommt um BE nicht herum. Die Ausbildung dauert je nach Fahrschule wenige Wochen; der Betrieb kann sie übernehmen und als Weiterbildung im Winter einplanen. Ohne passende Klasse haftet im Schadensfall nicht nur der Fahrer – der Betrieb riskiert den Versicherungsschutz.</div>
+
+<h2>Fünf Dinge, die Betriebe klären sollten</h2>
+<ol>
+<li>Bei jedem Mitarbeiter prüfen, welche Klasse im Führerschein steht – und welche Kombinationen er tatsächlich fährt.</li>
+<li>Die zulässigen Gesamtmassen aller Zugfahrzeuge und Anhänger in einer Liste führen; Fahrer sehen sie sonst nur in den Papieren.</li>
+<li>Neue Mitarbeiter ohne BE gezielt für die Schulung anmelden, bevor die Saison beginnt.</li>
+<li>Bei Anhängern über 750 Kilogramm: Ladungssicherung und Stützlast gehören zur Unterweisung.</li>
+<li>Bei der Anschaffung von E-Transportern das Gesamtgewicht mit Batterie prüfen – 3,5 Tonnen sind schnell erreicht.</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>ADAC: Anhängerführerschein B96 – So viel dürfen Sie damit ziehen (Kombination bis 4,25 t, eintägige Schulung ohne Prüfung) – <a href="https://www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/anhaengerfuehrerschein-b96/">www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/anha...</a></li><li>ADAC: BE-Führerschein – Anhängerführerschein und Kosten 2026 (Kombination bis 7 t, Zugfahrzeug bis 3,5 t, praktische Prüfung) – <a href="https://www.adac.de/verkehr/rund-um-den-fuehrerschein/klassen/be-fuehrerschein/">www.adac.de/verkehr/rund-um-den-fuehrerschein/klassen/be-...</a></li><li>promobil: B96-Führerschein bald überflüssig? Das regelt die EU-Führerschein-Novelle (2025 verabschiedete EU-Richtlinie: Klasse B mit Schulung für Fahrzeuge bis 4,25 t) – <a href="https://www.promobil.de/weitere-ratgeber/b96-fuehrerschein-bald-ueberfluessig-leider-nein-das-regelt-die-eu-fuehrerschein-novelle/">www.promobil.de/weitere-ratgeber/b96-fuehrerschein-bald-u...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Technik &amp; Digital</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Technik &amp; Digital</span><h1>Saisonstart: Der Maschinen-Check vor dem ersten Einsatz – und welche Prüfungen Pflicht sind</h1><p class="dek">Im März geht es los, und was im Winter nicht gewartet wurde, fällt im April aus. Eine Checkliste für Bagger, Fahrzeuge, Anhänger, Geräte und Ausrüstung – mit den Prüffristen, die die Berufsgenossenschaft verlangt.</p><div class="byline">Redaktion GaLaBau Kompass · 10. März 2026</div></div>
+<figure><img src="../../assets/img/saisonstart-maschinen-check-pruefpflichten.jpg" alt=""><figcaption>Der Sachkundige prüft einmal im Jahr. Die Kolonne prüft jeden Morgen. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Betriebssicherheitsverordnung § 14: Prüfung durch befähigte Personen nach Fristen aus der Gefährdungsbeurteilung – Fahrzeuge und Erdbaumaschinen jährlich, elektrische Geräte auf Baustellen alle drei Monate, Leitern und Zurrgurte jährlich.</li><li>Checkliste: Hydraulik, Beleuchtung, Bremsen und Ladungssicherung, Akkus, Schutzausrüstung mit Ablaufdatum, Verbandkasten nach DIN 13157.</li><li>Prüfungen gehören in die Schlechtwetterzeit – im März haben Werkstätten und Sachkundige keine Zeit.</li></ul></div>    <div class="text"><p>Die erste Baustellenwoche im März ist die Woche mit den meisten Ausfällen des Jahres: Der Rüttler springt nicht an, die Hydraulik am Minibagger tropft, der Anhänger hat ein Licht weniger als im November, die Akkus der Heckenschere sind tief entladen. Nichts davon ist ein Defekt. Es ist fehlende Wartung – und in einigen Fällen eine fehlende Prüfung, die die Berufsgenossenschaft nach dem nächsten Unfall zuerst abfragt.</p>
+<h2>Was vorgeschrieben ist</h2>
+<p>Die Betriebssicherheitsverordnung verlangt, dass Arbeitsmittel, deren Sicherheit von den Montagebedingungen oder von Verschleiß abhängt, regelmäßig von einer zur Prüfung befähigten Person geprüft werden. Die Fristen legt der Betrieb in der Gefährdungsbeurteilung fest; die Unfallversicherer geben Richtwerte, die in der Praxis als Standard gelten.</p>
+<div class="tabelle"><table>
+<thead><tr><th>Arbeitsmittel</th><th>Prüfung</th><th>Richtwert</th></tr></thead>
+<tbody>
+<tr><td>Fahrzeuge und Anhänger</td><td>Sachkundiger nach DGUV Vorschrift 70</td><td>jährlich, zusätzlich Hauptuntersuchung</td></tr>
+<tr><td>Erdbaumaschinen (Bagger, Radlader)</td><td>Sachkundiger</td><td>jährlich</td></tr>
+<tr><td>Ortsveränderliche elektrische Geräte</td><td>Elektrofachkraft, DGUV Vorschrift 3</td><td>auf Baustellen alle drei Monate</td></tr>
+<tr><td>Leitern und Tritte</td><td>befähigte Person</td><td>jährlich</td></tr>
+<tr><td>Zurrgurte, Anschlagmittel</td><td>Sachkundiger</td><td>jährlich</td></tr>
+<tr><td>Feuerlöscher</td><td>Fachbetrieb</td><td>alle zwei Jahre</td></tr>
+<tr><td>Erste-Hilfe-Material</td><td>Ersthelfer/Betrieb</td><td>Verfallsdaten, nach jedem Gebrauch</td></tr>
+</tbody></table></div>
+
+<p>Jede Prüfung wird dokumentiert – Prüfplakette am Gerät, Prüfbuch oder digitale Liste im Betrieb. Fehlt die Dokumentation, gilt die Prüfung als nicht erfolgt.</p>
+<h2>Die Checkliste für den Hof</h2>
+<p><strong>Bagger und Radlader.</strong> Hydraulikschläuche auf Risse und Scheuerstellen, Ölstände, Schnellwechsler mit Sicherung, Ketten und Spannung, Beleuchtung und Warneinrichtungen, Rückfahrwarner, Schutzaufbau. Die Bedienungsanleitung gehört in die Kabine, die Beauftragung des Fahrers in die Akte.</p>
+<p><strong>Fahrzeuge und Anhänger.</strong> Beleuchtung, Reifen und Profil, Bremsen am Anhänger, Auflaufeinrichtung, Stützrad, Zugkugel, Kennzeichen, Warndreieck, Warnwesten, Verbandkasten mit Datum. Ladungssicherung: Zurrgurte ohne Einschnitte, Antirutschmatten, Netze. Die Zulassungspapiere des Anhängers – und die Frage, welcher Fahrer welches Gespann fahren darf.</p>
+<p><strong>Handgeführte Maschinen.</strong> Rüttelplatten, Stampfer, Trennschleifer, Motorsägen, Freischneider: Kraftstoff, Filter, Kerzen, Schneidwerkzeuge, Schutzeinrichtungen, Vibrationsdämpfung. Bei Akkugeräten: Ladezustand, Zellzustand, Lagerung im Winter bei mittlerer Ladung – tief entladene Akkus sind im Frühjahr oft nicht mehr zu retten.</p>
+<p><strong>Persönliche Schutzausrüstung.</strong> Helme haben ein Ablaufdatum, meist vier bis fünf Jahre nach Herstellung. Schnittschutzhosen mit Schnittspuren sind Abfall. Sicherheitsschuhe mit durchgelaufener Sohle auch. Gehörschutz, Schutzbrillen, Handschuhe in der richtigen Größe für jeden.</p>
+<p><strong>Erste Hilfe.</strong> Verbandkasten nach DIN 13157 pro Fahrzeug, Verfallsdaten der sterilen Komponenten prüfen, Ersthelfer im Betrieb benannt und in den letzten zwei Jahren aufgefrischt.</p>
+<h2>Der Zeitpunkt</h2>
+<p>Die Winterprüfung ist keine Frage des Kalenders, sondern der Kapazität: Im Januar und Februar haben Werkstätten und Sachkundige Zeit, im März nicht. Betriebe, die ihre Prüfungen in die Schlechtwetterzeit legen, beschäftigen ihre Leute mit sinnvoller Arbeit und beginnen die Saison mit einem Fuhrpark, der läuft. Und sie haben für die Berufsgenossenschaft eine Liste – nicht eine Erklärung.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Betriebssicherheitsverordnung, § 14 Prüfung von Arbeitsmitteln (Prüfung durch zur Prüfung befähigte Personen, Fristen nach Gefährdungsbeurteilung) – <a href="https://www.gesetze-im-internet.de/betrsichv_2015/__14.html">www.gesetze-im-internet.de/betrsichv_2015/__14.html</a></li><li>DGUV Vorschrift 70: Fahrzeuge, § 57 Prüfung (mindestens einmal jährlich durch einen Sachkundigen) – <a href="https://publikationen.dguv.de/regelwerk/dguv-vorschriften/">publikationen.dguv.de/regelwerk/dguv-vorschriften/</a></li><li>DGUV Vorschrift 3: Elektrische Anlagen und Betriebsmittel (Prüffristen für ortsveränderliche Betriebsmittel) – <a href="https://publikationen.dguv.de/regelwerk/dguv-vorschriften/">publikationen.dguv.de/regelwerk/dguv-vorschriften/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Technik &amp; Digital</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Bauen &amp; Pflanzen</span><h1>Sachkunde im Pflanzenschutz: Alle drei Jahre Fortbildung – sonst ist Schluss mit Spritzen</h1><p class="dek">Wer Pflanzenschutzmittel anwendet, kauft oder abgibt, braucht den Sachkundenachweis – und muss ihn alle drei Jahre durch eine anerkannte Fortbildung erhalten. Viele Betriebe merken erst bei der Kontrolle, dass die Frist abgelaufen ist.</p><div class="byline">Redaktion GaLaBau Kompass · 5. März 2026</div></div>
+<figure><img src="../../assets/img/pflanzenschutz-sachkunde-fortbildung.jpg" alt=""><figcaption>Anwenden, kaufen, abgeben: Für alle drei Tätigkeiten gilt die Sachkundepflicht. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Wer Pflanzenschutzmittel beruflich anwendet, berät oder abgibt, braucht den Sachkundenachweis nach § 9 Pflanzenschutzgesetz – auch bei wenigen Einsätzen im Jahr.</li><li>Alle drei Jahre ist eine anerkannte Fortbildung Pflicht; wer die Frist verpasst, darf nicht mehr anwenden oder kaufen, bis sie nachgeholt ist.</li><li>Anerkannt sind Veranstaltungen der Länder, Kammern und Bildungsträger, meist ein halber Tag, oft online; Bescheinigungen aufbewahren.</li></ul></div>    <div class="text"><p>Das Pflanzenschutzgesetz macht aus dem Umgang mit Pflanzenschutzmitteln eine Frage der Qualifikation. Wer sie beruflich anwendet, wer über die Anwendung berät und wer sie verkauft oder abgibt, braucht nach § 9 PflSchG einen Sachkundenachweis. Im GaLaBau betrifft das jeden Betrieb, der Unkraut auf Wegen bekämpft, Pilzkrankheiten im Rasen behandelt oder Schädlinge an Gehölzen – auch wenn es nur wenige Male im Jahr vorkommt.</p>
+<h2>Die Dreijahresfrist</h2>
+<p>Der Nachweis allein reicht nicht. § 9 Abs. 4 PflSchG verpflichtet Sachkundige, innerhalb von jeweils drei Jahren an einer anerkannten Fort- oder Weiterbildungsmaßnahme teilzunehmen. Der erste Dreijahreszeitraum beginnt mit der Ausstellung des Sachkundenachweises, jeder weitere schließt nahtlos an. Wer die Frist verpasst, darf keine Pflanzenschutzmittel mehr anwenden, kaufen oder abgeben, bis die Fortbildung nachgeholt ist – und riskiert, dass der Nachweis entzogen wird.</p>
+<div class="kasten"><b>Wer ist betroffen?</b>Meister, Techniker und Gesellen mit Abschluss nach 2013 haben die Sachkunde in der Regel über die Ausbildung erworben; ältere Abschlüsse gelten fort, wenn der Nachweis rechtzeitig beantragt wurde. Für alle gilt die Fortbildungspflicht – unabhängig davon, wie oft im Betrieb gespritzt wird.</div>
+
+<h2>Was als Fortbildung zählt</h2>
+<p>Anerkannt sind Veranstaltungen der Länder, der Landwirtschaftskammern, der Landesanstalten und anerkannter Bildungsträger, in Nordrhein-Westfalen etwa die Fortbildungsveranstaltungen der Landwirtschaftskammer, in Bayern die der Ämter für Ernährung, Landwirtschaft und Forsten. Die Veranstaltungen dauern meist einen halben Tag, viele werden online angeboten. Teilnahmebescheinigungen sind aufzubewahren; bei Kontrollen des Pflanzenschutzdienstes werden sie verlangt.</p>
+<h2>Der Winter ist die Zeit dafür</h2>
+<p>Die Fortbildungen finden überwiegend zwischen November und März statt – genau dann, wenn Betriebe in der Schlechtwetterzeit Kapazität haben. Drei Empfehlungen:</p>
+<ol>
+<li><strong>Fristen im Betrieb erfassen.</strong> Eine Liste mit Name, Ausstellungsdatum des Nachweises und Datum der letzten Fortbildung reicht. Wer sie nicht führt, verlässt sich auf das Gedächtnis seiner Mitarbeiter.</li>
+<li><strong>Die Fortbildung in den Winterplan aufnehmen.</strong> Ein halber Tag im Januar kostet weniger als ein Anwendungsverbot im Mai.</li>
+<li><strong>Nicht nur die Anwender schulen.</strong> Wer die Mittel bestellt und lagert, braucht die Sachkunde ebenfalls – in vielen Betrieben ist das der Inhaber oder das Büro, und dort wird die Frist am häufigsten vergessen.</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bayerische Landesanstalt für Landwirtschaft (LfL): Regelmäßige Fortbildung im Pflanzenschutz ist verpflichtend (§ 9 Abs. 4 PflSchG, Dreijahreszeitraum) – <a href="https://www.lfl.bayern.de/ips/recht/052356/index.php">www.lfl.bayern.de/ips/recht/052356/index.php</a></li><li>Landwirtschaftskammer Nordrhein-Westfalen: Fort- und Weiterbildungsverpflichtungen für Sachkundige – <a href="https://www.landwirtschaftskammer.de/landwirtschaft/pflanzenschutz/sachkunde/fortbildungsverpflichtung.htm">www.landwirtschaftskammer.de/landwirtschaft/pflanzenschut...</a></li><li>Nationaler Aktionsplan Pflanzenschutz: Sachkunde im Pflanzenschutz – <a href="https://www.nap-pflanzenschutz.de/risikoreduzierung/sachkunde-im-pflanzenschutz">www.nap-pflanzenschutz.de/risikoreduzierung/sachkunde-im-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Bauen &amp; Pflanzen</span></div>
+  </section>
+
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 03/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

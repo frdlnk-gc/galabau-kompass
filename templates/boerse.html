@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Kompass-Börse – Maschinen, Geräte und Material von Betrieb zu Betrieb | {{ site.name }}{% endblock %}
+{% block description %}Die Kompass-Börse: Club-Mitglieder inserieren Maschinen, Geräte, Material, Pflanzen und Fahrzeuge kostenlos – ohne Händler, ohne Gebühr.{% endblock %}
+{% block bodyclass %}seite boerse-seite{% endblock %}
+{% block content %}
+<section class="container" data-boerse>
+  <header class="page-head">
+    <span class="t-kicker">Kompass-Börse · Kostenlos für Club-Mitglieder</span>
+    <h1>Maschinen, Geräte, Material – von Betrieb zu Betrieb.</h1>
+    <p class="page-dek">Der Minibagger, der nur noch im Weg steht. Die Rüttelplatte aus dem Nachlass. Zwanzig Paletten Pflaster vom Restposten, Pflanzen aus der Überproduktion, der Anhänger mit frischem TÜV. Hier findet es einen neuen Betrieb – ohne Händlermarge, ohne Gebühr. Inserieren dürfen Mitglieder, Kontaktdaten sehen Mitglieder.</p>
+  </header>
+  <div class="boerse-leiste">
+    <div class="chips"><button type="button" class="chip is-active" data-kat="">Alle</button><button type="button" class="chip" data-kat="maschine">Maschinen</button><button type="button" class="chip" data-kat="geraet">Geräte</button><button type="button" class="chip" data-kat="material">Material &amp; Pflanzen</button><button type="button" class="chip" data-kat="fahrzeug">Fahrzeuge</button><button type="button" class="chip" data-kat="sonstiges">Sonstiges</button></div>
+    <span class="rubrik-note" data-inserate-anzahl>Wird geladen …</span>
+  </div>
+  <div class="inserate" data-inserate></div>
+  <div class="boerse-leer" data-boerse-leer hidden><b>Die Börse ist eröffnet – Ihr Inserat kann das erste sein.</b>Verkaufen, verschenken oder suchen: Was in Ihrem Betrieb übrig ist, fehlt einem anderen. Inserate laufen 60 Tage und kosten nichts.</div>
+
+  <div class="rubrik mt" id="inserieren"><h2>Inserat aufgeben</h2><span class="rubrik-note">Kostenlos · 60 Tage · nur Mitglieder</span></div>
+  <div class="club-form-wrap">
+    <div class="club-form nur-mitglied">
+      <h2 data-boerse-form-titel>Was bieten oder suchen Sie?</h2>
+      <p class="intro">Titel, Kategorie, Beschreibung, Preis – und wie Interessenten Sie erreichen. Ihr Inserat ist sofort online, sofern es keine Links enthält. Sie verwalten es selbst: bearbeiten, reservieren, als verkauft markieren, löschen.</p>
+      <form data-inserat-form novalidate>
+        <input type="hidden" name="id" value="">
+        <div class="field"><label class="label" for="i-titel">Titel</label><input type="text" class="input" id="i-titel" name="titel" maxlength="120" placeholder="z. B. Rüttelplatte 90 kg, Baujahr 2021, wenig Stunden" required></div>
+        <div class="row-2">
+          <div class="field"><label class="label" for="i-kat">Kategorie</label><select class="input" id="i-kat" name="kategorie"><option value="maschine">Maschine</option><option value="geraet" selected>Gerät</option><option value="material">Material &amp; Pflanzen</option><option value="fahrzeug">Fahrzeug</option><option value="sonstiges">Sonstiges</option></select></div>
+          <div class="field"><label class="label" for="i-art">Art</label><select class="input" id="i-art" name="art"><option value="verkauf">Zu verkaufen</option><option value="verschenken">Zu verschenken</option><option value="suche">Gesucht</option></select></div>
+        </div>
+        <div class="field"><label class="label" for="i-text">Beschreibung</label><textarea class="input" id="i-text" name="beschreibung" rows="4" maxlength="1500" required placeholder="Zustand, Baujahr, Betriebsstunden, Zubehör, Abholung oder Lieferung – keine Links."></textarea></div>
+        <div class="row-2">
+          <div class="field"><label class="label" for="i-preis">Preis (optional)</label><input type="text" class="input" id="i-preis" name="preis" maxlength="60" placeholder="z. B. 650 € VB"></div>
+          <div class="field"><label class="label" for="i-plz">Postleitzahl</label><input type="text" class="input" id="i-plz" name="plz" maxlength="5" inputmode="numeric" placeholder="z. B. 50670"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label class="label" for="i-ort">Ort (optional)</label><input type="text" class="input" id="i-ort" name="ort" maxlength="80" placeholder="z. B. Köln"></div>
+          <div class="field"><label class="label" for="i-name">Ansprechpartner</label><input type="text" class="input" id="i-name" name="kontakt_name" maxlength="120" autocomplete="name"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label class="label" for="i-tel">Telefon für Interessenten</label><input type="tel" class="input" id="i-tel" name="kontakt_telefon" placeholder="z. B. 0170 1234567" autocomplete="tel"></div>
+          <div class="field"><label class="label" for="i-mail">E-Mail für Interessenten</label><input type="email" class="input" id="i-mail" name="kontakt_email" placeholder="ihre@firma.de" autocomplete="email"></div>
+        </div>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn">Inserat einstellen</button>
+        <div class="abo-note" data-abo-note></div>
+      </form>
+    </div>
+    <div class="gate-box nur-gast">
+      <h3>Inserieren können Club-Mitglieder.</h3>
+      <p>Die Mitgliedschaft ist kostenlos und dauert eine Minute. Danach können Sie hier inserieren und die Kontaktdaten aller Inserate sehen.</p>
+      <a class="btn" href="{{ root }}club/#beitreten">Kostenlos Mitglied werden</a>
+    </div>
+    <aside class="club-side">
+      <div class="box nur-mitglied">
+        <span class="box-title">Meine Inserate</span>
+        <ul class="mein-liste" data-meine-inserate><li class="mein-leer">Wird geladen …</li></ul>
+        <p class="small muted mt-2">Status setzen, bearbeiten oder löschen – jederzeit, ohne Rückfrage.</p>
+      </div>
+      <div class="box">
+        <span class="box-title">Regeln der Börse</span>
+        <ul class="boerse-regeln">
+          <li>Kostenlos für Betriebe und Fachkräfte der Branche, 60 Tage Laufzeit.</li>
+          <li>Keine Händlerlisten, keine Neuware von Anbietern, keine Links.</li>
+          <li>Kontaktdaten sehen nur Mitglieder – das hält Spam fern.</li>
+          <li>Sie verwalten Ihr Inserat selbst: bearbeiten, reserviert, verkauft, löschen. Neue Inserate tragen sieben Tage die Markierung „Neu“.</li>
+          <li>Verkauf, Übergabe und Gewährleistung regeln die Beteiligten untereinander. Die Redaktion entfernt, was nicht in eine Branchenbörse gehört.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+{% endblock %}

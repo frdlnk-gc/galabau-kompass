@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "_teaser.html" import teaser, meldungsliste %}
+{% set root = '../' * depth %}
+{% block title %}{{ ressort.name }} | {{ site.name }}{% endblock %}
+{% block description %}{{ ressort.beschreibung }}{% endblock %}
+{% block bodyclass %}ressort-seite{% endblock %}
+{% block content %}
+<section class="container">
+  <header class="page-head">
+    <span class="t-kicker">Ressort</span>
+    <h1>{{ ressort.name }}</h1>
+    <p class="page-dek">{{ ressort.beschreibung }}</p>
+    <span class="page-count">{{ anzahl }} Beiträge</span>
+  </header>
+  {% if artikel %}
+  {{ teaser(artikel[0], root, 'lead') }}
+  {% if artikel|length > 1 %}
+  <div class="t-grid3">{% for a in artikel[1:7] %}{{ teaser(a, root, 'grid') }}{% endfor %}</div>
+  {% endif %}
+  {% if artikel|length > 7 %}
+  <div class="rubrik mt"><h2>Weitere Beiträge</h2><span class="rubrik-note">{{ artikel|length - 7 }} ältere</span></div>
+  <div class="river" data-mehr-liste data-schritt="6">{% for a in artikel[7:] %}{{ teaser(a, root, 'horiz') }}{% endfor %}</div>
+  <div class="center mt-s"><button type="button" class="btn ghost" data-mehr-btn hidden>Weitere Beiträge laden</button></div>
+  {% endif %}
+  {% elif not meldungen %}<p class="muted mt-s">In diesem Ressort erscheinen in Kürze Beiträge.</p>{% endif %}
+  {% if meldungen %}
+  <div class="rubrik mt"><h2>Kurz gemeldet</h2><span class="rubrik-note">{{ meldungen|length }} Meldungen</span></div>
+  <div class="meldungen-breit">{{ meldungsliste(meldungen, root) }}</div>
+  {% endif %}
+</section>
+{% endblock %}

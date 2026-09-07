@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Standort-Check: Wie gut ist Ihr Standort für Fachkräfte? | GaLaBau Kompass</title>
+  <meta name="description" content="Der kostenlose Standort-Check zeigt GaLaBau-Betrieben, wie viele Landschaftsgärtner, Vorarbeiter und Bauleiter im Umkreis erreichbar sind – und was am Standort funktioniert.">
+  <meta property="og:title" content="Standort-Check für GaLaBau-Betriebe">
+  <meta property="og:description" content="Wie gut ist Ihr Standort für Fachkräfte? Kostenlos prüfen – PLZ eingeben, Ergebnis sofort.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="preload" href="../assets/fonts/jakarta-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/kompass.css">
+  <style>
+    .hero .container{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);}
+    @media(min-width:1024px){.hero .container{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;}.hero{min-height:88svh;display:flex;align-items:center;}}
+    @media(max-width:1023px){.hero-copy{text-align:center;}.hero-sub,.hero-what{margin-left:auto;margin-right:auto;}}
+    .hero-points{list-style:none;margin-top:22px;display:grid;gap:10px;text-align:left;max-width:30em;}
+    @media(max-width:1023px){.hero-points{margin-left:auto;margin-right:auto;}}
+    .hero-points li{display:flex;gap:11px;align-items:flex-start;font-size:.95rem;color:var(--ink-dim);}
+    .hero-points li b{color:var(--ink);}
+    .hero-points .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);border:1.5px solid var(--accent);color:var(--accent);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+    .coop{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:.74rem;color:var(--ink-faint);}
+    .coop img{height:18px;width:auto;opacity:.85;}
+    .plz-row{display:flex;gap:8px;}
+    .plz-row .input{flex:1;font-size:18px;font-weight:600;letter-spacing:.02em;}
+    .plz-row .btn{flex:none;padding-left:18px;padding-right:18px;}
+    @media(max-width:480px){.plz-row{flex-direction:column;}}
+    .loading{display:none;text-align:center;padding:26px 0 18px;color:var(--q-dim);font-size:.9rem;}
+    .loading.active{display:block;}
+    .spinner{width:34px;height:34px;border-radius:50%;border:3px solid #ECE9E0;border-top-color:var(--accent-deep);margin:0 auto 12px;animation:spin .9s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .teaser{background:var(--green-mist);border:1px solid var(--green-light);border-radius:12px;padding:12px 14px;font-size:.88rem;margin-bottom:14px;}
+    .teaser b{font-weight:800;}
+    #result{display:none;}
+    #result.active{display:block;}
+    .steps{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin-top:28px;}
+    @media(min-width:768px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}}
+    .step{background:#fff;border:1px solid var(--line-light);border-radius:var(--radius);padding:22px 20px;}
+    .step .n{font-family:var(--font-serif);font-style:italic;font-weight:600;font-size:2.2rem;color:var(--accent-deep);line-height:1;}
+    .step b{display:block;margin-top:10px;font-size:1rem;}
+    .step p{font-size:.88rem;color:var(--q-dim);margin-top:6px;}
+    .anfrage-card{margin-top:22px;background:#fff;border:1px solid var(--line-light);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow-s);}
+    @media(min-width:768px){.anfrage-card{padding:28px 28px;}}
+    .anfrage-card h3{font-family:var(--font-serif);font-weight:600;font-size:1.4rem;letter-spacing:-.01em;}
+    .anfrage-card p{font-size:.9rem;color:var(--q-dim);margin-top:6px;}
+    .wunsch-tiles{margin-top:14px;}
+    .gc-block{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;justify-content:center;margin-top:22px;font-size:.84rem;color:var(--q-dim);}
+    .gc-block img{height:26px;width:auto;}
+    .gc-block b{color:var(--q-ink);}
+  </style>
+</head>
+<body data-depth="1">
+  <header data-kompass-header></header>
+
+  <!-- ===== HERO + FORM ===== -->
+  <section class="hero sec-dark" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <span class="badge rise"><span class="dot"></span> Kostenlos für GaLaBau-Betriebe</span>
+        <h1 class="rise d1" id="hero-h1">Wie gut ist Ihr <i>Standort</i> für Fachkräfte?</h1>
+        <p class="hero-sub rise d2" id="hero-sub">Der Standort-Check zeigt, wie viele <b>Landschaftsgärtner, Vorarbeiter und Bauleiter</b> in Ihrem Umkreis erreichbar sind – und was an Ihrem Standort funktioniert.</p>
+        <p class="hero-what rise d3">PLZ eingeben, <b>20 Sekunden</b>, Ergebnis sofort auf dem Bildschirm.</p>
+        <ul class="hero-points rise d4">
+          <li><span class="ck">✓</span><span><b>Fachkräfte-Potenzial</b> im Umkreis von 30 km, nach Position</span></li>
+          <li><span class="ck">✓</span><span><b>Ihr Standorttyp</b> – und welche Ansprache dort funktioniert</span></li>
+          <li><span class="ck">✓</span><span><b>Drei Voraussetzungen</b>, damit die Suche an Ihrem Standort gelingt</span></li>
+        </ul>
+        <div class="coop rise d5"><span>Datenbasis: registrierte Fachkräfte im Karrierenetzwerk unseres Recruiting-Partners · kostenlos · ohne Verpflichtung</span></div>
+      </div>
+
+      <div class="form-card rise d3" id="check">
+        <div class="form-head" id="form-head">
+          <div style="flex:1;min-width:0;">
+            <div class="t1" id="form-title">Standort-Check · GaLaBau Kompass</div>
+            <div class="t2" id="form-subtitle">Fachkräfte-Potenzial · Standorttyp · Voraussetzungen</div>
+          </div>
+          <span class="stamp">Kostenlos</span>
+        </div>
+
+        <div class="offline-note" id="offline-note">Keine Verbindung. Bitte versuchen Sie es in einem Moment erneut.</div>
+
+        <!-- STEP 1: PLZ / Adresse -->
+        <div class="slide is-active" data-slide="plz">
+          <div class="kicker" id="plz-kicker">Schritt 1 von 2</div>
+          <h3 class="question">Wo liegt Ihr Betrieb?</h3>
+          <p class="subtext">Postleitzahl oder Adresse des Betriebsstandorts.</p>
+          <div class="plz-row">
+            <input type="text" class="input" id="plz" name="plz" placeholder="z. B. 90471 oder Musterstraße 1, Nürnberg" autocomplete="postal-code" inputmode="text" aria-label="PLZ oder Adresse">
+            <button type="button" class="btn" id="plz-cta">Standort prüfen →</button>
+          </div>
+          <div class="error" id="plz-error">Bitte eine gültige Postleitzahl oder Adresse eintragen.</div>
+          <div class="form-trust"><span>🔒 DSGVO-konform</span><span>📍 30-km-Umkreis</span><span>⏱ Ergebnis sofort</span></div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading" id="loading"><div class="spinner"></div><span id="loading-text">Umkreis wird berechnet …</span></div>
+
+        <!-- STEP 2: Gate (nur ohne Umfrage-Link) -->
+        <div class="slide" data-slide="gate">
+          <div class="kicker">Schritt 2 von 2</div>
+          <div class="teaser" id="teaser"></div>
+          <h3 class="question">Für welchen Betrieb erstellen wir den Standort-Check?</h3>
+          <p class="subtext">Das Ergebnis erscheint direkt hier – und zusätzlich per E-Mail.</p>
+          <div class="field"><label class="label" for="firma">Betrieb</label><input type="text" class="input" id="firma" placeholder="z. B. Müller Garten- und Landschaftsbau" autocomplete="organization" autocapitalize="words"></div>
+          <div class="field"><label class="label" for="fullname">Vor- und Nachname</label><input type="text" class="input" id="fullname" placeholder="z. B. Max Müller" autocomplete="name" autocapitalize="words"></div>
+          <div class="field"><label class="label" for="email">Geschäftliche E-Mail</label><input type="email" class="input" id="email" placeholder="ihre@firma.de" autocomplete="email" autocapitalize="none" inputmode="email"></div>
+          <div class="field"><label class="label" for="phone">Telefon / Mobil</label>
+            <div class="phone-row">
+              <select class="phone-prefix" id="phone-country" aria-label="Ländervorwahl"><option value="49" selected>DE +49</option><option value="43">AT +43</option><option value="41">CH +41</option></select>
+              <input type="tel" class="input" id="phone" placeholder="170 1234567" autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+          <label class="consent"><input type="checkbox" id="consent"><span id="consent-text"></span></label>
+          <button type="button" class="btn block" id="gate-cta" disabled>Ergebnis anzeigen →</button>
+          <div class="error" id="gate-error">Bitte alle Felder ausfüllen und die Einwilligung bestätigen.</div>
+          <button type="button" class="btn-link" id="gate-back">← Andere PLZ</button>
+        </div>
+
+        <!-- DONE (Karte nach Ergebnis) -->
+        <div class="success" id="done">
+          <div class="success-check">✓</div>
+          <h3>Ihr Standort-Check ist fertig.</h3>
+          <p id="done-text">Das Ergebnis steht direkt unter diesem Kasten.</p>
+          <a class="btn block mt-2" href="#result" id="done-jump">Zum Ergebnis ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ERGEBNIS ===== -->
+  <section class="sec-light" id="result">
+    <div class="container">
+      <div class="result-head reveal">
+        <div>
+          <div class="section-label">Ihr Standort-Check</div>
+          <h2 id="result-title">Standort <i id="result-ort">–</i></h2>
+        </div>
+        <div class="result-region" id="result-region"></div>
+      </div>
+
+      <div class="verdict reveal" id="verdict">
+        <span class="tag" id="verdict-tag">Standorttyp</span>
+        <h3 id="verdict-title">–</h3>
+        <p id="verdict-text">–</p>
+      </div>
+
+      <div class="grid-2 mt-3">
+        <div class="reveal">
+          <div class="section-label">Fachkräfte-Potenzial</div>
+          <h3 class="section-title" style="font-size:clamp(1.3rem,4.4vw,1.8rem);">Im Umkreis von <em class="accent" id="radius-km">30 km</em> registrierte GaLaBau-Fachkräfte</h3>
+          <div class="pool-grid" id="pool-grid"></div>
+          <p class="pool-note" id="pool-note">Datenbasis: Kandidaten mit Wohnort-Angabe im Karrierenetzwerk GreenCareers, Stand heute. Zählung nach Wohnort im Umkreis, keine Personendaten.</p>
+          <div class="card mt-2" id="pool-bars"></div>
+        </div>
+        <div class="reveal">
+          <div class="section-label">Voraussetzungen</div>
+          <h3 class="section-title" style="font-size:clamp(1.3rem,4.4vw,1.8rem);">Damit die Suche an Ihrem Standort <em class="accent">funktioniert</em></h3>
+          <ul class="req-list" id="req-list"></ul>
+          <div class="card mt-2" id="besetzung"></div>
+        </div>
+      </div>
+
+      <div class="anfrage-card reveal" id="anfrage">
+        <div class="section-label">Ausführliche Standortanalyse</div>
+        <h3>Was heißt das konkret für Ihren Betrieb?</h3>
+        <p>In einem kostenlosen Beratungsgespräch geht das Recruiting-Team unseres Partners GreenCareers Ihren Standort im Detail durch: welche Positionen realistisch besetzbar sind, in welcher Zeit und über welche Wege. Unverbindlich, 30 Minuten, telefonisch oder per Video.</p>
+        <div class="offer" id="offer">
+          <b>Messe-Angebot GaLaBau 2026</b>
+          <p><strong>25 % Nachlass auf die ersten sechs Monate</strong> bei allen Leistungen des Karrierenetzwerks GreenCareers – für Betriebe, die bis zum <strong>2. Oktober 2026</strong> starten, egal ob Einzelanzeige oder Abo. Gilt für Kontakte von der Messe und aus diesem Standort-Check.</p>
+        </div>
+        <div id="anfrage-form">
+          <div class="kicker mt-3">Wann passt es Ihnen?</div>
+          <div class="tiles two wunsch-tiles" id="wunsch-tiles">
+            <button type="button" class="tile" data-wunsch="vormittag"><span class="ic">🌅</span><span class="lab"><b>Vormittags</b><small>8 – 12 Uhr</small></span></button>
+            <button type="button" class="tile" data-wunsch="nachmittag"><span class="ic">🌤</span><span class="lab"><b>Nachmittags</b><small>12 – 17 Uhr</small></span></button>
+            <button type="button" class="tile" data-wunsch="abends"><span class="ic">🌆</span><span class="lab"><b>Abends</b><small>17 – 19 Uhr</small></span></button>
+            <button type="button" class="tile" data-wunsch="egal"><span class="ic">📞</span><span class="lab"><b>Egal</b><small>einfach anrufen</small></span></button>
+          </div>
+          <div class="field mt-2"><label class="label" for="nachricht">Anmerkung (optional)</label><input type="text" class="input" id="nachricht" placeholder="z. B. am besten Dienstag oder Donnerstag"></div>
+          <button type="button" class="btn block" id="anfrage-cta" disabled>Beratungsgespräch anfragen →</button>
+          <div class="error" id="anfrage-error">Bitte eine Zeit auswählen.</div>
+          <p class="small muted mt-1 center">Wir melden uns innerhalb von zwei Werktagen. Kein Verkaufsdruck – Sie entscheiden nach dem Gespräch.</p>
+        </div>
+        <div class="success" id="anfrage-done">
+          <div class="success-check">✓</div>
+          <h3>Anfrage ist da.</h3>
+          <p>Das Recruiting-Team meldet sich bei Ihnen. Sie bekommen dazu eine kurze Bestätigung per E-Mail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SO FUNKTIONIERT'S ===== -->
+  <section class="sec-paper" id="ablauf">
+    <div class="container">
+      <div class="section-label reveal">So funktioniert der Check</div>
+      <h2 class="section-title reveal">Drei Angaben, <em class="accent">ein ehrliches Bild.</em></h2>
+      <p class="section-sub reveal">Der Standort-Check wertet keine Schätzungen aus, sondern den Wohnort registrierter GaLaBau-Fachkräfte im Karrierenetzwerk unseres Recruiting-Partners GreenCareers und die Struktur Ihrer Region.</p>
+      <div class="steps">
+        <div class="step reveal"><div class="n">1</div><b>PLZ eingeben</b><p>Wir ordnen Ihren Betrieb der Region zu und berechnen den 30-km-Umkreis – die Pendeldistanz, die Fachkräfte im GaLaBau realistisch akzeptieren.</p></div>
+        <div class="step reveal"><div class="n">2</div><b>Potenzial zählen</b><p>Landschaftsgärtner, Vorarbeiter, Bauleiter, Maschinisten und Azubis mit Wohnort im Umkreis – als Anzahl, ohne Personendaten.</p></div>
+        <div class="step reveal"><div class="n">3</div><b>Voraussetzungen lesen</b><p>Ballungsraum, Mischregion oder ländlich: Jeder Standorttyp hat Stärken – und drei Dinge, die bei der Ansprache den Unterschied machen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="sec-dark" id="abschluss">
+    <div class="container">
+      <div class="promo reveal">
+        <h2>Ihr Standort ist besser, <i>als Sie denken.</i></h2>
+        <p>Die meisten Betriebe unterschätzen, wie viele Fachkräfte in ihrem Umkreis wohnen – und überschätzen, wie viele Wettbewerber sie aktiv ansprechen. Prüfen Sie es in 20 Sekunden.</p>
+        <a class="btn" href="#check" id="final-cta">Standort jetzt prüfen →</a>
+        <div class="promo-note">Kostenlos · Keine Verpflichtung · Ergebnis sofort</div>
+      </div>
+    </div>
+  </section>
+
+  <footer data-kompass-footer></footer>
+  <div class="sticky-cta" id="sticky-cta"><a class="btn" href="#check" id="sticky-cta-link">Standort jetzt prüfen →</a></div>
+
+  <script src="../assets/kompass.js"></script>
+  <script>
+  (function(){
+    'use strict';
+    var K = window.KOMPASS;
+    var CONSENT_VERSION = 'standort-2026-09-v1';
+    var CONSENT_TEXT = 'Ich bin einverstanden, dass die GreenCareers GmbH (Herausgeberin von GaLaBau Kompass) meine Angaben speichert, mir den Standort-Check per E-Mail zusendet und mich telefonisch oder per E-Mail zur Standortanalyse und zu Angeboten der Mitarbeitergewinnung kontaktiert. Widerruf jederzeit möglich – Details in der Datenschutzerklärung.';
+    document.getElementById('consent-text').innerHTML = CONSENT_TEXT.replace('Datenschutzerklärung', '<a href="' + K.root + 'datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>');
+
+    var $ = function(id){ return document.getElementById(id); };
+    var slides = Array.prototype.slice.call(document.querySelectorAll('#check .slide'));
+    var state = { q: '', result: null, kontaktId: K.kontakt(), gated: true, kontakt: null };
+
+    function showSlide(name){
+      slides.forEach(function(s){ s.classList.toggle('is-active', s.dataset.slide === name); });
+      $('loading').classList.remove('active');
+      $('done').classList.remove('active');
+      if (name) K.track('slide_view', { slide: name });
+    }
+    function setLoading(text){ slides.forEach(function(s){ s.classList.remove('is-active'); }); $('loading-text').textContent = text || 'Umkreis wird berechnet …'; $('loading').classList.add('active'); }
+    function fmt(n){ return (n || 0).toLocaleString('de-DE'); }
+
+    /* ── Ergebnis rendern ── */
+    function renderResult(r){
+      state.result = r;
+      $('result-ort').textContent = r.region.ort || r.region.plz;
+      $('result-region').textContent = [r.region.plz, r.region.name, r.region.bundesland].filter(Boolean).join(' · ');
+      $('verdict-tag').textContent = 'Standorttyp: ' + r.region.typ_label;
+      $('verdict-title').textContent = r.verdict.title;
+      $('verdict-text').textContent = r.verdict.text;
+      $('radius-km').textContent = r.radius_km + ' km';
+      var p = r.pool;
+      var cards = [
+        [p.gesamt, 'Fachkräfte gesamt', 'im Umkreis'],
+        [p.landschaftsgaertner, 'Landschaftsgärtner', 'Facharbeiter, Gärtner'],
+        [p.vorarbeiter, 'Vorarbeiter', 'Poliere'],
+        [p.bauleiter, 'Bauleiter & Meister', 'Kalkulatoren']
+      ];
+      $('pool-grid').innerHTML = cards.map(function(c){ return '<div class="pool"><b>' + fmt(c[0]) + '</b><span>' + c[1] + '<br><small style="color:var(--q-faint)">' + c[2] + '</small></span></div>'; }).join('');
+      var bars = [['Landschaftsgärtner', p.landschaftsgaertner], ['Vorarbeiter', p.vorarbeiter], ['Bauleiter / Meister', p.bauleiter], ['Maschinisten / Fahrer', p.maschinist], ['Auszubildende', p.azubi], ['Helfer', p.helfer]];
+      var max = Math.max.apply(null, bars.map(function(b){ return b[1] || 0; }).concat([1]));
+      $('pool-bars').innerHTML = '<div class="tag">Verteilung nach Position</div>' + bars.map(function(b){ return '<div class="bar-row"><span class="lab">' + b[0] + '</span><div class="bar-track"><div class="bar-fill" data-w="' + Math.round((b[1] || 0) / max * 100) + '"></div></div><span class="val">' + fmt(b[1]) + '</span></div>'; }).join('');
+      $('req-list').innerHTML = r.voraussetzungen.map(function(v, i){ return '<li><span class="num">' + (i + 1) + '</span><div><b>' + v.title + '</b><p>' + v.text + '</p></div></li>'; }).join('');
+      $('besetzung').innerHTML = '<div class="tag">Richtwert Besetzungsdauer</div><div style="font-family:var(--font-serif);font-weight:600;font-size:1.6rem;margin-top:6px;letter-spacing:-.01em;">' + r.besetzung.wochen_min + ' bis ' + r.besetzung.wochen_max + ' Wochen</div><p class="small muted" style="margin-top:4px;">' + r.besetzung.text + '</p>';
+      if (r.pool.hinweis) $('pool-note').textContent = r.pool.hinweis + ' ' + $('pool-note').textContent;
+      $('result').classList.add('active');
+      document.querySelectorAll('#result .reveal').forEach(function(el){ el.classList.add('in'); });
+      setTimeout(function(){ document.querySelectorAll('#pool-bars .bar-fill').forEach(function(el){ el.style.width = el.dataset.w + '%'; }); }, 150);
+      $('done-text').textContent = 'Das Ergebnis steht direkt unter diesem Kasten' + (state.kontakt && state.kontakt.email ? ' – und ist als Link an ' + state.kontakt.email + ' unterwegs.' : '.');
+      $('done').classList.add('active');
+      slides.forEach(function(s){ s.classList.remove('is-active'); }); $('loading').classList.remove('active');
+      K.track('result_view', { plz: r.region.plz, typ: r.region.typ, gesamt: p.gesamt, radius: r.radius_km });
+      setTimeout(function(){ $('result').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 350);
+      var st = $('sticky-cta-link'); st.textContent = 'Beratungsgespräch anfragen →'; st.href = '#anfrage';
+    }
+
+    /* ── Schritt 1: Standort prüfen ── */
+    function validQuery(q){ return /\b\d{5}\b/.test(q) || q.replace(/\s/g, '').length >= 4; }
+    function runCheck(){
+      var q = $('plz').value.trim();
+      if (!validQuery(q)) { $('plz').classList.add('is-error'); $('plz-error').classList.add('active'); return; }
+      $('plz').classList.remove('is-error'); $('plz-error').classList.remove('active');
+      state.q = q;
+      $('offline-note').classList.remove('active');
+      setLoading('Umkreis wird berechnet …');
+      K.track('check_start', { q: q });
+      K.post('/standort', { q: q, session_id: K.sessionId, source: K.source(), vertriebler: K.vertriebler(), kontakt_id: state.kontaktId, env: K.env, page_url: location.href })
+        .then(function(j){
+          if (j.gated) {
+            state.gated = true;
+            $('teaser').innerHTML = '📍 <b>' + (j.teaser.ort || j.teaser.plz) + '</b>: <b>' + fmt(j.teaser.gesamt) + '</b> registrierte GaLaBau-Fachkräfte im Umkreis von ' + j.teaser.radius_km + ' km. Das vollständige Ergebnis nach Position und die Voraussetzungen für Ihren Standort erscheinen im nächsten Schritt.';
+            showSlide('gate');
+            setTimeout(function(){ $('firma').focus({ preventScroll: true }); }, 250);
+          } else {
+            state.gated = false; state.kontakt = j.kontakt || state.kontakt;
+            renderResult(j.result);
+          }
+        })
+        .catch(function(err){
+          console.error(err);
+          showSlide('plz');
+          $('offline-note').textContent = /HTTP 4/.test(err.message) ? 'Standort nicht gefunden. Bitte prüfen Sie die Postleitzahl.' : 'Keine Verbindung. Bitte versuchen Sie es in einem Moment erneut.';
+          $('offline-note').classList.add('active');
+        });
+    }
+    $('plz-cta').addEventListener('click', runCheck);
+    $('plz').addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); runCheck(); } });
+    $('plz').addEventListener('input', function(){ $('plz').classList.remove('is-error'); $('plz-error').classList.remove('active'); });
+    $('gate-back').addEventListener('click', function(){ showSlide('plz'); });
+
+    /* ── Schritt 2: Gate ── */
+    function gateReady(){
+      var ok = $('firma').value.trim().length >= 2 && $('fullname').value.trim().split(/\s+/).filter(Boolean).length >= 2 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim()) && $('phone').value.replace(/\D/g, '').length >= 6 && $('consent').checked;
+      $('gate-cta').disabled = !ok; return ok;
+    }
+    ['firma', 'fullname', 'email', 'phone'].forEach(function(id){ $(id).addEventListener('input', function(){ $(id).classList.remove('is-error'); gateReady(); }); });
+    $('consent').addEventListener('change', gateReady);
+    $('gate-cta').addEventListener('click', function(){
+      if (!gateReady()) { $('gate-error').classList.add('active'); return; }
+      if (!K.realUser()) { $('gate-error').textContent = 'Bitte versuchen Sie es in einem Moment erneut.'; $('gate-error').classList.add('active'); return; }
+      $('gate-error').classList.remove('active');
+      var parts = $('fullname').value.trim().split(/\s+/);
+      var digits = $('phone').value.replace(/\D/g, ''); var cc = $('phone-country').value || '49';
+      if (digits.indexOf('00') === 0) digits = digits.slice(2); else if (digits.indexOf('0') === 0) digits = cc + digits.slice(1); else if (digits.indexOf(cc) !== 0) digits = cc + digits;
+      var body = { q: state.q, session_id: K.sessionId, source: K.source(), vertriebler: K.vertriebler(), env: K.env, page_url: location.href,
+        firma: $('firma').value.trim(), vorname: parts[0], nachname: parts.slice(1).join(' '), email: $('email').value.trim(), telefon: '+' + digits,
+        consent: true, consent_text: CONSENT_TEXT, consent_version: CONSENT_VERSION };
+      setLoading('Standort-Check wird erstellt …');
+      K.track('gate_submit', {});
+      K.post('/lead', body).then(function(j){
+        state.kontaktId = j.kontakt_id; state.kontakt = { email: body.email, vorname: body.vorname, firma: body.firma };
+        try { sessionStorage.setItem('kompass_k', j.kontakt_id); } catch(e){}
+        renderResult(j.result);
+      }).catch(function(err){
+        console.error(err);
+        showSlide('gate');
+        $('gate-error').textContent = 'Das hat nicht geklappt. Bitte prüfen Sie Ihre Verbindung und versuchen Sie es erneut.';
+        $('gate-error').classList.add('active');
+      });
+    });
+
+    /* ── Anfrage Beratungsgespräch ── */
+    var wunsch = '';
+    document.querySelectorAll('#wunsch-tiles .tile').forEach(function(t){
+      t.addEventListener('click', function(){ wunsch = t.dataset.wunsch; document.querySelectorAll('#wunsch-tiles .tile').forEach(function(x){ x.classList.remove('picked'); }); t.classList.add('picked'); $('anfrage-cta').disabled = false; $('anfrage-error').classList.remove('active'); });
+    });
+    $('anfrage-cta').addEventListener('click', function(){
+      if (!wunsch) { $('anfrage-error').classList.add('active'); return; }
+      if (!state.kontaktId) { $('anfrage-error').textContent = 'Bitte zuerst den Standort-Check ausführen.'; $('anfrage-error').classList.add('active'); return; }
+      var btn = $('anfrage-cta'); btn.disabled = true; btn.textContent = 'Wird gesendet …';
+      var labels = { vormittag: 'Vormittags (8–12 Uhr)', nachmittag: 'Nachmittags (12–17 Uhr)', abends: 'Abends (17–19 Uhr)', egal: 'Egal – einfach anrufen' };
+      K.post('/anfrage', { kontakt_id: state.kontaktId, wunsch: labels[wunsch], nachricht: $('nachricht').value.trim(), session_id: K.sessionId, env: K.env, page_url: location.href })
+        .then(function(){ $('anfrage-form').style.display = 'none'; $('anfrage-done').classList.add('active'); K.track('anfrage_submit', { wunsch: wunsch }); $('sticky-cta').classList.remove('visible'); $('sticky-cta').style.display = 'none'; })
+        .catch(function(err){ console.error(err); btn.disabled = false; btn.textContent = 'Beratungsgespräch anfragen →'; $('anfrage-error').textContent = 'Das hat nicht geklappt – bitte noch einmal versuchen.'; $('anfrage-error').classList.add('active'); });
+    });
+
+    /* ── Umfrage-Teilnehmer: Begrüßung + PLZ vorbelegen + Auto-Start ── */
+    if (state.kontaktId && K.env !== 'local') {
+      fetch(K.cfg.apiBase + '/standort?k=' + encodeURIComponent(state.kontaktId), { credentials: 'omit' }).then(function(r){ return r.json(); }).then(function(j){
+        if (!j.ok || !j.kontakt) return;
+        state.kontakt = j.kontakt; state.gated = false;
+        if (j.kontakt.firma) { $('hero-h1').innerHTML = 'Der Standort-Check für <i>' + j.kontakt.firma.replace(/</g, '&lt;') + '</i>'; $('form-title').textContent = 'Standort-Check für ' + j.kontakt.firma; }
+        $('hero-sub').innerHTML = 'Danke für Ihre Teilnahme an der Branchenumfrage 2026. Hier ist Ihr Dankeschön: <b>Fachkräfte-Potenzial, Standorttyp und Voraussetzungen</b> für Ihren Betrieb.';
+        $('plz-kicker').textContent = 'Nur noch ein Schritt';
+        if (j.kontakt.plz) { $('plz').value = j.kontakt.plz; runCheck(); }
+      }).catch(function(){});
+    }
+
+    /* ── Sticky CTA + Scroll-Links ── */
+    document.querySelectorAll('a[href="#check"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); K.track('cta_click', { id: a.id || 'cta' }); $('check').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(function(){ $('plz').focus({ preventScroll: true }); }, 500); }); });
+    var sticky = $('sticky-cta'), card = $('check');
+    function updateSticky(){ var r = card.getBoundingClientRect(); var visible = r.top < window.innerHeight * .8 && r.bottom > 90; sticky.classList.toggle('visible', !visible && window.scrollY > 160); }
+    window.addEventListener('scroll', updateSticky, { passive: true }); window.addEventListener('resize', updateSticky); updateSticky();
+  })();
+  </script>
+</body>
+</html>

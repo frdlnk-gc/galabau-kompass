@@ -1,0 +1,30 @@
+# Termine & Fristen für die Seitenleiste. Nur belegte Daten (Quelle = jeweiliger Artikel).
+# Felder: datum (Start), bis (optional), titel, ort (optional), link (relativ zur Site-Wurzel), label (optional: ersetzt das Datum)
+- datum: 2026-09-15
+  bis: 2026-09-18
+  titel: GaLaBau 2026 – Leitmesse für Planen, Bauen und Pflegen
+  ort: Messezentrum Nürnberg
+  link: artikel/galabau-2026-nuernberg/
+- datum: 2026-10-04
+  titel: Landesgartenschau Ellwangen – letzter Öffnungstag
+  ort: Ellwangen (Jagst)
+  link: artikel/landesgartenschauen-2026/
+- datum: 2026-10-11
+  titel: Landesgartenschauen Neuss und Leinefelde-Worbis enden
+  link: artikel/landesgartenschauen-2026/
+- datum: 2026-10-15
+  label: Oktober 2026
+  titel: Ergebnisse der Branchenumfrage 2026 erscheinen
+  link: branchenumfrage/
+- datum: 2026-10-18
+  titel: Landesgartenschau Bad Nenndorf – letzter Öffnungstag
+  link: artikel/landesgartenschauen-2026/
+- datum: 2026-12-01
+  titel: Beginn der Schlechtwetterzeit – Saison-Kurzarbeitergeld möglich
+  link: artikel/schlechtwetterzeit-saison-kurzarbeit/
+- datum: 2027-01-01
+  titel: Mindestlohn steigt auf 14,60 Euro
+  link: artikel/mindestlohn-2026-13-90-euro/
+- datum: 2027-01-01
+  titel: E-Rechnung – Versandpflicht für Betriebe über 800.000 Euro Umsatz
+  link: artikel/e-rechnung-pflicht-2027/

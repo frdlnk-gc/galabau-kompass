@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 02/2026</title>
+<style>
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
+  /* Cover */
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz ul{margin-left:4mm;}
+  .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
+  .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
+  .art .kurz dt{font-weight:700;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/branchenstatistik-2025-galabau-in-zahlen.jpg" alt="">
+    <div class="kopf">
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
+      <div class="nr">Nr. 5 · Ausgabe<b>02/2026</b>Februar 2026</div>
+    </div>
+    <div class="titel"><span class="kick">Markt &amp; Politik</span><h1>11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</h1><p>Die Branchenstatistik 2025 des BGL zeigt einen Markt, der wächst und gleichzeitig ausdünnt: mehr Umsatz, mehr Beschäftigte – und deutlich mehr Betriebe, die aufgeben mussten.</p></div>
+    <div class="teaser"><span>8.089 Auszubildende: Der GaLaBau bildet so vi...</span><span>Darf ein Auszubildender den Minibagger fahren?</span><span>DATAflor BUSINESS: Die Branchensoftware, mit ...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Die Branche in Zahlen</h2><p>11,11 Milliarden Euro Umsatz, 131.746 Beschäftigte, 8.089 Auszubildende, 133 Insolvenzen: Die Branchenstatistik 2025 ist da. Wir lesen sie zusammen mit den Arbeitsmarktdaten zum Jahresauftakt, der vollständigen Lohn- und Gehaltstabelle des Tarifs und den Regeln, die bei Abmahnung und Kündigung im Kolonnenalltag zählen.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Markt &amp; Politik</div><div class="t">11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</div></div></li><li><span class="s">5</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">8.089 Auszubildende: Der GaLaBau bildet so viele Landschaftsgärtner aus wie lange nicht</div></div></li><li><span class="s">7</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Darf ein Auszubildender den Minibagger fahren?</div></div></li><li><span class="s">9</span><div><div class="r">Produkte &amp; Software</div><div class="t">DATAflor BUSINESS: Die Branchensoftware, mit der der GaLaBau seit 40 Jahren kalkuliert</div></div></li><li><span class="s">11</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Jahresauftakt: 25 Prozent mehr Bewerbungen, 3 Prozent weniger Stellen</div></div></li><li><span class="s">13</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">Was der GaLaBau zahlt: Lohngruppen, Gehaltsgruppen und Ausbildungsvergütung 2025/26</div></div></li><li><span class="s">15</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Abmahnung, Kündigung, Probezeit: Die Regeln, die im Kolonnenalltag zählen</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><span class="r">Markt &amp; Politik</span><h1>11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen</h1><p class="dek">Die Branchenstatistik 2025 des BGL zeigt einen Markt, der wächst und gleichzeitig ausdünnt: mehr Umsatz, mehr Beschäftigte – und deutlich mehr Betriebe, die aufgeben mussten.</p><div class="byline">Redaktion GaLaBau Kompass · 27. Februar 2026</div></div>
+<figure><img src="../../assets/img/branchenstatistik-2025-galabau-in-zahlen.jpg" alt=""><figcaption>Fast 20.000 Betriebe, im Schnitt 22 Beschäftigte: Der GaLaBau bleibt eine Branche der Kleinbetriebe. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>19.898 Betriebe, 131.746 Beschäftigte, 11,11 Milliarden Euro Umsatz (plus 4,3 Prozent nominal), 133 Insolvenzen nach 101 im Vorjahr.</li><li>Rechnerisch rund 558.000 Euro Umsatz je Betrieb und 84.000 Euro je Beschäftigtem; 0,7 Prozent der Betriebe gingen in die Insolvenz.</li><li>65,2 Prozent der Betriebe bewerten ihre Ertragslage als unbefriedigend – der Markt verschiebt sich zu den Betrieben, die Aufträge und Leute halten können.</li></ul></div>    <div class="text"><p>Der Bundesverband Garten-, Landschafts- und Sportplatzbau (BGL) hat heute seine Branchenstatistik für 2025 vorgelegt. Die Kernzahlen: 19.898 Betriebe erwirtschafteten 11,11 Milliarden Euro Umsatz – nominal 4,3 Prozent mehr als im Vorjahr – und beschäftigten 131.746 Menschen, darunter 8.089 Auszubildende. Die Zahl der Insolvenzen stieg von 101 im Jahr 2024 auf 133.</p>
+<div class="stats" style="margin:10px 0 26px;">
+<div class="stat"><b>19.898</b><span>Betriebe</span></div>
+<div class="stat"><b>131.746</b><span>Beschäftigte</span></div>
+<div class="stat"><b>11,11 Mrd. €</b><span>Umsatz (+4,3 % nominal)</span></div>
+<div class="stat"><b>133</b><span>Insolvenzen (2024: 101)</span></div>
+</div>
+
+<h2>Was die Zahlen rechnerisch bedeuten</h2>
+<p>Teilt man den Umsatz durch die Zahl der Betriebe, ergibt sich ein rechnerischer Durchschnitt von rund 558.000 Euro Umsatz je Betrieb. Je Beschäftigtem sind es rund 84.000 Euro. Das sind Mittelwerte über eine sehr heterogene Branche – vom Zwei-Mann-Betrieb bis zum Unternehmen mit mehreren hundert Mitarbeitern. Die BGL-Frühjahrsumfrage nennt als Durchschnitt 22 Beschäftigte je Betrieb.</p>
+<p>Der Anstieg der Insolvenzen um knapp ein Drittel ist die auffälligste Bewegung in der Statistik. In absoluten Zahlen bleibt er klein: 133 Insolvenzen bei fast 20.000 Betrieben entsprechen rund 0,7 Prozent. Dass gleichzeitig Umsatz und Beschäftigung wachsen, spricht dafür, dass der Markt sich verschiebt, nicht schrumpft: Aufträge und Fachkräfte wandern zu den Betrieben, die sie halten können.</p>
+<h2>Ertragslage bleibt der wunde Punkt</h2>
+<p>Wie es den Betrieben wirtschaftlich geht, zeigt die Konjunkturumfrage genauer als die Statistik. In der Frühjahrsumfrage 2026 bewerteten 65,2 Prozent der befragten Betriebe ihre Ertragslage als unbefriedigend oder verbesserungsbedürftig; nur 34,8 Prozent sagten, die Gewinne entsprächen ihren Erwartungen. Die Auftragslage dagegen ist stabil.</p>
+<div class="kasten"><b>Für die Praxis</b>Volle Auftragsbücher bei dünnen Erträgen sind ein Kapazitätsproblem: Es fehlt nicht an Arbeit, sondern an Leuten, die sie erledigen, und an Preisen, die den Aufwand decken. Beides hängt zusammen – wer Vorarbeiter und Bauleiter hat, kann Aufträge selektieren statt annehmen müssen.</div>
+
+<h2>Ausbildung als Stabilitätsanker</h2>
+<p>8.089 Auszubildende entsprechen rund 6 Prozent der Beschäftigten. Für ein Handwerk mit hohem Altersdurchschnitt ist die Ausbildungsquote die wichtigste Größe für die Personaldecke in fünf Jahren. Die Zahl ist 2025 gestiegen – gegen den Trend vieler anderer Handwerksberufe.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): GaLaBau-Branchenstatistik 2025 – Mehr Umsatz, mehr Beschäftigte, mehr Azubis, Pressemitteilung vom 27. Februar 2026 (19.898 Betriebe, 131.746 Beschäftigte, 11,11 Mrd. Euro Umsatz, 8.089 Auszubildende, 133 Insolvenzen nach 101, nominales Umsatzplus 4,3 %) – <a href="https://www.presseportal.de/pm/117960/6225203">www.presseportal.de/pm/117960/6225203</a></li><li>BGL: Frühjahrsumfrage 2026 (699 Mitgliedsbetriebe; Durchschnitt 22 Beschäftigte; Ertragslage 65,2 % unbefriedigend oder verbesserungsbedürftig), zitiert nach B_I galabau, 28. Mai 2026 – <a href="https://bau.bi/galabau/nachrichten/fruehjahrsumfrage-2026-darum-trotzt-der-garten-und-landschaftsbau-der-wirtschaftskrise-g21750">bau.bi/galabau/nachrichten/fruehjahrsumfrage-2026-darum-t...</a></li><li>Rechnerische Durchschnittswerte: eigene Berechnung aus den BGL-Zahlen (11,11 Mrd. € / 19.898 Betriebe; 11,11 Mrd. € / 131.746 Beschäftigte)</li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Markt &amp; Politik</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Karriere &amp; Weiterbildung</span><h1>8.089 Auszubildende: Der GaLaBau bildet so viele Landschaftsgärtner aus wie lange nicht</h1><p class="dek">3.221 junge Menschen haben 2025 eine Ausbildung zum Landschaftsgärtner begonnen, 1,5 Prozent mehr als im Vorjahr. Der Frauenanteil geht dagegen zurück. Die Zahlen des BGL – und was sie über die Betriebe sagen.</p><div class="byline">Redaktion GaLaBau Kompass · 25. Februar 2026</div></div>
+<figure><img src="../../assets/img/azubi-zahlen-2025-galabau.jpg" alt=""><figcaption>3.221 neue Ausbildungsverträge im Jahr 2025: Der Nachwuchs kommt – aber nicht von allein. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>8.089 Auszubildende in den umlagepflichtigen Betrieben (plus 85), 3.221 Neuverträge (plus 1,5 Prozent) – Wachstum gegen den Trend im Handwerk.</li><li>Der Frauenanteil sinkt um drei Prozentpunkte auf rund 11 Prozent.</li><li>Ab 1. Juli 2026 zahlt der Tarif 1.140, 1.270 und 1.390 Euro in den drei Lehrjahren; danach greift der Ecklohn von 20,91 Euro.</li></ul></div>    <div class="text"><p>Der Bundesverband Garten-, Landschafts- und Sportplatzbau (BGL) hat die Ausbildungszahlen für 2025 vorgelegt. Über alle Ausbildungsjahre lernten 8.089 junge Frauen und Männer in den umlagepflichtigen GaLaBau-Betrieben den Beruf des Landschaftsgärtners – 85 mehr als im Vorjahr, ein Plus von 1,1 Prozent. 3.221 von ihnen haben ihre Ausbildung 2025 begonnen, 1,5 Prozent mehr als 2024.</p>
+<h2>Wachstum gegen den Trend</h2>
+<p>In vielen Handwerksberufen gehen die Ausbildungszahlen zurück. Dass der GaLaBau zulegt, führt BGL-Vizepräsident Matthias Lösch auf die Relevanz des Berufs zurück: Landschaftsgärtner arbeiten an dem, was Städte gegen Hitze und Starkregen brauchen. Der Beruf hat ein Thema, das junge Menschen anspricht – Klimaanpassung, sichtbar und mit den eigenen Händen.</p>
+<p>Die zweite Zahl ist weniger erfreulich: Der Frauenanteil unter den Auszubildenden liegt bei rund 11 Prozent und ist um drei Prozentpunkte gesunken. Lösch betont, der GaLaBau biete Entwicklungsmöglichkeiten unabhängig vom Geschlecht. Die Zahlen sagen, dass diese Botschaft noch nicht ankommt.</p>
+<div class="tabelle"><table>
+<tr><th>Ausbildung im GaLaBau 2025</th><th>Wert</th><th>Veränderung</th></tr>
+<tr><td>Auszubildende gesamt</td><td>8.089</td><td>+85 (+1,1 %)</td></tr>
+<tr><td>Neu begonnene Ausbildungen</td><td>3.221</td><td>+1,5 %</td></tr>
+<tr><td>Frauenanteil</td><td>rund 11 %</td><td>−3 Prozentpunkte</td></tr>
+</table></div>
+
+<h2>Was die Ausbildung wert ist</h2>
+<p>Die Ausbildungsvergütung steigt mit dem Tarifabschluss zum 1. Juli 2026 auf 1.140 Euro im ersten, 1.270 Euro im zweiten und 1.390 Euro im dritten Lehrjahr. Nach der Prüfung greift der Ecklohn von 20,91 Euro je Stunde. Für Bewerber und Eltern sind das Argumente, die in vielen Ausbildungsanzeigen fehlen – Betriebe nennen lieber „faire Bezahlung&rdquo; als eine Zahl.</p>
+<h2>Für Betriebe, die ausbilden wollen</h2>
+<p>Rund 6 Prozent der Beschäftigten im GaLaBau sind Auszubildende. Das ist die Kennzahl für die Personaldecke in fünf Jahren: Wer heute drei Azubis hat, hat 2031 mit hoher Wahrscheinlichkeit zwei Facharbeiter mehr – und einen davon auf dem Weg zum Vorarbeiter. Drei Dinge, die ausbildende Betriebe von den Zahlen lernen können:</p>
+<ol>
+<li><strong>Praktika sind der Einstieg.</strong> Die meisten Ausbildungsverträge entstehen nach einem Praktikum – in den Herbst- und Winterferien, wenn die Jugendlichen Zeit haben und der Betrieb sie hat.</li>
+<li><strong>Frauen gezielt ansprechen.</strong> 11 Prozent sind kein Naturgesetz. Betriebe mit weiblichen Vorarbeiterinnen oder Bauleiterinnen bekommen deutlich mehr Bewerbungen von jungen Frauen – Sichtbarkeit wirkt.</li>
+<li><strong>Die Zahl nennen.</strong> 1.140 Euro im ersten Lehrjahr sind ein Argument gegenüber Berufen, die weniger zahlen. Wer es verschweigt, überlässt das Feld denen, die es sagen.</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>Gabot.de: GaLaBau – Azubi-Zahlen klettern auf fast 8.100, 25. Februar 2026 (8.089 Auszubildende, 3.221 Neuverträge, +1,5 %; Gesamtzahl +85 / +1,1 %; Frauenanteil rund 11 %, −3 Prozentpunkte; Zitate Matthias Lösch, BGL-Vizepräsident) – <a href="https://www.gabot.de/ansicht/galabau-azubi-zahlen-klettern-auf-fast-8100-439688.html">www.gabot.de/ansicht/galabau-azubi-zahlen-klettern-auf-fa...</a></li><li>BGL: GaLaBau-Branchenstatistik 2025, Pressemitteilung vom 27. Februar 2026 – <a href="https://www.presseportal.de/pm/117960/6225203">www.presseportal.de/pm/117960/6225203</a></li><li>IG BAU: Tarifabschluss Garten- und Landschaftsbau (Ausbildungsvergütung ab 1. Juli 2026: 1.140 / 1.270 / 1.390 Euro) – <a href="https://igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Geld-fuer-alle.html">igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Ge...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Praxisfrage · Recht &amp; Tarif</span><h1>Darf ein Auszubildender den Minibagger fahren?</h1><p class="dek">Unter 18 nur unter Aufsicht und im Rahmen des Ausbildungsziels, selbstständig erst ab 18 nach Qualifizierung und Beauftragung.</p><div class="byline">Redaktion GaLaBau Kompass · 20. Februar 2026</div></div>
+<figure><img src="../../assets/img/praxisfrage-azubi-minibagger-fahren.jpg" alt=""><figcaption>Unter Aufsicht ja, allein nein: Für Minderjährige ist der Bagger Ausbildung, kein Arbeitsplatz. · Symbolbild</figcaption></figure><div class="kurz"><b>Die kurze Antwort</b><p>Ja, aber nicht allein: Unter 18 Jahren darf ein Azubi Erdbaumaschinen nur unter Aufsicht einer fachkundigen Person führen, wenn das Ausbildungsziel es erfordert. Selbstständig fahren darf er ab 18 – nach Qualifizierung, Unterweisung und schriftlicher Beauftragung durch den Betrieb.</p></div>    <div class="text"><p>Die Frage kommt in fast jedem Betrieb im ersten Lehrjahr: Der Azubi will auf den Bagger, der Vorarbeiter braucht jemanden auf dem Bagger, und der Chef ist sich nicht sicher, was erlaubt ist.</p>
+<h2>Unter 18: Ausbildung unter Aufsicht</h2>
+<p>Das Jugendarbeitsschutzgesetz verbietet Jugendlichen gefährliche Arbeiten – dazu gehört das Führen von Erdbaumaschinen. Die Ausnahme steht im selben Paragrafen: Wenn die Arbeit zum Erreichen des Ausbildungsziels erforderlich ist und unter Aufsicht einer fachkundigen Person stattfindet, ist sie zulässig. Für den Landschaftsgärtner-Azubi heißt das: Baggern gehört zur Ausbildung, aber nur mit dem Ausbilder oder einem beauftragten Facharbeiter daneben – nicht allein auf der Baustelle, während die Kolonne am anderen Ende pflastert.</p>
+<h2>Ab 18: Qualifizierung, Unterweisung, Beauftragung</h2>
+<p>Die Unfallversicherer verlangen für das selbstständige Führen von Erdbaumaschinen ein Mindestalter von 18 Jahren, körperliche und geistige Eignung, eine Qualifizierung nach dem DGUV Grundsatz 301-005, eine Unterweisung und die Beauftragung durch den Unternehmer – möglichst schriftlich. Ein volljähriger Azubi im dritten Lehrjahr kann diese Voraussetzungen erfüllen und dann auch allein fahren. Der Betrieb sollte die Qualifizierung dokumentieren, etwa über einen Lehrgang oder eine interne Ausbildung mit Übungsgelände und Prüfung.</p>
+<h2>Was der Betrieb festhält</h2>
+<p>Wer wann unter wessen Aufsicht gefahren ist, gehört in den Ausbildungsnachweis; die Beauftragung ab 18 in die Personalakte. Passiert ein Unfall, fragt die Berufsgenossenschaft genau danach.</p>
+<div class="kasten"><b>Und auf der Straße?</b>Für öffentliche Straßen gilt zusätzlich das Fahrerlaubnisrecht. Selbstfahrende Arbeitsmaschinen bis 25 km/h brauchen die Klasse L, die mit 16 erworben werden kann; darüber entscheidet das Gesamtgewicht. Der Minibagger auf dem Anhänger ist eine Frage von B96 oder BE – und die gibt es erst mit 17 beziehungsweise 18.</div></div>
+<div class="quellen"><b>Quellen</b><ol><li>Jugendarbeitsschutzgesetz, § 22 Gefährliche Arbeiten (Ausnahme für die Ausbildung unter Aufsicht) – <a href="https://www.gesetze-im-internet.de/jarbschg/__22.html">www.gesetze-im-internet.de/jarbschg/__22.html</a></li><li>DGUV Grundsatz 301-005: Qualifizierung und Beauftragung von Fahrern von Hydraulikbaggern und Radladern – <a href="https://publikationen.dguv.de/regelwerk/dguv-grundsaetze/4418/qualifizierung-und-beauftragung-von-fahrern-und-fahrerinnen-von-hydraulikbaggern-und-radladern">publikationen.dguv.de/regelwerk/dguv-grundsaetze/4418/qua...</a></li><li>DGUV Regel 100-500, Kapitel 2.12 Betreiben von Erdbaumaschinen (Mindestalter 18 Jahre für das selbstständige Führen)</li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Produkt · Produkte &amp; Software</span><h1>DATAflor BUSINESS: Die Branchensoftware, mit der der GaLaBau seit 40 Jahren kalkuliert</h1><p class="dek">Kalkulation, Aufmaß, Abrechnung, Zeiterfassung und Adressen in einem System, entwickelt in Göttingen seit 1982. Was die verbreitetste GaLaBau-Software leistet, wo sie stark ist und was Betriebe vor der Einführung wissen sollten.</p><div class="byline">Redaktion GaLaBau Kompass · 18. Februar 2026</div></div>
+<figure><img src="../../assets/img/dataflor-business-galabau-software.jpg" alt=""><figcaption>Vom Angebot bis zur Schlussrechnung in einem System: Das ist der Anspruch, an dem Branchensoftware gemessen wird. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Ein System für Angebot, Kalkulation, Aufmaß, Abrechnung, Zeiterfassung und Adressen – nach Herstellerangaben nutzen rund 5.000 Betriebe die Software.</li><li>Stärke ist die Tiefe in der Kalkulation und die Anbindung an CAD (GREENXPERT) und Baustellen-Apps; Schwäche ist der Einführungsaufwand für kleine Betriebe.</li><li>Preise gibt es nur auf Anfrage, modular nach Arbeitsplätzen und Modulen; für Ausbildung und Einstieg bietet der Hersteller eine kostenlose Version an.</li></ul></div><div class="kurz steck"><b>Steckbrief</b><dl><dt>Hersteller</dt><dd>DATAflor AG, Göttingen (gegründet 1982)</dd><dt>Kategorie</dt><dd>Branchensoftware (ERP) für Garten- und Landschaftsbau</dd><dt>Module</dt><dd>Angebot und Kalkulation, Aufmaß und Abrechnung, Zeiterfassung, Adressverwaltung, Kostenplanung; CAD-Ergänzung GREENXPERT</dd><dt>Verbreitung</dt><dd>Nach Herstellerangaben rund 5.000 Anwenderbetriebe</dd><dt>Preis</dt><dd>Auf Anfrage, modular nach Arbeitsplätzen; kostenlose Version für Ausbildung und Einstieg (Bereich Campus)</dd><dt>Für wen</dt><dd>Betriebe ab etwa fünf Mitarbeitern, die Kalkulation, Aufmaß und Abrechnung sauber verbinden wollen</dd><dt>Stand</dt><dd>Herstellerangaben, abgerufen September 2026</dd></dl></div>    <div class="text"><p>Wer in der Branche nach Kalkulationssoftware fragt, bekommt in den meisten Betrieben denselben Namen zu hören. DATAflor aus Göttingen entwickelt seit 1982 Software für den Garten- und Landschaftsbau; das Hauptprodukt BUSINESS bündelt Angebot, Kalkulation, Aufmaß, Abrechnung, Zeiterfassung und Adressverwaltung in einem System. Nach Angaben des Herstellers arbeiten rund 5.000 Betriebe damit.</p>
+<h2>Was das System kann</h2>
+<p>Der Kern ist die Kalkulation: Leistungsverzeichnisse aus GAEB-Dateien einlesen, Positionen mit Stammdaten kalkulieren, Angebote ausgeben, Aufträge überwachen. Daran hängen Aufmaß und Abrechnung – Teil- und Schlussrechnungen nach VOB, mit Nachträgen und Mengenkontrolle – sowie die Zeiterfassung, die Stunden aus der Baustelle auf Aufträge und Lohn verteilt. Wer plant, ergänzt das CAD-Programm GREENXPERT desselben Herstellers, das Pläne und Mengen direkt in die Kalkulation übergibt.</p>
+<p>Für den Betrieb heißt das: Ein Auftrag durchläuft von der ersten Anfrage bis zur Schlussrechnung dasselbe System, und der Bauleiter sieht am Monatsende, ob die Baustelle Geld verdient hat. Das ist der Grund, warum die Software in Betrieben mit Bauleitung und Kalkulationsabteilung Standard ist.</p>
+<h2>Wo sie an Grenzen kommt</h2>
+<p>Die Tiefe hat einen Preis: Einführung, Schulung und Stammdatenpflege kosten Wochen, nicht Tage. Ein Fünf-Mann-Betrieb, der seine Angebote bisher in Excel schreibt, braucht einen Verantwortlichen im Büro, der das System trägt – sonst bleibt es ein teures Adressbuch. Die Preise nennt der Hersteller nur auf Anfrage; sie richten sich nach Modulen und Arbeitsplätzen. Für Ausbildung und Einstieg gibt es eine kostenlose Version (Bereich „Campus“), mit der Betriebe und Berufsschulen die Kalkulationslogik kennenlernen können.</p>
+<div class="kasten"><b>Vor der Einführung klären</b>Wer im Betrieb pflegt die Stammdaten? Welche Schnittstellen sind nötig – Lohnbuchhaltung, Steuerberater, Baustellen-App? Wie viele Arbeitsplätze brauchen wirklich Vollzugriff? Und: Wer schult die Vorarbeiter für das Aufmaß? Die Software ist so gut wie die Zahlen, die reinkommen.</div>
+
+<h2>Alternativen</h2>
+<p>Am Markt gibt es weitere Branchenlösungen und allgemeine Handwerkersoftware, die Angebot und Rechnung abdecken, aber in Kalkulation und VOB-Abrechnung weniger tief gehen. Für Betriebe, die vor allem Zeiten und Baustellen dokumentieren wollen, sind Apps wie 123erfasst oder PlanRadar der einfachere Einstieg – sie ersetzen die Kalkulation nicht, verbinden sich aber damit.</p>
+<h2>Für wen</h2>
+<p>Für Betriebe ab etwa fünf Mitarbeitern mit eigener Kalkulation, für alle, die öffentliche Aufträge nach VOB abrechnen, und für Betriebe, die wissen wollen, welche Baustelle Ertrag bringt. Für den Zwei-Mann-Betrieb mit Privatkunden reicht oft eine schlankere Lösung – bis der dritte Mitarbeiter kommt.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>DATAflor: Software für Garten- und Landschaftsbau (Module, Beschreibung) – <a href="https://www.dataflor.de/galabau/">www.dataflor.de/galabau/</a></li><li>DATAflor: Kostenlose Version (Bereich Campus) – <a href="https://www.dataflor.de/campus/kostenlose-version/">www.dataflor.de/campus/kostenlose-version/</a></li><li>Wer liefert was: DATAflor AG – Marktführer für GaLaBau-Software seit über 35 Jahren (Gründung 1982, Göttingen) – <a href="https://www.wlw.de/de/firma/dataflor-ag-601241">www.wlw.de/de/firma/dataflor-ag-601241</a></li><li>dergartenbau.ch: Dataflor – Software für den Garten- und Landschaftsbau – <a href="https://www.dergartenbau.ch/artikel/dataflor-software-fuer-den-garten-und-landschaftsbau">www.dergartenbau.ch/artikel/dataflor-software-fuer-den-ga...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Produkte &amp; Software</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Betrieb &amp; Personal</span><h1>Jahresauftakt: 25 Prozent mehr Bewerbungen, 3 Prozent weniger Stellen</h1><p class="dek">Das Indeed Hiring Lab hat den Jahreswechsel 2025/26 ausgewertet, die Bundesagentur den Januar. Beide Zahlenreihen erzählen dasselbe: Zu Jahresbeginn bewegen sich Fachkräfte – und die Betriebe, die dann sichtbar sind, profitieren.</p><div class="byline">Redaktion GaLaBau Kompass · 16. Februar 2026</div></div>
+<figure><img src="../../assets/img/jahresauftakt-2026-bewerbungen-plus-25-prozent.jpg" alt=""><figcaption>Januar ist Suchmonat: 38 Prozent mehr Suchanfragen als in der ersten Dezemberhälfte. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Januar 2026 gegenüber Anfang Dezember: Bewerbungen plus 25 Prozent, Suchanfragen plus 38, Ausschreibungen minus 3 – 28 Prozent mehr Bewerbungen je Anzeige.</li><li>Die Arbeitslosigkeit stieg im Januar um 177.000 auf 3.085.000, begründet mit den Außenberufen; Vakanzzeit 166 Tage, 49 Prozent der Stellen länger als drei Monate offen.</li><li>Wer im Januar sichtbar ist, hat die beste Ausgangslage des Jahres – im März haben die Wechsler unterschrieben.</li></ul></div>    <div class="text"><p>Der Stellenmarkt startet jedes Jahr gleich – und jedes Jahr wundern sich Betriebe, dass sie im März niemanden finden. Zwei Auswertungen aus dem Februar 2026 zeigen, was zwischen Dezember und Januar passiert.</p>
+<h2>Mehr Bewerbungen, weniger Anzeigen</h2>
+<p>Das Indeed Hiring Lab hat die Aktivität auf seiner Plattform zum Jahreswechsel gemessen. Gegenüber der ersten Dezemberhälfte stiegen die Bewerbungen im Januar um 25 Prozent und die Suchanfragen um 38 Prozent. Gleichzeitig ging die Zahl der Stellenausschreibungen um 3 Prozent zurück. Rechnerisch bekam jede Ausschreibung 28 Prozent mehr Bewerbungen. Die Ökonomin Virginia Sondergeld spricht von einer einseitigen Dynamik: Die Nachfrage nach Jobs steigt, das Angebot nicht.</p>
+<div class="tabelle"><table>
+<tr><th>Januar 2026 gegenüber 1.–15. Dezember 2025</th><th>Veränderung</th></tr>
+<tr><td>Bewerbungen</td><td>+25 %</td></tr>
+<tr><td>Suchanfragen</td><td>+38 %</td></tr>
+<tr><td>Stellenausschreibungen</td><td>−3 %</td></tr>
+<tr><td>Bewerbungen je Ausschreibung</td><td>+28 %</td></tr>
+</table></div>
+
+<h2>Der Winter setzt Außenberufe frei</h2>
+<p>Die Bundesagentur für Arbeit meldet für Januar 2026 einen Anstieg der Arbeitslosigkeit um 177.000 auf 3.085.000 – ein Plus von 6 Prozent gegenüber Dezember, das der Monatsbericht ausdrücklich mit den Außenberufen begründet: Baugewerbe, Landwirtschaft, Gartenbau. Die Zahl der gemeldeten Stellen lag bei 598.000. Zugleich zeigt der Bericht, wie träge Besetzungen geworden sind: Die abgeschlossene Vakanzzeit lag in der gleitenden Jahressumme bei 166 Tagen, 49 Prozent der gemeldeten Stellen waren länger als drei Monate unbesetzt.</p>
+<h2>Ein Drittel ist offen für Angebote</h2>
+<p>Die dritte Zahl kommt aus der Wechselbereitschaftsstudie von XING und forsa, erhoben zwischen Dezember 2025 und Januar 2026 unter 3.418 Beschäftigten: 34 Prozent sind wechselbereit, 8 Prozent planen den Wechsel konkret, 26 Prozent sind offen, ohne aktiv zu suchen. Für Betriebe ist die zweite Gruppe die interessante – sie bewirbt sich nicht, sie lässt sich ansprechen.</p>
+<div class="kasten"><b>Was das für den GaLaBau heißt</b>Die Saison beginnt im März, die Bewerbungswelle im Januar. Wer seine Stellen im Dezember sichtbar hat und im Januar innerhalb von 24 Stunden antwortet, trifft auf 28 Prozent mehr Bewerbungen je Anzeige. Wer im März ausschreibt, konkurriert mit allen anderen um die, die übrig sind.</div>
+
+<h2>Drei Konsequenzen</h2>
+<ol>
+<li><strong>Stellen vor Weihnachten ausschreiben.</strong> Nicht, weil im Dezember jemand anfängt, sondern weil im Januar jemand sucht.</li>
+<li><strong>Im Januar erreichbar sein.</strong> Der Betrieb ruht, der Inhaber hat Zeit – das ist die beste Voraussetzung für Gespräche und Probetage.</li>
+<li><strong>Die 26 Prozent ansprechen.</strong> Fachkräfte, die offen sind, aber nicht suchen, erreicht man nicht über Anzeigen, sondern über Empfehlungen, Sichtbarkeit in der Region und direkte Ansprache.</li>
+</ol></div>
+<div class="quellen"><b>Quellen</b><ol><li>Indeed Hiring Lab Deutschland, Virginia Sondergeld: Mehr Bewerbungen bei weniger Stellen – einseitige Dynamik am Stellenmarkt zum Jahresauftakt, 16. Februar 2026 (Januar gegenüber 1.–15. Dezember: Bewerbungen +25 %, Suchanfragen +38 %, Ausschreibungen −3 %, Bewerbungen je Ausschreibung +28 %) – <a href="https://hiringlab.indeed.com/de/blog/2026/02/16/mehr-bewerbungen-bei-weniger-stellen-einseitige-dynamik-am-stellenmarkt-zum-jahresauftakt/">hiringlab.indeed.com/de/blog/2026/02/16/mehr-bewerbungen-...</a></li><li>Bundesagentur für Arbeit: Monatsbericht zum Arbeits- und Ausbildungsmarkt, Januar 2026 (Arbeitslosigkeit +177.000 / +6 % gegenüber Dezember, Außenberufe; Vakanzzeit 166 Tage in der gleitenden Jahressumme; 49 % der Stellen länger als drei Monate vakant; 598.000 gemeldete Stellen) – <a href="https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/arbeitsmarktberichte/monatsbericht-monatsbericht/monatsbericht-d-0-202601-pdf.pdf">statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/...</a></li><li>XING/forsa: Wechselbereitschaftsstudie 2026 (34 % wechselbereit: 8 % konkret, 26 % offen; n = 3.418, erhoben Dezember 2025 bis Januar 2026), zitiert nach Haufe, 9. Februar 2026 – <a href="https://www.haufe.de/personal/hr-management/mitarbeiterbindung-wechselbereitschaft_80_614872.html">www.haufe.de/personal/hr-management/mitarbeiterbindung-we...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Karriere &amp; Weiterbildung</span><h1>Was der GaLaBau zahlt: Lohngruppen, Gehaltsgruppen und Ausbildungsvergütung 2025/26</h1><p class="dek">Vom Helfer bis zum Baustellenleiter, von der Bürokraft bis zum Bauleiter: Der Tarifvertrag legt die Sätze fest, nach denen tarifgebundene Betriebe zahlen – und an denen sich der Rest der Branche orientiert. Die Übersicht mit der Erhöhung zum 1. Juli 2026.</p><div class="byline">Redaktion GaLaBau Kompass · 11. Februar 2026</div></div>
+<figure><img src="../../assets/img/was-der-galabau-zahlt-lohngruppen-2025-2026.jpg" alt=""><figcaption>Der Ecklohn markiert die Mitte der Tabelle: 20,24 Euro seit Juli 2025, 20,91 Euro ab Juli 2026. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Lohngruppe 1 Baustellenleiter 26,36 Euro, Landschaftsgärtner mit Abschluss 21,27 Euro, Ecklohn (4.2a) 20,24 Euro – ab 1. Juli 2026 plus 3,3 Prozent.</li><li>Angestellte: T1 ab 2.516,28 Euro, T5 bis 4.839 Euro; kaufmännisch K1 ab 2.133,41 Euro; Azubis 1.100 bis 1.340 Euro, ab Juli 2026 1.140 bis 1.390 Euro.</li><li>Die niedrigste Lohngruppe wird seit Januar 2026 vom Mindestlohn überholt; neben dem Stundenlohn entscheiden Zuschläge, Fahrzeit und Winterbeschäftigung über das Jahresnetto.</li></ul></div>    <div class="text"><p>Wer im GaLaBau über Geld spricht, spricht über den Tarif – auch dann, wenn der Betrieb nicht tarifgebunden ist. Die Lohntabelle des Bundesverbands Garten-, Landschafts- und Sportplatzbau und der IG BAU ist die Referenz, an der Bewerber, Mitarbeiter und Wettbewerber messen. Die Sätze gelten seit dem 1. Juli 2025 und steigen zum 1. Juli 2026 um 3,3 Prozent.</p>
+<h2>Gewerbliche Mitarbeiter: Die Lohngruppen</h2>
+<p>Die Tabelle reicht von der Lohngruppe 1 für Baustellenleiter bis zur Lohngruppe 7 für ungelernte Kräfte in der Einarbeitung. Der ausgebildete Landschaftsgärtner findet sich in der Lohngruppe 4; der Ecklohn der Lohngruppe 4.2a ist die Referenzgröße, an der sich die übrigen Gruppen orientieren.</p>
+<div class="tabelle"><table>
+<thead><tr><th>Lohngruppe</th><th>Beispiel</th><th>seit 1. Juli 2025</th><th>ab 1. Juli 2026</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Baustellenleiter</td><td>26,36 €</td><td>27,23 €</td></tr>
+<tr><td>4.1</td><td>Landschaftsgärtner mit Abschluss</td><td>21,27 €</td><td>21,97 €</td></tr>
+<tr><td>4.2a (Ecklohn)</td><td>Landschaftsgärtner, Referenzlohn der Tabelle</td><td>20,24 €</td><td>20,91 €</td></tr>
+<tr><td>5.2</td><td>Fahrer, angelernte Kräfte</td><td>20,24 €</td><td>20,91 €</td></tr>
+<tr><td>7.6</td><td>Ungelernte in der Einarbeitung</td><td>13,10 €</td><td>vom Mindestlohn (13,90 €) überholt</td></tr>
+</tbody></table></div>
+
+<p>Die Zahlen sind Stundenlöhne brutto. Zwischen den Beispielgruppen liegen weitere Stufen – etwa für Vorarbeiter, Maschinenführer und Facharbeiter mit Zusatzqualifikationen –, die die Tarifbroschüre vollständig ausweist. Auffällig ist das untere Ende: Die niedrigste Lohngruppe liegt seit dem 1. Januar 2026 unter dem gesetzlichen Mindestlohn von 13,90 Euro. Für die betroffenen Beschäftigten gilt der Mindestlohn, nicht der Tarif – die Tabelle wird an dieser Stelle vom Gesetz überholt.</p>
+<h2>Angestellte: Die Gehaltsgruppen</h2>
+<p>Für technische Angestellte – Bauleiter, Planer, Kalkulatoren – und kaufmännische Angestellte gelten Monatsgehälter in jeweils fünf Gruppen mit Stufen nach Berufsjahren. Seit dem 1. Juli 2025 beginnt die technische Gruppe T1 im ersten Berufsjahr bei 2.516,28 Euro, die höchste Gruppe T5 bei 4.839,00 Euro. Kaufmännische Angestellte starten in K1 bei 2.133,41 Euro und erreichen in K5 4.645,46 Euro. Bauleiter mit Personalverantwortung und Meister werden in der Praxis häufig außertariflich vergütet – der Tarif ist dann die Untergrenze der Verhandlung.</p>
+<h2>Auszubildende</h2>
+<p>Die Ausbildungsvergütung liegt seit Juli 2025 bei 1.100 Euro im ersten und 1.340 Euro im dritten Lehrjahr. Ab dem 1. Juli 2026 gelten 1.140, 1.270 und 1.390 Euro. Gegenüber der gesetzlichen Mindestausbildungsvergütung von 724 Euro für Ausbildungsstarts 2026 ist das ein Abstand von mehr als 50 Prozent.</p>
+<h2>Was neben dem Stundenlohn zählt</h2>
+<p>Der Stundenlohn ist die halbe Wahrheit. Für Bewerber und Mitarbeiter entscheiden Zuschläge für Überstunden, Samstags- und Winterdienstarbeit, die Regelung der Fahrzeiten zur Baustelle, Auslösen bei Montage, Urlaubstage und die Frage, ob der Betrieb im Winter durchbeschäftigt oder auf Saison-Kurzarbeit setzt. Zwei Betriebe mit demselben Tariflohn können sich im Jahresnetto deutlich unterscheiden. Betriebe, die im Vorstellungsgespräch die gesamte Rechnung aufmachen – Stundenlohn, Zuschläge, Fahrzeit, Extras –, gewinnen gegen die, die nur die Tabelle zeigen.</p>
+<h2>Tarifbindung: Pflicht oder Wahl</h2>
+<p>Tarifgebunden ist, wer Mitglied im Arbeitgeberverband ist oder den Tarif im Arbeitsvertrag in Bezug nimmt. Wer beides nicht tut, ist frei in der Lohngestaltung – oberhalb des Mindestlohns und, bei Auszubildenden, oberhalb von 80 Prozent der tariflichen Vergütung. In der Praxis zahlen die meisten Betriebe der Branche tarifnah, weil der Markt es verlangt: Ein Facharbeiter, der drei Euro unter Tarif liegt, hat den Wechsel im nächsten Winter bereits geplant.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>B_I galabau: Tarif im GaLaBau 2025/2026 – Löhne, Gehälter und Azubi-Vergütung (Lohngruppen und Gehaltsgruppen ab 1. Juli 2025 und 1. Juli 2026) – <a href="https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996">bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-...</a></li><li>Senatsverwaltung für Arbeit Berlin: Tarifbroschüre Garten-, Landschafts- und Sportplatzbau (Stand Juli 2025, Sätze ab Juli 2026) – <a href="https://www.berlin.de/sen/arbeit/arbeits-und-tarifrecht/tarifbroschueren-nach-wirtschaftsbereichen/branche-g/garten_landschafts_und_sportplatzbau_01_broschuere_ab_07_2026_stand_07_2025.pdf">www.berlin.de/sen/arbeit/arbeits-und-tarifrecht/tarifbros...</a></li><li>IG BAU: Tarifabschluss Garten- und Landschaftsbau – mehr Geld für alle (Ausbildungsvergütung ab 1. Juli 2026: 1.140 / 1.270 / 1.390 Euro) – <a href="https://igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Geld-fuer-alle.html">igbau.de/Garten-und-Landschaftsbau-Tarifabschluss-mehr-Ge...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Abmahnung, Kündigung, Probezeit: Die Regeln, die im Kolonnenalltag zählen</h1><p class="dek">Wer zu spät kommt, wer die Säge ohne Schutzhose führt, wer nach der Saison nicht mehr passt – Betriebe reagieren oft aus dem Bauch. Das Arbeitsrecht verlangt Reihenfolge, Form und Frist. Ein Überblick für Inhaber und Bauleiter.</p><div class="byline">Redaktion GaLaBau Kompass · 4. Februar 2026</div></div>
+<figure><img src="../../assets/img/abmahnung-kuendigung-probezeit-galabau.jpg" alt=""><figcaption>Eine Kündigung per WhatsApp ist keine Kündigung: Ohne Unterschrift auf Papier läuft das Arbeitsverhältnis weiter. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Probezeit maximal sechs Monate mit zwei Wochen Frist; Kündigungsschutz ab elf Arbeitnehmern und nach sechs Monaten Wartezeit.</li><li>Abmahnung konkret mit Datum, Ort, Verstoß und Warnung; Kündigung nur schriftlich mit Unterschrift – WhatsApp und E-Mail zählen nicht.</li><li>Fristlos nur bei wichtigem Grund innerhalb von zwei Wochen; Azubis nach der Probezeit nur aus wichtigem Grund; Klagefrist drei Wochen.</li></ul></div>    <div class="text"><p>Arbeitsrechtliche Fehler passieren im GaLaBau selten aus Bosheit, meist aus Tempo. Der Bauleiter schickt den Mitarbeiter am Freitag nach Hause, der Inhaber schreibt am Abend „Du brauchst Montag nicht mehr kommen“ – und drei Wochen später liegt die Kündigungsschutzklage im Briefkasten. Die Regeln sind überschaubar. Man muss sie nur in der richtigen Reihenfolge anwenden.</p>
+<h2>Probezeit: Sechs Monate, zwei Wochen</h2>
+<p>Die Probezeit darf höchstens sechs Monate dauern. In dieser Zeit können beide Seiten mit einer Frist von zwei Wochen kündigen, ohne Begründung. Wichtig: Die Probezeit muss im Arbeitsvertrag stehen, sonst gilt von Anfang an die Grundkündigungsfrist. Und sie ist nicht zu verwechseln mit der Wartezeit des Kündigungsschutzgesetzes, die ebenfalls sechs Monate beträgt – erst danach greift der allgemeine Kündigungsschutz, und zwar unabhängig davon, ob eine Probezeit vereinbart war.</p>
+<h2>Kleinbetrieb oder nicht</h2>
+<p>Das Kündigungsschutzgesetz gilt in Betrieben mit mehr als zehn Arbeitnehmern; Teilzeitkräfte zählen anteilig, Auszubildende gar nicht. Ein Betrieb mit acht Facharbeitern, zwei Bürokräften und drei Azubis ist ein Kleinbetrieb – er kann ordentlich kündigen, ohne einen Grund nachweisen zu müssen, solange die Kündigung nicht willkürlich oder diskriminierend ist. Ab dem elften Arbeitnehmer braucht jede ordentliche Kündigung nach der Wartezeit einen Grund: verhaltensbedingt, personenbedingt oder betriebsbedingt.</p>
+<h2>Die Abmahnung</h2>
+<p>Bei verhaltensbedingten Gründen – Unpünktlichkeit, Verstöße gegen Sicherheitsregeln, Arbeitsverweigerung – geht der Kündigung fast immer eine Abmahnung voraus. Sie hat zwei Funktionen: Sie benennt das konkrete Verhalten und warnt, dass im Wiederholungsfall die Kündigung droht. Eine Abmahnung, die nur „unzureichende Arbeitsleistung“ rügt, ist wertlos. Eine, die Datum, Uhrzeit, Baustelle und Verstoß nennt („am 3. Februar um 7:40 Uhr ohne Schnittschutzhose mit der Motorsäge gearbeitet, entgegen der Unterweisung vom 12. Januar“), hält.</p>
+<div class="kasten"><b>Form und Aufbewahrung</b>Die Abmahnung ist nicht formgebunden, gehört aber schriftlich in die Personalakte, mit Empfangsbestätigung oder Zeugen für die Übergabe. Eine gesetzliche Frist, wie lange sie wirkt, gibt es nicht; Gerichte sehen eine Abmahnung nach einigen Jahren beanstandungsfreien Verhaltens als verbraucht an. Mehrere Abmahnungen für gleichartige Verstöße stärken die spätere Kündigung – solange sie ernst gemeint sind und nicht als Sammelaktion vor der Kündigung ausgesprochen werden.</div>
+
+<h2>Die ordentliche Kündigung</h2>
+<p>Sie muss schriftlich erfolgen und eigenhändig unterschrieben sein. Eine E-Mail, eine WhatsApp-Nachricht, ein Anruf sind keine Kündigung – das Arbeitsverhältnis läuft weiter, mit vollem Vergütungsanspruch. Die Grundkündigungsfrist beträgt vier Wochen zum 15. oder zum Monatsende. Mit der Betriebszugehörigkeit verlängert sie sich für den Arbeitgeber: nach zwei Jahren auf einen Monat zum Monatsende, nach fünf Jahren auf zwei, nach acht auf drei, nach zehn auf vier, nach zwölf auf fünf, nach fünfzehn auf sechs und nach zwanzig Jahren auf sieben Monate. Der Rahmentarifvertrag des GaLaBau kann abweichende Fristen vorsehen; tarifgebundene Betriebe prüfen ihn vor jeder Kündigung.</p>
+<h2>Die fristlose Kündigung</h2>
+<p>Sie ist die Ausnahme und setzt einen wichtigen Grund voraus, der die Fortsetzung bis zum Ablauf der Frist unzumutbar macht: Diebstahl, Tätlichkeiten, hartnäckige Arbeitsverweigerung, Fahren unter Alkohol. Sie muss innerhalb von zwei Wochen ausgesprochen werden, nachdem der Arbeitgeber vom Grund erfahren hat. Wer den Vorfall drei Wochen liegen lässt, kann nur noch ordentlich kündigen. Eine fristlose Kündigung sollte hilfsweise immer auch als ordentliche ausgesprochen werden.</p>
+<h2>Auszubildende</h2>
+<p>Für Auszubildende gelten eigene Regeln. In der Probezeit – mindestens ein, höchstens vier Monate – kann jederzeit ohne Frist gekündigt werden. Danach nur noch aus wichtigem Grund, schriftlich und mit Angabe der Gründe; der Azubi selbst darf mit vier Wochen Frist kündigen, wenn er den Beruf aufgibt. Eine ordentliche Kündigung des Ausbildungsverhältnisses durch den Betrieb gibt es nach der Probezeit nicht.</p>
+<h2>Nach der Kündigung</h2>
+<p>Der Gekündigte hat drei Wochen Zeit, Klage beim Arbeitsgericht zu erheben. Wer die Frist versäumt, dessen Kündigung gilt als wirksam. In der Praxis endet die Mehrzahl der Verfahren mit einem Vergleich – und mit einer Abfindung, deren Höhe davon abhängt, wie sauber Abmahnung, Form und Frist waren. Wer einen Betriebsrat hat, muss ihn vor jeder Kündigung anhören; wer schwerbehinderte Mitarbeiter kündigt, braucht die Zustimmung des Integrationsamts. Beides sind keine Formalien, sondern Wirksamkeitsvoraussetzungen.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bürgerliches Gesetzbuch, § 622 Kündigungsfristen bei Arbeitsverhältnissen, § 623 Schriftform der Kündigung, § 626 Fristlose Kündigung aus wichtigem Grund – <a href="https://www.gesetze-im-internet.de/bgb/__622.html">www.gesetze-im-internet.de/bgb/__622.html</a></li><li>Kündigungsschutzgesetz, § 1 Sozial ungerechtfertigte Kündigungen, § 4 Anrufung des Arbeitsgerichts (Drei-Wochen-Frist), § 23 Geltungsbereich (Kleinbetriebsklausel) – <a href="https://www.gesetze-im-internet.de/kschg/__23.html">www.gesetze-im-internet.de/kschg/__23.html</a></li><li>Berufsbildungsgesetz, § 22 Kündigung des Ausbildungsverhältnisses – <a href="https://www.gesetze-im-internet.de/bbig_2005/__22.html">www.gesetze-im-internet.de/bbig_2005/__22.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Recht &amp; Tarif</span></div>
+  </section>
+
+  <section class="seite meld">
+    <h2 class="rubrik">Kurz gemeldet · Februar 2026</h2>
+<div class="item"><div class="d">26.02.2026 · Karriere &amp; Weiterbildung</div><h3>Frauenanteil unter den GaLaBau-Azubis sinkt auf rund 11 Prozent</h3><p>Die Gesamtzahl der Auszubildenden steigt auf 8.089, der Anteil der Frauen geht um drei Prozentpunkte zurück.</p></div><div class="item"><div class="d">25.02.2026 · Sicherheit &amp; Gesundheit</div><h3>RKI weist 185 FSME-Risikogebiete aus – Nordsachsen und Halle neu dabei</h3><p>Mehr als 46 Prozent aller Kreise gelten als Risikogebiet. Für Betriebe der Grünpflege heißt das: Vorsorge und Impfangebot organisieren.</p></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Kurz gemeldet</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2026 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 02/2026</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

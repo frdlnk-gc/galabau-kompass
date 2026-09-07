@@ -1,0 +1,89 @@
+# Kennzahlen der Branche. Jede Zahl ist mit einem Beitrag (quelle_slug) belegt, der die Primärquelle nennt.
+# chart: bar | line · serie = Datenpunkte (x = Label, y = Wert)
+- id: ecklohn
+  label: Ecklohn GaLaBau
+  wert: 20.91
+  einheit: "€"
+  hinweis: je Stunde, seit 1. Juli 2026
+  chart: bar
+  serie: [{x: "07/2025", y: 20.24}, {x: "07/2026", y: 20.91}]
+  ab_null: false
+  quelle_slug: tarif-2026-ecklohn-20-91
+- id: mindestlohn
+  label: Gesetzlicher Mindestlohn
+  wert: 13.90
+  einheit: "€"
+  hinweis: seit 1. Januar 2026, ab 2027 14,60 €
+  chart: bar
+  serie: [{x: "2025", y: 12.82}, {x: "2026", y: 13.90}, {x: "2027", y: 14.60}]
+  ab_null: false
+  quelle_slug: mindestlohn-2026-13-90-euro
+- id: azubis
+  label: Auszubildende im GaLaBau
+  wert: 8089
+  hinweis: über alle Lehrjahre, 2025
+  chart: bar
+  serie: [{x: "2024", y: 8004}, {x: "2025", y: 8089}]
+  ab_null: false
+  quelle_slug: azubi-zahlen-2025-galabau
+- id: miav
+  label: Azubi-Mindestvergütung
+  wert: 724
+  einheit: "€"
+  hinweis: 1. Lehrjahr, Ausbildungsstart 2026
+  chart: bar
+  serie: [{x: "2024", y: 649}, {x: "2025", y: 682}, {x: "2026", y: 724}]
+  ab_null: false
+  quelle_slug: azubi-mindestverguetung-2026-724-euro
+- id: insolvenzen
+  label: Insolvenzen im GaLaBau
+  wert: 133
+  hinweis: 2025, Vorjahr 101
+  chart: bar
+  serie: [{x: "2024", y: 101}, {x: "2025", y: 133}]
+  quelle_slug: branchenstatistik-2025-galabau-in-zahlen
+- id: umsatz
+  label: Branchenumsatz
+  wert_text: "11,11 Mrd. €"
+  wert: 11.11
+  hinweis: 2025, nominal +4,3 %
+  quelle_slug: branchenstatistik-2025-galabau-in-zahlen
+- id: betriebe
+  label: Betriebe
+  wert: 19898
+  hinweis: 2025, im Schnitt 22 Beschäftigte
+  quelle_slug: branchenstatistik-2025-galabau-in-zahlen
+- id: beschaeftigte
+  label: Beschäftigte
+  wert: 131746
+  hinweis: 2025, inklusive Auszubildende
+  quelle_slug: branchenstatistik-2025-galabau-in-zahlen
+- id: fsme
+  label: FSME-Risikogebiete
+  wert: 185
+  hinweis: Kreise, Stand Februar 2026
+  chart: bar
+  serie: [{x: "2025", y: 183}, {x: "2026", y: 185}]
+  ab_null: false
+  quelle_slug: zecken-fsme-185-risikogebiete-kolonnen
+- id: ifo
+  label: ifo-Geschäftsklima Wohnungsbau
+  wert_text: "−29,3"
+  wert: -29.3
+  hinweis: Juli 2026, Juni −30,6
+  chart: line
+  serie: [{x: "Juni", y: -30.6}, {x: "Juli", y: -29.3}]
+  ab_null: false
+  quelle_slug: ifo-august-2026-bau-weniger-pessimismus
+- id: krankenstand
+  label: Krankenstand
+  wert_text: "5,3 %"
+  wert: 5.3
+  hinweis: 1. Halbjahr 2026, Vorjahr 5,4 %
+  quelle_slug: krankenstand-2026-langzeitfaelle-bau
+- id: schwelle
+  label: EU-Schwellenwert Bau
+  wert_text: "5,404 Mio. €"
+  wert: 5.404
+  hinweis: netto, seit 1. Januar 2026 (vorher 5,538 Mio.)
+  quelle_slug: oeffentliche-auftraege-2026-schwellenwerte-wertgrenzen

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <script>document.write('<base href="' + (location.pathname.indexOf('/galabau-kompass/') === 0 ? '/galabau-kompass/' : '/') + '">');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0B3D24">
+  <title>Seite nicht gefunden | {{ site.name }}</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="stylesheet" href="assets/kompass.css">
+  <script>window.KOMPASS_SITE={{ site_json|safe }};</script>
+</head>
+<body data-depth="0" data-stand="{{ heute.isoformat() }}" class="seite seite-404">
+  <header data-kompass-header></header>
+  <main id="inhalt">
+    <section class="container narrow">
+      <header class="page-head">
+        <span class="t-kicker">Fehler 404</span>
+        <h1>Diese Seite gibt es nicht.</h1>
+        <p class="page-dek">Der Link ist veraltet oder vertippt. Die Suche findet den Beitrag in der Regel trotzdem.</p>
+      </header>
+      <form class="suche-gross" action="artikel/" method="get" role="search">
+        <input type="search" class="input" name="q" placeholder="Suchbegriff, z. B. Tarif, Bagger, Azubi" aria-label="Suche">
+        <button type="submit" class="btn">Suchen</button>
+      </form>
+      <div class="box mt">
+        <span class="box-title">Neueste Beiträge</span>
+        <ul class="t-textlist">{% for a in neueste %}<li><a href="artikel/{{ a.slug }}/">{{ a.title }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></li>{% endfor %}</ul>
+      </div>
+      <p class="mt"><a class="btn ghost" href="./">Zur Startseite</a></p>
+    </section>
+  </main>
+  <footer data-kompass-footer></footer>
+  <script src="assets/kompass.js"></script>
+</body>
+</html>

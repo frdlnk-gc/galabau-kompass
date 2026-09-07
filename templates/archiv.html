@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set root = '../' * depth %}
+{% block title %}Alle Beiträge | {{ site.name }}{% endblock %}
+{% block description %}Archiv: alle Beiträge von {{ site.name }}, durchsuchbar, filterbar nach Ressort, sortierbar nach Datum, Relevanz und Lesern.{% endblock %}
+{% block bodyclass %}archiv-seite{% endblock %}
+{% block content %}
+<section class="container archiv" data-archiv{% if preset_ressort %} data-ressort="{{ preset_ressort }}"{% endif %}>
+  <header class="page-head">
+    <span class="t-kicker">Archiv</span>
+    <h1>Alle Beiträge</h1>
+    <p class="page-dek">{{ anzahl }} Beiträge seit {{ aeltestes|de_date }}. Volltextsuche über Titel, Vorspann, Themen und Text.</p>
+  </header>
+  <form class="suche-gross" data-suche role="search">
+    <input type="search" class="input" name="q" placeholder="Suchbegriff, z. B. Tarif, Bagger, Azubi, Zecken" aria-label="Suche" autocomplete="off">
+    <button type="submit" class="btn">Suchen</button>
+  </form>
+  <div class="filter-leiste">
+    <div class="chips" data-ressort-chips><button type="button" class="chip is-active" data-r="">Alle Ressorts</button>{% for r in site.ressorts %}<button type="button" class="chip" data-r="{{ r.slug }}">{{ r.name }}</button>{% endfor %}</div>
+    <label class="sortier">Sortieren <select data-sort class="input"><option value="neu">Neueste zuerst</option><option value="relevanz">Relevanz</option><option value="gelesen">Meistgelesen</option><option value="alt">Älteste zuerst</option></select></label>
+  </div>
+  <div class="ergebnis-zeile"><span data-ergebnis>{{ anzahl }} Beiträge</span><button type="button" class="btn-link" data-reset hidden>Filter zurücksetzen</button></div>
+  <div class="river" data-liste></div>
+  <div class="center mt-s"><button type="button" class="btn ghost" data-mehr hidden>Mehr laden</button></div>
+  <div class="box mt"><span class="box-title">Themen</span><div class="tag-wolke">{% for t in top_tags %}<a href="?q={{ t|urlencode }}" data-tag="{{ t }}">{{ t }}</a>{% endfor %}</div></div>
+</section>
+{% endblock %}

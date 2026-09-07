@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>GaLaBau Kompass · Ausgabe 10/2025</title>
+<style>
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
+  @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
+  @page{size:A4;margin:0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
+  .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
+  .seite:last-child{page-break-after:auto;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
+  /* Cover */
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
+  .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
+  /* Editorial / Inhalt */
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
+  /* Artikel */
+  .art .kopf{margin-bottom:6mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
+  .art figure{margin:4mm 0 6mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
+  .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
+  .art .text p{margin-bottom:3mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
+  .art .text li{margin-bottom:1mm;}
+  .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text a{color:inherit;text-decoration:none;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz ul{margin-left:4mm;}
+  .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
+  .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
+  .art .kurz dt{font-weight:700;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
+  .art .quellen ol{margin-left:4mm;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
+  /* Impressum */
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
+  .imp p{margin-bottom:3mm;}
+</style>
+</head>
+<body>
+  <!-- Cover -->
+  <section class="seite cover">
+    <img src="../../assets/img/eigenkuendigungen-jede-zweite-kuendigung.jpg" alt="">
+    <div class="kopf">
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
+      <div class="nr">Nr. 1 · Ausgabe<b>10/2025</b>Oktober 2025</div>
+    </div>
+    <div class="titel"><span class="kick">Betrieb &amp; Personal</span><h1>Jede zweite Kündigung kommt vom Mitarbeiter – und die meisten haben den nächsten Job schon</h1><p>Der Anteil der Eigenkündigungen ist seit 2009 von 34 auf 52 Prozent gestiegen. Wer geht, geht selten ins Nichts: 84 Prozent haben eine neue Stelle in Aussicht. Was das für die Mitarbeiterbindung im GaLaBau heißt.</p></div>
+    <div class="teaser"><span>Herbstpflanzung: Warum Oktober der beste Mona...</span><span>Azubi-Mindestvergütung 2026: 724 Euro – und w...</span><span>Jede zweite Kündigung kommt vom Mitarbeiter –...</span></div>
+  </section>
+
+  <!-- Editorial + Inhalt -->
+  <section class="seite">
+    <div class="zwei">
+      <div class="editorial"><h2 class="rubrik">Editorial · Herbst ist Planungszeit</h2><p>Die Saison läuft aus, die nächste beginnt am Schreibtisch. Wer im Oktober weiß, welche Positionen er zum Saisonstart besetzen muss, hat noch die Wahl; wer im März sucht, nimmt, was übrig ist. Diese Ausgabe ordnet ein, was der Arbeitsmarkt im Winter tatsächlich bewegt, warum Eigenkündigungen heute die Regel sind, was der Baggerschein rechtlich ist – und warum der Oktober der beste Pflanzmonat bleibt.</p><div class="sig">Redaktion GaLaBau Kompass</div></div>
+      <div><h2 class="rubrik">Inhalt</h2><ul class="inhalt"><li><span class="s">3</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">623.000 offene Stellen, 2,9 Millionen Arbeitslose: Was der Oktober für die Winterplanung bedeutet</div></div></li><li><span class="s">5</span><div><div class="r">Bauen &amp; Pflanzen</div><div class="t">Herbstpflanzung: Warum Oktober der beste Monat für Gehölze ist – und was dabei schiefgeht</div></div></li><li><span class="s">7</span><div><div class="r">Recht &amp; Tarif</div><div class="t">Azubi-Mindestvergütung 2026: 724 Euro – und warum der GaLaBau davon weit entfernt ist</div></div></li><li><span class="s">9</span><div><div class="r">Betrieb &amp; Personal</div><div class="t">Jede zweite Kündigung kommt vom Mitarbeiter – und die meisten haben den nächsten Job schon</div></div></li><li><span class="s">11</span><div><div class="r">Karriere &amp; Weiterbildung</div><div class="t">Baggerschein: Was der DGUV Grundsatz 301-005 von Betrieben verlangt – und was nicht</div></div></li></ul></div>
+    </div>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Seite 2</span></div>
+  </section>
+
+  <!-- Artikel -->
+  <section class="seite art">
+    <div class="kopf"><span class="r">Betrieb &amp; Personal</span><h1>623.000 offene Stellen, 2,9 Millionen Arbeitslose: Was der Oktober für die Winterplanung bedeutet</h1><p class="dek">Die Bundesagentur meldet für Oktober 2025 einen stabilen Arbeitsmarkt. Für GaLaBau-Betriebe beginnt jetzt das Zeitfenster, in dem sich Fachkräfte am ehesten bewegen – und in dem die wenigsten Betriebe suchen.</p><div class="byline">Redaktion GaLaBau Kompass · 30. Oktober 2025</div></div>
+<figure><img src="../../assets/img/arbeitsmarkt-oktober-2025-winterplanung.jpg" alt=""><figcaption>Oktober auf der Baustelle: Die Saison läuft aus, die Personalplanung für das nächste Jahr beginnt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Oktober 2025: 2.911.000 Arbeitslose, 623.000 gemeldete Stellen – und ein Winter, der Außenberufe freisetzt (jedes kältere Dezember-Grad rund 34.000 zusätzliche Arbeitslose laut IAB).</li><li>Im Januar suchen mehr Menschen bei weniger Anzeigen: 2025 lagen die Suchanfragen 34 Prozent über der Vorweihnachtszeit, die Stellen 14,1 Prozent unter dem Vorjahr.</li><li>Wer am 1. April besetzt haben will, rechnet von Kündigungsfristen und Probearbeit zurück – und sucht im Januar, nicht im März.</li></ul></div>    <div class="text"><p>Im Oktober 2025 waren in Deutschland 2.911.000 Menschen arbeitslos gemeldet, die Betriebe hatten 623.000 offene Stellen bei der Bundesagentur angezeigt. Beide Zahlen sind für sich genommen unspektakulär. Für den Garten- und Landschaftsbau markiert der Oktober aber den Beginn eines Zeitfensters, das sich Jahr für Jahr wiederholt – und das die meisten Betriebe ungenutzt lassen.</p>
+<h2>Der Winter setzt Fachkräfte frei</h2>
+<p>Die Außenberufe reagieren auf das Wetter. Das Institut für Arbeitsmarkt- und Berufsforschung hat berechnet, dass jedes Grad, das der Dezember kälter ausfällt als 0,8 Grad, rund 34.000 zusätzliche Arbeitslose bedeutet – vor allem im Baugewerbe und in der Land- und Forstwirtschaft. Ein Teil davon sind saisonale Freistellungen, die im Frühjahr enden. Ein anderer Teil sind Fachkräfte, die den Winter nutzen, um sich neu zu orientieren.</p>
+<p>Das Indeed Hiring Lab hat den Jahreswechsel 2024/25 ausgewertet: Im Januar 2025 lagen die Suchanfragen auf dem Portal 34 Prozent über dem Niveau der Vorweihnachtszeit, während die Zahl der Stellenanzeigen Ende Januar 14,1 Prozent unter dem Vorjahr lag. Mehr Suchende, weniger Anzeigen – für Betriebe, die im Januar sichtbar sind, ist das die beste Ausgangslage des Jahres.</p>
+<h2>Warum die wenigsten Betriebe im Winter suchen</h2>
+<p>Der Grund ist einfach: Im Winter fehlt die Not. Die Baustellen ruhen, das Team ist komplett, die Lücke wird erst im März spürbar, wenn die ersten Aufträge anlaufen. Dann suchen alle gleichzeitig, und die Fachkräfte, die im Januar noch offen waren, haben unterschrieben.</p>
+<div class="kasten"><b>Rückwärts rechnen</b>Wer am 1. April eine besetzte Stelle will, muss Kündigungsfristen des künftigen Mitarbeiters, Bewerbungsgespräche und Probearbeit einplanen. Realistisch sind sechs bis zehn Wochen zwischen erstem Kontakt und erstem Arbeitstag. Der Start der Suche liegt damit spätestens im Januar – besser im November.</div>
+
+<h2>Drei Schritte für den November</h2>
+<ol>
+<li><strong>Bedarf beziffern.</strong> Welche Positionen fehlen zur Saison 2026 tatsächlich – Landschaftsgärtner, Vorarbeiter, Bauleiter? Wie viele? Eine Zahl auf einem Zettel genügt, aber sie muss existieren.</li>
+<li><strong>Sichtbar sein, bevor die Suche beginnt.</strong> Eine Stellenanzeige, die im November online geht, erreicht die Fachkräfte, die über den Winter nachdenken. Eine, die im März online geht, erreicht die, die übrig sind.</li>
+<li><strong>Ansprechpartner benennen.</strong> Im Winter haben Betriebsinhaber Zeit für Gespräche. Wer Namen und Handynummer in die Anzeige schreibt, bekommt Anrufe statt Formulare.</li>
+</ol>
+<p>Der Oktober ist damit weniger der Monat, in dem die Saison endet, als der Monat, in dem die nächste entschieden wird.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesagentur für Arbeit: Presseinfo Nr. 44 vom 30. Oktober 2025 – Der Arbeitsmarkt im Oktober 2025 (2.911.000 Arbeitslose, 623.000 gemeldete Stellen) – <a href="https://www.arbeitsagentur.de/presse/2025-44-arbeitsmarkt-im-oktober-2025">www.arbeitsagentur.de/presse/2025-44-arbeitsmarkt-im-oktober-2025</a></li><li>Indeed Hiring Lab Deutschland: Der Stellenmarkt startet unausgewogen in das neue Jahr, 17. Februar 2025 (Januar 2025: Suchanfragen +34 % gegenüber der Vorweihnachtszeit; Stellen am 31. Januar 2025 −14,1 % gegenüber Vorjahr) – <a href="https://hiringlab.indeed.com/de/blog/2025/02/17/der-stellenmarkt-startet-unausgewogen-in-das-neue-jahr/">hiringlab.indeed.com/de/blog/2025/02/17/der-stellenmarkt-...</a></li><li>IAB-Kurzbericht 2/2015: Frost und Schnee – je Grad unter 0,8 °C im Dezember rund 34.000 zusätzliche Arbeitslose; Bau sowie Land- und Forstwirtschaft am wetterabhängigsten – <a href="https://doku.iab.de/kurzber/2015/kb0215.pdf">doku.iab.de/kurzber/2015/kb0215.pdf</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Bauen &amp; Pflanzen</span><h1>Herbstpflanzung: Warum Oktober der beste Monat für Gehölze ist – und was dabei schiefgeht</h1><p class="dek">Warmer Boden, kühle Luft, Regen in Sicht: Der Herbst gibt Gehölzen einen Vorsprung, den das Frühjahr nicht bietet. Worauf es bei wurzelnackter Ware, Ballen und Containern ankommt und welche Arten trotzdem warten sollten.</p><div class="byline">Redaktion GaLaBau Kompass · 21. Oktober 2025</div></div>
+<figure><img src="../../assets/img/herbstpflanzung-oktober-bester-pflanzmonat.jpg" alt=""><figcaption>Der Boden hält die Sommerwärme bis in den November – die Wurzeln arbeiten weiter, während oben nichts mehr passiert. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Im Oktober ist der Boden noch über zehn Grad warm, die Luft kühl: Gehölze bilden Wurzeln, ohne dass die Krone Wasser verlangt.</li><li>Wurzelnackte Ware ab Mitte Oktober, Ballenware ab Oktober, Container ganzjährig – Immergrüne, Gräser und frostempfindliche Arten lieber im Frühjahr.</li><li>Die häufigsten Fehler: zu spät bestellt, zu lange gelagert, zu tief gepflanzt, zu wenig gewässert.</li></ul></div>    <div class="text"><p>Der Kalender vieler Betriebe sagt: Pflanzen im Frühjahr, wenn die Kunden Lust auf den Garten haben. Die Pflanze sagt etwas anderes. Im Oktober liegt die Bodentemperatur in den oberen 30 Zentimetern meist noch über zehn Grad, während die Luft abkühlt und der Austrieb ruht. Genau in dieser Lücke bilden Gehölze neue Feinwurzeln – ohne dass die Krone Wasser verlangt. Wer jetzt pflanzt, hat im Mai eine Pflanze, die bereits eingewachsen ist. Wer im April pflanzt, hat eine Pflanze, die gleichzeitig Wurzeln bilden, austreiben und einen trockenen Mai überstehen muss.</p>
+<h2>Welche Ware wann</h2>
+<p><strong>Wurzelnackte Gehölze</strong> – Hecken, Wildgehölze, Obstbäume, junge Alleebäume – werden in der Baumschule ab Mitte Oktober gerodet, sobald das Laub fällt. Sie sind günstig, leicht und lassen sich schnell setzen, vertragen aber keine Trockenheit an der Wurzel. Zwischen Rodung und Pflanzung sollten Tage liegen, nicht Wochen; auf der Baustelle gehören sie in den Einschlag, feucht und schattig.</p>
+<p><strong>Ballenware</strong> kommt ab Oktober aus der Baumschule. Der Ballen bleibt beim Pflanzen im Tuch und Drahtkorb – beides verrottet – und wird nur oben gelöst. Ballen dürfen nicht durchfrieren und nicht austrocknen: Ware, die im Januar wochenlang auf dem Hof steht, ist im Frühjahr oft nicht mehr zu retten.</p>
+<p><strong>Containerpflanzen</strong> lassen sich theoretisch ganzjährig setzen. Im Herbst haben sie denselben Vorteil wie alle anderen: Sie wurzeln in den Boden, bevor der erste Trockenstress kommt.</p>
+<h2>Was warten sollte</h2>
+<p>Nicht jede Art profitiert vom Herbst. Frostempfindliche und immergrüne Gehölze – Kirschlorbeer, Glanzmispel, viele Rhododendron-Sorten, Eibe in exponierten Lagen – verdunsten auch im Winter über das Laub und können bei gefrorenem Boden nicht nachliefern. Sie werden besser im September oder ab März gepflanzt. Gleiches gilt für Gräser und viele Stauden, die als Jungpflanzen nasse, kalte Wintermonate schlecht überstehen. Gehölze mit frostempfindlichem Holz, etwa Walnuss oder Trompetenbaum, setzt man ebenfalls lieber im Frühjahr.</p>
+<div class="kasten"><b>Die Regel aus der DIN 18916</b>Gepflanzt wird in frostfreiem, nicht wassergesättigtem Boden. Die Pflanzgrube ist deutlich größer als der Ballen, die Sohle wird gelockert, nicht verdichtet. Die Pflanze steht so tief wie in der Baumschule – der Wurzelhals darf nicht unter der Erde verschwinden. Nach dem Pflanzen wird eingeschlämmt, auch bei Regen. Bäume bekommen einen Dreibock oder Pfähle mit Kokosstrick, keinen Draht.</div>
+
+<h2>Die häufigsten Fehler</h2>
+<p>Der erste Fehler passiert vor der Baustelle: zu spät bestellte Ware, die im November nicht mehr in gewünschter Qualität lieferbar ist. Der zweite passiert auf dem Hof: Ballen und wurzelnackte Ware, die tagelang ungeschützt liegen. Der dritte in der Grube: zu tief gepflanzt, weil die Grube zu großzügig ausgehoben und der Boden nachgesackt ist. Der vierte im Frühjahr: kein Wässern, weil „es ja geregnet hat“. Ein Regenschauer bringt selten mehr als fünf Liter auf den Quadratmeter – ein Ballen braucht ein Vielfaches.</p>
+<h2>Für die Kalkulation</h2>
+<p>Herbstpflanzungen reduzieren Ausfälle und damit die teuerste Position im Pflanzgeschäft: das Nachpflanzen unter Gewährleistung. Wer Kunden im Sommer berät, kann die Pflanzung auf Oktober legen und die Bauzeit dadurch aus dem überlasteten Frühjahr holen. Für die Kolonne heißt das: Pflanzarbeiten im Herbst, Wegebau und Mauern im Frühjahr. Die Baumschulen liefern seit Jahren Argumente dafür – die Auftragsbücher der Betriebe sehen trotzdem noch anders aus.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>DIN 18916: Vegetationstechnik im Landschaftsbau – Pflanzen und Pflanzarbeiten (DIN Media)</li><li>Bund deutscher Baumschulen (BdB): Gütebestimmungen für Baumschulpflanzen</li><li>FLL: Empfehlungen für Baumpflanzungen – Teil 2: Standortvorbereitungen für Neupflanzungen; Pflanzgruben und Wurzelraumerweiterung, Bauweisen und Substrate – <a href="https://www.fll.de/">www.fll.de/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Bauen &amp; Pflanzen</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Azubi-Mindestvergütung 2026: 724 Euro – und warum der GaLaBau davon weit entfernt ist</h1><p class="dek">Das Bundesbildungsministerium hat die Mindestausbildungsvergütung für 2026 bekannt gegeben. Für Betriebe im Tarif spielt sie keine Rolle, für nicht tarifgebundene Betriebe gilt eine andere Grenze – und die liegt deutlich höher.</p><div class="byline">Redaktion GaLaBau Kompass · 15. Oktober 2025</div></div>
+<figure><img src="../../assets/img/azubi-mindestverguetung-2026-724-euro.jpg" alt=""><figcaption>Die gesetzliche Untergrenze ist ein Netz, kein Angebot: Im GaLaBau-Tarif liegt das erste Lehrjahr rund 50 Prozent darüber. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>724 Euro im ersten Lehrjahr für Ausbildungsstarts 2026, 854, 977 und 1.014 Euro in den Folgejahren.</li><li>Der GaLaBau-Tarif zahlt 1.100 Euro und ab Juli 2026 1.140 Euro – rund 50 Prozent mehr.</li><li>Nicht tarifgebundene Betriebe müssen nach § 17 Absatz 4 BBiG mindestens 80 Prozent des Tarifs zahlen: 880 Euro, nicht 724.</li></ul></div>    <div class="text"><p>Wer ab dem 1. Januar 2026 eine Ausbildung beginnt, hat Anspruch auf mindestens 724 Euro im Monat. Das ist die neue Mindestausbildungsvergütung nach § 17 Berufsbildungsgesetz, die das Bundesbildungsministerium am 10. Oktober im Bundesgesetzblatt bekannt gemacht hat. Gegenüber 2025 ist das ein Plus von knapp 6,2 Prozent. Für die weiteren Lehrjahre gelten gesetzliche Aufschläge: 18 Prozent im zweiten, 35 Prozent im dritten und 40 Prozent im vierten Jahr – also 854, 977 und 1.014 Euro.</p>
+<div class="stats" style="margin:10px 0 26px;">
+<div class="stat"><b>724 €</b><span>1. Ausbildungsjahr (Start 2026)</span></div>
+<div class="stat"><b>854 €</b><span>2. Ausbildungsjahr</span></div>
+<div class="stat"><b>977 €</b><span>3. Ausbildungsjahr</span></div>
+<div class="stat"><b>1.100 €</b><span>GaLaBau-Tarif, 1. Jahr (seit Juli 2025)</span></div>
+</div>
+
+<h2>Warum die Zahl im GaLaBau kaum jemanden betrifft</h2>
+<p>Der Tarifvertrag für den Garten-, Landschafts- und Sportplatzbau liegt weit über dem Gesetz: 1.100 Euro im ersten und 1.340 Euro im dritten Ausbildungsjahr seit dem 1. Juli 2025, ab Juli 2026 steigen die Sätze noch einmal um 3,3 Prozent. Tarifgebundene Betriebe zahlen also rund die Hälfte mehr, als das Gesetz verlangt – und das ist kein Zufall. Die Branche konkurriert mit Bau, Handwerk und Industrie um dieselben Schulabgänger.</p>
+<p>Interessanter ist die Regel für Betriebe, die nicht tarifgebunden sind. Für sie gilt nicht nur die Mindestvergütung, sondern die sogenannte Angemessenheit: Nach § 17 Absatz 4 BBiG ist eine Vergütung unangemessen, wenn sie den einschlägigen Tarif um mehr als 20 Prozent unterschreitet. Ein GaLaBau-Betrieb ohne Tarifbindung muss im ersten Jahr also mindestens 80 Prozent von 1.100 Euro zahlen – 880 Euro, nicht 724. Wer sich an der gesetzlichen Mindestvergütung orientiert, riskiert Nachforderungen.</p>
+<h2>Was die Höhe für die Bewerberlage bedeutet</h2>
+<p>Betriebe berichten seit Jahren, dass die Vergütung im Ausbildungsgespräch nicht die erste Frage ist – aber die zweite. Eltern vergleichen. Die 1.100 Euro des Tarifs sind ein Argument gegenüber vielen Handwerksberufen, gegenüber Bank und Industrie nicht. Was Betriebe zusätzlich in die Waagschale legen können, ist zulässig und wirkt: Fahrtkostenzuschuss, Übernahme der Berufsschulfahrten, Arbeitskleidung ohne Eigenanteil, ein fester Übernahmewunsch nach dem zweiten Lehrjahr.</p>
+<h2>Ausbildungsstart 2026 planen</h2>
+<p>Die neue Mindestvergütung gilt für Verträge, die 2026 beginnen. Verträge aus 2025 laufen mit den bisherigen Sätzen weiter, es sei denn, der Tarif hebt sie an – im GaLaBau zum 1. Juli 2026. Wer im Herbst 2025 Verträge für den Sommer 2026 abschließt, sollte die Tariferhöhung bereits einrechnen. Und wer außerhalb des Tarifs ausbildet, sollte seinen Ausbildungsvertrag mit der 80-Prozent-Regel abgleichen, bevor die zuständige Stelle es tut.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Bundesinstitut für Berufsbildung (BIBB): Mindestausbildungsvergütung steigt 2026 auf 724 Euro, Pressemitteilung (Bekanntmachung im Bundesgesetzblatt vom 10. Oktober 2025) – <a href="https://www.bibb.de/de/pressemitteilung_212952.php">www.bibb.de/de/pressemitteilung_212952.php</a></li><li>Berufsbildungsgesetz (BBiG), § 17 Vergütungsanspruch und Angemessenheit der Vergütung – <a href="https://www.gesetze-im-internet.de/bbig_2005/__17.html">www.gesetze-im-internet.de/bbig_2005/__17.html</a></li><li>B_I galabau: Tarif im GaLaBau 2025/2026 – Löhne, Gehälter und Azubi-Vergütung (1.100 Euro im ersten, 1.340 Euro im dritten Ausbildungsjahr ab 1. Juli 2025) – <a href="https://bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-loehne-und-gehaelter-im-galabau-g19996">bau.bi/galabau/nachrichten/tarifvertrag-so-hoch-sind-die-...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Recht &amp; Tarif</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Betrieb &amp; Personal</span><h1>Jede zweite Kündigung kommt vom Mitarbeiter – und die meisten haben den nächsten Job schon</h1><p class="dek">Der Anteil der Eigenkündigungen ist seit 2009 von 34 auf 52 Prozent gestiegen. Wer geht, geht selten ins Nichts: 84 Prozent haben eine neue Stelle in Aussicht. Was das für die Mitarbeiterbindung im GaLaBau heißt.</p><div class="byline">Redaktion GaLaBau Kompass · 14. Oktober 2025</div></div>
+<figure><img src="../../assets/img/eigenkuendigungen-jede-zweite-kuendigung.jpg" alt=""><figcaption>Wer den Betrieb verlässt, hat meist längst entschieden – lange bevor die Kündigung auf dem Tisch liegt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>52 Prozent aller beendeten Arbeitsverhältnisse gehen inzwischen auf Kündigungen der Beschäftigten zurück (2009: 34 Prozent); 84 Prozent der Wechsler haben die nächste Stelle schon in Aussicht.</li><li>Rund 36 Prozent der Beschäftigten waren 2025 wechselbereit – im Handwerk mit vielen Kleinbetrieben führt der Wechsel oft nur einen Ort weiter.</li><li>Für Betriebe heißt das: das Gespräch vor der Kündigung führen, Verantwortung sichtbar machen und so auftreten, als müsste man seine Leute jedes Jahr neu gewinnen.</li></ul></div>    <div class="text"><p>Wer im Garten- und Landschaftsbau eine Kündigung auf den Tisch bekommt, erlebt in den meisten Fällen keinen Rauswurf, sondern einen Abschied. Das Institut der deutschen Wirtschaft (IW) hat die Daten des Sozio-oekonomischen Panels ausgewertet: 2009 gingen 34 Prozent der beendeten Arbeitsverhältnisse auf eine Kündigung durch den Arbeitnehmer zurück, 2022 waren es 52 Prozent. Die Mehrheit der Trennungen geht heute vom Beschäftigten aus.</p>
+<h2>Sie gehen nicht ins Nichts</h2>
+<p>Die zweite Zahl aus derselben Auswertung ist für Betriebe die wichtigere: 84 Prozent derjenigen, die selbst kündigen, haben zum Zeitpunkt der Kündigung bereits eine neue Stelle in Aussicht oder einen Vertrag unterschrieben. Fachkräfte wechseln also nicht aus einer Laune heraus, sondern nachdem ein anderer Betrieb sie angesprochen hat. Der Wettbewerb um Landschaftsgärtner, Vorarbeiter und Bauleiter findet damit nicht auf dem Arbeitsamt statt, sondern im laufenden Arbeitsverhältnis.</p>
+<p>Dazu passt die Wechselbereitschaftsstudie von XING und forsa: Rund 36 Prozent der Beschäftigten in Deutschland waren 2025 wechselbereit – ein Teil davon plant konkret, der größere Teil ist offen für Angebote, ohne aktiv zu suchen. In einem Handwerk mit hohem Anteil an Kleinbetrieben, in dem ein Wechsel oft nur einen Ort weiter führt, ist diese stille Reserve erheblich.</p>
+<h2>Was Betriebe daraus machen</h2>
+<p>Die Konsequenz ist unbequem: Ein Betrieb, der seine Leute halten will, muss so auftreten, als müsste er sie jedes Jahr neu gewinnen. Drei Punkte, die in Gesprächen mit Betriebsinhabern immer wieder den Unterschied machen:</p>
+<ol>
+<li><strong>Das Gespräch vor der Kündigung führen.</strong> Wer einmal im Jahr mit jedem Mitarbeiter über Aufgaben, Verantwortung und Gehalt spricht, erfährt von Unzufriedenheit, bevor der Nachbarbetrieb es tut. Das Gespräch kostet eine Stunde; eine Neubesetzung kostet Monate.</li>
+<li><strong>Verantwortung sichtbar machen.</strong> Vorarbeiter wechseln selten wegen 50 Cent pro Stunde, aber häufig, weil sie im neuen Betrieb eine Kolonne bekommen. Wer Entwicklungsschritte benennt – Kolonnenführung, Bauleitung, Meisterförderung –, nimmt dem Angebot von außen die Kraft.</li>
+<li><strong>Die Rückkehr offenhalten.</strong> Ein Mitarbeiter, der im Guten geht, ist ein Kandidat für das übernächste Jahr. Betriebe, die ehemalige Mitarbeiter zum Sommerfest einladen, berichten regelmäßig von Rückkehrern.</li>
+</ol>
+<div class="kasten"><b>Einordnung</b>Die IW-Zahlen gelten für alle Branchen. Für den GaLaBau gibt es keine eigene Auswertung; die Mechanik – Kündigung erst mit Alternative in der Hand – dürfte in einem Markt mit struktureller Fachkräfteknappheit eher stärker ausgeprägt sein als schwächer.</div>
+
+<h2>Die Zahl, die im Betrieb fehlt</h2>
+<p>Die wenigsten Betriebe kennen ihre eigene Fluktuationsquote. Sie ist schnell berechnet: Abgänge im Jahr geteilt durch die durchschnittliche Beschäftigtenzahl. Ein Betrieb mit 22 Beschäftigten und drei Abgängen liegt bei knapp 14 Prozent – und weiß dann, ob er ein Bindungs- oder ein Gewinnungsproblem hat. Meist ist es das erste, das sich als das zweite verkleidet.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>Institut der deutschen Wirtschaft (IW), Holger Schäfer: Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Eigenkündigungen 34 % 2009 → 52 % 2022; 84 % mit neuer Stelle in Aussicht) – <a href="https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html">www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuend...</a></li><li>XING/forsa: Wechselbereitschaftsstudie 2025 (36 % wechselbereit), zitiert nach Hamburg Business / Der Betrieb – <a href="https://www.haufe.de/personal/hr-management/mitarbeiterbindung-wechselbereitschaft_80_614872.html">www.haufe.de/personal/hr-management/mitarbeiterbindung-we...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Betrieb &amp; Personal</span></div>
+  </section>
+  <section class="seite art">
+    <div class="kopf"><span class="r">Karriere &amp; Weiterbildung</span><h1>Baggerschein: Was der DGUV Grundsatz 301-005 von Betrieben verlangt – und was nicht</h1><p class="dek">Einen amtlichen Baggerführerschein gibt es nicht. Trotzdem darf niemand ohne Qualifizierung und Beauftragung auf den Sitz. Was der Grundsatz der Unfallversicherer vorschreibt, wer ausbilden darf und was auf der Straße zusätzlich gilt.</p><div class="byline">Redaktion GaLaBau Kompass · 8. Oktober 2025</div></div>
+<figure><img src="../../assets/img/baggerschein-dguv-301-005.jpg" alt=""><figcaption>Qualifizierung, Unterweisung, Beauftragung: Drei Schritte, bevor jemand allein baggert. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Einen amtlichen Baggerschein gibt es nicht – der DGUV Grundsatz 301-005 verlangt Qualifizierung, Unterweisung und Beauftragung.</li><li>Richtwert mindestens zehn Unterrichtseinheiten Theorie plus Praxis; das Zertifikat belegt die Qualifizierung, die Beauftragung erteilt jeder Betrieb selbst und schriftlich.</li><li>Selbstständiges Führen ab 18; auf der Straße kommt das Fahrerlaubnisrecht dazu (Klasse L bis 25 km/h).</li></ul></div>    <div class="text"><p>Der Begriff hält sich hartnäckig: „Baggerschein“. Bewerber schreiben ihn in den Lebenslauf, Betriebe fragen im Vorstellungsgespräch danach, Bildungsträger drucken ihn auf Zertifikate. Rechtlich gibt es ihn nicht. Was es gibt, ist eine Pflicht des Unternehmers: Wer eine Erdbaumaschine führt, muss dafür qualifiziert, unterwiesen und beauftragt sein. Wie das aussieht, beschreibt seit Januar 2022 der DGUV Grundsatz 301-005.</p>
+<h2>Drei Schritte, keine Urkunde</h2>
+<p>Der Grundsatz gilt für Hydraulikbagger, Radlader und Baggerlader – also für genau die Maschinen, die auf GaLaBau-Baustellen täglich laufen. Er konkretisiert, was die Betriebssicherheitsverordnung ohnehin verlangt: Beschäftigte dürfen Arbeitsmittel nur benutzen, wenn sie dafür ausreichend qualifiziert sind, und für Arbeitsmittel mit besonderen Gefährdungen braucht es eine ausdrückliche Beauftragung durch den Arbeitgeber.</p>
+<p><strong>Qualifizierung.</strong> Der Fahrer lernt Aufbau und Funktion der Maschine, Standsicherheit, Lastdiagramme, Anbaugeräte, Verkehrssicherung, Arbeiten im Bereich von Leitungen und Böschungen. Der Grundsatz nennt als Richtwert mindestens zehn Unterrichtseinheiten Theorie, dazu die praktische Ausbildung an der Maschine. Wer bereits Erfahrung hat, kann kürzer qualifiziert werden – das muss der Betrieb aber begründen und dokumentieren können.</p>
+<p><strong>Unterweisung.</strong> Sie ist maschinen- und baustellenbezogen: Welche Maschine, welche Anbaugeräte, welche Besonderheiten auf dieser Baustelle. Die Unterweisung wird jährlich wiederholt und schriftlich festgehalten.</p>
+<p><strong>Beauftragung.</strong> Erst mit der Beauftragung darf der Mitarbeiter die Maschine selbstständig führen. Sie ist personen- und maschinenbezogen und sollte schriftlich erfolgen – der Grundsatz stellt dafür ein Muster bereit. Ein Vordruck reicht: Name, Maschinentyp, Datum, Unterschrift beider Seiten.</p>
+<div class="kasten"><b>Wer darf ausbilden?</b>Der Grundsatz stellt Anforderungen an Ausbilder und Ausbildungsstätten: fachliche Qualifikation, praktische Erfahrung, geeignete Maschinen und ein Übungsgelände. Betriebe können intern ausbilden, wenn sie diese Anforderungen erfüllen – eine erfahrene Vorarbeiterin oder ein Bauleiter mit Maschinenhintergrund kann das sein. Viele Betriebe nutzen die Lehrgänge der BG BAU, der DEULA oder von Maschinenhändlern, weil dort Dokumentation und Übungsgelände mitgeliefert werden.</div>
+
+<h2>Was ein Zertifikat wert ist</h2>
+<p>Das Zertifikat eines Lehrgangs belegt die Qualifizierung – nicht mehr. Die Beauftragung erteilt der jeweilige Betrieb. Wechselt der Fahrer den Arbeitgeber, muss der neue Betrieb ihn erneut unterweisen und beauftragen. Wer einen Bewerber mit „Baggerschein“ einstellt, hat also den ersten Schritt erledigt, nicht den dritten.</p>
+<p>Umgekehrt gilt: Ein Facharbeiter, der seit zwanzig Jahren baggert, aber nie einen Lehrgang besucht hat, ist nicht automatisch unqualifiziert. Der Betrieb kann seine Befähigung feststellen und dokumentieren. Was nicht geht, ist schweigen: Passiert ein Unfall und der Betrieb kann weder Qualifizierung noch Beauftragung belegen, wird die Berufsgenossenschaft Regress prüfen.</p>
+<h2>Mindestalter und Straße</h2>
+<p>Das selbstständige Führen von Erdbaumaschinen ist Beschäftigten ab 18 Jahren vorbehalten; Auszubildende dürfen unter Aufsicht früher üben, wenn das Ausbildungsziel es erfordert. Auf öffentlichen Straßen kommt das Fahrerlaubnisrecht dazu: Für selbstfahrende Arbeitsmaschinen bis 25 km/h reicht die Klasse L, darüber entscheidet das zulässige Gesamtgewicht über B, C1 oder C. Wer den Minibagger auf dem Anhänger zur Baustelle bringt, braucht je nach Gespann B96 oder BE.</p>
+<h2>Für die Personalplanung</h2>
+<p>Betriebe, die Maschinenführer suchen, konkurrieren mit dem Tiefbau und dem Straßenbau. Wer die Qualifizierung selbst anbietet – als festen Baustein im ersten Jahr nach der Ausbildung – hat ein Argument, das im Vorstellungsgespräch zählt. Und er hat es dokumentiert, wenn es darauf ankommt.</p></div>
+<div class="quellen"><b>Quellen</b><ol><li>DGUV Grundsatz 301-005: Qualifizierung und Beauftragung von Fahrern und Fahrerinnen von Hydraulikbaggern und Radladern (Stand Januar 2022) – <a href="https://publikationen.dguv.de/regelwerk/dguv-grundsaetze/4418/qualifizierung-und-beauftragung-von-fahrern-und-fahrerinnen-von-hydraulikbaggern-und-radladern">publikationen.dguv.de/regelwerk/dguv-grundsaetze/4418/qua...</a></li><li>BG BAU, Bauportal 3/2023: Baggerführerschein, Baggerschein, Beauftragung …? – <a href="https://bauportal.bgbau.de/bauportal-32023/thema/tiefbau/baggerfuehrerschein-baggerschein-beauftragung">bauportal.bgbau.de/bauportal-32023/thema/tiefbau/baggerfu...</a></li><li>Betriebssicherheitsverordnung (BetrSichV), § 12 Unterweisung und besondere Beauftragung von Beschäftigten – <a href="https://www.gesetze-im-internet.de/betrsichv_2015/__12.html">www.gesetze-im-internet.de/betrsichv_2015/__12.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Karriere &amp; Weiterbildung</span></div>
+  </section>
+
+  <section class="seite meld">
+    <h2 class="rubrik">Kurz gemeldet · Oktober 2025</h2>
+<div class="item"><div class="d">28.10.2025 · Markt &amp; Politik</div><h3>EU-Schwellenwerte für 2026 und 2027 stehen fest: Bauaufträge ab 5,404 Millionen Euro</h3><p>Die EU-Kommission senkt die Schwellenwerte für europaweite Vergaben. Für Landschaftsbauaufträge zählen weiter die nationalen Wertgrenzen der VOB/A.</p></div><div class="item"><div class="d">13.10.2025 · Recht &amp; Tarif</div><h3>Bekanntmachung im Bundesgesetzblatt: Azubi-Mindestvergütung 2026 steigt auf 724 Euro</h3><p>Für Ausbildungsverträge ab 1. Januar 2026 gelten 724 Euro im ersten, 854 Euro im zweiten und 977 Euro im dritten Lehrjahr. Der GaLaBau-Tarif liegt weit darüber.</p></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Kurz gemeldet</span></div>
+  </section>
+
+  <!-- Impressum -->
+  <section class="seite imp">
+    <h2>Impressum</h2>
+    <p><b>GaLaBau Kompass</b> · Das Magazin für den Garten- und Landschaftsbau<br>Erscheint monatlich als digitale Ausgabe auf galabau-kompass.de.</p>
+    <p>Herausgeber: GreenCareers GmbH, Hansaring 61, 50670 Köln · Registergericht Amtsgericht Köln, HRB 120156 · USt-IdNr. DE417835201<br>Vertreten durch die Geschäftsführer Frederik Linke, Julian Kohansal, Liam Quick<br>Verantwortlich im Sinne des § 18 Abs. 2 MStV: Frederik Linke, Hansaring 61, 50670 Köln</p>
+    <p>Redaktion: redaktion@galabau-kompass.de<br>Alle Zahlenangaben stammen aus den je Beitrag genannten Quellen; eigene Berechnungen sind als solche gekennzeichnet. Bildmaterial: Symbolbilder, KI-generiert (Redaktion), sofern nicht anders angegeben.</p>
+    <p>© 2025 GaLaBau Kompass. Vervielfältigung und Weitergabe dieser Ausgabe in unveränderter Form sind erlaubt.</p>
+    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 10/2025</span><span>Impressum</span></div>
+  </section>
+</body>
+</html>

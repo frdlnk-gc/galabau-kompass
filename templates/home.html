@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% from "_teaser.html" import teaser, img, textlist, meldungsliste, frage_modul, abo_form, termine_box, ausweis %}
+{% block title %}{% if fuer %}{{ site.name }} {{ fuer_label|replace('Für ', 'für ') }} – {{ site.claim }}{% else %}{{ site.name }} – {{ site.claim }}{% endif %}{% endblock %}
+{% block bodyclass %}home{% endblock %}
+{% block content %}
+{% set root = '../' * depth %}
+
+<!-- ===== TOP-THEMEN ===== -->
+<div class="top-band">
+<section class="top container" id="top" data-slider>
+  <div class="top-grid">
+    <div class="top-stage" aria-roledescription="Karussell" aria-label="Top-Themen">
+      {% for a in featured %}
+      <a class="top-slide{% if loop.first %} is-active{% endif %}" href="{{ root }}artikel/{{ a.slug }}/" data-i="{{ loop.index0 }}"{% if not loop.first %} aria-hidden="true" tabindex="-1"{% endif %}>
+        {{ img(a, root, big=True, lazy=not loop.first) }}
+        <div class="top-copy">
+          <span class="t-kicker light">{{ a.ressort_name }} · {{ a.datum_kurz }}</span>
+          <h2>{{ a.title }}</h2>
+          <p>{{ a.dek }}</p>
+        </div>
+      </a>
+      {% endfor %}
+      <div class="top-ctrl">
+        <button type="button" class="top-btn" data-dir="-1" aria-label="Vorheriger Beitrag">&#8249;</button>
+        <span class="top-count"><b data-count>1</b> / {{ featured|length }}</span>
+        <button type="button" class="top-btn" data-dir="1" aria-label="Nächster Beitrag">&#8250;</button>
+      </div>
+    </div>
+    <div class="top-rail">
+      <h3 class="rail-title">Top-Themen der Redaktion</h3>
+      <ol class="rail">
+        {% for a in featured %}
+        <li><button type="button" class="rail-item{% if loop.first %} is-active{% endif %}" data-i="{{ loop.index0 }}" aria-label="Beitrag {{ loop.index }} anzeigen">
+          <span class="rail-img">{{ img(a, root) }}</span>
+          <span class="rail-text"><span class="t-meta"><span class="t-ressort">{{ a.ressort_kurz }}</span><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></span><span class="rail-h">{{ a.title }}</span></span>
+          <span class="rail-prog" aria-hidden="true"></span>
+        </button></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== WERTVERSPRECHEN ===== -->
+<section class="container">
+  <div class="value-strip">
+    <a class="value" href="{{ root }}artikel/"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></span><span><b>Jede Woche neu, jede Zahl mit Quelle</b><span>{{ anzahl }} Beiträge zu Betrieb, Recht, Technik, Markt und Praxis – recherchiert für Inhaber, Bauleiter und Fachkräfte.</span></span></a>
+    <a class="value" href="{{ root }}newsletter/"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><b>Montags in fünf Minuten</b><span>Der Montagskompass per E-Mail oder WhatsApp, dazu jeden Monat die Ausgabe als PDF. Kostenlos.</span></span></a>
+    <a class="value" href="{{ root }}club/"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 10h4M7 14h6"/><circle cx="16.5" cy="12" r="1.5"/></svg></span><span><b>Kostenlos im Kompass Club</b><span>Börse für Maschinen und Geräte, Vorlagen für den Betrieb, Fragen an die Redaktion, Muster für Arbeitsvertrag und Stellenanzeige.</span></span></a>
+  </div>
+</section>
+
+<!-- ===== AKTUELL + SEITENLEISTE ===== -->
+<section class="container main-grid">
+  <div class="col-main">
+    <div class="rubrik"><h2>Aktuell</h2>{% if fuer %}<span class="rubrik-note">{{ fuer_label }} zuerst</span>{% endif %}<a class="rubrik-more" href="{{ root }}artikel/">Alle {{ anzahl }} Beiträge</a></div>
+    <div class="river">
+      {% for a in river %}{{ teaser(a, root, 'horiz') }}{% endfor %}
+    </div>
+    <div class="river-more"><a class="btn ghost" href="{{ root }}artikel/">Zum Archiv</a></div>
+
+  </div>
+
+  <aside class="col-side">
+    <div class="box box-abo">
+      <span class="box-title">Der Montagskompass</span>
+      <p>Montag früh, fünf Minuten: die Beiträge der Woche, eine Zahl, ein Termin. Per E-Mail oder WhatsApp, dazu jeden Monat die Ausgabe als PDF. Kostenlos.</p>
+      {{ abo_form(root, 'box') }}
+    </div>
+    {% if meldungen %}
+    <div class="box box-ticker">
+      <span class="box-title">Kurz gemeldet</span>
+      {{ meldungsliste(meldungen[:5], root) }}
+      <a class="mehr-link" href="{{ root }}artikel/?format=meldung">Alle Meldungen</a>
+    </div>
+    {% endif %}
+    {{ frage_modul(frage, root) }}
+    {{ termine_box(termine, root, 4) }}
+    <div class="box box-social" data-social-box hidden>
+      <span class="box-title">Kompass folgen</span>
+      <p>Neue Beiträge, Zahlen und Termine auch in Ihrem Feed.</p>
+      <div class="soc-row" data-social-links></div>
+    </div>
+  </aside>
+</section>
+
+<!-- ===== PRAXISFRAGEN ===== -->
+{% if praxisfragen %}
+<section class="container praxis-band">
+  <div class="rubrik"><h2>Praxisfragen</h2><a class="rubrik-more" href="{{ root }}artikel/?format=praxisfrage">Alle Praxisfragen</a></div>
+  <div class="pf-grid">
+    {% for a in praxisfragen[:3] %}
+    <a class="pf" href="{{ root }}artikel/{{ a.slug }}/"><span class="pf-q">{{ a.title }}</span><span class="pf-a">{{ a.antwort or a.dek }}</span><span class="pf-meta">{{ a.ressort_name }} · {{ a.datum_kurz }}</span></a>
+    {% endfor %}
+  </div>
+  <div class="btn-row"><a class="btn ghost" href="{{ root }}club/#praxisfrage">Eigene Frage an die Redaktion stellen</a></div>
+</section>
+{% endif %}
+
+<!-- ===== AKTUELLE AUSGABE + MEISTGELESEN ===== -->
+{% if aktuelle_ausgabe %}
+<section class="ausgabe-band">
+  <div class="container ausgabe-grid">
+    <div class="ausgabe-teaser">
+      <a class="cover gross" href="{{ root }}ausgaben/{{ aktuelle_ausgabe.ym }}/">
+        <img src="{{ root }}assets/img/{{ aktuelle_ausgabe.lead.bild }}-thumb.jpg" alt="" loading="lazy" width="640" height="427">
+        <span class="cover-text"><span class="cover-kicker">GaLaBau Kompass</span><span class="cover-nr">Nr. {{ aktuelle_ausgabe.lauf }} · {{ aktuelle_ausgabe.nr }}</span><span class="cover-titel">{{ aktuelle_ausgabe.titel }}</span></span>
+      </a>
+      <div>
+        <span class="t-kicker">Aktuelle Ausgabe · Nr. {{ aktuelle_ausgabe.lauf }}</span>
+        <h2>{{ aktuelle_ausgabe.label }}: {{ aktuelle_ausgabe.titel }}</h2>
+        <p>{{ aktuelle_ausgabe.monat }} · {{ aktuelle_ausgabe.artikel|length }} Beiträge{% if aktuelle_ausgabe.meldungen %} und {{ aktuelle_ausgabe.meldungen|length }} Meldungen{% endif %}, gesetzt zum Lesen am Tablet und zum Drucken für den Aufenthaltsraum.</p>
+        <ul class="inhalt-kurz">{% for a in aktuelle_ausgabe.artikel[:4] %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a></li>{% endfor %}</ul>
+        <div class="btn-row"><a class="btn nur-mitglied" href="{{ root }}{{ aktuelle_ausgabe.pdf }}" target="_blank" rel="noopener">Ausgabe als PDF</a><a class="btn nur-gast" href="{{ root }}club/">PDF für Club-Mitglieder</a><a class="mehr-link" href="{{ root }}ausgaben/">Alle {{ ausgaben_anzahl }} Ausgaben</a></div>
+        <p class="pdf-gate nur-gast">Die Monatsausgabe als PDF gibt es für Mitglieder – kostenlos, in einer Minute. <a href="{{ root }}club/">Beitreten</a></p>
+      </div>
+    </div>
+    <div class="meist-card">
+      <span class="box-title">Meistgelesen</span>
+      <ol class="rang" id="meistgelesen">{% for a in meist %}<li><a href="{{ root }}artikel/{{ a.slug }}/" data-slug="{{ a.slug }}"><span class="rang-nr">{{ loop.index }}</span><span class="rang-h">{{ a.title }}</span></a></li>{% endfor %}</ol>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== ZAHLEN DER BRANCHE ===== -->
+{% if zahlen %}
+<section class="zahlen-band">
+  <div class="container">
+    <div class="rubrik"><h2>Zahlen der Branche</h2><a class="rubrik-more" href="{{ root }}zahlen/">Alle Kennzahlen mit Quelle</a></div>
+    <div class="zahlen-grid">
+      {% for z in zahlen[:4] %}
+      <a class="zahl" href="{{ root }}artikel/{{ z.quelle.slug }}/">
+        <span class="zahl-label">{{ z.label }}</span>
+        <span class="zahl-wert">{{ z.wert_fmt }}</span>
+        <span class="zahl-hinweis">{{ z.hinweis }}</span>
+        {{ z.svg|safe }}
+        <span class="zahl-quelle">Quelle: {{ z.quelle_titel|truncate(60, True) }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== PRODUKTE & SOFTWARE ===== -->
+{% if produkte %}
+<section class="container produkte">
+  <div class="rubrik"><h2>Produkte &amp; Software</h2><a class="rubrik-more" href="{{ root }}ressort/produkte/">Alle Steckbriefe</a></div>
+  <p class="rubrik-sub">Maschinen, Geräte, Apps und Branchensoftware im Steckbrief. Unabhängig recherchiert, keine bezahlten Platzierungen.</p>
+  <div class="t-grid3 produkte-grid">{% for a in produkte[:3] %}{{ teaser(a, root, 'grid') }}{% endfor %}</div>
+</section>
+{% endif %}
+
+<!-- ===== KOMPASS CLUB ===== -->
+<section class="container club-band">
+  <div class="club-inner">
+    <div>
+      <span class="t-kicker light">Kompass Club · kostenlos</span>
+      <h2>Der Club für alle, die den GaLaBau voranbringen.</h2>
+      <p>Mitglied werden, Mitgliedsnummer bekommen, mitmachen. Der Kompass Club bündelt, was das Magazin für Betriebe und Fachkräfte bietet – ohne Beitrag, ohne Kündigungsfrist.</p>
+      <ul class="club-punkte-liste">
+        <li>Kompass-Börse: Maschinen, Geräte und Material kostenlos inserieren – von Betrieb zu Betrieb</li>
+        <li>Vorlagen für den Betrieb: Winterdienst-Bereitschaft, erste Azubi-Woche, Probearbeit</li>
+        <li>Fragen an die Redaktion zu Personal, Ausbildung und Außendarstellung – Antwort innerhalb von zwei Werktagen</li>
+        <li>Der Montagskompass per E-Mail oder WhatsApp, Monatsausgabe als PDF, Mitgliedsausweis mit Status</li>
+      </ul>
+      <div class="btn-row"><a class="btn light" href="{{ root }}club/#beitreten">Kostenlos Mitglied werden</a><a class="btn ghost light" href="{{ root }}club/">Was der Club bietet</a></div>
+      <p class="hinweis">Kein Beitrag, keine Werbung, Austritt jederzeit per E-Mail.</p>
+    </div>
+    {{ ausweis('data-ausweis-vorschau', root) }}
+  </div>
+</section>
+
+<!-- ===== DOSSIERS ===== -->
+{% if dossiers %}
+<section class="container dossiers">
+  <div class="rubrik"><h2>Dossiers</h2><span class="rubrik-note">Themen, die bleiben</span></div>
+  <div class="dossier-strip">
+    {% for d in dossiers %}<a class="dossier" href="{{ root }}thema/{{ d.slug }}/"><b>{{ d.kurz }}</b><span>{{ d.anzahl }}</span></a>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== STANDPUNKT ===== -->
+{% if standpunkte %}
+<section class="container standpunkte">
+  <div class="rubrik"><h2>Standpunkt</h2><a class="rubrik-more" href="{{ root }}ressort/standpunkt/">Alle Kommentare</a></div>
+  <div class="standpunkt-grid">
+    {% for a in standpunkte %}
+    <a class="standpunkt" href="{{ root }}artikel/{{ a.slug }}/">
+      <span class="t-kicker">Kommentar · {{ a.datum_kurz }}</span>
+      <h3>{{ a.title }}</h3>
+      <p>{{ a.dek }}</p>
+      <span class="standpunkt-autor">{{ a.autor }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== AUS DEN RESSORTS ===== -->
+<section class="container ressorts">
+  <div class="rubrik"><h2>Aus den Ressorts</h2><a class="rubrik-more" href="{{ root }}artikel/">Archiv</a></div>
+  <div class="rblocks">
+    {% for b in bloecke if b.ressort.slug not in ['produkte', 'standpunkt'] and b.artikel %}
+    <div class="rblock">
+      <h3 class="rblock-title"><a href="{{ root }}ressort/{{ b.ressort.slug }}/">{{ b.ressort.name }}</a></h3>
+      {{ teaser(b.artikel[0], root, 'grid') }}
+      {{ textlist(b.artikel[1:4], root) }}
+      <a class="mehr-link" href="{{ root }}ressort/{{ b.ressort.slug }}/">Alle Beiträge aus {{ b.ressort.kurz }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ===== SERVICE ===== -->
+<section class="service-band">
+  <div class="container service-grid">
+    <div class="service">
+      <span class="t-kicker light">Standort-Check</span>
+      <h3>Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?</h3>
+      <p>Postleitzahl eingeben, Fachkräfte-Potenzial im 30-Kilometer-Umkreis sehen, dazu Standorttyp und drei Voraussetzungen für die Mitarbeitersuche. Kostenlos.</p>
+      <a class="btn light" href="{{ root }}standort/">Standort prüfen</a>
+    </div>
+    <div class="service">
+      <span class="t-kicker light">Branchenumfrage 2026</span>
+      <h3>Wie finden Betriebe 2026 Mitarbeiter?</h3>
+      <p>Zwölf Fragen, zwei Minuten. Die Ergebnisse veröffentlichen wir im Oktober. Als Dankeschön erhalten Teilnehmer den Standort-Check.</p>
+      <a class="btn ghost light" href="{{ root }}umfrage/">An der Umfrage teilnehmen</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
