@@ -23,7 +23,7 @@
     .interviewer b{color:var(--ink-dim);}
     .facts{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 16px;font-size:.76rem;color:var(--ink-faint);margin-top:12px;}
     .start-card{text-align:center;}
-    .start-card .thanks{background:#FBF3DC;border:1px solid var(--accent-line);border-radius:12px;padding:12px 14px;font-size:.86rem;margin:14px 0 16px;text-align:left;display:flex;gap:10px;align-items:flex-start;}
+    .start-card .thanks{background:var(--green-mist);border:1px solid var(--green-light);border-radius:12px;padding:12px 14px;font-size:.86rem;margin:14px 0 16px;text-align:left;display:flex;gap:10px;align-items:flex-start;}
     .start-card .thanks .ic{font-size:1.3rem;line-height:1;}
     .next-btn{margin-top:14px;}
     .queue-note{background:#FFF7E6;border:1px solid #F1D48A;color:#6B4E0A;border-radius:12px;padding:10px 14px;font-size:.8rem;margin-top:12px;display:none;}
@@ -147,6 +147,7 @@
 
     /* ── Vertriebler-Token ── */
     var token = K.params.t || null, vslug = K.params.v || null;  // t = persönlicher Token (WhatsApp-Link), v = Kürzel vom Polo-QR (s/<kürzel>/)
+    try { if (!vslug && sessionStorage.getItem('kompass_v')) vslug = sessionStorage.getItem('kompass_v'); if (vslug) sessionStorage.setItem('kompass_v', vslug); } catch(e){}
     var vertriebler = null;
     try { if (!token && sessionStorage.getItem('kompass_t')) token = sessionStorage.getItem('kompass_t'); if (token) sessionStorage.setItem('kompass_t', token); } catch(e){}
     if ((token || vslug) && K.env !== 'local') {
@@ -245,7 +246,7 @@
       $('submit-error').classList.remove('active');
       var btn = $('submit'); btn.disabled = true; btn.textContent = 'Wird gesendet …';
       var body = {
-        token: token, session_id: K.sessionId, env: K.env, page_url: location.href, fragen_version: FRAGEN_VERSION, antworten: answers, antworten_labels: labelsFor(answers), started_at: startedAt,
+        token: token, v: vslug, src: K.params.src || null, session_id: K.sessionId, env: K.env, page_url: location.href, fragen_version: FRAGEN_VERSION, antworten: answers, antworten_labels: labelsFor(answers), started_at: startedAt,
         firma: $('firma').value.trim(), vorname: $('vorname').value.trim(), nachname: $('nachname').value.trim(), email: $('email').value.trim(), telefon: normPhone($('phone').value), plz: $('plz').value.trim(),
         consent: true, consent_text: CONSENT_TEXT, consent_version: CONSENT_VERSION, client_submitted_at: new Date().toISOString(), client_id: K.uuid()
       };
