@@ -30,7 +30,7 @@ GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
 # Handgezeichneter Pfeil („mit Edding“): zwei leicht versetzte Striche + offene Spitze, zeigt auf den QR-Code
-PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 22 10 C 58 4, 88 30, 78 86"/><path d="M 24 15 C 56 10, 82 32, 76 74" stroke-width="3.5" opacity=".5"/><path d="M 60 72 L 78 90 L 96 72"/></svg>'''
+PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 47 4 C 80 0, 100 34, 84 60 S 40 82, 20 94"/><path d="M 49 9 C 78 6, 94 34, 80 58" stroke-width="3" opacity=".5"/><path d="M 42 96 L 20 94 L 29 74"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -93,7 +93,7 @@ html,body{{background:#fff;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
 .frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
 .pfeilzone{{position:relative;width:100%;height:52mm;flex:none;}}
-.pfeil{{position:absolute;right:54mm;top:0;width:54mm;height:46mm;}}
+.pfeil{{position:absolute;right:38mm;top:-16mm;width:57mm;height:60mm;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}
@@ -167,6 +167,56 @@ def build(person: dict, size: str, domain: str, outdir: str) -> dict:
     doc.save(pdf); doc.close()
     return {"slug": person["slug"], "name": person["name"], "size": size, "url": url, "pdf": pdf}
 
+def anleitung_html(results: list, domain: str) -> str:
+    zeilen = "".join(f'<tr><td>{r["name"]}</td><td>{"optional" if r["slug"] in ("julian", "liam") else "ja"}</td><td>{r["size"]}</td><td>01-vorne-logo.pdf</td><td>02-hinten-{r["slug"]}.pdf</td><td>{r["url"]}</td></tr>' for r in results)
+    return f'''<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Druckanleitung Polos</title>
+<style>{CSS}@page{{size:210mm 297mm;margin:0;}}
+.anl{{padding:16mm 16mm;color:#0E1B13;font-size:3.6mm;line-height:1.5;font-family:Inter,sans-serif;}}
+.anl h1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:8mm;margin-bottom:2mm;}}
+.anl h2{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:4.6mm;margin:6mm 0 2mm;}}
+.anl p{{margin-bottom:2mm;}} .anl ul{{margin:0 0 2mm 5mm;}} .anl li{{margin-bottom:1mm;}}
+.anl table{{width:100%;border-collapse:collapse;font-size:3.2mm;margin-top:2mm;}}
+.anl th,.anl td{{text-align:left;vertical-align:top;padding:1.8mm 2mm;border-bottom:.25mm solid #DDE7E0;}}
+.anl th{{font-size:2.8mm;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}}
+.anl .box{{background:#EAF6EE;border-radius:2.5mm;padding:3mm 4mm;margin:3mm 0;}}
+.anl .k{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:2.8mm;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}}
+</style></head><body><section class="page anl">
+<div class="k">GaLaBau Kompass · Messe GaLaBau 2026 Nürnberg (15.–18. September)</div>
+<h1>Druckanleitung Polos</h1>
+<p>Schwarze Piqué-Polos, zwei Druckmotive je Polo. Die Vorderseite ist bei allen gleich, die Rückseite trägt je Person einen eigenen QR-Code. Alle Dateien sind Vektor-PDFs mit eingebetteten Schriften.</p>
+<h2>1 · Vorderseite – Datei 01-vorne-logo.pdf (für alle Polos gleich)</h2>
+<ul><li>Motiv: Kompassnadel im Kreis, darunter die Wortmarke „GaLaBau Kompass“.</li>
+<li>Druckfläche 90 × 100 mm, Brust links (aus Sicht des Trägers), waagerecht mittig auf der linken Brustseite, Oberkante auf Höhe des untersten Knopfs.</li>
+<li>Farben: Hell {CREME} (Kreis, Südnadel, Wortmarke), Grün {GRUEN} (Nordnadel). Polo-Grund bleibt frei.</li></ul>
+<h2>2 · Rückseite – Datei 02-hinten-&lt;kürzel&gt;.pdf (je Person eigene Datei)</h2>
+<ul><li>Motiv: Frage, QR-Code mit Pfeil, Zeile „Kostenlos scannen · Standort-Check“, Wortmarke, Internetadresse.</li>
+<li>Druckfläche 300 × 380 mm, waagerecht mittig, Oberkante 10 cm unter dem Kragenansatz.</li>
+<li>Farben: Hell {CREME}, Lime {HONIG} (Pfeil, Zeile), Grün {GRUEN} (Nordnadel). QR-Kachel: helle Fläche mit schwarzen Modulen – nicht invertieren, nicht verkleinern, nicht spiegeln, Ecken bleiben rund.</li>
+<li>Jede Rückseite gehört zu genau einer Person (Tabelle unten). Dateien nicht vertauschen. Vor dem Druck einmal vom Andruck scannen – das Ziel ist die Standort-Check-Seite mit dem Kürzel der Person.</li></ul>
+<h2>3 · Verfahren und Farben</h2>
+<ul><li>Siebdruck oder DTF-Transfer. Bei Flex-Folie: Vorderseite zweifarbig (Hell + Grün), Rückseite dreifarbig plus QR-Kachel als helle Fläche mit ausgesparten schwarzen Modulen.</li>
+<li>Sonderfarben nach HEX-Werten; Pantone/HKS-Entsprechung bitte von der Druckerei vorschlagen. Polo-Farbe: Schwarz.</li></ul>
+<h2>4 · Zuordnung, Größen, Stückzahl</h2>
+<table><tr><th>Träger</th><th>Polo</th><th>Größe</th><th>Vorne</th><th>Hinten</th><th>QR-Ziel</th></tr>{zeilen}</table>
+<p style="margin-top:2mm;">Größen werden von Jana Heinlein nachgereicht. Stückzahl: 3 Polos fest (Fabio, Niklas, Nick), 2 optional (Julian, Liam).</p>
+<div class="box"><span class="k">Termin und Auftraggeber</span><br>Lieferung bis <b>Montag, 14. September 2026</b> an GreenCareers GmbH, Hansaring 61, 50670 Köln. Ansprechpartnerin: Jana Heinlein. Die Polos werden vom 15. bis 18. September auf der Messe in Nürnberg getragen.</div>
+</section></body></html>'''
+
+def druckpaket(results: list, domain: str):
+    """Getrennte Druckdateien für die Druckerei: Logo vorn (einmal), Rückseite je Träger, Druckanleitung, alles als ZIP."""
+    import zipfile
+    out = os.path.join(ROOT, "print", "druck"); os.makedirs(out, exist_ok=True)
+    work = os.path.join(ROOT, "print", "_work")
+    shutil.copy(os.path.join(work, f"polo-{results[0]['slug']}-front.pdf"), os.path.join(out, "01-vorne-logo.pdf"))
+    for r in results: shutil.copy(os.path.join(work, f"polo-{r['slug']}-back.pdf"), os.path.join(out, f"02-hinten-{r['slug']}.pdf"))
+    src = os.path.join(work, "druckanleitung.html"); open(src, "w", encoding="utf-8").write(anleitung_html(results, domain))
+    chrome([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=4000", f"--print-to-pdf={os.path.join(out, '03-druckanleitung.pdf')}", f"file://{src}"])
+    zp = os.path.join(out, "polo-druckdaten-galabau-2026.zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        for fn in sorted(os.listdir(out)):
+            if fn.endswith(".pdf"): z.write(os.path.join(out, fn), fn)
+    print("✓ Druckpaket", os.path.relpath(zp, ROOT), f"{os.path.getsize(zp) // 1024} KB")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--domain", default="galabau-kompass.de")
@@ -180,6 +230,7 @@ def main():
         r = build(p, sizes.get(p["slug"], "___ (bitte eintragen)"), a.domain, os.path.join(ROOT, "print", p["slug"]))
         results.append(r); print("✓", r["name"], "→", os.path.relpath(r["pdf"], ROOT))
     json.dump(results, open(os.path.join(ROOT, "print", "manifest.json"), "w"), indent=2, ensure_ascii=False)
+    if not a.only: druckpaket(results, a.domain)
 
 if __name__ == "__main__":
     main()
