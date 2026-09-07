@@ -21,7 +21,6 @@ WORK = os.path.join(OUT, "_work"); os.makedirs(WORK, exist_ok=True)
 LIGHT, GREEN, LIME, BLACK = "#F2F7F3", "#23A551", "#CDF47A", "#000000"
 PX_MM = 3.78          # Render-Auflösung der Druckmotive (96 dpi)
 MOCK_PX_CM = 12.9     # Mockup: Rumpfbreite ≈ 56 cm ≙ 720 px
-from polo_print import PFEIL  # Pfeil-Geometrie zentral in polo_print.py (hängt am Fragezeichen)
 
 
 
@@ -47,8 +46,7 @@ html,body{{background:{BLACK};}}
 .qrwrap svg{{width:100%;height:100%;display:block;}}
 .arrow{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:{LIME};line-height:.9;}}
 .line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;}}
-.fz{{position:relative;display:inline-block;}}
-.pfeil{{position:absolute;left:calc(100% - 14mm);top:0;width:52mm;height:70mm;overflow:visible;}}
+
 .line2{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;line-height:1.25;color:{LIME};}}
 .foot{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,247,243,.6);}}
 '''
@@ -82,13 +80,13 @@ def motiv_marke(w, h):
     return f'''<section class="art" style="width:{w}mm;height:{h}mm;gap:5mm;">{mark}<div class="word" style="font-size:8.6mm;">GaLaBau Kompass</div></section>'''
 
 def motiv_reduziert(url, w, h):
-    """Rücken Variante C: Frage, QR groß mit handgezeichnetem Pfeil, Zeile, Wortmarke."""
-    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:flex-start;position:relative;">
-  <div class="line1" style="font-size:19mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen<span class="fz">?{PFEIL.format(accent=LIME)}</span></div>
-  <div style="position:relative;width:100%;height:52mm;flex:none;"></div>
+    """Rücken (final 07.09.): Kicker, Frage an GaLaBau-Inhaber, QR groß, Umfrage-Zeile, Wortmarke – ohne Pfeil."""
+    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:center;gap:0;">
+  <div class="eyebrow" style="font-size:5mm;margin-bottom:6mm;">Branchenumfrage 2026</div>
+  <div class="line1" style="font-size:23mm;margin-bottom:12mm;">GaLaBau-Inhaber:<br>Wie gewinnen Sie<br>heute Fachkräfte?</div>
   <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;margin-top:auto;">
-    <div class="line2" style="font-size:10.5mm;">Kostenlos scannen · Standort-Check</div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;margin-top:12mm;">
+    <div class="line2" style="font-size:10mm;">Unverbindliche 2-Minuten-Umfrage starten</div>
     <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=LIME)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot" style="font-size:3.8mm;">galabau-kompass.de</div>
   </div>
@@ -144,7 +142,7 @@ VARIANTEN = {
           [("Vorne", "Komplettes Motiv 25 × 30 cm, mittig, Oberkante ca. 3 cm unter der Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Zeilen, Pfeil) · QR-Kachel hell mit schwarzen Modulen")]),
     "B": ("Klassisch", "Vorne ein Brustlogo links wie bei einem Firmenpolo, hinten das große Motiv mit QR-Code. Wirkt von vorn seriös, von hinten fordert es zum Scannen auf – die Variante mit dem besten Verhältnis aus Auftreten und Wirkung.",
           [("Vorne", "Brustlogo links 12 × 3,5 cm (Marke + Wortmarke, darunter Claim), auf Höhe der untersten Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 · Lime #CDF47A · QR-Kachel hell mit schwarzen Modulen")]),
-    "C": ("Reduziert", "Vorne die Kompassnadel mit der Wortmarke darunter, hinten die Frage „Wie viele Fachkräfte gibt es bei Ihnen?“, der große QR-Code mit handgezeichnetem Pfeil und die Wortmarke. Ruhig, hochwertig, wenig Text – die Frage ist der Aufhänger fürs Gespräch.",
+    "C": ("Reduziert", "Vorne die Kompassnadel mit der Wortmarke darunter, hinten der Kicker „Branchenumfrage 2026“, die Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, der große QR-Code mit handgezeichnetem Pfeil und die Wortmarke. Ruhig, hochwertig, wenig Text – die Frage ist der Aufhänger fürs Gespräch.",
           [("Vorne", "Brustlogo links: Marke 6 cm, darunter Wortmarke, Druckfläche 9 × 10 cm, auf Höhe des untersten Knopfs"), ("Hinten", "Frage, QR 19 cm mit Edding-Pfeil, Zeile „Kostenlos scannen · Standort-Check“, Wortmarke – Fläche 30 × 38 cm, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Pfeil, Zeile) · QR-Kachel hell mit schwarzen Modulen")]),
 }
 GROESSEN = [("Fabio Zindel", "Vertrieb, Messe", ""), ("Niklas Kühme", "Vertrieb, Messe", ""), ("Nick Scheffler", "Vertrieb, Messe", ""), ("Julian Kohansal", "Geschäftsführung (optional)", ""), ("Liam Quick", "Geschäftsführung (optional)", "")]

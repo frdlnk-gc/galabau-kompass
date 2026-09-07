@@ -29,10 +29,8 @@ CREME, HONIG, BLACK = "#F2F7F3", "#CDF47A", "#000000"  # Hell, Lime (Akzent der 
 GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
-# Handgezeichneter Pfeil („mit Edding“): sitzt direkt hinter dem Fragezeichen (span.fz), schwingt nach rechts aus
-# und zeigt mit offener Spitze nach unten auf den QR-Code (Spitze ≈ 8 mm über dem QR-Rand). Koordinaten in mm,
-# gemessen am 300×380-Rücken: „?“ endet bei x 225,6 / Zeilenmitte y ≈ 44, QR-Oberkante y 105,9, QR-Breite 57–243.
-PFEIL = '''<svg class="pfeil" viewBox="0 0 52 70" fill="none" stroke="{accent}" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" overflow="visible"><path d="M 17 10.5 C 32 9, 46 26, 40 40 C 35 52, 14 52, 7.4 64.1"/><path d="M 18.5 13.5 C 31 12.5, 42 27, 37.5 38" stroke-width="1.6" opacity=".55"/><path d="M 16.6 58 L 7.4 64.1 L 7.5 53.1"/></svg>'''
+# Pfeil (frühere Fassung) entfernt – Freddy 07.09.: Rückseite ohne Pfeil.
+PFEIL = ''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -41,7 +39,7 @@ def qr_svg(url: str) -> str:
     return buf.getvalue().decode("utf-8")
 
 def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
-    """Variante C (Freddy, 07.09.): vorne Marke + kleine Wortmarke auf der Brust, hinten Frage, QR mit Edding-Pfeil, Wortmarke."""
+    """Finale Fassung (Freddy, 07.09. abends): vorne Marke + Wortmarke auf der Brust; hinten Kicker „Branchenumfrage 2026“, Frage an GaLaBau-Inhaber, QR, Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke. Kein Pfeil."""
     if kind == "front":
         return f'''
 <section class="page front" style="width:{w}mm;height:{h}mm;">
@@ -50,11 +48,11 @@ def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
 </section>'''
     return f'''
 <section class="page back" style="width:{w}mm;height:{h}mm;">
-  <div class="frage">Wie viele Fachkräfte<br>gibt es bei Ihnen<span class="fz">?{PFEIL.format(accent=HONIG)}</span></div>
-  <div class="pfeilzone"></div>
+  <div class="eyebrow">Branchenumfrage 2026</div>
+  <div class="frage">GaLaBau-Inhaber:<br>Wie gewinnen Sie<br>heute Fachkräfte?</div>
   <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
   <div class="unten">
-    <div class="line2">Kostenlos scannen · Standort-Check</div>
+    <div class="line2">Unverbindliche 2-Minuten-Umfrage starten</div>
     <div class="logo">{MARK.format(ink=CREME, accent=HONIG)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot">galabau-kompass.de</div>
   </div>
@@ -68,9 +66,9 @@ def spec(person: dict, size: str, url: str) -> str:
     <tr><th>Träger</th><td>{person["name"]} · Kürzel <b>{person["slug"]}</b></td></tr>
     <tr><th>Polo-Größe</th><td><b>{size}</b></td></tr>
     <tr><th>Polo-Farbe</th><td>Schwarz (dunkler Grund, Baumwoll-Piqué)</td></tr>
-    <tr><th>Druckfarben</th><td>Hell <b>{CREME}</b> · Grün <b>{GRUEN}</b> (Nadel) · Lime <b>{HONIG}</b> (Pfeil, Zeile) – Sonderfarben nach HEX, Pantone/HKS mit der Druckerei abstimmen · QR-Kachel Hell mit Modulen Schwarz</td></tr>
+    <tr><th>Druckfarben</th><td>Hell <b>{CREME}</b> · Lime <b>{HONIG}</b> (Nordnadel, Kicker, Zeile) – Sonderfarben nach HEX, Pantone/HKS mit der Druckerei abstimmen · QR-Kachel Hell mit Modulen Schwarz</td></tr>
     <tr><th>Seite 1 – VORNE</th><td>Brustlogo links: Druckfläche 90 × 100 mm, Marke 60 mm, darunter Wortmarke. Platzierung auf Höhe des untersten Knopfs, Mitte der linken Brustseite (aus Trägersicht links).</td></tr>
-    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett: Frage, QR-Code mit Pfeil, Zeile, Wortmarke.</td></tr>
+    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett: Kicker „Branchenumfrage 2026“, Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, QR-Code (Vektor, je Person eigener Link), Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke, Internetadresse. Kein Pfeil.</td></tr>
     <tr><th>QR-Code</th><td>Ziel: <b>{url}</b> — Kachel nicht verkleinern, nicht spiegeln, nicht invertieren, keine Farbänderung. Vor dem Druck einmal vom Andruck scannen (Ergebnis: Standort-Check-Seite).</td></tr>
     <tr><th>Verfahren</th><td>Vektordaten (PDF, Schriften eingebettet). Empfehlung: Siebdruck oder DTF (drei Farben + QR-Kachel); bei Flex Marke und Wortmarke einfarbig Hell, QR-Kachel als helle Fläche mit schwarzen Modulen aus dem Polo-Grund lösen.</td></tr>
     <tr><th>Stück</th><td>1 (je Vertriebler ein eigener QR-Code – Dateien NICHT vertauschen)</td></tr>
@@ -88,15 +86,13 @@ CSS = f'''
 html,body{{background:#fff;}}
 .page{{page-break-after:always;position:relative;overflow:hidden;font-family:Inter,sans-serif;}}
 .front,.back{{background:{BLACK};color:{CREME};display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14mm 10mm 12mm;position:relative;}}
-.back{{justify-content:flex-start;gap:0;}}
-.back .unten{{margin-top:auto;}}
+.back{{justify-content:center;gap:0;}}
+.back .eyebrow{{margin-bottom:6mm;}}
+.back .unten{{margin-top:12mm;}}
 .front{{justify-content:center;gap:5mm;padding:4mm;}}
 .front .marke .mark{{height:60mm;width:auto;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
-.frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
-.pfeilzone{{position:relative;width:100%;height:52mm;flex:none;}}
-.fz{{position:relative;display:inline-block;}}
-.pfeil{{position:absolute;left:calc(100% - 14mm);top:0;width:52mm;height:70mm;overflow:visible;}}
+.frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:23mm;line-height:1.05;margin-bottom:12mm;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}
@@ -117,7 +113,7 @@ html,body{{background:#fff;}}
 .line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:14mm;line-height:1.05;letter-spacing:-.01em;}}
 .back .line1{{font-size:17mm;}}
 .line2{{font-size:8.2mm;line-height:1.25;color:{HONIG};font-weight:700;margin-top:3mm;}}
-.back .line2{{font-size:9.6mm;}}
+.back .line2{{font-size:10mm;}}
 .foot{{font-size:3.6mm;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,232,.55);margin-top:4mm;}}
 .spec{{padding:18mm 16mm;color:#0B1F14;font-size:3.8mm;line-height:1.5;}}
 .spec h1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:8mm;margin-bottom:8mm;}}
@@ -192,9 +188,9 @@ def anleitung_html(results: list, domain: str) -> str:
 <li>Druckfläche 90 × 100 mm, Brust links (aus Sicht des Trägers), waagerecht mittig auf der linken Brustseite, Oberkante auf Höhe des untersten Knopfs.</li>
 <li>Farben: Hell {CREME} (Kreis, Südnadel, Wortmarke), Grün {GRUEN} (Nordnadel). Polo-Grund bleibt frei.</li></ul>
 <h2>2 · Rückseite – Datei 02-hinten-&lt;kürzel&gt;.pdf (je Person eigene Datei)</h2>
-<ul><li>Motiv: Frage, QR-Code mit Pfeil, Zeile „Kostenlos scannen · Standort-Check“, Wortmarke, Internetadresse.</li>
+<ul><li>Motiv: Kicker „Branchenumfrage 2026“, Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, QR-Code, Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke, Internetadresse.</li>
 <li>Druckfläche 300 × 380 mm, waagerecht mittig, Oberkante 10 cm unter dem Kragenansatz.</li>
-<li>Farben: Hell {CREME}, Lime {HONIG} (Pfeil, Zeile), Grün {GRUEN} (Nordnadel). QR-Kachel: helle Fläche mit schwarzen Modulen – nicht invertieren, nicht verkleinern, nicht spiegeln, Ecken bleiben rund.</li>
+<li>Farben: Hell {CREME}, Lime {HONIG} (Nordnadel, Kicker, Zeile). QR-Kachel: helle Fläche mit schwarzen Modulen – nicht invertieren, nicht verkleinern, nicht spiegeln, Ecken bleiben rund.</li>
 <li>Jede Rückseite gehört zu genau einer Person (Tabelle unten). Dateien nicht vertauschen. Vor dem Druck einmal vom Andruck scannen – das Ziel ist die Standort-Check-Seite mit dem Kürzel der Person.</li></ul>
 <h2>3 · Verfahren und Farben</h2>
 <ul><li>Siebdruck oder DTF-Transfer. Bei Flex-Folie: Vorderseite zweifarbig (Hell + Grün), Rückseite dreifarbig plus QR-Kachel als helle Fläche mit ausgesparten schwarzen Modulen.</li>

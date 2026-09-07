@@ -54,4 +54,4 @@ Wer die GaLaBau kennt, weiß: Man läuft an einem Tag nicht durch. Die Wege zwis
 
 ## Unsere Branchenumfrage läuft auf der Messe
 
-GaLaBau Kompass ist mit einem Umfrageteam in Nürnberg. Wir fragen Inhaber und Führungskräfte, wie sie 2026 Mitarbeiter gesucht haben, welche Wege zu Einstellungen geführt haben und was die Suche kostet. Zwölf Fragen, drei Minuten, anonymisierte Auswertung im Oktober. Wer nicht auf der Messe ist, kann [online teilnehmen](../../umfrage/). Jeder Teilnehmer erhält als Dankeschön den [Standort-Check](../../standort/).
+GaLaBau Kompass ist mit einem Umfrageteam in Nürnberg. Wir fragen Inhaber und Führungskräfte, wie sie 2026 Mitarbeiter gesucht haben, welche Wege zu Einstellungen geführt haben und was die Suche kostet. Zwölf Fragen, zwei Minuten, anonymisierte Auswertung im Oktober. Wer nicht auf der Messe ist, kann [online teilnehmen](../../umfrage/). Jeder Teilnehmer erhält als Dankeschön den [Standort-Check](../../standort/).
