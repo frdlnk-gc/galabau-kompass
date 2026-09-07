@@ -3,6 +3,7 @@ title: "11,11 Milliarden Euro Umsatz, 133 Insolvenzen: Der GaLaBau in Zahlen"
 dek: "Die Branchenstatistik 2025 des BGL zeigt einen Markt, der wächst und gleichzeitig ausdünnt: mehr Umsatz, mehr Beschäftigte – und deutlich mehr Betriebe, die aufgeben mussten."
 datum: 2026-02-27
 ressort: markt-politik
+zielgruppe: beide
 tags: [BGL, Branchenstatistik, Umsatz, Insolvenzen, Beschäftigte, Markt]
 bild_alt: "Blick über einen großen Betriebshof eines Landschaftsbauunternehmens mit Fahrzeugflotte, Lagerhalle und Pflanzenlager"
 bild_prompt: "Elevated view of a large German landscaping company yard with a fleet of green vans and trucks, a warehouse, stacked pavers and a tree nursery area, early morning in late winter, realistic documentary photo, no logos."

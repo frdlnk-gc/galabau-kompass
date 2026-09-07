@@ -3,6 +3,7 @@ title: "Destatis: Unternehmensinsolvenzen im Mai 2026 leicht rückläufig (−2,
 dek: "Erstmals seit Monaten ein Minus im Vorjahresvergleich – auf hohem Niveau."
 datum: 2026-08-31
 ressort: markt-politik
+zielgruppe: betriebe
 format: meldung
 tags: ["Insolvenzen", "Konjunktur", "Destatis"]
 relevanz: 40

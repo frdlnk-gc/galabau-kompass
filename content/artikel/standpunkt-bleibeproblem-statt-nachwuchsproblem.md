@@ -3,6 +3,7 @@ title: Die Branche hat kein Nachwuchsproblem. Sie hat ein Bleibeproblem.
 dek: '8.089 Auszubildende, so viele wie lange nicht – und trotzdem fehlen überall Leute. Wer die Zahlen nebeneinanderlegt, sieht: Der GaLaBau verliert seine Fachkräfte nicht an der Schule, sondern im dritten Jahr nach der Prüfung.'
 datum: '2026-09-04'
 ressort: standpunkt
+zielgruppe: betriebe
 format: standpunkt
 tags:
 - Fachkräfte

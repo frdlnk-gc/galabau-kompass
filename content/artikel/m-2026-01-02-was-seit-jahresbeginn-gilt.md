@@ -3,6 +3,7 @@ title: "Seit Jahresbeginn: Mindestlohn 13,90 Euro, Azubi-Mindestvergütung 724 E
 dek: "Drei Änderungen zum 1. Januar, die jeden Betrieb betreffen – vom Minijob bis zur Ausschreibung."
 datum: 2026-01-02
 ressort: recht-tarif
+zielgruppe: beide
 format: meldung
 tags: ["Mindestlohn", "Ausbildungsvergütung", "Vergabe", "Recht"]
 relevanz: 40

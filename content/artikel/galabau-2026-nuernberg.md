@@ -3,6 +3,7 @@ title: "GaLaBau 2026 in Nürnberg: Vier Tage, drei Themen, ein Fachkräfteproble
 dek: "Vom 15. bis 18. September trifft sich die Branche zur Leitmesse. Klimaanpassung und emissionsfreie Technik stehen im Programm – die Frage, wie Betriebe Leute finden und halten, steht in jeder Halle im Raum."
 datum: 2026-09-04
 ressort: messe-termine
+zielgruppe: beide
 tags: [GaLaBau 2026, Messe Nürnberg, Termine, Fachkräfte, Klimaanpassung]
 featured: true
 bild_alt: "Fachbesucher vor dem Messezentrum Nürnberg am Morgen des ersten Messetags"

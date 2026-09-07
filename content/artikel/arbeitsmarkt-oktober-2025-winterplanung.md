@@ -3,6 +3,7 @@ title: "623.000 offene Stellen, 2,9 Millionen Arbeitslose: Was der Oktober für 
 dek: "Die Bundesagentur meldet für Oktober 2025 einen stabilen Arbeitsmarkt. Für GaLaBau-Betriebe beginnt jetzt das Zeitfenster, in dem sich Fachkräfte am ehesten bewegen – und in dem die wenigsten Betriebe suchen."
 datum: 2025-10-30
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Arbeitsmarkt, Bundesagentur, Winter, Personalplanung, Saison 2026]
 bild_alt: "Bauleiter mit Tablet und Bauplan auf einer Baustelle im Herbst, im Hintergrund Bagger und Laub"
 bild_prompt: "A German site manager in a fleece jacket and hard hat checking a tablet on a landscaping construction site in late October, yellow leaves on the ground, mini excavator in the background, overcast soft light."

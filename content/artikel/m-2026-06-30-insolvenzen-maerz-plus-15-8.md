@@ -3,6 +3,7 @@ title: "Destatis: Unternehmensinsolvenzen im März 2026 um 15,8 Prozent gestiege
 dek: "Die endgültigen Zahlen für März liegen vor. Der Bau bleibt eine der Branchen mit hoher Insolvenzbetroffenheit."
 datum: 2026-06-30
 ressort: markt-politik
+zielgruppe: betriebe
 format: meldung
 tags: ["Insolvenzen", "Konjunktur", "Destatis"]
 relevanz: 40

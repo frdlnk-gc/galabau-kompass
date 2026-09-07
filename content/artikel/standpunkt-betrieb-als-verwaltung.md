@@ -3,6 +3,7 @@ title: 'Zeiterfassung, E-Rechnung, Nachweise: Der Betrieb wird zur Verwaltung'
 dek: Jede einzelne Pflicht ist begründbar. In der Summe verbringt ein Inhaber mit zwölf Mitarbeitern inzwischen mehr Zeit mit Dokumentation als mit Kunden. Ein Kommentar über Digitalisierung als Ausweg – und über eine Politik, die das Ausmaß nicht sieht.
 datum: '2026-06-19'
 ressort: standpunkt
+zielgruppe: betriebe
 format: standpunkt
 tags:
 - Bürokratie

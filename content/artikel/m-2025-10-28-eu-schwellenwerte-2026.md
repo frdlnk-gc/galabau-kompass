@@ -3,6 +3,7 @@ title: "EU-Schwellenwerte für 2026 und 2027 stehen fest: Bauaufträge ab 5,404 
 dek: "Die EU-Kommission senkt die Schwellenwerte für europaweite Vergaben. Für Landschaftsbauaufträge zählen weiter die nationalen Wertgrenzen der VOB/A."
 datum: 2025-10-28
 ressort: markt-politik
+zielgruppe: betriebe
 format: meldung
 tags: ["Vergabe", "Öffentliche Aufträge", "Schwellenwerte"]
 relevanz: 40

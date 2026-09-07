@@ -3,6 +3,7 @@ title: "Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeut
 dek: "Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente."
 datum: 2026-07-01
 ressort: recht-tarif
+zielgruppe: beide
 tags: [Tarif, Ecklohn, Lohn, IG BAU, BGL, Ausbildungsvergütung, Kalkulation]
 featured: true
 bild_alt: "Landschaftsgärtner beim Setzen von Randsteinen, Nahaufnahme der Hände mit Gummihammer"

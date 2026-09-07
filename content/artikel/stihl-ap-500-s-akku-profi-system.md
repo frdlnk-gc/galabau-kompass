@@ -3,6 +3,7 @@ title: 'STIHL AP 500 S: Der Akku, der das Profi-System ausdauernd macht'
 dek: 36 Volt, 8,8 Amperestunden, 337 Wattstunden, 1,9 Kilogramm – und nach Herstellerangaben doppelt so viele Ladezyklen wie bisherige Akkus. Was das für Betriebe bedeutet, die ihre Kolonnen auf Akku umstellen.
 datum: '2026-05-27'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Akku

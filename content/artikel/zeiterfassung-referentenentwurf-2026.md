@@ -3,6 +3,7 @@ title: "Zeiterfassung: Der Referentenentwurf will die elektronische Pflicht – 
 dek: "Seit dem BAG-Urteil von 2022 müssen Betriebe Arbeitszeiten erfassen. Ein Referentenentwurf des Bundesarbeitsministeriums vom Juni 2026 soll festlegen, wie: elektronisch, mit Ausnahme für Betriebe unter zehn Beschäftigten. Was das für Kolonnen auf der Baustelle bedeutet."
 datum: 2026-06-18
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [Arbeitszeit, Zeiterfassung, Arbeitszeitgesetz, Referentenentwurf, Recht]
 bild_alt: "Vorarbeiter bucht auf dem Smartphone die Arbeitszeit seiner Kolonne am Ende des Tages auf der Baustelle"
 bild_prompt: "A foreman in high-visibility workwear tapping on a smartphone at the end of the workday on a landscaping site in Germany, crew packing tools in the background, evening light, realistic, no readable text on screen."

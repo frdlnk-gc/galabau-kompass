@@ -3,6 +3,7 @@ title: "Der Vorarbeiter: Die wichtigste Führungskraft, die kaum ein Betrieb aus
 dek: "Er entscheidet, ob eine Kolonne funktioniert, ob der Azubi bleibt und ob die Baustelle Ertrag bringt. Trotzdem wird die Rolle meist nach Dienstalter vergeben und ohne Vorbereitung übertragen. Was ein Vorarbeiter braucht – und was der Betrieb ihm schuldet."
 datum: 2026-05-05
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Vorarbeiter, Führung, Kolonne, Mitarbeiterbindung, Organisation, Weiterbildung]
 bild_alt: "Vorarbeiter bespricht am Morgen mit seiner dreiköpfigen Kolonne den Plan an der Ladefläche des Transporters"
 bild_prompt: "A foreman in his forties discussing the day's plan with his three-person landscaping crew at the open tailgate of a van on a German construction site early in the morning, plan on the tailgate, realistic documentary photo, no text."

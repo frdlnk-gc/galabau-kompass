@@ -3,6 +3,7 @@ title: "Zecken: 185 Risikogebiete – was Betriebe für ihre Kolonnen tun müsse
 dek: "Das Robert Koch-Institut hat die FSME-Karte erweitert: Nordsachsen und Halle sind neu dabei, fast jeder zweite Landkreis ist Risikogebiet. Für Landschaftsgärtner ist die Zecke ein Berufsrisiko – mit Vorsorgepflicht, Impfangebot und Berufskrankheit."
 datum: 2026-05-13
 ressort: sicherheit-gesundheit
+zielgruppe: beide
 tags: [Zecken, FSME, Borreliose, Arbeitsschutz, Vorsorge, Berufskrankheit]
 bild_alt: "Landschaftsgärtnerin in langer Arbeitskleidung mäht eine Böschung mit hohem Gras, Waldrand im Hintergrund"
 bild_prompt: "A female landscaping worker in long-sleeved protective work clothing cutting tall grass on an embankment at the edge of a forest in Germany, late spring, realistic documentary photo, no text."

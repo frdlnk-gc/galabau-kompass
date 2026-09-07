@@ -3,6 +3,7 @@ title: 'PlanRadar: Mängel, Fotos und Bautagebuch vom Handy in den Bericht'
 dek: Eine App, die Fotos, Notizen und Sprachaufnahmen von der Baustelle in Bautagebücher, Mängelberichte und Abnahmeprotokolle verwandelt. Über 170.000 Nutzer in mehr als 75 Ländern – und ein Preismodell, das auch kleine Betriebe erreicht.
 datum: '2026-04-09'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Software

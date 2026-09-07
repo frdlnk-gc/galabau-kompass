@@ -3,6 +3,7 @@ title: "Abmahnung, Kündigung, Probezeit: Die Regeln, die im Kolonnenalltag zäh
 dek: "Wer zu spät kommt, wer die Säge ohne Schutzhose führt, wer nach der Saison nicht mehr passt – Betriebe reagieren oft aus dem Bauch. Das Arbeitsrecht verlangt Reihenfolge, Form und Frist. Ein Überblick für Inhaber und Bauleiter."
 datum: 2026-02-04
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [Arbeitsrecht, Kündigung, Abmahnung, Probezeit, Kündigungsschutz, Führung]
 bild_alt: "Inhaber eines Landschaftsbaubetriebs sitzt mit einem Mitarbeiter im Büro, ein Schreiben liegt auf dem Tisch"
 bild_prompt: "The owner of a small German landscaping company and an employee in work clothes sitting at an office desk, a printed letter between them, serious but calm mood, filing cabinets in the background, winter light, realistic documentary photo, no text."

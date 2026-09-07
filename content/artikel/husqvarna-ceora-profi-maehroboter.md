@@ -3,6 +3,7 @@ title: 'Husqvarna CEORA: Der Mähroboter für 50.000 Quadratmeter – ohne Begre
 dek: 'Sportplätze, Parks, Gewerbeflächen: Der CEORA mäht bis zu fünf Hektar in zwei Tagen, navigiert per Satellit auf zwei bis drei Zentimeter genau und ersetzt keinen Landschaftsgärtner – aber viele Mähstunden.'
 datum: '2026-06-05'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Mähroboter

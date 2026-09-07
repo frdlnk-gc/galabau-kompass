@@ -3,6 +3,7 @@ title: "Jahresrückblick 2025: Was das Jahr für GaLaBau-Betriebe gebracht hat"
 dek: "Ein Tarifplus, ein Mindestlohnbeschluss, ein stabiler Auftragsbestand mit schmalen Erträgen und die Erkenntnis, dass jede zweite Kündigung vom Mitarbeiter kommt. Zwölf Monate in zehn Punkten."
 datum: 2025-12-22
 ressort: markt-politik
+zielgruppe: beide
 tags: [Jahresrückblick, "2025", Markt, Tarif, Arbeitsmarkt, BGL]
 bild_alt: "Winterlicher Betriebshof eines Landschaftsbauunternehmens in der Abenddämmerung, Maschinen abgestellt, Licht in der Werkstatt"
 bild_prompt: "A German landscaping company yard at dusk in December, parked excavators and vans under a thin layer of snow, warm light from the workshop windows, calm atmosphere, realistic documentary photo, no text."

@@ -3,6 +3,7 @@ title: "Motorsäge: Welche Ausbildung Mitarbeiter brauchen – die Module der DG
 dek: "Ohne nachgewiesene Ausbildung darf im Betrieb niemand die Kettensäge anwerfen. Was Modul A und Modul B vermitteln, wer sie braucht und was neben dem Schein zur Pflicht gehört."
 datum: 2026-01-14
 ressort: sicherheit-gesundheit
+zielgruppe: beide
 tags: [Motorsäge, Arbeitsschutz, DGUV, Ausbildung, Baumpflege, Winter]
 bild_alt: "Landschaftsgärtner in Schnittschutzkleidung fällt mit der Motorsäge einen kleinen Baum, Kollege sichert den Rückweg"
 bild_prompt: "A landscaping worker in full chainsaw protective gear cutting a small tree in a German park in winter while a colleague keeps the retreat path clear, sawdust in the air, overcast light, realistic documentary photo, no text."

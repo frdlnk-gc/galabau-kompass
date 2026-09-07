@@ -3,6 +3,7 @@ title: "Azubi-Mindestvergütung 2026: 724 Euro – und warum der GaLaBau davon w
 dek: "Das Bundesbildungsministerium hat die Mindestausbildungsvergütung für 2026 bekannt gegeben. Für Betriebe im Tarif spielt sie keine Rolle, für nicht tarifgebundene Betriebe gilt eine andere Grenze – und die liegt deutlich höher."
 datum: 2025-10-15
 ressort: recht-tarif
+zielgruppe: beide
 tags: [Ausbildungsvergütung, Azubis, BBiG, Tarif, Ausbildung, Recht]
 bild_alt: "Auszubildender zählt mit dem Ausbilder Pflastersteine auf einer Palette, Baustelle im Herbst"
 bild_prompt: "A young apprentice and his trainer checking a pallet of paving stones together on a German landscaping site in autumn, clipboard in hand, realistic documentary photo, no text."

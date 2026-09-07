@@ -3,6 +3,7 @@ title: "Jede zweite Kündigung kommt vom Mitarbeiter – und die meisten haben d
 dek: "Der Anteil der Eigenkündigungen ist seit 2009 von 34 auf 52 Prozent gestiegen. Wer geht, geht selten ins Nichts: 84 Prozent haben eine neue Stelle in Aussicht. Was das für die Mitarbeiterbindung im GaLaBau heißt."
 datum: 2025-10-14
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Mitarbeiterbindung, Kündigung, Fluktuation, Arbeitsmarkt]
 bild_alt: "Landschaftsgärtner packt am Feierabend seine Werkzeugkiste in den Kofferraum eines Transporters"
 bild_prompt: "A landscaping worker in his thirties loading a toolbox into the back of a white work van at dusk on a residential street in Germany, thoughtful mood, autumn light, shallow depth of field, seen from the side."

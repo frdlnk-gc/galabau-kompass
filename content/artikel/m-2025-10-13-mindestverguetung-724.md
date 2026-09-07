@@ -3,6 +3,7 @@ title: "Bekanntmachung im Bundesgesetzblatt: Azubi-Mindestvergütung 2026 steigt
 dek: "Für Ausbildungsverträge ab 1. Januar 2026 gelten 724 Euro im ersten, 854 Euro im zweiten und 977 Euro im dritten Lehrjahr. Der GaLaBau-Tarif liegt weit darüber."
 datum: 2025-10-13
 ressort: recht-tarif
+zielgruppe: beide
 format: meldung
 tags: ["Ausbildungsvergütung", "Azubis", "BBiG"]
 relevanz: 40

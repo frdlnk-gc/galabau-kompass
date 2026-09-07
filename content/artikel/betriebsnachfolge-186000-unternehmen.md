@@ -3,6 +3,7 @@ title: "Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger 
 dek: "Das IfM Bonn hat seine Schätzung für die Jahre 2026 bis 2030 vorgelegt. Weniger Übergaben als erwartet, weil viele Betriebe wirtschaftlich unattraktiv geworden sind. Was das für Inhaber bedeutet, die in fünf Jahren aufhören wollen."
 datum: 2026-04-02
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [Nachfolge, Betriebsübergabe, Inhaber, Markt, IfM Bonn, Führung]
 bild_alt: "Älterer Inhaber und junge Bauleiterin gehen über den Betriebshof eines Landschaftsbaubetriebs, im Hintergrund die Fahrzeugflotte"
 bild_prompt: "An older owner of a German landscaping company walking across the company yard with a young female site manager, both looking at the fleet of green vehicles, spring morning, realistic documentary photo, no text."

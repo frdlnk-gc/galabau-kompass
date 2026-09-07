@@ -3,6 +3,7 @@ title: "Steuerfreie Extras statt Lohnrunde: Was Betriebe 2026 noch geben können
 dek: "Die Inflationsausgleichsprämie ist Geschichte, der Tarif steigt im Juli um 3,3 Prozent. Dazwischen liegt eine Reihe von Zuwendungen, die beim Mitarbeiter fast vollständig ankommen und den Betrieb weniger kosten als ein Lohnplus. Ein Überblick mit Beträgen und Paragrafen."
 datum: 2026-06-03
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Gehaltsextras, Sachbezug, Steuern, Mitarbeiterbindung, Lohn, Benefits]
 bild_alt: "Mitarbeiterin eines Landschaftsbaubetriebs schließt nach Feierabend ihr Dienstfahrrad am Betriebshof an"
 bild_prompt: "A landscaping worker locking up a company-provided e-bike next to the workshop of a German gardening business after work, evening light, green work jacket, realistic documentary photo, no text."

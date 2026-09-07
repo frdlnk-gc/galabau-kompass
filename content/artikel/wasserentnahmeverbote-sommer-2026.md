@@ -3,6 +3,7 @@ title: "Über 80 Landkreise verbieten die Wasserentnahme – was das für Pflanz
 dek: "Der Sommer 2026 hat Böden und Flüsse ausgetrocknet. Landkreise von Baden-Württemberg bis Brandenburg untersagen die Entnahme aus Bächen und Flüssen, teils bis Oktober. Für GaLaBau-Betriebe wird Bewässerung damit zur Planungs- und Haftungsfrage."
 datum: 2026-08-14
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Trockenheit, Bewässerung, Wasserentnahme, Sommer 2026, Pflanzung, Pflege]
 featured: true
 bild_alt: "Landschaftsgärtner bewässert junge Bäume mit einem Wasserfass auf dem Anhänger, ausgedörrter Rasen im Hintergrund"

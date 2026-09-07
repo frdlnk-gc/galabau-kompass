@@ -23,7 +23,7 @@
   <script>window.KOMPASS_SITE={{ site_json|safe }};</script>
   {% block head %}{% endblock %}
 </head>
-<body data-depth="{{ depth }}" data-stand="{{ heute.isoformat() }}"{% if aktuelle_ausgabe %} data-ausgabe="Nr. {{ aktuelle_ausgabe.lauf }} · Ausgabe {{ aktuelle_ausgabe.nr }}"{% endif %} class="{% block bodyclass %}{% endblock %}">
+<body data-depth="{{ depth }}" data-stand="{{ heute.isoformat() }}"{% if fuer %} data-fuer="{{ fuer }}"{% endif %}{% if aktuelle_ausgabe %} data-ausgabe="Nr. {{ aktuelle_ausgabe.lauf }} · Ausgabe {{ aktuelle_ausgabe.nr }}"{% endif %} class="{% block bodyclass %}{% endblock %}">
   <a class="skip" href="#inhalt">Zum Inhalt</a>
   <header data-kompass-header></header>
   <main id="inhalt">

@@ -3,6 +3,7 @@ title: "Leise Bagger, volle Akkus: Was die Elektromaschinen auf der GaLaBau 2026
 dek: "Vier bis sechs Betriebsstunden, eine Stunde Laden, keine Abgase im Innenhof: Die Hersteller bringen elektrische Kompaktmaschinen nach Nürnberg, die für innerstädtische Baustellen gemacht sind. Ein Blick auf Daten, Einsatzfelder und die Frage nach den Kosten."
 datum: 2026-09-02
 ressort: technik-digital
+zielgruppe: betriebe
 tags: [Elektromaschinen, Bagger, Radlader, E-Mobilität, GaLaBau 2026, Baumaschinen]
 featured: true
 bild_alt: "Elektrischer Minibagger arbeitet in einem engen Innenhof zwischen Wohnhäusern, Kabel an einer Ladestation"

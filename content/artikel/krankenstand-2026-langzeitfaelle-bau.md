@@ -3,6 +3,7 @@ title: "Krankenstand: 5,3 Prozent im ersten Halbjahr – und was die Langzeitfä
 dek: "Die DAK meldet einen leichten Rückgang, psychische Erkrankungen liegen erstmals vorn. Für körperlich arbeitende Betriebe bleibt das Muskel-Skelett-System das Thema: Ausfälle sind selten, aber lang. Was Betriebe beim Wiedereinstieg tun müssen – und was sie vorher tun können."
 datum: 2026-07-21
 ressort: sicherheit-gesundheit
+zielgruppe: betriebe
 tags: [Krankenstand, Gesundheit, Rücken, BEM, Prävention, DAK]
 bild_alt: "Landschaftsgärtner hebt mit einem Vakuum-Hebegerät eine Großformatplatte, Kollege führt sie"
 bild_prompt: "A landscaping worker using a vacuum lifting device to place a large concrete slab while a colleague guides it, German terrace construction site, summer light, realistic documentary photo, no text."

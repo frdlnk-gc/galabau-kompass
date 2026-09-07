@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "_teaser.html" import teaser, img, textlist, meldungsliste, frage_modul, abo_form, termine_box, ausweis %}
+{% block title %}{% if fuer %}{{ site.name }} {{ fuer_label|replace('Für ', 'für ') }} – {{ site.claim }}{% else %}{{ site.name }} – {{ site.claim }}{% endif %}{% endblock %}
 {% block bodyclass %}home{% endblock %}
 {% block content %}
 {% set root = '../' * depth %}
@@ -53,7 +54,7 @@
 <!-- ===== AKTUELL + SEITENLEISTE ===== -->
 <section class="container main-grid">
   <div class="col-main">
-    <div class="rubrik"><h2>Aktuell</h2><a class="rubrik-more" href="{{ root }}artikel/">Alle {{ anzahl }} Beiträge</a></div>
+    <div class="rubrik"><h2>Aktuell</h2>{% if fuer %}<span class="rubrik-note">{{ fuer_label }} zuerst</span>{% endif %}<a class="rubrik-more" href="{{ root }}artikel/">Alle {{ anzahl }} Beiträge</a></div>
     <div class="river">
       {% for a in river %}{{ teaser(a, root, 'horiz') }}{% endfor %}
     </div>

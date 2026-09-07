@@ -3,6 +3,7 @@ title: "Frauenanteil unter den GaLaBau-Azubis sinkt auf rund 11 Prozent"
 dek: "Die Gesamtzahl der Auszubildenden steigt auf 8.089, der Anteil der Frauen geht um drei Prozentpunkte zurück."
 datum: 2026-02-26
 ressort: karriere
+zielgruppe: beide
 format: meldung
 tags: ["Azubis", "Ausbildung", "Nachwuchs", "BGL"]
 relevanz: 40

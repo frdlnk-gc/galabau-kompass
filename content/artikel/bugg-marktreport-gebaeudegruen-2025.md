@@ -3,6 +3,7 @@ title: "Neun Millionen Quadratmeter neues Gründach – und 87 Prozent der Flach
 dek: "Der BuGG-Marktreport Gebäudegrün 2025 zeigt einen Markt, der wächst und trotzdem erst am Anfang steht. Für GaLaBau-Betriebe ist Dach- und Fassadenbegrünung das Auftragsfeld mit dem größten unerschlossenen Potenzial."
 datum: 2025-12-16
 ressort: bauen-pflanzen
+zielgruppe: betriebe
 tags: [Dachbegrünung, Gebäudegrün, BuGG, Fassadenbegrünung, Klimaanpassung]
 bild_alt: "Landschaftsgärtner verlegen Substrat und Sedum-Matten auf einem Flachdach über einer Stadt"
 bild_prompt: "Two landscapers installing sedum mats and substrate on a flat green roof of a modern building, German city skyline in the background, safety harnesses, clear winter light, realistic documentary style."

@@ -3,6 +3,7 @@ title: "ifo-Geschäftsklima steigt im August auf 88,8 Punkte – Bau weniger pes
 dek: "Der stärkste Anstieg seit Monaten. Im Bauhauptgewerbe bessern sich die Erwartungen, die Lage wird leicht schlechter bewertet."
 datum: 2026-08-26
 ressort: markt-politik
+zielgruppe: betriebe
 format: meldung
 tags: ["Konjunktur", "ifo", "Bau"]
 relevanz: 40

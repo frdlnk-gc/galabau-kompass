@@ -3,6 +3,7 @@ title: "In eigener Sache: Branchenumfrage 2026 läuft – Ergebnisse im Oktober"
 dek: "Zwölf Fragen zur Mitarbeitergewinnung, drei Minuten, anonymisierte Auswertung. Auf der GaLaBau in Nürnberg befragt das Team des Magazins Betriebe direkt am Stand."
 datum: 2026-09-05
 ressort: betrieb-personal
+zielgruppe: betriebe
 format: meldung
 tags: ["Branchenumfrage", "Mitarbeitergewinnung", "GaLaBau 2026"]
 relevanz: 40

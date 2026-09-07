@@ -3,6 +3,7 @@ title: "Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad 
 dek: "Zwischen dem 16. April und dem 18. Oktober öffnen vier Gartenschauen in vier Bundesländern. Für die Branche sind sie Schaufenster, Auftragsquelle und Ausflugsziel für das Team – ein Überblick mit Terminen."
 datum: 2026-04-23
 ressort: messe-termine
+zielgruppe: beide
 tags: [Landesgartenschau, Gartenschau, Termine, Neuss, Ellwangen, Leinefelde-Worbis, Bad Nenndorf]
 bild_alt: "Frisch angelegtes Gartenschaugelände mit Staudenbeeten, Wegen und Besuchern an einem sonnigen Frühlingstag"
 bild_prompt: "A newly opened German state garden show grounds in April: perennial beds in bloom, gravel paths, a wooden pavilion, visitors strolling, blue sky, wide documentary shot, no text or signs."

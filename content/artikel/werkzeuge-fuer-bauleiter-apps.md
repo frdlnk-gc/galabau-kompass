@@ -3,6 +3,7 @@ title: "Werkzeugkasten für Bauleiter: Sechs digitale Helfer, die den Tag kürze
 dek: "Aufmaß, Bautagebuch, Fotodokumentation, Zeiterfassung, Wetter, Material – für jede Aufgabe gibt es Apps. Welche Kategorien sich im Alltag von GaLaBau-Bauleitern bewähren, worauf es bei der Auswahl ankommt und warum weniger oft mehr ist."
 datum: 2026-08-19
 ressort: karriere
+zielgruppe: fachkraefte
 tags: [Bauleiter, Apps, Digitalisierung, Bautagebuch, Aufmaß, Werkzeuge]
 bild_alt: "Bauleiter fotografiert mit dem Smartphone den Baufortschritt einer Terrassenanlage für die Dokumentation"
 bild_prompt: "A landscaping site manager taking a photo with his smartphone of a terrace under construction for documentation, crew working in the background, German residential garden, late summer light, realistic, no readable text on screen."

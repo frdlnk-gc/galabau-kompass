@@ -3,6 +3,7 @@ title: Das Einwanderungsrecht ist fertig. Die Visastellen sind es nicht.
 dek: 'Westbalkanregelung, Chancenkarte, Anerkennungspartnerschaft: Seit Juni 2024 hat die Branche alle Instrumente, um Fachkräfte aus dem Ausland zu holen. Woran es scheitert, steht in keinem Gesetz – es steht in den Wartelisten der Botschaften.'
 datum: '2026-03-20'
 ressort: standpunkt
+zielgruppe: betriebe
 format: standpunkt
 tags:
 - Fachkräfteeinwanderung

@@ -3,6 +3,7 @@ title: "Das Jahresgespräch: Wie Betriebe im November klären, wer im März noch
 dek: "Wer geht, entscheidet das meist im Winter. Ein strukturiertes Gespräch vor der Saisonpause kostet eine Stunde pro Mitarbeiter – und ist das günstigste Instrument gegen Kündigungen im Frühjahr."
 datum: 2025-11-19
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Mitarbeitergespräch, Führung, Mitarbeiterbindung, Kündigung, Winter, Organisation]
 bild_alt: "Inhaber und Landschaftsgärtner sitzen im Aufenthaltsraum eines Betriebs zusammen, Kaffee und Notizblock auf dem Tisch"
 bild_prompt: "A landscaping company owner and an employee in work clothes having a calm one-on-one conversation at a wooden table in the break room of a German gardening business, coffee cups and a notepad, November light through the window, realistic documentary photo, no text."

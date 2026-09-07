@@ -4,6 +4,7 @@ dek: Wer die Kolonne wegen Wetters nach Hause schickt, trägt das Betriebsrisiko
 antwort: 'Ja. Fällt die Arbeit wegen Regen, Frost oder Sturm aus, trägt der Betrieb das Betriebsrisiko und zahlt den Lohn weiter (§ 615 BGB). Die Ausnahme ist die Schlechtwetterzeit vom 1. Dezember bis 31. März: Dort kann der Betrieb Saison-Kurzarbeitergeld beantragen, und die Bundesagentur ersetzt einen Teil des Ausfalls.'
 datum: '2026-04-14'
 ressort: recht-tarif
+zielgruppe: betriebe
 format: praxisfrage
 tags:
 - Arbeitsrecht

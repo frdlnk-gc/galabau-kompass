@@ -3,6 +3,7 @@ title: "Hitze und UV: Was Betriebe ab UV-Index 3 tun müssen – und was die BG 
 dek: "Sonnenschutz ist keine Frage der Fürsorge, sondern des Arbeitsschutzgesetzes. Von März bis Oktober gehört der UV-Index in die Baustellenplanung. Die BG BAU fördert Kühlwesten, UV-Shirts und Brillen mit festen Beträgen."
 datum: 2026-06-24
 ressort: sicherheit-gesundheit
+zielgruppe: beide
 tags: [Hitze, UV-Schutz, Arbeitsschutz, BG BAU, Sommer, PSA]
 bild_alt: "Landschaftsgärtner mit breitkrempigem Hut, langärmligem UV-Shirt und Sonnenbrille trinkt Wasser im Schatten eines Baumes auf der Baustelle"
 bild_prompt: "A landscaper wearing a wide-brimmed hat, long-sleeved light UV shirt and sunglasses drinking water in the shade of a tree on a hot construction site in Germany, sun flare, realistic documentary photo, no text."

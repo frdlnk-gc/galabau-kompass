@@ -3,6 +3,7 @@ title: '123erfasst: Zeiterfassung, die nebenbei das Bautagebuch schreibt'
 dek: Stunden, Standorte, Fotos, Material und Wetter kommen vom Handy der Kolonne direkt ins Büro – und die App macht daraus automatisch das Bautagebuch. Eine der verbreitetsten Baustellen-Apps im Steckbrief.
 datum: '2026-06-17'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Software

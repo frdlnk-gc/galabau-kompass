@@ -3,6 +3,7 @@ title: "E-Rechnung: Ab 2027 müssen größere Betriebe elektronisch versenden �
 dek: "Empfangen müssen alle Betriebe seit 2025. Ab dem 1. Januar 2027 gilt die Versandpflicht für Unternehmen mit mehr als 800.000 Euro Umsatz, ab 2028 für alle. Was eine E-Rechnung ist, wer betroffen ist und wie Betriebe die Umstellung im Winter angehen."
 datum: 2026-08-05
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [E-Rechnung, Buchhaltung, XRechnung, ZUGFeRD, Digitalisierung, Steuer]
 bild_alt: "Büro eines Landschaftsbaubetriebs mit Laptop, Rechnungsordnern und Blick auf den Betriebshof"
 bild_prompt: "Office desk of a German landscaping company with a laptop, invoice folders and a coffee mug, through the window the yard with a green van and plants, morning light, realistic, no readable text."

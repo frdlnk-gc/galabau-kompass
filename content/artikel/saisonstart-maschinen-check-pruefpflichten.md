@@ -3,6 +3,7 @@ title: "Saisonstart: Der Maschinen-Check vor dem ersten Einsatz – und welche P
 dek: "Im März geht es los, und was im Winter nicht gewartet wurde, fällt im April aus. Eine Checkliste für Bagger, Fahrzeuge, Anhänger, Geräte und Ausrüstung – mit den Prüffristen, die die Berufsgenossenschaft verlangt."
 datum: 2026-03-10
 ressort: technik-digital
+zielgruppe: betriebe
 tags: [Maschinen, Wartung, Prüfpflichten, BetrSichV, Saisonstart, Arbeitsschutz]
 bild_alt: "Mechaniker prüft die Hydraulikschläuche eines Minibaggers in der Werkstatthalle eines Landschaftsbaubetriebs"
 bild_prompt: "A mechanic in a workshop hall of a German landscaping company inspecting the hydraulic hoses of a compact excavator, tool trolley beside him, early spring light through the open gate, realistic documentary photo, no text."

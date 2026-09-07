@@ -3,6 +3,7 @@ title: "Zukunftsbäume: Welche Arten Hitze, Trockenheit und Frost aushalten"
 dek: "Die GALK-Straßenbaumliste führt 178 geeignete Straßenbaumsorten, die Broschüre von BdB und GALK filtert daraus 65 Zukunftsbäume. Für Betriebe, die Bäume pflanzen und für ihr Anwachsen haften, ist die Auswahl eine Frage des Geldes."
 datum: 2026-05-06
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Stadtbäume, Zukunftsbäume, GALK, Baumschule, Klimaanpassung, Pflanzung]
 bild_alt: "Landschaftsgärtner pflanzen einen jungen Straßenbaum mit Ballen in eine vorbereitete Baumgrube"
 bild_prompt: "Two landscapers planting a young ball-and-burlap street tree into a prepared tree pit on a German city street, tree stakes and watering bag ready, spring light, realistic documentary photo, no text."

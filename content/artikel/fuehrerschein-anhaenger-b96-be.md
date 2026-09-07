@@ -3,6 +3,7 @@ title: "Transporter mit Anhänger: Wann B reicht, wann B96, wann BE – und was 
 dek: "Ein Pritschenwagen mit Bagger auf dem Anhänger ist Alltag im GaLaBau. Ob der Fahrer ihn führen darf, hängt von 4,25 Tonnen ab. Ein Überblick über die Führerscheinklassen, die Kosten und die EU-Novelle."
 datum: 2026-03-12
 ressort: technik-digital
+zielgruppe: beide
 tags: [Führerschein, Anhänger, B96, BE, Fuhrpark, Recht]
 bild_alt: "Pritschenwagen eines Landschaftsbaubetriebs mit Minibagger auf dem Anhänger auf einer Landstraße"
 bild_prompt: "A green flatbed van of a landscaping company towing a trailer with a mini excavator on a German country road in early spring, seen from a three-quarter rear angle, realistic, no brand logos."

@@ -3,6 +3,7 @@ title: "Mindestlohn steigt auf 13,90 Euro – und 2027 auf 14,60 Euro"
 dek: "Das Bundeskabinett hat die Empfehlung der Mindestlohnkommission übernommen. Für GaLaBau-Betriebe ist der Tarif zwar höher, doch Helfer, Saisonkräfte und Minijobs sind betroffen – und die Kalkulation für 2026."
 datum: 2025-11-03
 ressort: recht-tarif
+zielgruppe: beide
 tags: [Mindestlohn, Lohnkosten, Kalkulation, Minijob, Saisonkräfte]
 bild_alt: "Helfer im Landschaftsbau schaufelt Schotter auf einer Baustelle, Lohnabrechnung symbolisch im Vordergrund nicht sichtbar"
 bild_prompt: "Two workers shoveling gravel into a wheelbarrow on a German garden construction site, work gloves and high-visibility vests, morning light, realistic documentary style, no text."

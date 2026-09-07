@@ -3,6 +3,7 @@ title: "50 Pflanzen in 30 Minuten: Wie die Pflanzenkenntnis-Prüfung läuft – 
 dek: "Pflanzenkenntnisse sind das Prüfungsfach, an dem Landschaftsgärtner am häufigsten scheitern. Was die Pflanzenliste verlangt, warum der botanische Name zählt und wie fünf Minuten pro Woche den Unterschied machen."
 datum: 2026-03-24
 ressort: karriere
+zielgruppe: fachkraefte
 tags: [Pflanzenkenntnisse, Ausbildung, Prüfung, Azubis, Pflanzenliste, Berufsschule]
 bild_alt: "Auszubildende bestimmen mit dem Ausbilder Gehölze an einem Lehrpfad, Zweige und Etiketten in der Hand"
 bild_prompt: "Three apprentices with their trainer identifying shrubs and trees along a labelled plant trail in a German nursery in early spring, holding twigs with buds and name tags, focused expressions, realistic documentary photo, no readable text."

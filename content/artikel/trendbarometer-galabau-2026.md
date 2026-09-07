@@ -3,6 +3,7 @@ title: "Trendbarometer 2026: Klimaanpassung, Fachkräfte, emissionsfreie Technik
 dek: "Die Messe Nürnberg hat ihr Trendbarometer zur GaLaBau 2026 veröffentlicht. Drei Themen setzen den Rahmen für das Messejahr – und für die Betriebe, die im September nach Nürnberg fahren."
 datum: 2026-01-20
 ressort: messe-termine
+zielgruppe: beide
 tags: [GaLaBau 2026, Messe Nürnberg, Trendbarometer, Klimaanpassung, E-Mobilität]
 bild_alt: "Elektrischer Kompaktradlader auf einer innerstädtischen Baustelle neben frisch gepflanzten Bäumen"
 bild_prompt: "A compact electric wheel loader on an urban construction site in a German city, freshly planted street trees with stakes, workers in the background, overcast January light, realistic, no logos."

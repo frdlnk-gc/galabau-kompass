@@ -3,6 +3,7 @@ title: "Bauen bei Frost: Was Beton, Mörtel, Pflaster und Pflanzen unter fünf G
 dek: "Die Saison endet nicht am Kalender, sondern am Thermometer. Welche Arbeiten bei Kälte weiterlaufen können, wo die Normen Grenzen ziehen und warum der Schaden meist erst im Frühjahr sichtbar wird."
 datum: 2025-12-10
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Frost, Winter, Beton, Pflaster, Bautechnik, Gewährleistung]
 bild_alt: "Landschaftsgärtner deckt frisch gesetzte Betonfundamente mit Wärmedämmmatten ab, Raureif auf der Baustelle"
 bild_prompt: "Landscape construction workers covering freshly poured concrete foundations with insulating mats on a frosty German building site, hoarfrost on the ground, low winter sun, realistic documentary photo, no text."
