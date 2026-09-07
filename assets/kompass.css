@@ -108,7 +108,9 @@ body:not([class]) section{padding:52px 0;}
 .mehr-link::after{content:' →';}
 .mehr-link:hover{text-decoration:underline;}
 .btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:14px;}
-.input{width:100%;font-family:var(--sans);font-size:16px;padding:12px 14px;border:1.5px solid var(--hair-strong);border-radius:12px;background:#fff;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;}
+.input{width:100%;font-family:var(--sans);font-size:16px;padding:12px 14px;border:1.5px solid var(--hair-strong);border-radius:12px;background:#fff;color:#0E1B13;outline:none;transition:border-color .15s,box-shadow .15s;}
+.input::placeholder{color:#7A8A80;opacity:1;}
+.input option{color:#0E1B13;}
 .input:focus{border-color:var(--green-deep);box-shadow:0 0 0 4px rgba(35,165,81,.16);}
 .input.is-error{border-color:#DC2626;}
 textarea.input{min-height:90px;resize:vertical;}
