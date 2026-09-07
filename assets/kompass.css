@@ -144,8 +144,8 @@ textarea.input{min-height:90px;resize:vertical;}
 .topbar .env{display:inline-block;font-family:var(--display);font-size:.6rem;font-weight:800;letter-spacing:.1em;padding:2px 7px;border-radius:var(--pill);background:var(--green-light);color:var(--green-ink);margin-left:8px;vertical-align:middle;}
 @media(min-width:1024px){.topbar{display:block;}}
 .brandbar{position:relative;z-index:2;background:#fff;}
-.brandbar .container{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;}
-@media(min-width:1024px){.brandbar .container{height:80px;}}
+.brandbar .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;min-height:60px;gap:8px 12px;padding-top:8px;padding-bottom:8px;}
+@media(min-width:1024px){.brandbar .container{flex-wrap:nowrap;height:80px;padding-top:0;padding-bottom:0;}}
 .brand-tools{display:flex;align-items:center;gap:8px;}
 .soc-row{display:none;align-items:center;gap:4px;margin-right:6px;}
 @media(min-width:1024px){.soc-row{display:flex;}}
@@ -1092,3 +1092,15 @@ a.club-vorteil h3{color:var(--ink);}
 .mein-akt .del:hover{border-color:#B91C1C;color:#B91C1C;}
 
 @media(max-width:600px){.ausweis-kopf .logo-word{font-size:.92rem;}.ausweis-kopf .logo svg{height:24px;}.ausweis-label{white-space:nowrap;font-size:.56rem;}}
+
+/* ===== Zielgruppen-Schalter: Für Betriebe | Für Fachkräfte ===== */
+.fuer-switch{display:inline-flex;align-items:center;gap:2px;background:var(--bg-2);border-radius:var(--pill);padding:4px;order:3;width:100%;justify-content:center;}
+@media(min-width:1024px){.fuer-switch{order:0;width:auto;margin:0 auto;}}
+.fuer-opt{font-family:var(--display);font-size:.8rem;font-weight:700;color:var(--ink-2);text-decoration:none;padding:8px 16px;border-radius:var(--pill);white-space:nowrap;transition:background .15s,color .15s;}
+.fuer-opt:hover{color:var(--green-deep);}
+.fuer-opt.is-active{background:var(--green-deep);color:#fff;}
+.fuer-alle{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--ink-3);text-decoration:none;padding:0 12px 0 8px;white-space:nowrap;}
+.fuer-alle:hover{color:var(--green-deep);text-decoration:underline;}
+.fuer-switch:not(.has-wahl) .fuer-alle{display:none;}
+@media(max-width:480px){.fuer-opt{font-size:.76rem;padding:7px 12px;}}
+@media(max-width:640px){.rubrik .rubrik-note{display:none;}}

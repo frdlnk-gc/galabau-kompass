@@ -3,6 +3,7 @@ title: 'Bobcat E10e: Ein-Tonnen-Bagger für Türen, Keller und Innenhöfe'
 dek: '710 Millimeter breit, knapp 1,2 Tonnen schwer, elektrisch: Der E10e passt durch jede Tür und arbeitet, wo kein Diesel darf. Was er leistet, wie er lädt und für welche Betriebe er die Miete wert ist.'
 datum: '2026-05-19'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Elektroantrieb

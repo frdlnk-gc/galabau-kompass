@@ -3,6 +3,7 @@ title: "Jahresauftakt: 25 Prozent mehr Bewerbungen, 3 Prozent weniger Stellen"
 dek: "Das Indeed Hiring Lab hat den Jahreswechsel 2025/26 ausgewertet, die Bundesagentur den Januar. Beide Zahlenreihen erzählen dasselbe: Zu Jahresbeginn bewegen sich Fachkräfte – und die Betriebe, die dann sichtbar sind, profitieren."
 datum: 2026-02-16
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Arbeitsmarkt, Bewerbungen, Indeed, Bundesagentur, Wechselbereitschaft, Vakanzzeit]
 bild_alt: "Landschaftsgärtnerin scrollt in der Mittagspause auf dem Smartphone durch Stellenangebote, im Hintergrund ein Bauhof im Winter"
 bild_prompt: "A young female landscape gardener in work jacket looking at her smartphone during a break in a workshop of a German landscaping company, winter light through the gate, realistic, candid, no text on screen visible."

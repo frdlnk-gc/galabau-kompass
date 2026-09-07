@@ -3,6 +3,7 @@ title: "Vom Landschaftsgärtner zum Bauleiter: Drei Wege, ein Ziel"
 dek: "Bauleiter sind laut Trendbarometer der Messe die knappste Position im GaLaBau. Meister, Techniker oder Studium – welcher Weg zu wem passt, was er kostet und wie das Aufstiegs-BAföG hilft."
 datum: 2026-03-18
 ressort: karriere
+zielgruppe: fachkraefte
 tags: [Bauleiter, Meister, Techniker, Weiterbildung, Aufstiegs-BAföG, Karriere]
 bild_alt: "Bauleiter erklärt zwei Landschaftsgärtnern einen Plan am Heck eines Transporters auf der Baustelle"
 bild_prompt: "A landscaping site manager in his thirties explaining a construction drawing to two crew members at the open tailgate of a work van on a residential construction site in Germany, morning light, realistic documentary style."

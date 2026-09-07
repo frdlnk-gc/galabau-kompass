@@ -30,7 +30,7 @@ GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
 # Handgezeichneter Pfeil („mit Edding“): zwei leicht versetzte Striche + offene Spitze, zeigt auf den QR-Code
-PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 84 4 C 100 34, 76 60, 50 86"/><path d="M 86 8 C 98 34, 78 58, 56 80" stroke-width="3" opacity=".5"/><path d="M 52 62 L 49 88 L 74 84"/></svg>'''
+PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 22 10 C 58 4, 88 30, 78 86"/><path d="M 24 15 C 56 10, 82 32, 76 74" stroke-width="3.5" opacity=".5"/><path d="M 60 72 L 78 90 L 96 72"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -49,8 +49,8 @@ def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
     return f'''
 <section class="page back" style="width:{w}mm;height:{h}mm;">
   <div class="frage">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
-  <div class="qrwrap" style="width:190mm;height:190mm;">{qr_svg(url)}</div>
-  {PFEIL.format(accent=HONIG)}
+  <div class="pfeilzone">{PFEIL.format(accent=HONIG)}</div>
+  <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
   <div class="unten">
     <div class="line2">Kostenlos scannen · Standort-Check</div>
     <div class="logo">{MARK.format(ink=CREME, accent=GRUEN)}<div class="word">GaLaBau Kompass</div></div>
@@ -86,11 +86,14 @@ CSS = f'''
 html,body{{background:#fff;}}
 .page{{page-break-after:always;position:relative;overflow:hidden;font-family:Inter,sans-serif;}}
 .front,.back{{background:{BLACK};color:{CREME};display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14mm 10mm 12mm;position:relative;}}
+.back{{justify-content:flex-start;gap:0;}}
+.back .unten{{margin-top:auto;}}
 .front{{justify-content:center;gap:5mm;padding:4mm;}}
 .front .marke .mark{{height:60mm;width:auto;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
 .frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
-.pfeil{{position:absolute;right:50mm;top:48mm;width:52mm;height:52mm;}}
+.pfeilzone{{position:relative;width:100%;height:52mm;flex:none;}}
+.pfeil{{position:absolute;right:54mm;top:0;width:54mm;height:46mm;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}

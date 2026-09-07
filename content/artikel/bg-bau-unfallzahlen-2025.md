@@ -3,6 +3,7 @@ title: "Erstmals unter 90.000: Die Unfallzahlen der BG BAU sinken – die Berufs
 dek: "89.113 meldepflichtige Arbeitsunfälle zählte die Berufsgenossenschaft der Bauwirtschaft 2025, 2,9 Prozent weniger als im Vorjahr. Absturz bleibt die häufigste Todesursache. Mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten zeigen das andere Risiko: Haut, Rücken, Lunge."
 datum: 2026-07-14
 ressort: sicherheit-gesundheit
+zielgruppe: beide
 tags: [BG BAU, Arbeitsunfälle, Unfallstatistik, Absturz, Berufskrankheiten, Arbeitsschutz]
 featured: true
 bild_alt: "Landschaftsgärtner mit Gehörschutz und Schutzbrille bedient eine Rüttelplatte auf einer Pflasterbaustelle"

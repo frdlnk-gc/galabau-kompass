@@ -3,6 +3,7 @@ title: "8.089 Auszubildende: Der GaLaBau bildet so viele Landschaftsgärtner aus
 dek: "3.221 junge Menschen haben 2025 eine Ausbildung zum Landschaftsgärtner begonnen, 1,5 Prozent mehr als im Vorjahr. Der Frauenanteil geht dagegen zurück. Die Zahlen des BGL – und was sie über die Betriebe sagen."
 datum: 2026-02-25
 ressort: karriere
+zielgruppe: beide
 tags: [Ausbildung, Azubis, Landschaftsgärtner, BGL, Nachwuchs]
 bild_alt: "Auszubildende und Ausbilder beim Verlegen einer Natursteinmauer auf einem Übungsgelände"
 bild_prompt: "A teenage apprentice and an older master gardener building a dry stone wall together on a training ground of a German landscaping company, late winter, focused expressions, realistic documentary style."

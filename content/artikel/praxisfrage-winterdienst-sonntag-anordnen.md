@@ -4,6 +4,7 @@ dek: Winterdienst zur Verkehrssicherung ist eine der zulässigen Sonntagsarbeite
 antwort: 'Ja, wenn es dafür eine Grundlage im Arbeits- oder Tarifvertrag gibt und die Regeln des Arbeitszeitgesetzes eingehalten werden: Winterdienst zur Verkehrssicherung gehört zu den zulässigen Sonn- und Feiertagsarbeiten. Der Mitarbeiter bekommt innerhalb von zwei Wochen einen Ersatzruhetag, die elf Stunden Ruhezeit gelten auch nach dem Nachteinsatz, und Zuschläge regelt der Tarif oder der Vertrag.'
 datum: '2026-08-07'
 ressort: betrieb-personal
+zielgruppe: betriebe
 format: praxisfrage
 tags:
 - Winterdienst

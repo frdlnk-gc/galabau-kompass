@@ -3,6 +3,7 @@ title: "Die ersten 90 Tage: Warum neue Mitarbeiter im GaLaBau in der Probezeit g
 dek: "Die Suche war lang, der Vertrag ist unterschrieben – und nach sechs Wochen kündigt der neue Landschaftsgärtner. Meist liegt es nicht an ihm. Ein Plan für die ersten drei Monate, der sich in Betrieben bewährt hat."
 datum: 2026-05-20
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Onboarding, Probezeit, Einarbeitung, Mitarbeiterbindung, Führung]
 bild_alt: "Vorarbeiter zeigt einem neuen Mitarbeiter am ersten Arbeitstag den Betriebshof und die Maschinen"
 bild_prompt: "A foreman walking a new employee through the yard of a German landscaping company on his first day, pointing at machines and equipment, both in green workwear, early morning, realistic documentary style."

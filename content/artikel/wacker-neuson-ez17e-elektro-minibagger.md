@@ -3,6 +3,7 @@ title: 'Wacker Neuson EZ17e: Der Elektro-Minibagger, der einen Arbeitstag ohne S
 dek: '1,7-Tonnen-Klasse, 23,4 Kilowattstunden Akku, Zero Tail: Der EZ17e ist die Maschine, mit der viele Betriebe zum ersten Mal elektrisch baggern. Was er kann, was er kostet und wo er an Grenzen stößt.'
 datum: '2026-03-31'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Elektroantrieb

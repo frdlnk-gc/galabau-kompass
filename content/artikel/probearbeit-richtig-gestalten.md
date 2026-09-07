@@ -3,6 +3,7 @@ title: "Probearbeit: Ein Tag, der die Fehlbesetzung verhindert"
 dek: "Zwischen Bewerbungsgespräch und Vertrag liegt im GaLaBau idealerweise ein Tag auf der Baustelle. Wie Betriebe ihn organisieren, was rechtlich zu beachten ist und woran beide Seiten erkennen, ob es passt."
 datum: 2026-07-22
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Probearbeit, Einstellung, Bewerbung, Recht, Führung]
 bild_alt: "Bewerber arbeitet zur Probe mit einer Kolonne beim Pflastern, Vorarbeiter beobachtet"
 bild_prompt: "A candidate on a trial work day helping a crew lay pavers on a German residential construction site, a foreman watching attentively with arms crossed, summer light, realistic documentary style, no text."

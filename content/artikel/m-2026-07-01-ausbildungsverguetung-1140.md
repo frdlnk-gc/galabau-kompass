@@ -3,6 +3,7 @@ title: "Seit heute: 1.140 Euro Ausbildungsvergütung im ersten Lehrjahr"
 dek: "Mit der zweiten Tarifstufe steigen Löhne, Gehälter und Ausbildungsvergütungen im GaLaBau um 3,3 Prozent."
 datum: 2026-07-01
 ressort: karriere
+zielgruppe: fachkraefte
 format: meldung
 tags: ["Ausbildungsvergütung", "Tarif", "Azubis"]
 relevanz: 40

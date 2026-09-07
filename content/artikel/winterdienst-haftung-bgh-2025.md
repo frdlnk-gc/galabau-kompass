@@ -3,6 +3,7 @@ title: "Winterdienst: Der BGH macht es Gestürzten leichter – was Dienstleiste
 dek: "Mit Beschluss vom 1. Juli 2025 hat der Bundesgerichtshof klargestellt: Ein vollständiger Haftungsausschluss wegen Mitverschuldens ist die Ausnahme. Für GaLaBau-Betriebe im Winterdienst heißt das: Kontrolle dokumentieren, Zeiten einhalten, Verträge prüfen."
 datum: 2025-11-12
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [Winterdienst, Haftung, Verkehrssicherungspflicht, BGH, Räumpflicht]
 bild_alt: "Mitarbeiter eines Landschaftsbaubetriebs streut bei Dämmerung mit einem Streuwagen einen verschneiten Gehweg vor einem Wohnhaus"
 bild_prompt: "Worker in winter workwear pushing a salt spreader along a snow-covered sidewalk in front of German apartment buildings at dawn, streetlights still on, cold blue light, realistic."

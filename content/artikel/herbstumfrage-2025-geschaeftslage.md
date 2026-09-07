@@ -3,6 +3,7 @@ title: "Herbstumfrage 2025: 56 Prozent der Betriebe melden eine gute Geschäftsl
 dek: "668 Betriebe haben dem BGL geantwortet. Die Auftragslage bleibt stabil, die Stimmung kühlt leicht ab, und für 2026 ruht die Hoffnung auf dem Bau-Turbo der Bundesregierung."
 datum: 2025-11-10
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [BGL, Konjunktur, Herbstumfrage, Auftragslage, Bau-Turbo]
 bild_alt: "Inhaber eines Landschaftsbaubetriebs am Schreibtisch mit Auftragsmappen, im Hintergrund Betriebshof mit Fahrzeugen"
 bild_prompt: "Owner of a German landscaping company, around fifty, sitting at a desk in a small office with order folders and a laptop, through the window a yard with green work vans and a mini excavator, November daylight."

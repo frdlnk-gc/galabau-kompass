@@ -4,6 +4,7 @@ dek: Unter 18 nur unter Aufsicht und im Rahmen des Ausbildungsziels, selbststän
 antwort: 'Ja, aber nicht allein: Unter 18 Jahren darf ein Azubi Erdbaumaschinen nur unter Aufsicht einer fachkundigen Person führen, wenn das Ausbildungsziel es erfordert. Selbstständig fahren darf er ab 18 – nach Qualifizierung, Unterweisung und schriftlicher Beauftragung durch den Betrieb.'
 datum: '2026-02-20'
 ressort: recht-tarif
+zielgruppe: beide
 format: praxisfrage
 tags:
 - Azubis

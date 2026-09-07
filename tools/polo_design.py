@@ -21,7 +21,8 @@ WORK = os.path.join(OUT, "_work"); os.makedirs(WORK, exist_ok=True)
 LIGHT, GREEN, LIME, BLACK = "#F2F7F3", "#23A551", "#CDF47A", "#000000"
 PX_MM = 3.78          # Render-Auflösung der Druckmotive (96 dpi)
 MOCK_PX_CM = 12.9     # Mockup: Rumpfbreite ≈ 56 cm ≙ 720 px
-PFEIL = '<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 84 4 C 100 34, 76 60, 50 86"/><path d="M 86 8 C 98 34, 78 58, 56 80" stroke-width="3" opacity=".5"/><path d="M 52 62 L 49 88 L 74 84"/></svg>'
+PFEIL = '<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 22 10 C 58 4, 88 30, 78 86"/><path d="M 24 15 C 56 10, 82 32, 76 74" stroke-width="3.5" opacity=".5"/><path d="M 60 72 L 78 90 L 96 72"/></svg>'
+
 
 MARK = '<svg class="mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'
 
@@ -80,11 +81,11 @@ def motiv_marke(w, h):
 
 def motiv_reduziert(url, w, h):
     """Rücken Variante C: Frage, QR groß mit handgezeichnetem Pfeil, Zeile, Wortmarke."""
-    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:space-between;position:relative;">
+    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:flex-start;position:relative;">
   <div class="line1" style="font-size:19mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
-  <div class="qrwrap" style="width:190mm;height:190mm;">{qr_svg(url)}</div>
-  <div style="position:absolute;right:50mm;top:48mm;width:52mm;height:52mm;">{PFEIL.format(accent=LIME)}</div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;">
+  <div style="position:relative;width:100%;height:52mm;flex:none;"><div style="position:absolute;right:54mm;top:0;width:54mm;height:46mm;">{PFEIL.format(accent=LIME)}</div></div>
+  <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;margin-top:auto;">
     <div class="line2" style="font-size:10.5mm;">Kostenlos scannen · Standort-Check</div>
     <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=GREEN)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot" style="font-size:3.8mm;">galabau-kompass.de</div>

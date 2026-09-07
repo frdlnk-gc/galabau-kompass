@@ -3,6 +3,7 @@ title: "Baggerschein: Was der DGUV Grundsatz 301-005 von Betrieben verlangt – 
 dek: "Einen amtlichen Baggerführerschein gibt es nicht. Trotzdem darf niemand ohne Qualifizierung und Beauftragung auf den Sitz. Was der Grundsatz der Unfallversicherer vorschreibt, wer ausbilden darf und was auf der Straße zusätzlich gilt."
 datum: 2025-10-08
 ressort: karriere
+zielgruppe: beide
 tags: [Baggerschein, Erdbaumaschinen, DGUV, Qualifikation, Maschinenkenntnisse, Arbeitsschutz]
 bild_alt: "Junger Maschinenführer im Minibagger auf einer Gartenbaustelle, Ausbilder steht daneben und gibt Handzeichen"
 bild_prompt: "A young landscaping worker operating a compact excavator on a German residential garden construction site while an instructor stands beside the machine giving hand signals, autumn light, realistic documentary style, no text."

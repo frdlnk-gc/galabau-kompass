@@ -3,6 +3,7 @@ title: "Fachkräfte aus dem Ausland: Was Chancenkarte, Westbalkanregelung und An
 dek: "Seit Juni 2024 sind alle Stufen des neuen Einwanderungsrechts in Kraft. Drei Wege sind für die Branche relevant – und sie unterscheiden sich stark in Aufwand, Dauer und Erfolgsaussicht."
 datum: 2025-12-03
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [Fachkräfteeinwanderung, Chancenkarte, Westbalkanregelung, Anerkennung, Recht, Mitarbeitergewinnung]
 bild_alt: "Internationales Team einer Landschaftsbaukolonne bespricht am Morgen den Bauplan auf dem Betriebshof"
 bild_prompt: "A diverse landscaping crew of four men and women in green work clothes discussing a site plan next to a truck in a German company yard on a cold December morning, breath visible, realistic documentary photo, no text."

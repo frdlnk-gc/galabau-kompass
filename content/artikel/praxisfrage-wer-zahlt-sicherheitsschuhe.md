@@ -4,6 +4,7 @@ dek: Persönliche Schutzausrüstung stellt der Arbeitgeber – kostenlos. Für A
 antwort: Der Betrieb. Sicherheitsschuhe, Helm, Gehörschutz, Schnittschutzhose und alle andere persönliche Schutzausrüstung muss der Arbeitgeber stellen, und er darf die Kosten nicht auf den Mitarbeiter umlegen (§ 3 Absatz 3 Arbeitsschutzgesetz). Normale Arbeitskleidung ohne Schutzfunktion ist keine PSA – hier entscheiden Tarif und Arbeitsvertrag.
 datum: '2026-05-08'
 ressort: sicherheit-gesundheit
+zielgruppe: fachkraefte
 format: praxisfrage
 tags:
 - Arbeitsschutz

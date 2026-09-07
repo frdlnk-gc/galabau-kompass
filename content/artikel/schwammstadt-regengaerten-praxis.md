@@ -3,6 +3,7 @@ title: "Schwammstadt: Vom Fachbegriff zum Auftrag"
 dek: "Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen."
 datum: 2026-04-15
 ressort: bauen-pflanzen
+zielgruppe: betriebe
 tags: [Schwammstadt, Klimaanpassung, Regenwasser, Regengarten, Baumrigole, Kommunen]
 bild_alt: "Neu angelegte Versickerungsmulde mit Stauden und Kies zwischen Straße und Gehweg in einer deutschen Stadt"
 bild_prompt: "A newly built rain garden swale with grasses and perennials between a street and a sidewalk in a German city, curb cut inlet visible, newly planted street tree with a tree grate, overcast spring day, realistic documentary style, no text."

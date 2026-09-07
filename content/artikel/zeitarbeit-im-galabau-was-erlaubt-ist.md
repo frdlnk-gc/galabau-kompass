@@ -3,6 +3,7 @@ title: "Zeitarbeit im GaLaBau: Was erlaubt ist – und wo das Bauverbot greift"
 dek: "Im Baugewerbe ist Arbeitnehmerüberlassung grundsätzlich verboten. Für den Garten- und Landschaftsbau gibt es eine Ausnahme mit engen Bedingungen: nur zwischen Baubetrieben, nur im selben Tarifbereich, nur mit Sozialkassen-Vorgeschichte. Ein Überblick."
 datum: 2026-04-08
 ressort: recht-tarif
+zielgruppe: betriebe
 tags: [Zeitarbeit, Arbeitnehmerüberlassung, AÜG, Kollegenhilfe, Recht, Saison]
 bild_alt: "Zwei Kolonnen verschiedener Betriebe arbeiten gemeinsam auf einer großen Außenanlagen-Baustelle"
 bild_prompt: "Two crews in different colored workwear working together on a large commercial landscaping site with pavers and planting beds, a German office park in the background, spring light, realistic, no logos."

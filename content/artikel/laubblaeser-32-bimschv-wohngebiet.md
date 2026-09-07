@@ -3,6 +3,7 @@ title: "Laubbläser im Wohngebiet: Was die 32. BImSchV erlaubt – und wann das 
 dek: "Vier Stunden am Tag, nicht am Wochenende: Für Laubbläser und Freischneider gelten in Wohngebieten enge Zeitfenster. Wer sie kennt, plant die Herbstpflege anders – und erspart sich Ärger mit Anwohnern."
 datum: 2025-11-05
 ressort: technik-digital
+zielgruppe: beide
 tags: [Laubbläser, Lärmschutz, 32. BImSchV, Grünpflege, Recht, Herbst]
 bild_alt: "Landschaftsgärtner mit Akku-Laubbläser auf einem Gehweg vor Wohnhäusern im Herbst"
 bild_prompt: "A landscaping worker with a battery-powered leaf blower clearing fallen leaves from a sidewalk in a quiet German residential street, colorful autumn trees, morning light, realistic documentary photo, no text."

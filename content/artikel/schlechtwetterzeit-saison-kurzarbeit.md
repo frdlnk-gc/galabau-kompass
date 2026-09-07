@@ -3,6 +3,7 @@ title: "Schlechtwetterzeit: Wie Saison-Kurzarbeit die Fachkräfte im Betrieb hä
 dek: "Vom 1. Dezember bis 31. März gilt im Baugewerbe die Schlechtwetterzeit. Rund 42.000 Betriebe nutzen das Saison-Kurzarbeitergeld, um Beschäftigte über den Winter zu halten. Der GaLaBau gehört dazu – und viele Betriebe wissen es nicht."
 datum: 2025-12-01
 ressort: recht-tarif
+zielgruppe: beide
 tags: [Saison-Kurzarbeit, Schlechtwetterzeit, Winter, Winterbeschäftigungsumlage, Bundesagentur]
 bild_alt: "Verschneiter Betriebshof eines Landschaftsbaubetriebs mit abgestellten Maschinen und Anhängern"
 bild_prompt: "A snow-covered yard of a German landscaping company with parked mini excavators, trailers and stacked paving stones under tarps, overcast winter morning, quiet atmosphere, no people, realistic."

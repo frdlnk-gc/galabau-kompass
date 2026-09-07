@@ -3,6 +3,7 @@ title: "Insolvenzen: Höchster Stand seit 2013 – der Bau liegt 4,5 Prozent üb
 dek: "Creditreform zählt für das erste Halbjahr 12.900 Unternehmensinsolvenzen. Der Bau steigt moderater als die Dienstleister, aber von hohem Niveau. Was GaLaBau-Betriebe jetzt für ihre Forderungen tun sollten."
 datum: 2026-06-25
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [Insolvenzen, Konjunktur, Creditreform, Forderungen, Markt, Bau]
 bild_alt: "Verwaister Rohbau einer Wohnanlage mit unfertiger Außenanlage, Bauzaun geschlossen, Unkraut auf dem Schotter"
 bild_prompt: "An abandoned residential construction site in Germany with an unfinished outdoor area, closed construction fence, weeds growing through gravel, overcast summer day, realistic documentary photo, no text."

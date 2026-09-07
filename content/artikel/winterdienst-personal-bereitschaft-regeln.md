@@ -3,6 +3,7 @@ title: "Winterdienst-Personal: Bereitschaft regeln, bevor der erste Schnee fäll
 dek: "Winterdienstverträge werden im September unterschrieben, die Bereitschaft der Mitarbeiter im November improvisiert. Was Rufbereitschaft von Bereitschaftsdienst unterscheidet, welche Ruhezeiten auch nachts gelten und wie Betriebe die Einsätze vergüten."
 datum: 2026-09-01
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Winterdienst, Bereitschaft, Arbeitszeit, Vergütung, Organisation, Winter]
 bild_alt: "Fahrer eines Räumfahrzeugs mit Streuer prüft am frühen Morgen die Ausrüstung auf dem Betriebshof, erster Frost"
 bild_prompt: "A driver checking a small snow plough and salt spreader mounted on a pickup truck in the yard of a German landscaping company at dawn, first frost on the ground, headlights on, realistic documentary photo, no text."

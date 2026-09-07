@@ -3,6 +3,7 @@ title: "Was der GaLaBau zahlt: Lohngruppen, Gehaltsgruppen und Ausbildungsvergü
 dek: "Vom Helfer bis zum Baustellenleiter, von der Bürokraft bis zum Bauleiter: Der Tarifvertrag legt die Sätze fest, nach denen tarifgebundene Betriebe zahlen – und an denen sich der Rest der Branche orientiert. Die Übersicht mit der Erhöhung zum 1. Juli 2026."
 datum: 2026-02-11
 ressort: karriere
+zielgruppe: fachkraefte
 tags: [Gehalt, Tarif, Lohngruppen, Ausbildungsvergütung, Karriere, Recht]
 bild_alt: "Lohnabrechnung und Tarifbroschüre auf dem Schreibtisch eines Landschaftsbaubetriebs, Taschenrechner daneben"
 bild_prompt: "Close-up of a payroll statement and a printed collective agreement brochure on the desk of a German landscaping company office, calculator and pen beside them, green work gloves at the edge of the frame, natural window light, realistic photo, no readable text."

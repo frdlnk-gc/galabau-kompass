@@ -3,6 +3,7 @@ title: "Azubis für 2027: Drei Hebel, die Betriebe jetzt im Herbst umlegen"
 dek: "Die Ausbildungsverträge für den Start im August 2027 werden im Winter geschlossen. Wer im Herbst Praktika anbietet, in der Berufsschule sichtbar ist und die Eltern mitdenkt, hat im März unterschriebene Verträge."
 datum: 2026-09-03
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Ausbildung, Azubis, Praktikum, Nachwuchs, Herbst]
 bild_alt: "Schülerpraktikantin und Ausbilder beim Pflanzen von Stauden in einem Privatgarten im Herbst"
 bild_prompt: "A teenage intern and an experienced female landscape gardener planting perennials together in a private garden in Germany in autumn, fallen leaves, warm light, realistic documentary style, no text."

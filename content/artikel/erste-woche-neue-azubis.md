@@ -3,6 +3,7 @@ title: "Die erste Woche: Wie neue Azubis ankommen – und was in den ersten Tage
 dek: "Anfang August beginnen im GaLaBau die Ausbildungsverhältnisse. Die Abbrüche fallen meist in den ersten Monaten. Was das Gesetz für Jugendliche verlangt, was der Betrieb vorbereiten sollte und warum der Pate wichtiger ist als der Ausbilder."
 datum: 2026-08-26
 ressort: betrieb-personal
+zielgruppe: betriebe
 tags: [Azubis, Ausbildung, Onboarding, JArbSchG, BBiG, Nachwuchs]
 bild_alt: "Neuer Auszubildender am ersten Tag auf dem Betriebshof, ein Facharbeiter zeigt ihm das Werkzeuglager"
 bild_prompt: "A nervous 16-year-old apprentice on his first day at a German landscaping company, an experienced worker showing him the tool storage in the workshop, morning light, realistic documentary photo, no text."

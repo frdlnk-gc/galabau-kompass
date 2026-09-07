@@ -3,6 +3,7 @@ title: "BGL-Bildungspreis 2026: Neun Nachwuchskräfte, drei Ausbildungsbetriebe,
 dek: "Der Bundesverband zeichnet 2026 erstmals auch Ausbildungsbetriebe aus. Die Preise werden auf der GaLaBau in Nürnberg verliehen. Wer gewonnen hat – und was die Betriebe anders machen."
 datum: 2026-03-27
 ressort: messe-termine
+zielgruppe: beide
 tags: [BGL, Bildungspreis, Ausbildung, Nachwuchs, GaLaBau 2026]
 bild_alt: "Junge Landschaftsgärtnerin mit Vermessungsgerät auf einer Baustelle, Kollegen im Hintergrund"
 bild_prompt: "A young female landscape gardener in her early twenties operating a rotating laser level on a construction site of a German landscaping company, colleagues in the background, spring sunshine, realistic."

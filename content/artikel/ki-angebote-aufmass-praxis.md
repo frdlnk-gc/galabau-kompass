@@ -3,6 +3,7 @@ title: "KI im GaLaBau: Angebot per Prompt, Aufmaß per Drohne – was heute scho
 dek: "Softwareanbieter versprechen automatische Angebote und Pflanzempfehlungen aus Standortdaten. Zwischen Messe-Demo und Betriebsalltag liegt ein Stück Weg. Was 2026 praxistauglich ist, was in der Entwicklung steckt und wo die Grenzen liegen."
 datum: 2026-06-10
 ressort: technik-digital
+zielgruppe: betriebe
 tags: [KI, Software, Aufmaß, Drohne, Angebote, Digitalisierung]
 bild_alt: "Bauleiter steuert eine Vermessungsdrohne über einer Gartenbaustelle und prüft das Aufmaß auf dem Tablet"
 bild_prompt: "A landscaping site manager flying a small surveying drone over a private garden construction site in Germany while checking a tablet, June light, realistic documentary style, no text on screens."

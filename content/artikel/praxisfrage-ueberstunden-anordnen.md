@@ -4,6 +4,7 @@ dek: Nur mit Grundlage im Vertrag oder Tarif – oder im Notfall. Und immer inne
 antwort: 'Nicht ohne Weiteres. Überstunden kann der Betrieb anordnen, wenn Arbeitsvertrag, Tarifvertrag oder Betriebsvereinbarung das vorsehen; ohne solche Regelung nur in echten Notfällen. Die Grenze bleibt das Arbeitszeitgesetz: höchstens zehn Stunden am Tag, im Schnitt acht über sechs Monate. Ob Überstunden bezahlt oder mit Freizeit ausgeglichen werden, steht ebenfalls im Vertrag oder Tarif.'
 datum: '2026-01-16'
 ressort: recht-tarif
+zielgruppe: fachkraefte
 format: praxisfrage
 tags:
 - Überstunden

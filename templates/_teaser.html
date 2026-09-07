@@ -12,7 +12,7 @@
 {%- endmacro %}
 
 {% macro teaser(a, root, v='grid') -%}
-<article class="t t-{{ v }}{% if not a.bild %} t-ohne-bild{% endif %} t-f-{{ a.format }}" data-slug="{{ a.slug }}">
+<article class="t t-{{ v }}{% if not a.bild %} t-ohne-bild{% endif %} t-f-{{ a.format }}" data-slug="{{ a.slug }}" data-zielgruppe="{{ a.zielgruppe }}">
   {% if a.bild %}<a class="t-media" href="{{ root }}artikel/{{ a.slug }}/" tabindex="-1" aria-hidden="true">{{ img(a, root, big=(v == 'lead')) }}</a>{% endif %}
   <div class="t-body">
     {{ meta(a, root) }}
@@ -25,7 +25,7 @@
 
 {% macro textlist(items, root) -%}
 <ul class="t-textlist">
-  {% for a in items %}<li><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></li>{% endfor %}
+  {% for a in items %}<li data-zielgruppe="{{ a.zielgruppe }}"><a href="{{ root }}artikel/{{ a.slug }}/">{{ a.title }}</a><time datetime="{{ a.datum_iso }}">{{ a.datum_kurz }}</time></li>{% endfor %}
 </ul>
 {%- endmacro %}
 

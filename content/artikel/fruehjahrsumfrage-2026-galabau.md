@@ -3,6 +3,7 @@ title: "Stabile Aufträge, getrübte Stimmung: Die Frühjahrsumfrage 2026"
 dek: "Nur noch gut die Hälfte der Betriebe bewertet die Geschäftslage als gut – vor einem Jahr waren es zwei Drittel. Die Auftragsbücher bleiben trotzdem voll. 699 Betriebe haben dem BGL geantwortet."
 datum: 2026-05-28
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [BGL, Konjunktur, Frühjahrsumfrage, Ertragslage, Auftragslage]
 bild_alt: "Bauleiterin prüft auf einer Baustelle mit Rollrasen und Pflasterflächen die Auftragsunterlagen"
 bild_prompt: "A female landscaping site manager reviewing paperwork on a clipboard at a residential garden construction site with fresh sod and paving in progress, German suburb, May sunshine, realistic documentary photo."

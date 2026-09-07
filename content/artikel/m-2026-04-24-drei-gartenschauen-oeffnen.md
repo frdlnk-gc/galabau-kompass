@@ -3,6 +3,7 @@ title: "Drei weitere Landesgartenschauen öffnen: Leinefelde-Worbis, Ellwangen, 
 dek: "Innerhalb einer Woche starten die Schauen in Thüringen, Baden-Württemberg und Niedersachsen. Ellwangen schließt als erste am 4. Oktober."
 datum: 2026-04-24
 ressort: messe-termine
+zielgruppe: beide
 format: meldung
 tags: ["Landesgartenschau", "Gartenschau", "Termine"]
 relevanz: 40

@@ -3,6 +3,7 @@ title: "ifo im August: Weniger Pessimismus am Bau, mehr Stornierungen im Wohnung
 dek: "Der ifo-Geschäftsklimaindex steigt auf 88,8 Punkte, das Bauhauptgewerbe blickt weniger düster nach vorn. Im Wohnungsbau sinkt der Anteil der Betriebe mit Auftragsmangel – aber jedes achte Unternehmen meldet Stornierungen. Was das für die Außenanlagen bedeutet."
 datum: 2026-08-27
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [Konjunktur, ifo, Wohnungsbau, Auftragslage, Markt, Bau]
 bild_alt: "Neubau-Reihenhäuser mit noch unbearbeiteten Vorgärten, ein Landschaftsgärtner vermisst die Fläche"
 bild_prompt: "A row of newly built terraced houses in Germany with unfinished front gardens, a landscape gardener measuring the plot with a tape measure, late summer light, realistic documentary photo, no text."

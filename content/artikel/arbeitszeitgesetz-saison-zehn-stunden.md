@@ -3,6 +3,7 @@ title: "Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt –
 dek: "Im Mai wird gearbeitet, solange es hell ist. Das Gesetz lässt mehr zu, als viele Betriebe denken – aber es verlangt Ausgleich, Pausen, Ruhezeiten und Aufzeichnungen. Die Regeln für Kolonnen, Fahrer und Jugendliche."
 datum: 2026-04-29
 ressort: recht-tarif
+zielgruppe: beide
 tags: [Arbeitszeit, Arbeitszeitgesetz, Überstunden, Saison, Recht, Zeiterfassung]
 bild_alt: "Kolonne beendet am späten Abend eine Pflasterfläche, tief stehende Sonne, Werkzeug wird verladen"
 bild_prompt: "A landscaping crew finishing a paved terrace late in the evening in a German garden, low golden sun, tools being loaded into a van, tired but content workers, realistic documentary photo, no text."

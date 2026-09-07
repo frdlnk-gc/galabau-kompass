@@ -3,6 +3,7 @@ title: "Herbstpflanzung: Warum Oktober der beste Monat für Gehölze ist – und
 dek: "Warmer Boden, kühle Luft, Regen in Sicht: Der Herbst gibt Gehölzen einen Vorsprung, den das Frühjahr nicht bietet. Worauf es bei wurzelnackter Ware, Ballen und Containern ankommt und welche Arten trotzdem warten sollten."
 datum: 2025-10-21
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Herbstpflanzung, Gehölze, Pflanzenkenntnisse, DIN 18916, Baumschule, Pflanzarbeiten]
 bild_alt: "Landschaftsgärtner setzt im Oktober einen Ballenbaum in eine vorbereitete Pflanzgrube, Laub auf dem Boden"
 bild_prompt: "Two landscape gardeners planting a young balled-and-burlapped tree into a prepared planting pit in a German garden in October, fallen leaves on the ground, soft overcast light, realistic documentary style, no text."

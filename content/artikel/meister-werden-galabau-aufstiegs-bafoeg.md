@@ -3,6 +3,7 @@ title: "Meister werden im GaLaBau: Weg, Prüfung, Kosten – und was das Aufstie
 dek: "Der Gärtnermeister ist der klassische Aufstieg vom Facharbeiter zur Führungskraft. Wie die Vorbereitung organisiert ist, was die Prüfung verlangt und warum der Staat die Hälfte der Lehrgangskosten trägt."
 datum: 2026-01-08
 ressort: karriere
+zielgruppe: fachkraefte
 tags: [Meister, Weiterbildung, Aufstiegs-BAföG, Karriere, Fortbildung, Führung]
 bild_alt: "Meisterschüler zeichnen einen Gartenplan im Unterrichtsraum einer Fachschule, Pflanzenkataloge auf dem Tisch"
 bild_prompt: "Adult students in a vocational horticulture school classroom in Germany drawing a garden design plan on large paper, plant catalogues and calculators on the tables, winter daylight through big windows, realistic documentary photo, no text."

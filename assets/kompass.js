@@ -95,7 +95,7 @@
     var top = '<div class="topbar"><div class="container"><span class="claim">Das Magazin für den Garten- und Landschaftsbau</span>' +
       '<nav aria-label="Service"><span class="datum"><b>' + TAGE[d.getDay()] + '</b>, ' + d.getDate() + '. ' + MONATE[d.getMonth()] + ' ' + d.getFullYear() + (IS_LIVE ? '' : '<span class="env">' + (IS_PREVIEW ? 'Vorschau' : 'Lokal') + '</span>') + '</span>' +
       '<a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine</a><a href="' + ROOT + 'zahlen/">Zahlen</a><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="' + ROOT + 'merkliste/" data-merk-link>Merkliste<span class="merk-anz" data-merk-anz></span></a></nav></div></div>';
-    var brand = '<div class="brandbar"><div class="container">' + logoSvg({ size: 'lg' }) +
+    var brand = '<div class="brandbar"><div class="container">' + logoSvg({ size: 'lg' }) + fuerSwitchHtml() +
       '<div class="brand-tools"><div class="soc-row">' + socialLinks() + '</div><span data-club-chip>' + clubChip() + '</span><a class="btn sm abo-btn" href="' + ROOT + 'newsletter/">Der Montagskompass</a>' +
       '<button type="button" class="icon-btn nav-toggle" aria-label="Menü öffnen">' + SVG_MENU + '</button></div></div></div>';
     var nav = '<div class="navbar" data-navbar><div class="container"><span class="mini">' + logoSvg({ word: false }) + '</span>' +
@@ -117,6 +117,7 @@
     if ('IntersectionObserver' in window) { new IntersectionObserver(function (es) { navbar.classList.toggle('is-stuck', !es[0].isIntersecting); }, { threshold: 0 }).observe(brandEl); }
     var act = navbar.querySelector('nav a.active'); if (act && act.scrollIntoView) { try { act.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
     initSuche(navbar);
+    initFuer(el.querySelector('[data-fuer-switch]'));
     var dr = el.querySelector('.drawer');
     function openDrawer(o) { dr.classList.toggle('open', o); dr.setAttribute('aria-hidden', o ? 'false' : 'true'); document.body.style.overflow = o ? 'hidden' : ''; if (o) setTimeout(function () { dr.querySelector('.schliessen').focus(); }, 30); }
     el.querySelector('.nav-toggle').addEventListener('click', function () { openDrawer(true); });
@@ -135,11 +136,57 @@
       '</div><div class="footer-bottom"><span>© ' + new Date().getFullYear() + ' GaLaBau Kompass · Das Magazin für den Garten- und Landschaftsbau</span><span>galabau-kompass.de<a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></span></div></div>';
   }
 
+
+  /* ── Zielgruppen-Schalter: Für Betriebe | Für Fachkräfte (Parameter schlägt Speicher, Wahl bleibt erhalten) ── */
+  var FUER = { betriebe: 'Für Betriebe', fachkraefte: 'Für Fachkräfte' };
+  function fuerWahl() {
+    var p = params.fuer; if (p && FUER[p]) { ls('kompass_fuer', p); return p; }
+    if (params.alle !== undefined) { ls('kompass_fuer', null); return null; }
+    var b = document.body.dataset.fuer; if (b && FUER[b]) { ls('kompass_fuer', b); return b; }
+    var g = ls('kompass_fuer'); return g && FUER[g] ? g : null;
+  }
+  function fuerSwitchHtml() {
+    var w = fuerWahl();
+    return '<div class="fuer-switch' + (w ? ' has-wahl' : '') + '" role="group" aria-label="Sicht wählen" data-fuer-switch>' +
+      Object.keys(FUER).map(function (k) { return '<a class="fuer-opt' + (w === k ? ' is-active' : '') + '" href="' + ROOT + 'fuer-' + k + '/" data-fuer="' + k + '"' + (w === k ? ' aria-current="true"' : '') + '>' + FUER[k] + '</a>'; }).join('') +
+      '<a class="fuer-alle" href="' + ROOT + '?alle" data-fuer-alle>Alle</a></div>';
+  }
+  function fuerSortieren(w) {
+    // Listen mit data-zielgruppe stabil umsortieren: gewählte Zielgruppe, dann beide, dann die andere; ohne Wahl Originalreihenfolge
+    document.querySelectorAll('.river, .t-grid3, .t-textlist, .rblock .t-textlist').forEach(function (box) {
+      var kinder = Array.prototype.slice.call(box.children).filter(function (el) { return el.dataset && el.dataset.zielgruppe; });
+      if (kinder.length < 2) return;
+      kinder.forEach(function (el, i) { if (!el.dataset.fuerI) el.dataset.fuerI = String(i); });
+      var rang = function (el) { var z = el.dataset.zielgruppe; return !w ? 0 : (z === w ? 0 : (z === 'beide' ? 1 : 2)); };
+      kinder.sort(function (a, b) { return rang(a) - rang(b) || (a.dataset.fuerI | 0) - (b.dataset.fuerI | 0); });
+      kinder.forEach(function (el) { box.appendChild(el); });
+      if (box.classList.contains('river') && box.hasAttribute('data-mehr-liste')) { var n = 0; kinder.forEach(function (el) { el.hidden = n++ >= ((box.dataset.schritt | 0) || 6); }); }
+    });
+  }
+  function initFuer(sw) {
+    var w = fuerWahl(), istStart = document.body.classList.contains('home');
+    if (istStart && !document.body.dataset.fuer && w && params.fuer === undefined && params.alle === undefined) { location.replace(ROOT + 'fuer-' + w + '/'); return; }
+    if (!istStart) fuerSortieren(w);
+    if (!sw) return;
+    sw.addEventListener('click', function (e) {
+      var a = e.target.closest('a'); if (!a) return;
+      var k = a.dataset.fuer || null;
+      if (a.hasAttribute('data-fuer-alle')) { ls('kompass_fuer', null); track('fuer', { wahl: 'alle' }); if (istStart) return; e.preventDefault(); }
+      else { ls('kompass_fuer', k); track('fuer', { wahl: k }); if (istStart) return; e.preventDefault(); }
+      sw.querySelectorAll('.fuer-opt').forEach(function (o) { o.classList.toggle('is-active', o.dataset.fuer === k); if (o.dataset.fuer === k) o.setAttribute('aria-current', 'true'); else o.removeAttribute('aria-current'); });
+      sw.classList.toggle('has-wahl', !!k);
+      try { var u = new URL(location.href); if (k) u.searchParams.set('fuer', k); else u.searchParams.delete('fuer'); u.searchParams.delete('alle'); history.replaceState(null, '', u.toString()); } catch (e2) {}
+      params.fuer = k || undefined; fuerSortieren(k);
+      if (window.KOMPASS.archivRender) window.KOMPASS.archivRender();
+    });
+  }
+  window.KOMPASS_FUER = fuerWahl;
+
   /* ── Inline-Suche in der Ressortleiste ── */
   var indexPromise = null;
   function loadIndex() { if (!indexPromise) indexPromise = fetch(ROOT + 'assets/artikel-index.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }); return indexPromise; }
   function norm(s) { return String(s || '').toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss'); }
-  function score(a, terms) { var t = norm(a.title), d = norm(a.dek), tg = norm(a.tags.join(' ')), x = norm(a.text); var s = 0; terms.forEach(function (w) { if (t.indexOf(w) > -1) s += 12; if (tg.indexOf(w) > -1) s += 8; if (d.indexOf(w) > -1) s += 5; if (x.indexOf(w) > -1) s += 2; }); return s; }
+  function score(a, terms) { var t = norm(a.title), d = norm(a.dek), tg = norm(a.tags.join(' ')), x = norm(a.text); var s = 0; terms.forEach(function (w) { if (t.indexOf(w) > -1) s += 12; if (tg.indexOf(w) > -1) s += 8; if (d.indexOf(w) > -1) s += 5; if (x.indexOf(w) > -1) s += 2; }); if (s > 0) { var f = window.KOMPASS_FUER ? window.KOMPASS_FUER() : null; if (f) s += a.zielgruppe === f ? 6 : (a.zielgruppe === 'beide' ? 2 : 0); } return s; }
   function hl(text, terms) { var out = esc(text); terms.forEach(function (w) { if (w.length < 2) return; try { out = out.replace(new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>'); } catch (e) {} }); return out; }
   function initSuche(navbar) {
     var box = navbar.querySelector('[data-suche-box]'), btn = box.querySelector('.such-btn'), form = box.querySelector('.suche-inline'), input = form.querySelector('input'), erg = box.querySelector('[data-suche-erg]'), x = form.querySelector('.suche-x');
@@ -249,7 +296,7 @@
     var media = a.bild ? '<a class="t-media" href="' + ROOT + 'artikel/' + a.slug + '/" tabindex="-1" aria-hidden="true"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" srcset="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg 640w, ' + ROOT + 'assets/img/' + a.bild + '.jpg 1600w" sizes="(min-width: 720px) 250px, 112px" alt="" loading="lazy" width="1600" height="1067"></a>' : '';
     var fmt = a.format && a.format !== 'artikel' ? '<span class="t-format t-format-' + a.format + '">' + esc(a.format_name || a.format) + '</span>' : '';
     var neu = a.neu ? '<span class="t-neu">Neu</span>' : '';
-    return '<article class="t t-horiz' + (a.bild ? '' : ' t-ohne-bild') + '" data-slug="' + a.slug + '">' + media +
+    return '<article class="t t-horiz' + (a.bild ? '' : ' t-ohne-bild') + '" data-slug="' + a.slug + '" data-zielgruppe="' + esc(a.zielgruppe || 'beide') + '">' + media +
       '<div class="t-body"><div class="t-meta">' + neu + fmt + '<a class="t-ressort" href="' + ROOT + 'ressort/' + a.ressort + '/">' + esc(a.ressort_name) + '</a><time datetime="' + a.datum + '">' + esc(a.datum_kurz || kurzDate(a.datum)) + '</time></div>' +
       '<h3 class="t-h"><a href="' + ROOT + 'artikel/' + a.slug + '/">' + esc(a.title) + '</a></h3><p class="t-dek">' + esc(a.dek) + '</p><div class="t-foot"><span>' + a.lesezeit + ' Min. Lesezeit' + (extra || '') + '</span><button type="button" class="merken" data-merken="' + a.slug + '" aria-label="Beitrag merken" title="Merken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button></div></div></article>';
   }
@@ -265,8 +312,10 @@
       if (!data) return;
       var terms = norm(state.q).split(/\s+/).filter(function (w) { return w.length > 1; });
       var rows = data.artikel.map(function (a) { return { a: a, s: terms.length ? score(a, terms) : 0 }; }).filter(function (r) { return (!terms.length || r.s > 0) && (!state.ressort || r.a.ressort === state.ressort) && (!state.format || r.a.format === state.format); });
-      var sort = state.sort;
+      var sort = state.sort, f = window.KOMPASS_FUER ? window.KOMPASS_FUER() : null;
+      var fr = function (a) { return !f ? 0 : (a.zielgruppe === f ? 0 : (a.zielgruppe === 'beide' ? 1 : 2)); };
       rows.sort(function (x, y) {
+        if (f && sort !== 'alt' && fr(x.a) !== fr(y.a)) return fr(x.a) - fr(y.a);
         if (terms.length && sort !== 'alt' && sort !== 'neu') { if (y.s !== x.s) return y.s - x.s; }
         if (sort === 'relevanz') return (y.a.relevanz - x.a.relevanz) || (y.a.datum > x.a.datum ? 1 : -1);
         if (sort === 'gelesen') return ((views[y.a.slug] || 0) - (views[x.a.slug] || 0)) || (y.a.relevanz - x.a.relevanz);
@@ -290,6 +339,7 @@
     mehr.addEventListener('click', function () { state.shown += 12; render(); });
     reset.addEventListener('click', function () { state.q = ''; state.format = ''; state.ressort = root.dataset.ressort || ''; input.value = ''; chips.forEach(function (x) { x.classList.toggle('is-active', x.dataset.r === state.ressort); }); render(); });
     root.querySelectorAll('[data-tag]').forEach(function (tg) { tg.addEventListener('click', function (e) { e.preventDefault(); input.value = tg.dataset.tag; state.q = tg.dataset.tag; state.shown = 12; render(); window.scrollTo({ top: root.offsetTop - 60, behavior: 'smooth' }); }); });
+    window.KOMPASS.archivRender = render;
     loadIndex().then(function (j) { data = j; if (state.sort === 'gelesen') return stats().then(function (s) { views = s.views || {}; }); }).then(render).catch(function () { erg.textContent = 'Archiv konnte nicht geladen werden.'; });
   }
 

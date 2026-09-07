@@ -3,6 +3,7 @@ title: "Wie Privatkunden heute einen Gartenbauer finden – und warum die Bewert
 dek: "Der Auftrag für den neuen Garten beginnt in den meisten Fällen mit einer Suche auf dem Smartphone. Was Betriebe tun können, damit sie dort auftauchen, als seriös wahrgenommen werden und die Anfrage nicht im Postfach versickert."
 datum: 2026-01-28
 ressort: technik-digital
+zielgruppe: betriebe
 tags: [Privatkunden, Google, Bewertungen, Website, Anfragen, Marketing]
 bild_alt: "Ehepaar sitzt am Küchentisch und sucht auf dem Tablet nach einem Gartenbaubetrieb, Gartenpläne auf dem Tisch"
 bild_prompt: "A middle-aged German couple at a kitchen table looking at a tablet together, printed garden plans and a coffee pot on the table, garden visible through the window in winter, realistic, warm light, no readable text on screen."

@@ -30,6 +30,14 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 MONATE = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 WOCHENTAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
 FORMATE = {"artikel": "Beitrag", "meldung": "Meldung", "produkt": "Produkt", "standpunkt": "Standpunkt", "praxisfrage": "Praxisfrage"}
+# Zielgruppen-Schalter: Feld `zielgruppe` (betriebe | fachkraefte | beide); fehlt es, Ableitung aus dem Ressort
+ZIELGRUPPEN = {"betriebe": "Für Betriebe", "fachkraefte": "Für Fachkräfte"}
+ZIELGRUPPE_RESSORT = {"betrieb-personal": "betriebe", "markt-politik": "betriebe", "produkte": "betriebe", "technik-digital": "betriebe", "standpunkt": "betriebe",
+                      "karriere": "fachkraefte", "sicherheit-gesundheit": "fachkraefte", "recht-tarif": "beide", "bauen-pflanzen": "beide", "messe-termine": "beide"}
+def sortiert(liste, fuer):
+    """Gewählte Zielgruppe zuerst, dann beide, dann die andere – innerhalb bleibt die Reihenfolge (Datum, Relevanz)."""
+    if not fuer: return list(liste)
+    return sorted(liste, key=lambda a: 0 if a["zielgruppe"] == fuer else (1 if a["zielgruppe"] == "beide" else 2))
 
 def de_date(d: dt.date, weekday=False) -> str:
     s = f"{d.day}. {MONATE[d.month - 1]} {d.year}"
@@ -135,6 +143,8 @@ def build():
         if meta["ressort"] not in ressorts: raise ValueError(f"{fn}: unbekanntes Ressort {meta['ressort']}")
         fmt = meta.get("format", "artikel")
         if fmt not in FORMATE: raise ValueError(f"{fn}: unbekanntes Format {fmt}")
+        zielgruppe = meta.get("zielgruppe") or ZIELGRUPPE_RESSORT[meta["ressort"]]
+        if zielgruppe not in ("betriebe", "fachkraefte", "beide"): raise ValueError(f"{fn}: unbekannte Zielgruppe {zielgruppe}")
         bild = meta.get("bild", slug)
         if bild in ("none", "", None) or fmt == "meldung" and "bild" not in meta: bild = None
         n = words(html)
@@ -146,7 +156,7 @@ def build():
             "relevanz": int(meta.get("relevanz", 50)), "featured": bool(meta.get("featured", False)), "autor": meta.get("autor", "Redaktion GaLaBau Kompass"),
             "lesezeit": max(1, -(-n // 180)), "woerter": n, "quellen": meta.get("quellen", []), "stimmen": meta.get("stimmen", []),
             "html": html, "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip(),
-            "ausgabe": datum.strftime("%Y-%m"), "neu": 0 <= (heute - datum).days <= 7,
+            "ausgabe": datum.strftime("%Y-%m"), "neu": 0 <= (heute - datum).days <= 7, "zielgruppe": zielgruppe,
         }
         artikel.append(a)
     artikel.sort(key=lambda a: (a["datum"], a["relevanz"]), reverse=True)
@@ -229,18 +239,32 @@ def build():
         open(full, "w", encoding="utf-8").write(html)
 
     # ── Startseite ───────────────────────────────────────────────
-    featured = [a for a in lang if a["featured"]][:5] or lang[:5]
-    river = [a for a in lang if a not in featured and a["format"] == "artikel"][:8]
+    featured_alle = [a for a in lang if a["featured"]][:5] or lang[:5]
     tags = {}
     for a in artikel:
         for t in a["tags"]: tags[t] = tags.get(t, 0) + 1
     top_tags = [t for t, _ in sorted(tags.items(), key=lambda x: (-x[1], x[0]))[:16]]
-    ressort_bloecke = [{"ressort": ressorts[r], "artikel": [a for a in by_ressort[r] if a["format"] != "meldung"][:4]} for r in ressorts if by_ressort[r]]
     produkte = [a for a in lang if a["format"] == "produkt"][:4]
     standpunkte = [a for a in lang if a["format"] == "standpunkt"][:2]
     praxisfragen = [a for a in lang if a["format"] == "praxisfrage"][:4]
-    write("index.html", env.get_template("home.html").render(depth=0, featured=featured, river=river, meldungen=meldungen[:8], bloecke=ressort_bloecke, top_tags=top_tags,
-                                                               produkte=produkte, standpunkte=standpunkte, praxisfragen=praxisfragen, anzahl=len(artikel), ausgaben_anzahl=len(ausgaben)))
+    def startseite(fuer, pfad, depth):
+        """Gemischte Sicht (fuer=None) oder Zielgruppen-Sicht: Aufmacher, Fluss und Ressort-Blöcke sortiert, alles andere identisch."""
+        if fuer:
+            eigene = [a for a in featured_alle if a["zielgruppe"] == fuer]
+            if len(eigene) < 3:  # Aufmacher aus dem gesamten Pool auffüllen: relevanteste Beiträge der Zielgruppe
+                for a in sorted((x for x in lang if x["zielgruppe"] == fuer and x["format"] == "artikel" and x not in featured_alle), key=lambda x: (x["relevanz"], x["datum"]), reverse=True):
+                    eigene.append(a)
+                    if len(eigene) >= 3: break
+            featured = (eigene + [a for a in featured_alle if a["zielgruppe"] == "beide" and a not in eigene] + [a for a in featured_alle if a not in eigene and a["zielgruppe"] != "beide"])[:5]
+        else:
+            featured = featured_alle
+        river = sortiert([a for a in lang if a not in featured and a["format"] == "artikel"], fuer)[:8]
+        bloecke = [{"ressort": ressorts[r], "artikel": sortiert([a for a in by_ressort[r] if a["format"] != "meldung"], fuer)[:4]} for r in ressorts if by_ressort[r]]
+        write(pfad, env.get_template("home.html").render(depth=depth, fuer=fuer, fuer_label=ZIELGRUPPEN.get(fuer), featured=featured, river=river, meldungen=meldungen[:8], bloecke=bloecke, top_tags=top_tags,
+                                                          produkte=produkte, standpunkte=standpunkte, praxisfragen=praxisfragen, anzahl=len(artikel), ausgaben_anzahl=len(ausgaben)))
+    startseite(None, "index.html", 0)
+    startseite("betriebe", "fuer-betriebe/index.html", 1)
+    startseite("fachkraefte", "fuer-fachkraefte/index.html", 1)
 
     # ── Artikelseiten ────────────────────────────────────────────
     for a in artikel:
@@ -248,7 +272,7 @@ def build():
 
     # ── Archiv + Index-JSON ──────────────────────────────────────
     index = [{"slug": a["slug"], "title": a["title"], "dek": a["dek"], "datum": a["datum_iso"], "datum_kurz": a["datum_kurz"], "ressort": a["ressort"], "ressort_name": a["ressort_name"], "tags": a["tags"],
-              "bild": a["bild"], "relevanz": a["relevanz"], "lesezeit": a["lesezeit"], "featured": a["featured"], "format": a["format"], "format_name": a["format_name"], "neu": a["neu"], "text": a["text"][:1200]} for a in artikel]
+              "bild": a["bild"], "relevanz": a["relevanz"], "lesezeit": a["lesezeit"], "featured": a["featured"], "format": a["format"], "format_name": a["format_name"], "neu": a["neu"], "zielgruppe": a["zielgruppe"], "text": a["text"][:1200]} for a in artikel]
     write("assets/artikel-index.json", json.dumps({"generiert": heute.isoformat(), "ressorts": [{"slug": r["slug"], "name": r["name"]} for r in site["ressorts"]], "artikel": index}, ensure_ascii=False))
     write("artikel/index.html", env.get_template("archiv.html").render(depth=1, anzahl=len(artikel), top_tags=top_tags, preset_ressort=None, aeltestes=artikel[-1]["datum"]))
     for r in site["ressorts"]:
@@ -290,7 +314,7 @@ def build():
 
     # ── Sitemap ──────────────────────────────────────────────────
     base = f"https://{site['domain']}"
-    urls = [""] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/", "boerse/", "vorlagen/"] + [f"vorlagen/{v['slug']}/" for v in vorlagen] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
+    urls = ["", "fuer-betriebe/", "fuer-fachkraefte/"] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/", "boerse/", "vorlagen/"] + [f"vorlagen/{v['slug']}/" for v in vorlagen] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{base}/{u}</loc></url>" for u in urls) + "\n</urlset>\n")
 
     print(f"✓ {len(lang)} Beiträge + {len(meldungen)} Meldungen · {len(ressorts)} Ressorts · {len(dossiers)} Dossiers · {len(ausgaben)} Ausgaben · {len(kommende)} Termine · {len(zahlen)} Zahlen · {len(vorlagen)} Vorlagen")

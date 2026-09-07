@@ -3,6 +3,7 @@ title: "Sachkunde im Pflanzenschutz: Alle drei Jahre Fortbildung – sonst ist S
 dek: "Wer Pflanzenschutzmittel anwendet, kauft oder abgibt, braucht den Sachkundenachweis – und muss ihn alle drei Jahre durch eine anerkannte Fortbildung erhalten. Viele Betriebe merken erst bei der Kontrolle, dass die Frist abgelaufen ist."
 datum: 2026-03-05
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Pflanzenschutz, Sachkunde, Fortbildung, Recht, Winter]
 bild_alt: "Landschaftsgärtner mit Rückenspritze und Schutzausrüstung kontrolliert eine Hecke in einer Gartenanlage"
 bild_prompt: "A landscape gardener wearing protective gloves and a backpack sprayer inspecting a hedge in a private garden in Germany, early spring, realistic documentary photo, no text."

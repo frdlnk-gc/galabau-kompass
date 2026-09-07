@@ -4,6 +4,7 @@ dek: Vom Betrieb zur Baustelle ist Arbeitszeit – und in der Regel zu vergüten
 antwort: Die Fahrt vom Betrieb zur Baustelle und zurück ist Arbeitszeit, für Fahrer wie Mitfahrer, und grundsätzlich zu vergüten. Tarifverträge können die Vergütung pauschalieren oder anders regeln; tarifgebundene Betriebe wenden den Rahmentarifvertrag an. Der Weg von der Wohnung zum Betrieb ist keine Arbeitszeit.
 datum: '2026-07-27'
 ressort: recht-tarif
+zielgruppe: betriebe
 format: praxisfrage
 tags:
 - Arbeitszeit

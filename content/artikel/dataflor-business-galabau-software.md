@@ -3,6 +3,7 @@ title: 'DATAflor BUSINESS: Die Branchensoftware, mit der der GaLaBau seit 40 Jah
 dek: Kalkulation, Aufmaß, Abrechnung, Zeiterfassung und Adressen in einem System, entwickelt in Göttingen seit 1982. Was die verbreitetste GaLaBau-Software leistet, wo sie stark ist und was Betriebe vor der Einführung wissen sollten.
 datum: '2026-02-18'
 ressort: produkte
+zielgruppe: betriebe
 format: produkt
 tags:
 - Software

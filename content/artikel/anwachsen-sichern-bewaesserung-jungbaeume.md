@@ -3,6 +3,7 @@ title: "Anwachsen sichern: Wie junge Bäume den ersten Sommer überstehen"
 dek: "Die Pflanzung ist abgenommen, der Sommer kommt, und der Betrieb haftet für das Anwachsen. Was Fertigstellungs- und Entwicklungspflege verlangen, wie viel Wasser ein Jungbaum wirklich braucht und warum der Gießrand wichtiger ist als der Schlauch."
 datum: 2026-07-08
 ressort: bauen-pflanzen
+zielgruppe: beide
 tags: [Bewässerung, Jungbäume, Pflege, Trockenheit, DIN 18919, Gewährleistung]
 bild_alt: "Landschaftsgärtner füllt einen Bewässerungssack an einem frisch gepflanzten Straßenbaum aus dem Wassertank eines Pritschenwagens"
 bild_prompt: "A landscaping worker filling a green watering bag around a newly planted street tree from the water tank on a flatbed truck in a German town on a hot summer morning, realistic documentary photo, no text."

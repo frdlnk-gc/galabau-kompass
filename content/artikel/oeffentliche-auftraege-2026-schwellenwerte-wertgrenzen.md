@@ -3,6 +3,7 @@ title: "Öffentliche Aufträge 2026: Neue EU-Schwellenwerte – und die Wertgren
 dek: "Seit dem 1. Januar gelten niedrigere EU-Schwellenwerte. Für die meisten Landschaftsbauaufträge entscheidet aber nicht Brüssel, sondern die VOB/A und die Erlasse der Länder, ob beschränkt oder freihändig vergeben wird."
 datum: 2026-01-21
 ressort: markt-politik
+zielgruppe: betriebe
 tags: [Vergabe, Öffentliche Aufträge, VOB, Schwellenwerte, Kommunen, Kundengewinnung]
 bild_alt: "Bauleiterin prüft Ausschreibungsunterlagen am Laptop im Baucontainer, Pläne an der Wand"
 bild_prompt: "A female construction manager reviewing public tender documents on a laptop inside a site office container, printed plans pinned to the wall, hard hat on the desk, German landscaping context, winter light, realistic documentary photo, no text."
