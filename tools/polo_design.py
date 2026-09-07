@@ -21,7 +21,7 @@ WORK = os.path.join(OUT, "_work"); os.makedirs(WORK, exist_ok=True)
 LIGHT, GREEN, LIME, BLACK = "#F2F7F3", "#23A551", "#CDF47A", "#000000"
 PX_MM = 3.78          # Render-Auflösung der Druckmotive (96 dpi)
 MOCK_PX_CM = 12.9     # Mockup: Rumpfbreite ≈ 56 cm ≙ 720 px
-PFEIL = '<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 47 4 C 80 0, 100 34, 84 60 S 40 82, 20 94"/><path d="M 49 9 C 78 6, 94 34, 80 58" stroke-width="3" opacity=".5"/><path d="M 42 96 L 20 94 L 29 74"/></svg>'
+from polo_print import PFEIL  # Pfeil-Geometrie zentral in polo_print.py (hängt am Fragezeichen)
 
 
 
@@ -47,7 +47,8 @@ html,body{{background:{BLACK};}}
 .qrwrap svg{{width:100%;height:100%;display:block;}}
 .arrow{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:{LIME};line-height:.9;}}
 .line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;}}
-.pfeil{{width:100%;height:auto;display:block;}}
+.fz{{position:relative;display:inline-block;}}
+.pfeil{{position:absolute;left:calc(100% - 14mm);top:0;width:52mm;height:70mm;overflow:visible;}}
 .line2{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;line-height:1.25;color:{LIME};}}
 .foot{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,247,243,.6);}}
 '''
@@ -58,7 +59,7 @@ def motiv_voll(url, w, h, groß):
     return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:12mm 10mm;justify-content:space-between;">
   <div style="display:flex;flex-direction:column;align-items:center;gap:4mm;">
     <div class="eyebrow" style="font-size:{ey}mm;">Branchenumfrage 2026 · Mitarbeitergewinnung im GaLaBau</div>
-    <div class="logo" style="font-size:{word}mm;">{MARK.format(ink=LIGHT, accent=GREEN)}<div class="word">GaLaBau Kompass</div></div>
+    <div class="logo" style="font-size:{word}mm;">{MARK.format(ink=LIGHT, accent=LIME)}<div class="word">GaLaBau Kompass</div></div>
     <div class="tagline" style="font-size:{4.6 if groß else 4}mm;">Das Magazin für den Garten- und Landschaftsbau</div>
   </div>
   <div class="qrwrap" style="width:{qr}mm;height:{qr}mm;">{qr_svg(url)}</div>
@@ -71,24 +72,24 @@ def motiv_voll(url, w, h, groß):
 def motiv_brust(w, h):
     """Brustlogo links (Variante B): Marke + Wortmarke, darunter Claim."""
     return f'''<section class="art" style="width:{w}mm;height:{h}mm;align-items:flex-start;text-align:left;gap:2.2mm;">
-  <div class="logo" style="font-size:10.5mm;">{MARK.format(ink=LIGHT, accent=GREEN)}<div class="word">GaLaBau Kompass</div></div>
+  <div class="logo" style="font-size:10.5mm;">{MARK.format(ink=LIGHT, accent=LIME)}<div class="word">GaLaBau Kompass</div></div>
   <div class="tagline" style="font-size:2.7mm;padding-left:1mm;">Das Magazin für den Garten- und Landschaftsbau</div>
 </section>'''
 
 def motiv_marke(w, h):
     """Variante C vorn: Marke, darunter klein die Wortmarke."""
-    mark = MARK.format(ink=LIGHT, accent=GREEN).replace('class="mark"', 'class="mark" style="height:60mm;width:auto"')
+    mark = MARK.format(ink=LIGHT, accent=LIME).replace('class="mark"', 'class="mark" style="height:60mm;width:auto"')
     return f'''<section class="art" style="width:{w}mm;height:{h}mm;gap:5mm;">{mark}<div class="word" style="font-size:8.6mm;">GaLaBau Kompass</div></section>'''
 
 def motiv_reduziert(url, w, h):
     """Rücken Variante C: Frage, QR groß mit handgezeichnetem Pfeil, Zeile, Wortmarke."""
     return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:flex-start;position:relative;">
-  <div class="line1" style="font-size:19mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
-  <div style="position:relative;width:100%;height:52mm;flex:none;"><div style="position:absolute;right:38mm;top:-16mm;width:57mm;height:60mm;">{PFEIL.format(accent=LIME)}</div></div>
+  <div class="line1" style="font-size:19mm;">Wie viele Fachkräfte<br>gibt es bei Ihnen<span class="fz">?{PFEIL.format(accent=LIME)}</span></div>
+  <div style="position:relative;width:100%;height:52mm;flex:none;"></div>
   <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
   <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;margin-top:auto;">
     <div class="line2" style="font-size:10.5mm;">Kostenlos scannen · Standort-Check</div>
-    <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=GREEN)}<div class="word">GaLaBau Kompass</div></div>
+    <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=LIME)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot" style="font-size:3.8mm;">galabau-kompass.de</div>
   </div>
 </section>'''

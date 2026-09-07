@@ -1,6 +1,7 @@
 /* =====================================================================
-   GaLaBau Kompass · Design-System v5 „Frisch“
-   Weiß statt Altpapier, frisches Grün als Marke, Plus Jakarta Sans für
+   GaLaBau Kompass · Design-System v5.3 „Favicon-Farbwelt“ (07.09.)
+   Farbwelt = Favicon: Dunkelgrün #0B3D24, Lime #CDF47A, Off-White #F2F7F3 + Weiß.
+   Weiß statt Altpapier, Dunkelgrün als Marke, Lime als Akzent, Plus Jakarta Sans für
    Überschriften/Logo/UI, Inter für Lesetext. Pillen-Buttons, weiche Radien,
    ruhige Flächen in Hellgrün. Abschnitt „Tools“ am Ende hält die Klassen
    für Standort-Check/Umfrage (Umbau erst nach Freigabe).
@@ -13,12 +14,12 @@
 
 :root{
   /* Flächen */
-  --bg:#FFFFFF; --bg-2:#F3F8F4; --bg-3:#E8F2EA;
+  --bg:#FFFFFF; --bg-2:#F2F7F3; --bg-3:#E5EFE8;
   /* Text */
   --ink:#0E1B13; --ink-2:#3C4C42; --ink-3:#6B7B71;
   /* Grün */
-  --green:#23A551; --green-deep:#15803D; --green-hover:#126B34; --green-dark:#0B3D24; --green-ink:#0D2E1B;
-  --green-light:#D6F0DD; --green-mist:#EAF6EE; --mint:#7EE2A2; --lime:#CDF47A;
+  --green:#15803D; --green-deep:#0B3D24; --green-hover:#134D2E; --green-dark:#0B3D24; --green-ink:#0B3D24;
+  --green-light:#DCEBE1; --green-mist:#EEF5F0; --mint:#CDF47A; --lime:#CDF47A; --offwhite:#F2F7F3;
   /* Linien, Radien, Schatten */
   --hair:#DDE7E0; --hair-2:#EAF0EC; --hair-strong:#C4D3C9; --line:rgba(255,255,255,.14);
   --r:12px; --r-s:8px; --r-box:18px; --pill:999px;
@@ -27,21 +28,22 @@
   --display:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --serif:var(--display);
-  --w:1200px; --gut:20px;
+  --w:1440px; --gut:20px;
   /* Kompatibilität für die Tool-Seiten (Standort-Check, Umfrage) */
   --paper:var(--bg-2); --paper-2:#FFFFFF; --paper-3:var(--bg-3); --white:#FFFFFF;
   --text:var(--ink); --text-2:var(--ink-2); --text-3:var(--ink-3);
   --green-2:#16A34A; --green-3:#22C55E; --green-soft:var(--green-mist);
-  --dark:var(--green-dark); --dark-2:#093320; --light:#F2F7F3; --light-dim:rgba(242,247,243,.74); --light-faint:rgba(242,247,243,.48);
+  --dark:var(--green-dark); --dark-2:#072B19; --light:#F2F7F3; --light-dim:rgba(242,247,243,.74); --light-faint:rgba(242,247,243,.48);
   --bg-2-tool:var(--dark-2); --card:#0F4A2C; --card-2:#135A36;
   --q-ink:var(--ink); --q-dim:var(--ink-2); --q-faint:var(--ink-3);
-  --accent:var(--mint); --accent-deep:var(--green-deep); --accent-soft:rgba(126,226,162,.14); --accent-line:rgba(126,226,162,.38);
+  --accent:var(--lime); --accent-deep:var(--green-deep); --accent-soft:rgba(205,244,122,.14); --accent-line:rgba(205,244,122,.38);
   --green-line:rgba(22,163,74,.35); --line-light:var(--hair);
   --radius:16px; --radius-s:12px;
   --font-serif:var(--display); --font-sans:var(--sans); --max:var(--w);
 }
 @media(min-width:600px){:root{--gut:24px;}}
 @media(min-width:1024px){:root{--gut:32px;}}
+@media(min-width:1280px){:root{--gut:40px;}}
 
 *{margin:0;padding:0;box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:70px;}
@@ -126,10 +128,10 @@ textarea.input{min-height:90px;resize:vertical;}
 .logo-word{font-family:var(--display);font-weight:800;font-size:1.42rem;letter-spacing:-.035em;white-space:nowrap;}
 .logo.lg svg{height:42px;}
 .logo.lg .logo-word{font-size:1.6rem;}
-.logo-mark .nadel-n{fill:var(--green);}
-.logo-mark .nadel-s{fill:currentColor;}
-.logo-mark .kreis{fill:none;stroke:currentColor;stroke-width:2.2;}
-.site-footer .logo-mark .nadel-n,.on-dark .logo-mark .nadel-n,.sec-dark .logo-mark .nadel-n,.ausweis .logo-mark .nadel-n{fill:var(--mint);}
+.logo-mark .kachel{fill:var(--green-deep);}
+.logo-mark .nadel-n{fill:var(--lime);}
+.logo-mark .nadel-s{fill:var(--offwhite);}
+.site-footer .logo-mark .kachel,.on-dark .logo-mark .kachel,.sec-dark .logo-mark .kachel,.ausweis .logo-mark .kachel,.club-inner .logo-mark .kachel{fill:rgba(242,247,243,.12);}
 @media(max-width:480px){.logo svg,.logo.lg svg{height:32px;}.logo-word,.logo.lg .logo-word{font-size:1.2rem;}}
 
 /* ===== Kopf: Topbar · Markenzeile · Ressortleiste · Suche · Drawer ===== */
@@ -156,8 +158,20 @@ textarea.input{min-height:90px;resize:vertical;}
 .icon-btn svg{width:18px;height:18px;}
 .icon-btn:hover{border-color:var(--green-deep);color:var(--green-deep);}
 .icon-btn.is-open{background:var(--ink);color:#fff;border-color:var(--ink);}
-.brandbar .abo-btn,.brandbar .club-btn,.brandbar .club-chip{display:none;}
-@media(min-width:1024px){.brandbar .abo-btn,.brandbar .club-btn,.brandbar .club-chip{display:inline-flex;}.brandbar .nav-toggle{display:none;}}
+.brandbar .abo-btn,.brandbar .club-btn,.brandbar .club-chip,.brandbar .login-link{display:none;}
+@media(min-width:1024px){.brandbar .abo-btn,.brandbar .club-btn,.brandbar .club-chip,.brandbar .login-link{display:inline-flex;}.brandbar .nav-toggle{display:none;}}
+.login-link{align-items:center;height:40px;padding:0 10px;font-family:var(--display);font-size:.8rem;font-weight:700;color:var(--ink-2);text-decoration:none;white-space:nowrap;border-radius:var(--pill);}
+.login-link:hover{color:var(--green-deep);background:var(--bg-2);}
+.drawer [data-club-chip]{display:grid;gap:8px;}
+.drawer .login-link{display:flex;justify-content:center;height:44px;border:1.5px solid var(--hair-strong);}
+.club-hero .schon{margin-top:14px;font-size:.92rem;color:var(--ink-2);}
+.club-hero .schon a{font-weight:700;color:var(--green-deep);}
+.login-hilfe{margin-top:8px;font-size:.84rem;color:var(--ink-3);}
+.login-hilfe .btn-link{font-size:inherit;}
+.anmelden-wrap{max-width:520px;margin:0 auto;}
+.anmelden-wrap .login-box{padding:30px;}
+.anmelden-wrap .login-box h3{font-size:1.4rem;}
+.anmelden-status{background:var(--green-mist);border-radius:var(--r-box);padding:26px 30px;max-width:520px;margin:0 auto;}
 .club-chip{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 10px;border-radius:var(--pill);background:var(--green-mist);color:var(--green-ink);text-decoration:none;font-family:var(--display);font-size:.8rem;font-weight:700;white-space:nowrap;}
 .club-chip .club-dot{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;}
 .club-chip small{font-weight:600;color:var(--green-deep);}
@@ -267,6 +281,7 @@ a.t-ressort:hover{text-decoration:underline;}
 @media(min-width:1024px){.top{padding-top:26px;padding-bottom:14px;}}
 .top-grid{display:grid;gap:18px;grid-template-columns:minmax(0,1fr);}
 @media(min-width:1024px){.top-grid{grid-template-columns:minmax(0,1fr) 348px;gap:28px;align-items:stretch;}}
+@media(min-width:1280px){.top-grid{grid-template-columns:minmax(0,1fr) 392px;gap:32px;}}
 .top-stage{position:relative;aspect-ratio:16/10;background:var(--green-dark);border-radius:22px;overflow:hidden;color:var(--light);box-shadow:var(--shadow-s);}
 @media(min-width:1024px){.top-stage{aspect-ratio:auto;min-height:560px;}}
 @media(max-width:600px){.top-stage{aspect-ratio:4/5;border-radius:18px;}}
@@ -315,6 +330,7 @@ a.t-ressort:hover{text-decoration:underline;}
 /* ===== Startseite: Hauptspalte + Seitenleiste ===== */
 .main-grid{display:grid;gap:56px;grid-template-columns:minmax(0,1fr);padding-top:40px;}
 @media(min-width:1024px){.main-grid{grid-template-columns:minmax(0,1fr) 360px;gap:72px;padding-top:64px;}}
+@media(min-width:1280px){.main-grid{grid-template-columns:minmax(0,1fr) 400px;gap:88px;}}
 .col-side{display:grid;gap:24px;align-content:start;}
 .box{background:var(--bg-2);border-radius:var(--r-box);padding:26px 26px 24px;}
 .box-title{display:block;font-family:var(--display);font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;}
@@ -433,7 +449,7 @@ a.t-ressort:hover{text-decoration:underline;}
 .ausweis.leer .ausweis-name{opacity:.55;}
 
 /* ===== Artikel ===== */
-.progress-line{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:100;}
+.progress-line{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green-deep);z-index:100;}
 .art-head{padding-top:48px;}
 @media(min-width:1024px){.art-head{padding-top:64px;}}
 .art-head-inner{max-width:840px;}
@@ -453,6 +469,7 @@ a.t-ressort:hover{text-decoration:underline;}
 .credit::before{content:'· ';}
 .art-grid{display:grid;gap:56px;grid-template-columns:minmax(0,1fr);padding-top:44px;}
 @media(min-width:1024px){.art-grid{grid-template-columns:minmax(0,1fr) 330px;gap:64px;}}
+@media(min-width:1280px){.art-grid{grid-template-columns:minmax(0,1fr) 360px;gap:96px;}.art-main{max-width:760px;}}
 .art-main{max-width:740px;min-width:0;}
 .art-rail{display:grid;gap:18px;align-content:start;}
 @media(min-width:1024px){.art-rail{position:sticky;top:68px;}}
@@ -1099,8 +1116,5 @@ a.club-vorteil h3{color:var(--ink);}
 .fuer-opt{font-family:var(--display);font-size:.8rem;font-weight:700;color:var(--ink-2);text-decoration:none;padding:8px 16px;border-radius:var(--pill);white-space:nowrap;transition:background .15s,color .15s;}
 .fuer-opt:hover{color:var(--green-deep);}
 .fuer-opt.is-active{background:var(--green-deep);color:#fff;}
-.fuer-alle{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--ink-3);text-decoration:none;padding:0 12px 0 8px;white-space:nowrap;}
-.fuer-alle:hover{color:var(--green-deep);text-decoration:underline;}
-.fuer-switch:not(.has-wahl) .fuer-alle{display:none;}
 @media(max-width:480px){.fuer-opt{font-size:.76rem;padding:7px 12px;}}
 @media(max-width:640px){.rubrik .rubrik-note{display:none;}}

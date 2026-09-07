@@ -30,10 +30,12 @@
     <span class="t-kicker">Kompass Club · kostenlos</span>
     <h1>Der Club für alle, die den GaLaBau voranbringen.</h1>
     <p class="page-dek">Inhaber, Bauleiter, Vorarbeiter, Fachkräfte, Azubis: Als Mitglied bekommen Sie, was Gäste nicht bekommen – die Kontaktdaten in der Börse, die Vorlagen, jede Monatsausgabe als PDF, den Draht zur Redaktion und Ihren Ausweis mit Status. Kostenlos, ohne Kündigungsfrist.</p>
-    <div class="btn-row"><a class="btn" href="#beitreten">Kostenlos Mitglied werden</a><span class="kostenlos">✓ Kein Beitrag, keine Werbung</span></div>
+    <div class="btn-row nur-gast"><a class="btn" href="#beitreten">Kostenlos Mitglied werden</a><span class="kostenlos">✓ Kein Beitrag, keine Werbung</span></div>
+    <p class="schon nur-gast">Schon Mitglied? <a href="../club/anmelden/">Hier anmelden</a> – E-Mail-Adresse und Mitgliedsnummer genügen.</p>
+    <div class="btn-row nur-mitglied"><a class="btn" href="#mein-kompass">Mein Kompass öffnen</a><span class="kostenlos">✓ Auf diesem Gerät angemeldet</span></div>
   </div>
   <div class="ausweis leer" data-ausweis>
-  <div class="ausweis-kopf"><span class="logo" aria-hidden="true"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="kreis" cx="32" cy="32" r="29"/><path class="nadel-n" d="M32 7 42.5 32 32 26.5 21.5 32Z"/><path class="nadel-s" d="M32 57 21.5 32 32 37.5 42.5 32Z"/></svg><span class="logo-word">GaLaBau Kompass</span></span><span class="ausweis-label">Kompass Club</span></div>
+  <div class="ausweis-kopf"><span class="logo" aria-hidden="true"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect class="kachel" width="64" height="64" rx="14"/><path class="nadel-n" d="M32 3.25 44.075 32 32 25.675 19.925 32Z"/><path class="nadel-s" d="M32 60.75 19.925 32 32 38.325 44.075 32Z"/></svg><span class="logo-word">GaLaBau Kompass</span></span><span class="ausweis-label">Kompass Club</span></div>
   <div>
     <div class="ausweis-name" data-aw-name>Ihr Name</div>
     <input class="ausweis-name-input" data-aw-input type="text" placeholder="Ihren Namen eintippen …" autocomplete="name" maxlength="120" aria-label="Ihr Name">
@@ -198,6 +200,7 @@
           <div class="field"><label class="label" for="l-nr">Mitgliedsnummer</label><input type="text" class="input" id="l-nr" name="nr" placeholder="z. B. 0042" inputmode="numeric"></div>
           <div class="field"><button type="submit" class="btn">Anmelden</button></div>
           <div class="abo-note" data-abo-note></div>
+          <p class="login-hilfe">Nummer nicht zur Hand? <button type="button" class="btn-link" data-nr-vergessen>Mitgliedsnummer per E-Mail schicken</button></p>
         </form>
       </div>
       <div class="box">

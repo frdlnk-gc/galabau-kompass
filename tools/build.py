@@ -298,6 +298,7 @@ def build():
     write("zahlen/index.html", env.get_template("zahlen.html").render(depth=1))
     write("merkliste/index.html", env.get_template("merkliste.html").render(depth=1))
     write("club/index.html", env.get_template("club.html").render(depth=1))
+    write("club/anmelden/index.html", env.get_template("anmelden.html").render(depth=2))
     write("boerse/index.html", env.get_template("boerse.html").render(depth=1))
     write("vorlagen/index.html", env.get_template("vorlagen.html").render(depth=1))
     for v in vorlagen:
@@ -314,7 +315,7 @@ def build():
 
     # ── Sitemap ──────────────────────────────────────────────────
     base = f"https://{site['domain']}"
-    urls = ["", "fuer-betriebe/", "fuer-fachkraefte/"] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/", "boerse/", "vorlagen/"] + [f"vorlagen/{v['slug']}/" for v in vorlagen] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
+    urls = ["", "fuer-betriebe/", "fuer-fachkraefte/"] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/", "club/anmelden/", "boerse/", "vorlagen/"] + [f"vorlagen/{v['slug']}/" for v in vorlagen] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{base}/{u}</loc></url>" for u in urls) + "\n</urlset>\n")
 
     print(f"✓ {len(lang)} Beiträge + {len(meldungen)} Meldungen · {len(ressorts)} Ressorts · {len(dossiers)} Dossiers · {len(ausgaben)} Ausgaben · {len(kommende)} Termine · {len(zahlen)} Zahlen · {len(vorlagen)} Vorlagen")

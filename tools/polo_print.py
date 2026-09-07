@@ -29,8 +29,10 @@ CREME, HONIG, BLACK = "#F2F7F3", "#CDF47A", "#000000"  # Hell, Lime (Akzent der 
 GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
-# Handgezeichneter Pfeil („mit Edding“): zwei leicht versetzte Striche + offene Spitze, zeigt auf den QR-Code
-PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 47 4 C 80 0, 100 34, 84 60 S 40 82, 20 94"/><path d="M 49 9 C 78 6, 94 34, 80 58" stroke-width="3" opacity=".5"/><path d="M 42 96 L 20 94 L 29 74"/></svg>'''
+# Handgezeichneter Pfeil („mit Edding“): sitzt direkt hinter dem Fragezeichen (span.fz), schwingt nach rechts aus
+# und zeigt mit offener Spitze nach unten auf den QR-Code (Spitze ≈ 8 mm über dem QR-Rand). Koordinaten in mm,
+# gemessen am 300×380-Rücken: „?“ endet bei x 225,6 / Zeilenmitte y ≈ 44, QR-Oberkante y 105,9, QR-Breite 57–243.
+PFEIL = '''<svg class="pfeil" viewBox="0 0 52 70" fill="none" stroke="{accent}" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" overflow="visible"><path d="M 17 10.5 C 32 9, 46 26, 40 40 C 35 52, 14 52, 7.4 64.1"/><path d="M 18.5 13.5 C 31 12.5, 42 27, 37.5 38" stroke-width="1.6" opacity=".55"/><path d="M 16.6 58 L 7.4 64.1 L 7.5 53.1"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -43,17 +45,17 @@ def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
     if kind == "front":
         return f'''
 <section class="page front" style="width:{w}mm;height:{h}mm;">
-  <div class="marke">{MARK.format(ink=CREME, accent=GRUEN)}</div>
+  <div class="marke">{MARK.format(ink=CREME, accent=HONIG)}</div>
   <div class="word klein">GaLaBau Kompass</div>
 </section>'''
     return f'''
 <section class="page back" style="width:{w}mm;height:{h}mm;">
-  <div class="frage">Wie viele Fachkräfte<br>gibt es bei Ihnen?</div>
-  <div class="pfeilzone">{PFEIL.format(accent=HONIG)}</div>
+  <div class="frage">Wie viele Fachkräfte<br>gibt es bei Ihnen<span class="fz">?{PFEIL.format(accent=HONIG)}</span></div>
+  <div class="pfeilzone"></div>
   <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
   <div class="unten">
     <div class="line2">Kostenlos scannen · Standort-Check</div>
-    <div class="logo">{MARK.format(ink=CREME, accent=GRUEN)}<div class="word">GaLaBau Kompass</div></div>
+    <div class="logo">{MARK.format(ink=CREME, accent=HONIG)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot">galabau-kompass.de</div>
   </div>
 </section>'''
@@ -93,7 +95,8 @@ html,body{{background:#fff;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
 .frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
 .pfeilzone{{position:relative;width:100%;height:52mm;flex:none;}}
-.pfeil{{position:absolute;right:38mm;top:-16mm;width:57mm;height:60mm;}}
+.fz{{position:relative;display:inline-block;}}
+.pfeil{{position:absolute;left:calc(100% - 14mm);top:0;width:52mm;height:70mm;overflow:visible;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}

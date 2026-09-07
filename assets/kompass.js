@@ -38,7 +38,7 @@
   /* ── Logo: Kompassnadel im Kreis + aufrechte Wortmarke ── */
   function logoSvg(opts) {
     opts = opts || {};
-    var mark = '<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="kreis" cx="32" cy="32" r="29"/><path class="nadel-n" d="M32 7 42.5 32 32 26.5 21.5 32Z"/><path class="nadel-s" d="M32 57 21.5 32 32 37.5 42.5 32Z"/></svg>';
+    var mark = '<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect class="kachel" width="64" height="64" rx="14"/><path class="nadel-n" d="M32 3.25 44.075 32 32 25.675 19.925 32Z"/><path class="nadel-s" d="M32 60.75 19.925 32 32 38.325 44.075 32Z"/></svg>';
     var text = opts.word === false ? '' : '<span class="logo-word">GaLaBau Kompass</span>';
     return '<a class="logo' + (opts.size === 'lg' ? ' lg' : '') + '" href="' + ROOT + '" aria-label="GaLaBau Kompass – Startseite">' + mark + text + '</a>';
   }
@@ -83,9 +83,9 @@
   function nrFmt(n) { n = String(n | 0); return n.length < 4 ? ('0000' + n).slice(-4) : n; }
   function clubChip() {
     var m = mitglied();
-    if (!m) return '<a class="btn sm ghost club-btn" href="' + ROOT + 'club/">Kompass Club</a>';
+    if (!m) return '<a class="login-link" href="' + ROOT + 'club/anmelden/">Anmelden</a><a class="btn sm ghost club-btn" href="' + ROOT + 'club/">Kompass Club</a>';
     var p = punkte().p | 0, s = stufe(p);
-    return '<a class="club-chip" href="' + ROOT + 'club/" title="Kompass Club · ' + p + ' Punkte · Status ' + s.name + '"><span class="club-dot">✓</span>Nr. ' + nrFmt(m.nr) + '<small>· ' + esc(s.name) + '</small></a>';
+    return '<a class="club-chip" href="' + ROOT + 'club/#mein-kompass" title="Mein Kompass · Nr. ' + nrFmt(m.nr) + ' · ' + p + ' Punkte · Status ' + s.name + '"><span class="club-dot">✓</span>Mein Kompass<small>· Nr. ' + nrFmt(m.nr) + ' · ' + esc(s.name) + '</small></a>';
   }
 
   /* ── Kopf / Fuß ── */
@@ -131,7 +131,7 @@
     el.innerHTML = '<div class="container"><div class="footer-grid">' +
       '<div class="footer-brand">' + logoSvg() + '<p>Das Online-Magazin für Inhaber, Führungskräfte und Fachkräfte im Garten- und Landschaftsbau. Zahlen, Einordnung und Praxis – jede Woche neue Beiträge, jeden Montag der Montagskompass, jeden Monat die Ausgabe als PDF.</p>' + (soc ? '<div class="soc-row">' + soc + '</div>' : '') + '</div>' +
       '<div><h4>Ressorts</h4>' + CFG.ressorts.map(function (r) { return '<a href="' + ROOT + 'ressort/' + r[0] + '/">' + r[1] + '</a>'; }).join('') + '</div>' +
-      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'club/">Kompass Club</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
+      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'club/">Kompass Club</a><a href="' + ROOT + 'club/anmelden/">Mitglieder-Login</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
       '<div><h4>Service &amp; Rechtliches</h4><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a><a href="' + ROOT + 'merkliste/">Merkliste</a><a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></div>' +
       '</div><div class="footer-bottom"><span>© ' + new Date().getFullYear() + ' GaLaBau Kompass · Das Magazin für den Garten- und Landschaftsbau</span><span>galabau-kompass.de<a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></span></div></div>';
   }
@@ -141,15 +141,13 @@
   var FUER = { betriebe: 'Für Betriebe', fachkraefte: 'Für Fachkräfte' };
   function fuerWahl() {
     var p = params.fuer; if (p && FUER[p]) { ls('kompass_fuer', p); return p; }
-    if (params.alle !== undefined) { ls('kompass_fuer', null); return null; }
     var b = document.body.dataset.fuer; if (b && FUER[b]) { ls('kompass_fuer', b); return b; }
     var g = ls('kompass_fuer'); return g && FUER[g] ? g : null;
   }
   function fuerSwitchHtml() {
     var w = fuerWahl();
-    return '<div class="fuer-switch' + (w ? ' has-wahl' : '') + '" role="group" aria-label="Sicht wählen" data-fuer-switch>' +
-      Object.keys(FUER).map(function (k) { return '<a class="fuer-opt' + (w === k ? ' is-active' : '') + '" href="' + ROOT + 'fuer-' + k + '/" data-fuer="' + k + '"' + (w === k ? ' aria-current="true"' : '') + '>' + FUER[k] + '</a>'; }).join('') +
-      '<a class="fuer-alle" href="' + ROOT + '?alle" data-fuer-alle>Alle</a></div>';
+    return '<div class="fuer-switch" role="group" aria-label="Sicht wählen" data-fuer-switch>' +
+      Object.keys(FUER).map(function (k) { return '<a class="fuer-opt' + (w === k ? ' is-active' : '') + '" href="' + ROOT + 'fuer-' + k + '/" data-fuer="' + k + '"' + (w === k ? ' aria-current="true"' : '') + '>' + FUER[k] + '</a>'; }).join('') + '</div>';
   }
   function fuerSortieren(w) {
     // Listen mit data-zielgruppe stabil umsortieren: gewählte Zielgruppe, dann beide, dann die andere; ohne Wahl Originalreihenfolge
@@ -165,17 +163,15 @@
   }
   function initFuer(sw) {
     var w = fuerWahl(), istStart = document.body.classList.contains('home');
-    if (istStart && !document.body.dataset.fuer && w && params.fuer === undefined && params.alle === undefined) { location.replace(ROOT + 'fuer-' + w + '/'); return; }
+    if (istStart && !document.body.dataset.fuer && w && params.fuer === undefined) { location.replace(ROOT + 'fuer-' + w + '/'); return; }
     if (!istStart) fuerSortieren(w);
     if (!sw) return;
     sw.addEventListener('click', function (e) {
       var a = e.target.closest('a'); if (!a) return;
-      var k = a.dataset.fuer || null;
-      if (a.hasAttribute('data-fuer-alle')) { ls('kompass_fuer', null); track('fuer', { wahl: 'alle' }); if (istStart) return; e.preventDefault(); }
-      else { ls('kompass_fuer', k); track('fuer', { wahl: k }); if (istStart) return; e.preventDefault(); }
+      var k = a.dataset.fuer || null; if (!k) return;
+      ls('kompass_fuer', k); track('fuer', { wahl: k }); if (istStart) return; e.preventDefault();
       sw.querySelectorAll('.fuer-opt').forEach(function (o) { o.classList.toggle('is-active', o.dataset.fuer === k); if (o.dataset.fuer === k) o.setAttribute('aria-current', 'true'); else o.removeAttribute('aria-current'); });
-      sw.classList.toggle('has-wahl', !!k);
-      try { var u = new URL(location.href); if (k) u.searchParams.set('fuer', k); else u.searchParams.delete('fuer'); u.searchParams.delete('alle'); history.replaceState(null, '', u.toString()); } catch (e2) {}
+      try { var u = new URL(location.href); u.searchParams.set('fuer', k); history.replaceState(null, '', u.toString()); } catch (e2) {}
       params.fuer = k || undefined; fuerSortieren(k);
       if (window.KOMPASS.archivRender) window.KOMPASS.archivRender();
     });
@@ -709,9 +705,20 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Bitte die E-Mail-Adresse der Mitgliedschaft eintragen.'; note.classList.add('err'); return; }
       if (!nr) { note.textContent = 'Bitte Ihre Mitgliedsnummer eintragen (steht auf dem Ausweis und in der Bestätigung).'; note.classList.add('err'); return; }
       var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
-      var ok = function (j) { var m = j.mitglied || {}; mitgliedSetzen({ nr: m.nr || (nr | 0), name: m.name || '', email: email, seit: m.seit || new Date().toISOString(), token: j.token || null }); if (m.punkte > (punkte().p | 0)) { var st = punkte(); st.p = m.punkte; ls('kompass_punkte', JSON.stringify(st)); } track('club', { login: true }); location.hash = '#mein-kompass'; location.reload(); };
+      var ok = function (j) { var m = j.mitglied || {}; mitgliedSetzen({ nr: m.nr || (nr | 0), name: m.name || '', email: email, seit: m.seit || new Date().toISOString(), token: j.token || null }); if (m.punkte > (punkte().p | 0)) { var st = punkte(); st.p = m.punkte; ls('kompass_punkte', JSON.stringify(st)); } track('club', { login: true }); if (document.body.classList.contains('club-seite')) { location.hash = '#mein-kompass'; location.reload(); } else location.href = ROOT + 'club/#mein-kompass'; };
       if (IS_LOCAL) { setTimeout(function () { ok({ ok: true, token: 'lokal', mitglied: { nr: nr | 0, name: 'Max Mustermann', punkte: 12 } }); }, 300); return; }
       post('/login', { email: email, nr: nr | 0, session_id: sessionId, env: window.KOMPASS_ENV }).then(ok).catch(function (e2) { btn.disabled = false; note.textContent = /HTTP 404|HTTP 403/.test(e2.message) ? 'Keine Mitgliedschaft mit dieser Kombination gefunden. Bitte E-Mail und Nummer prüfen.' : 'Anmeldung gerade nicht möglich. Bitte später erneut versuchen.'; note.classList.add('err'); });
+    });
+    // Mitgliedsnummer vergessen: Nummer geht an die hinterlegte E-Mail (bis SMTP steht: Redaktion meldet sich)
+    var erinnern = form.querySelector('[data-nr-vergessen]');
+    if (erinnern) erinnern.addEventListener('click', function () {
+      note.classList.remove('err');
+      var email = form.email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Bitte oben die E-Mail-Adresse der Mitgliedschaft eintragen – wir schicken die Nummer dorthin.'; note.classList.add('err'); form.email.focus(); return; }
+      erinnern.disabled = true;
+      var fertig = function () { note.textContent = 'Wenn zu ' + email + ' eine Mitgliedschaft besteht, bekommen Sie Ihre Mitgliedsnummer per E-Mail.'; track('club', { erinnerung: true }); };
+      if (IS_LOCAL) { setTimeout(fertig, 300); return; }
+      post('/login', { email: email, erinnern: true, session_id: sessionId, env: window.KOMPASS_ENV }).then(fertig).catch(function () { erinnern.disabled = false; note.textContent = 'Gerade nicht möglich. Bitte später erneut versuchen oder an redaktion@galabau-kompass.de schreiben.'; note.classList.add('err'); });
     });
   }
 

@@ -11,7 +11,9 @@
     <span class="t-kicker">Kompass Club · kostenlos</span>
     <h1>Der Club für alle, die den GaLaBau voranbringen.</h1>
     <p class="page-dek">Inhaber, Bauleiter, Vorarbeiter, Fachkräfte, Azubis: Als Mitglied bekommen Sie, was Gäste nicht bekommen – die Kontaktdaten in der Börse, die Vorlagen, jede Monatsausgabe als PDF, den Draht zur Redaktion und Ihren Ausweis mit Status. Kostenlos, ohne Kündigungsfrist.</p>
-    <div class="btn-row"><a class="btn" href="#beitreten">Kostenlos Mitglied werden</a><span class="kostenlos">✓ Kein Beitrag, keine Werbung</span></div>
+    <div class="btn-row nur-gast"><a class="btn" href="#beitreten">Kostenlos Mitglied werden</a><span class="kostenlos">✓ Kein Beitrag, keine Werbung</span></div>
+    <p class="schon nur-gast">Schon Mitglied? <a href="{{ root }}club/anmelden/">Hier anmelden</a> – E-Mail-Adresse und Mitgliedsnummer genügen.</p>
+    <div class="btn-row nur-mitglied"><a class="btn" href="#mein-kompass">Mein Kompass öffnen</a><span class="kostenlos">✓ Auf diesem Gerät angemeldet</span></div>
   </div>
   {{ ausweis('data-ausweis', root) }}
 </section>
@@ -146,6 +148,7 @@
           <div class="field"><label class="label" for="l-nr">Mitgliedsnummer</label><input type="text" class="input" id="l-nr" name="nr" placeholder="z. B. 0042" inputmode="numeric"></div>
           <div class="field"><button type="submit" class="btn">Anmelden</button></div>
           <div class="abo-note" data-abo-note></div>
+          <p class="login-hilfe">Nummer nicht zur Hand? <button type="button" class="btn-link" data-nr-vergessen>Mitgliedsnummer per E-Mail schicken</button></p>
         </form>
       </div>
       <div class="box">
