@@ -30,7 +30,7 @@ GRUEN = "#23A551"
 
 MARK = '''<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="{ink}" stroke-width="2.4"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="{accent}"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="{ink}"/></svg>'''
 # Handgezeichneter Pfeil („mit Edding“): zwei leicht versetzte Striche + offene Spitze, zeigt auf den QR-Code
-PFEIL = '''<svg class="pfeil" viewBox="0 0 120 130" fill="none" stroke="{accent}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 C 36 2, 64 14, 78 44 S 92 96, 80 116"/><path d="M12 15 C 38 6, 62 18, 76 46" stroke-width="3" opacity=".55"/><path d="M60 100 L 80 118 L 100 98"/></svg>'''
+PFEIL = '''<svg class="pfeil" viewBox="0 0 100 100" fill="none" stroke="{accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M 84 4 C 100 34, 76 60, 50 86"/><path d="M 86 8 C 98 34, 78 58, 56 80" stroke-width="3" opacity=".5"/><path d="M 52 62 L 49 88 L 74 84"/></svg>'''
 
 def qr_svg(url: str) -> str:
     q = segno.make(url, error="h")
@@ -90,7 +90,7 @@ html,body{{background:#fff;}}
 .front .marke .mark{{height:60mm;width:auto;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
 .frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:19mm;line-height:1.05;}}
-.pfeil{{position:absolute;right:26mm;top:44mm;width:64mm;height:auto;transform:rotate(-6deg);}}
+.pfeil{{position:absolute;right:50mm;top:48mm;width:52mm;height:52mm;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}
@@ -121,6 +121,14 @@ html,body{{background:#fff;}}
 .spec .note{{margin-top:8mm;color:#4B5A50;font-size:3.3mm;}}
 '''
 
+def chrome(args: list, timeout: int = 90):
+    """Chrome headless hängt gelegentlich nach dem Rendern → Zeitlimit und bis zu drei Versuche."""
+    for versuch in range(3):
+        try:
+            subprocess.run(args, check=True, capture_output=True, timeout=timeout); return
+        except (subprocess.TimeoutExpired, subprocess.CalledProcessError):
+            if versuch == 2: raise
+
 def build(person: dict, size: str, domain: str, outdir: str) -> dict:
     url = f"https://{domain}/s/{person['slug']}/"
     html = f'''<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Polo {person["name"]}</title>
@@ -146,9 +154,9 @@ def build(person: dict, size: str, domain: str, outdir: str) -> dict:
         one = re.sub(r"<body>.*</body>", "<body>" + keep.replace("page-break-after:always;", "") + "</body>", one, flags=re.S)
         p = os.path.join(work, f"polo-{person['slug']}-{kind}.html"); open(p, "w", encoding="utf-8").write(one)
         out = os.path.join(work, f"polo-{person['slug']}-{kind}.pdf")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=4000", f"--print-to-pdf={out}", f"file://{p}"], check=True, capture_output=True, timeout=120)
+        chrome([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=4000", f"--print-to-pdf={out}", f"file://{p}"])
         png = os.path.join(outdir, f"polo-{person['slug']}-{kind}.png")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files", "--virtual-time-budget=4000", f"--window-size={int(w*3.78)},{int(h*3.78)}", f"--screenshot={png}", f"file://{p}"], check=True, capture_output=True, timeout=120)
+        chrome([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files", "--virtual-time-budget=4000", f"--window-size={int(w*3.78)},{int(h*3.78)}", f"--screenshot={png}", f"file://{p}"])
         parts.append(out)
     import fitz
     doc = fitz.open()
