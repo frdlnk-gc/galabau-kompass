@@ -59,6 +59,7 @@ MD = markdown.Markdown(extensions=["tables", "attr_list", "md_in_html", "sane_li
 def render_md(text: str) -> str:
     MD.reset()
     html = MD.convert(text)
+    html = html.replace('<div class="table-wrap">', '<div class="tabelle">')  # Rohes HTML in 13 Beiträgen: gleicher Zweck, sonst doppelt verpackt mit offenem div
     html = re.sub(r'(?<!<div class="tabelle">)<table>', '<div class="tabelle"><table>', html)
     html = re.sub(r'</table>(?!</div>)', '</table></div>', html)
     return html
@@ -225,7 +226,8 @@ def build():
             meta, body = load_md(os.path.join(vdir, fn))
             slug = meta.get("slug") or fn[:-3]; stand = to_date(meta.get("stand", heute))
             vorlagen.append({"slug": slug, "title": meta["title"], "dek": meta.get("dek", ""), "typ": meta.get("typ", "Vorlage"), "stand": stand, "stand_de": de_date(stand),
-                             "quelle": by_slug.get(meta.get("quelle_slug")), "html": render_md(body), "pdf": f"vorlagen/pdf/{slug}.pdf"})
+                             "quelle": by_slug.get(meta.get("quelle_slug")), "html": render_md(body), "pdf": f"vorlagen/pdf/{slug}.pdf", "reihe": int(meta.get("reihe", 99))})
+    vorlagen.sort(key=lambda v: (v["reihe"], v["title"]))
     env.globals["vorlagen"] = vorlagen
 
     # ── Frage der Woche ──────────────────────────────────────────

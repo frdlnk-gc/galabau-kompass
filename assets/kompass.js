@@ -560,10 +560,13 @@
   /* ── Kompass-Börse (Inserate der Mitglieder) ── */
   var KATS = { maschine: 'Maschine', geraet: 'Gerät', material: 'Material & Pflanzen', fahrzeug: 'Fahrzeug', sonstiges: 'Sonstiges' };
   var ARTEN = { verkauf: 'Zu verkaufen', verschenken: 'Zu verschenken', suche: 'Gesucht' };
+  function boostAktiv(x) { return !!(x.boost_bis && new Date(x.boost_bis).getTime() > Date.now()); }
+  function boostSort(liste) { return liste.slice().sort(function (a, b) { return (boostAktiv(b) ? 1 : 0) - (boostAktiv(a) ? 1 : 0) || (new Date(b.created_at) - new Date(a.created_at)); }); }
   function inseratHtml(x) {
     var preis = x.art === 'verschenken' ? 'Kostenlos' : (x.art === 'suche' ? '' : (x.preis || 'Preis auf Anfrage'));
     var neu = (Date.now() - new Date(x.created_at).getTime()) < 7 * 86400000 && (x.status || 'aktiv') === 'aktiv';
     var st = x.status === 'reserviert' ? '<span class="pill">Reserviert</span>' : (x.status === 'verkauft' ? '<span class="pill grau">Verkauft</span>' : '');
+    if (boostAktiv(x)) st = '<span class="pill top">Oben</span>' + st;
     return '<article class="inserat' + (x.status === 'verkauft' ? ' is-verkauft' : '') + '" data-id="' + esc(x.id) + '"><div class="inserat-kopf">' + (neu ? '<span class="pill lime">Neu</span>' : '') + st + '<span class="pill ' + (x.art === 'suche' ? 'blau' : (x.art === 'verschenken' ? 'lime' : 'gruen')) + '">' + esc(ARTEN[x.art] || x.art) + '</span><span class="pill">' + esc(KATS[x.kategorie] || x.kategorie) + '</span></div>' +
       '<h3>' + esc(x.titel) + '</h3>' + (preis ? '<div class="inserat-preis">' + esc(preis) + '</div>' : '') + '<p class="inserat-text">' + esc(x.beschreibung) + '</p>' +
       '<div class="inserat-meta">' + esc([x.plz, x.ort].filter(Boolean).join(' ')) + (x.plz || x.ort ? ' · ' : '') + kurzDate(x.created_at) + '</div>' +
@@ -580,7 +583,9 @@
     ul.innerHTML = items.length ? items.map(function (x) {
       return '<li data-id="' + esc(x.id) + '"><div class="mein-zeile"><span><b>' + esc(x.titel) + '</b><br><small class="muted">' + esc(ARTEN[x.art] || x.art) + ' · ' + kurzDate(x.created_at) + (x.approved === false ? ' · wartet auf Freigabe' : '') + '</small></span><span class="st">' + esc(LBL[x.status] || x.status) + '</span></div>' +
         '<div class="mein-akt">' + ['aktiv', 'reserviert', 'verkauft'].map(function (st) { return '<button type="button" data-akt="status" data-status="' + st + '"' + (x.status === st ? ' class="is-on"' : '') + '>' + LBL[st] + '</button>'; }).join('') +
-        '<a href="' + ROOT + 'boerse/?edit=' + esc(x.id) + '#inserieren" data-akt="bearbeiten">Bearbeiten</a><button type="button" class="del" data-akt="loeschen">Löschen</button></div></li>';
+        '<a href="' + ROOT + 'boerse/?edit=' + esc(x.id) + '#inserieren" data-akt="bearbeiten">Bearbeiten</a>' +
+        (x.status === 'aktiv' && (punkte().p | 0) >= 75 ? (boostAktiv(x) ? '<span class="mein-boost">Oben bis ' + kurzDate(x.boost_bis) + '</span>' : '<button type="button" class="boost" data-akt="boost" title="Silber-Vorteil: ein Inserat je Monat 30 Tage oben in der Börse">Nach oben</button>') : '') +
+        '<button type="button" class="del" data-akt="loeschen">Löschen</button></div></li>';
     }).join('') : '<li class="mein-leer">Noch kein Inserat. <a href="' + ROOT + 'boerse/#inserieren">Jetzt inserieren</a></li>';
     if (ul.dataset.bound) return; ul.dataset.bound = '1';
     ul.addEventListener('click', function (e) {
@@ -588,7 +593,7 @@
       var li = b.closest('li'), id = li.dataset.id, akt = b.dataset.akt;
       if (akt === 'loeschen' && !confirm('Inserat wirklich löschen?')) return;
       li.style.opacity = '.5';
-      meinAktion(id, akt, b.dataset.status).then(function () { track('inserat', { aktion: akt }); reload(); }).catch(function () { li.style.opacity = ''; alert('Das hat nicht geklappt. Bitte erneut versuchen.'); });
+      meinAktion(id, akt, b.dataset.status).then(function () { track('inserat', { aktion: akt }); reload(); }).catch(function (e2) { li.style.opacity = ''; alert(akt === 'boost' && e2 && e2.message && !/^HTTP/.test(e2.message) ? e2.message : 'Das hat nicht geklappt. Bitte erneut versuchen.'); });
     });
   }
   function ladeMeineInserate(ul, extra) {
@@ -608,7 +613,7 @@
     }
     function load() {
       if (IS_LOCAL) { daten = [{ id: 'demo-1', titel: 'Beispiel: Rüttelplatte 90 kg, Baujahr 2021', kategorie: 'geraet', art: 'verkauf', preis: '650 €', beschreibung: 'So sieht ein Inserat aus (nur lokale Vorschau).', plz: '50670', ort: 'Köln', created_at: new Date().toISOString() }]; render(); return; }
-      getJson('/inserate').then(function (j) { daten = j.inserate || []; render(); }).catch(function () { if (anz) anz.textContent = 'Börse gerade nicht erreichbar.'; });
+      getJson('/inserate').then(function (j) { daten = boostSort(j.inserate || []); render(); }).catch(function () { if (anz) anz.textContent = 'Börse gerade nicht erreichbar.'; });
     }
     chips.forEach(function (c) { c.addEventListener('click', function () { kat = c.dataset.kat; chips.forEach(function (x) { x.classList.toggle('is-active', x === c); }); render(); }); });
     liste.addEventListener('click', function (e) {
@@ -659,6 +664,7 @@
       var body = { frage: frage, kontext: form.kontext ? form.kontext.value.trim() : '', betrieb: form.betrieb ? form.betrieb.value.trim() : '', anonym: form.anonym ? form.anonym.checked : true, name: m.name || '', email: m.email || '', token: m.token || null, website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV };
       var ok = function () { btn.disabled = false; btn.textContent = 'Frage an die Redaktion senden'; form.frage.value = ''; if (form.kontext) form.kontext.value = ''; note.textContent = 'Danke – die Redaktion meldet sich, sobald die Antwort steht. Veröffentlichte Antworten erscheinen unter Praxisfragen.'; track('praxisfrage', {}); addPunkte('praxisfrage', Date.now()); };
       if (IS_LOCAL) { setTimeout(ok, 400); return; }
+      if (form.thema && form.thema.value) body.kontext = 'Thema: ' + form.thema.options[form.thema.selectedIndex].text + (body.kontext ? '\n' + body.kontext : '');
       post('/praxisfrage', body).then(ok).catch(function () { btn.disabled = false; btn.textContent = 'Frage an die Redaktion senden'; note.textContent = 'Das hat nicht geklappt. Bitte erneut versuchen.'; note.classList.add('err'); });
     });
   }

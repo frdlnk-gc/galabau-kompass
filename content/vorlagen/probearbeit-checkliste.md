@@ -1,6 +1,7 @@
 ---
 title: "Probearbeit: Checkliste und Beobachtungsbogen für einen Tag auf der Baustelle"
 dek: "Rechtlicher Rahmen, Ablauf von morgens bis abends, Beobachtungsbogen für den Vorarbeiter und das Dokumentationsblatt, das im Unfallfall zählt."
+reihe: 7
 typ: Checkliste
 stand: 2026-09-07
 quelle_slug: probearbeit-richtig-gestalten

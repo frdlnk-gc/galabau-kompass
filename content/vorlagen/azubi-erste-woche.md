@@ -1,6 +1,7 @@
 ---
 title: "Erste Woche neuer Azubis: Einarbeitungsplan Tag 1 bis 5"
 dek: "Was vor dem ersten Tag erledigt sein muss, wie die Woche vom Hof bis zum Freitagsgespräch läuft und welche Regeln für unter 18-Jährige gelten – als Plan zum Abhaken."
+reihe: 6
 typ: Einarbeitungsplan
 stand: 2026-09-07
 quelle_slug: erste-woche-neue-azubis

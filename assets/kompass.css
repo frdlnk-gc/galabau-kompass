@@ -1097,6 +1097,9 @@ a.club-vorteil h3{color:var(--ink);}
 
 /* Börse: Status-Pillen, eigene Inserate verwalten */
 .pill.grau{background:var(--bg-3);color:var(--ink-3);}
+.pill.top{background:var(--green-deep);color:#fff;}
+.mein-akt .boost{background:var(--lime);border-color:var(--lime);color:var(--green-ink);}
+.mein-boost{font-family:var(--display);font-size:.7rem;font-weight:700;color:var(--green-deep);align-self:center;}
 .inserat.is-verkauft{opacity:.72;}
 .inserat.is-verkauft h3{text-decoration:line-through;text-decoration-thickness:1px;}
 .mein-liste li{display:grid;gap:8px;}

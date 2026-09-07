@@ -1,6 +1,7 @@
 ---
 title: "Winterdienst-Bereitschaft: Muster-Regelung, Teamplan, Einsatzprotokoll"
 dek: "Rufbereitschaft für die Saison vereinbaren, Ruhezeiten einhalten, Einsätze dokumentieren: drei Bausteine, die vor dem ersten Schnee stehen sollten – zum Ausfüllen."
+reihe: 5
 typ: Muster-Regelung
 stand: 2026-09-07
 quelle_slug: winterdienst-personal-bereitschaft-regeln
