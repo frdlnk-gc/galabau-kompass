@@ -146,11 +146,12 @@
     document.getElementById('consent-text').innerHTML = CONSENT_TEXT.replace('Datenschutzerklärung', '<a href="' + K.root + 'datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>');
 
     /* ── Vertriebler-Token ── */
-    var token = K.params.t || null;
+    var token = K.params.t || null, vslug = K.params.v || null;  // t = persönlicher Token (WhatsApp-Link), v = Kürzel vom Polo-QR (s/<kürzel>/)
     var vertriebler = null;
     try { if (!token && sessionStorage.getItem('kompass_t')) token = sessionStorage.getItem('kompass_t'); if (token) sessionStorage.setItem('kompass_t', token); } catch(e){}
-    if (token && K.env !== 'local') {
-      fetch(K.cfg.apiBase + '/umfrage?t=' + encodeURIComponent(token), { credentials: 'omit' }).then(function(r){ return r.json(); }).then(function(j){
+    if ((token || vslug) && K.env !== 'local') {
+      fetch(K.cfg.apiBase + '/umfrage?' + (token ? 't=' + encodeURIComponent(token) : 'v=' + encodeURIComponent(vslug)), { credentials: 'omit' }).then(function(r){ return r.json(); }).then(function(j){
+        if (j.ok && j.token && !token) { token = j.token; try { sessionStorage.setItem('kompass_t', token); } catch(e){} }
         if (j.ok && j.vertriebler) { vertriebler = j.vertriebler; $('interviewer-name').textContent = j.vertriebler.vorname; $('interviewer').style.display = 'inline-flex'; }
       }).catch(function(){});
     }
