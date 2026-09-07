@@ -1,18 +1,21 @@
 /* =====================================================================
-   GaLaBau Kompass · gemeinsames Script v3 (Editorial)
-   Kopf (Topbar, Masthead, klebende Ressortleiste, Live-Suche, Drawer),
-   Footer, Logo, Top-Themen-Slider, Archiv (Suche/Filter/Sortierung),
-   Mehr-laden-Listen, Lesefortschritt, Kommentare, Meistgelesen,
-   Abo-Formular, Teilen, Tracking, Offline-Puffer. Pfade relativ (data-depth).
+   GaLaBau Kompass · gemeinsames Script v5 („Frisch“)
+   Kopf (Topbar, Markenzeile, klebende Ressortleiste, Inline-Suche, Drawer),
+   Footer, Logo, Social-Links, Top-Themen-Slider, Archiv, Mehr-laden-Listen,
+   Lesefortschritt, Kommentare, Meistgelesen, Montagskompass (E-Mail/WhatsApp),
+   Teilen, Merkliste, Vorlesen, Frage der Woche, Termine-Datumsfilter,
+   Kompass Club (Mitgliedschaft, Ausweis, Punkte, Stufen), Tracking,
+   Offline-Puffer. Pfade relativ (data-depth).
    ===================================================================== */
 (function () {
   'use strict';
+  var SITE = window.KOMPASS_SITE || {};
   var CFG = {
     site: 'GaLaBau Kompass',
-    apiBase: 'https://gc-tracking-dashboard.vercel.app/api/public/kompass',
+    apiBase: SITE.api_base || 'https://gc-tracking-dashboard.vercel.app/api/public/kompass',
     liveHosts: /(^|\.)galabau-kompass\.de$/i,
     previewHosts: /github\.io$|vercel\.app$/i,
-    ressorts: [ /* slug, Name, kurz, Leisten-Label */
+    ressorts: SITE.ressorts || [ /* slug, Name, kurz, Leisten-Label */
       ['betrieb-personal', 'Betrieb & Personal', 'Betrieb', 'Betrieb'], ['recht-tarif', 'Recht & Tarif', 'Recht', 'Recht'], ['technik-digital', 'Technik & Digital', 'Technik', 'Technik'], ['produkte', 'Produkte & Software', 'Produkte', 'Produkte'],
       ['bauen-pflanzen', 'Bauen & Pflanzen', 'Bauen', 'Bauen'], ['markt-politik', 'Markt & Politik', 'Markt', 'Markt'], ['sicherheit-gesundheit', 'Sicherheit & Gesundheit', 'Sicherheit', 'Sicherheit'], ['karriere', 'Karriere & Weiterbildung', 'Karriere', 'Karriere'],
       ['messe-termine', 'Messe & Termine', 'Termine', 'Termine'], ['standpunkt', 'Standpunkt', 'Standpunkt', 'Standpunkt']
@@ -29,51 +32,85 @@
   function kurzDate(iso) { var d = new Date(iso); return ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear(); }
   function path() { return location.pathname.replace(/index\.html$/, ''); }
   function isActive(href) { return path().indexOf('/' + href) > -1; }
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  function lsJson(k, fallback) { try { var v = JSON.parse(ls(k) || 'null'); return v == null ? fallback : v; } catch (e) { return fallback; } }
 
-  /* ── Logo v2: Kompassrose mit Blatt-Nadel ── */
+  /* ── Logo: Kompassnadel im Kreis + aufrechte Wortmarke ── */
   function logoSvg(opts) {
     opts = opts || {};
-    var ticks = '';
-    for (var i = 0; i < 16; i++) { var big = i % 4 === 0; ticks += '<path class="tick" d="M32 ' + (big ? '2' : '3') + 'v' + (big ? '3.6' : '2') + '" transform="rotate(' + (i * 22.5) + ' 32 32)"/>'; }
-    var pts = '';
-    ['E', 'S', 'W'].forEach(function (d, k) { pts += '<path class="pt" d="M32 32L34.4 30 32 12.5 29.6 30Z" transform="rotate(' + ((k + 1) * 90) + ' 32 32)"/>'; });
-    [45, 135, 225, 315].forEach(function (r) { pts += '<path class="pt s" d="M32 32L33.6 30.4 32 19 30.4 30.4Z" transform="rotate(' + r + ' 32 32)"/>'; });
     var mark = '<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle class="kreis" cx="32" cy="32" r="29"/><path class="nadel-n" d="M32 7 42.5 32 32 26.5 21.5 32Z"/><path class="nadel-s" d="M32 57 21.5 32 32 37.5 42.5 32Z"/></svg>';
     var text = opts.word === false ? '' : '<span class="logo-word">GaLaBau Kompass</span>';
     return '<a class="logo' + (opts.size === 'lg' ? ' lg' : '') + '" href="' + ROOT + '" aria-label="GaLaBau Kompass – Startseite">' + mark + text + '</a>';
   }
   window.kompassLogo = logoSvg;
 
-  /* ── Kopf / Fuß ── */
+  /* ── Icons ── */
   var SVG_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
   var SVG_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
   var SVG_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  var SVG_SOC = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9h3zM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7zM19 19h-3v-4.9c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6V19h-3V9h2.9v1.4a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.7z"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6a3.6 3.6 0 0 0 1.7.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.1V8.9l6 3.1z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.8a5.7 5.7 0 1 0 4.9 5.6V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3v2.2H7.3V14h2.8v8z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
+  };
+  function socialLinks(withLabel) {
+    return (SITE.social || []).filter(function (s) { return s.url && SVG_SOC[s.id]; }).map(function (s) {
+      return '<a class="soc" href="' + esc(s.url) + '" target="_blank" rel="noopener" aria-label="' + esc(s.name) + '" title="' + esc(s.name) + '">' + SVG_SOC[s.id] + (withLabel ? '<span>' + esc(s.name) + '</span>' : '') + '</a>';
+    }).join('');
+  }
+
+  /* ── Kompass Club: Mitgliedschaft, Punkte, Stufen ── */
+  var STUFEN = [[0, 'Samen', '🌰'], [20, 'Keimling', '🌱'], [60, 'Setzling', '🪴'], [150, 'Jungbaum', '🌳'], [300, 'Baum', '🌲'], [600, 'Alte Eiche', '🏆']];
+  var REGELN = { lesen: 2, frage: 5, kommentar: 8, teilen: 3, merken: 1, beitritt: 10, abo: 5 };
+  function mitglied() { return lsJson('kompass_mitglied', null); }
+  function punkte() { return lsJson('kompass_punkte', { p: 0, k: {} }); }
+  function stufe(p) { var s = STUFEN[0], next = null; for (var i = 0; i < STUFEN.length; i++) { if (p >= STUFEN[i][0]) s = STUFEN[i]; else { next = STUFEN[i]; break; } } return { name: s[1], icon: s[2], ab: s[0], next: next }; }
+  function addPunkte(art, key) {
+    var n = REGELN[art] || 0; if (!n) return;
+    var st = punkte(); var k = art + (key ? ':' + key : ''); if (st.k[k]) return;
+    st.k[k] = Date.now(); st.p = (st.p | 0) + n; ls('kompass_punkte', JSON.stringify(st));
+    document.querySelectorAll('[data-club-chip]').forEach(function (el) { el.innerHTML = clubChip(); });
+    if (window.KOMPASS && window.KOMPASS.onPunkte) window.KOMPASS.onPunkte(st);
+  }
+  function nrFmt(n) { n = String(n | 0); return n.length < 4 ? ('0000' + n).slice(-4) : n; }
+  function clubChip() {
+    var m = mitglied();
+    if (!m) return '<a class="btn sm ghost club-btn" href="' + ROOT + 'club/">Kompass Club</a>';
+    var p = punkte().p | 0, s = stufe(p);
+    return '<a class="club-chip" href="' + ROOT + 'club/" title="Kompass Club · ' + p + ' Punkte · Stufe ' + s.name + '"><span class="club-dot">✓</span>Mitglied Nr. ' + nrFmt(m.nr) + '<small>· ' + s.icon + ' ' + esc(s.name) + '</small></a>';
+  }
+
+  /* ── Kopf / Fuß ── */
   function ressortLinks(kurz) { return CFG.ressorts.map(function (r) { return '<a href="' + ROOT + 'ressort/' + r[0] + '/"' + (isActive('ressort/' + r[0]) ? ' class="active"' : '') + ' title="' + r[1] + '">' + (kurz ? r[3] : r[1]) + '</a>'; }).join(''); }
   function renderHeader(el) {
     var d = new Date();
-    var ausg = document.body.getAttribute('data-ausgabe') || '';
-    var top = '<div class="topbar"><div class="container"><span class="datum"><b>' + TAGE[d.getDay()] + '</b>, ' + d.getDate() + '. ' + MONATE[d.getMonth()] + ' ' + d.getFullYear() +
-      (IS_LIVE ? '' : '<span class="env">' + (IS_PREVIEW ? 'Vorschau' : 'Lokal') + '</span>') + '</span>' +
-      '<nav aria-label="Service"><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine</a><a href="' + ROOT + 'zahlen/">Zahlen</a><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="' + ROOT + 'merkliste/" data-merk-link>Merkliste<span class="merk-anz" data-merk-anz></span></a></nav></div></div>';
-    var mast = '<div class="masthead"><div class="container"><span class="links">' + (ausg ? ausg + ' · seit 2025' : 'Seit 2025') + '</span><div class="mitte">' + logoSvg({ size: 'lg' }) + '<span class="tagline">Das Magazin für den Garten- und Landschaftsbau</span></div>' +
-      '<div class="rechts"><a class="btn sm ghost abo-btn" href="' + ROOT + 'newsletter/">Der Montagskompass</a><button type="button" class="icon-btn nav-toggle" aria-label="Menü öffnen">' + SVG_MENU + '</button></div></div></div>';
+    var top = '<div class="topbar"><div class="container"><span class="claim">Das Magazin für den Garten- und Landschaftsbau</span>' +
+      '<nav aria-label="Service"><span class="datum"><b>' + TAGE[d.getDay()] + '</b>, ' + d.getDate() + '. ' + MONATE[d.getMonth()] + ' ' + d.getFullYear() + (IS_LIVE ? '' : '<span class="env">' + (IS_PREVIEW ? 'Vorschau' : 'Lokal') + '</span>') + '</span>' +
+      '<a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine</a><a href="' + ROOT + 'zahlen/">Zahlen</a><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="' + ROOT + 'merkliste/" data-merk-link>Merkliste<span class="merk-anz" data-merk-anz></span></a></nav></div></div>';
+    var brand = '<div class="brandbar"><div class="container">' + logoSvg({ size: 'lg' }) +
+      '<div class="brand-tools"><div class="soc-row">' + socialLinks() + '</div><span data-club-chip>' + clubChip() + '</span><a class="btn sm abo-btn" href="' + ROOT + 'newsletter/">Der Montagskompass</a>' +
+      '<button type="button" class="icon-btn nav-toggle" aria-label="Menü öffnen">' + SVG_MENU + '</button></div></div></div>';
     var nav = '<div class="navbar" data-navbar><div class="container"><span class="mini">' + logoSvg({ word: false }) + '</span>' +
       '<nav aria-label="Ressorts">' + ressortLinks(true) + '</nav>' +
-      '<button type="button" class="icon-btn such-btn" aria-label="Suche öffnen" aria-expanded="false">' + SVG_SEARCH + '</button></div>' +
-      '<div class="suche-panel" data-suche-panel><div class="container"><form role="search" action="' + ROOT + 'artikel/" method="get" autocomplete="off"><input type="search" class="input" name="q" placeholder="Beiträge durchsuchen – z. B. Tarif, Bagger, Azubi, Zecken" aria-label="Suche"><button type="submit" class="btn">Suchen</button></form><div class="suche-erg" data-suche-erg role="listbox"></div></div></div></div>';
+      '<div class="suche-box" data-suche-box><button type="button" class="icon-btn such-btn" aria-label="Suche öffnen" aria-expanded="false">' + SVG_SEARCH + '</button>' +
+      '<form class="suche-inline" role="search" action="' + ROOT + 'artikel/" method="get" autocomplete="off"><input type="search" class="input" name="q" placeholder="Suchen – z. B. Tarif, Bagger, Azubi" aria-label="Suche"><button type="button" class="suche-x" aria-label="Suche schließen">' + SVG_CLOSE + '</button></form>' +
+      '<div class="suche-erg" data-suche-erg role="listbox"></div></div></div></div>';
     var drawer = '<div class="drawer" aria-hidden="true"><div class="scrim"></div><div class="panel"><div class="panel-kopf">' + logoSvg() + '<button type="button" class="icon-btn schliessen" aria-label="Menü schließen">' + SVG_CLOSE + '</button></div>' +
       '<form role="search" action="' + ROOT + 'artikel/" method="get" class="suche"><input type="search" class="input" name="q" placeholder="Suchen …" aria-label="Suche"><button type="submit" class="btn sm">Los</button></form>' +
+      '<div class="drawer-cta"><a class="btn" href="' + ROOT + 'newsletter/">Der Montagskompass</a><span data-club-chip>' + clubChip() + '</span></div>' +
       '<div class="gruppe"><h4>Ressorts</h4>' + ressortLinks() + '</div>' +
-      '<div class="gruppe"><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'merkliste/">Merkliste</a><a href="' + ROOT + 'ueber-uns/">Über uns</a></div>' +
-      '<div class="gruppe"><h4>Service</h4><a class="cta" href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a></div></div></div>';
-    el.innerHTML = top + mast + nav + drawer;
+      '<div class="gruppe"><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'club/">Kompass Club</a><a href="' + ROOT + 'merkliste/">Merkliste</a><a href="' + ROOT + 'ueber-uns/">Über uns</a></div>' +
+      '<div class="gruppe"><h4>Service</h4><a class="cta" href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a></div>' +
+      (socialLinks() ? '<div class="soc-row">' + socialLinks() + '</div>' : '') + '</div></div>';
+    el.innerHTML = top + brand + nav + drawer;
     // Ressortleiste aus dem Header lösen, damit position:sticky für die ganze Seite gilt
     var navEl = el.querySelector('[data-navbar]'); el.insertAdjacentElement('afterend', navEl);
-
-    // klebende Leiste: Mini-Logo einblenden, sobald der Masthead aus dem Bild ist
-    var navbar = navEl, mast = el.querySelector('.masthead');
-    if ('IntersectionObserver' in window) { new IntersectionObserver(function (es) { navbar.classList.toggle('is-stuck', !es[0].isIntersecting); }, { threshold: 0 }).observe(mast); }
-    // aktives Ressort in die Sicht scrollen (mobil)
+    var navbar = navEl, brandEl = el.querySelector('.brandbar');
+    if ('IntersectionObserver' in window) { new IntersectionObserver(function (es) { navbar.classList.toggle('is-stuck', !es[0].isIntersecting); }, { threshold: 0 }).observe(brandEl); }
     var act = navbar.querySelector('nav a.active'); if (act && act.scrollIntoView) { try { act.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
     initSuche(navbar);
     var dr = el.querySelector('.drawer');
@@ -85,34 +122,36 @@
   }
   function renderFooter(el) {
     el.className = 'site-footer';
+    var soc = socialLinks();
     el.innerHTML = '<div class="container"><div class="footer-grid">' +
-      '<div class="footer-brand">' + logoSvg() + '<p>Das Online-Magazin für Inhaber, Führungskräfte und Fachkräfte im Garten- und Landschaftsbau. Zahlen, Einordnung und Praxis – jede Woche neue Beiträge, jeden Monat als Ausgabe.</p></div>' +
+      '<div class="footer-brand">' + logoSvg() + '<p>Das Online-Magazin für Inhaber, Führungskräfte und Fachkräfte im Garten- und Landschaftsbau. Zahlen, Einordnung und Praxis – jede Woche neue Beiträge, jeden Montag der Montagskompass, jeden Monat die Ausgabe als PDF.</p>' + (soc ? '<div class="soc-row">' + soc + '</div>' : '') + '</div>' +
       '<div><h4>Ressorts</h4>' + CFG.ressorts.map(function (r) { return '<a href="' + ROOT + 'ressort/' + r[0] + '/">' + r[1] + '</a>'; }).join('') + '</div>' +
-      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
-      '<div><h4>Service &amp; Rechtliches</h4><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a><a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></div>' +
-      '</div><div class="footer-bottom"><span>© ' + new Date().getFullYear() + ' GaLaBau Kompass · Das Magazin für den Garten- und Landschaftsbau</span><span>galabau-kompass.de</span></div></div>';
+      '<div><h4>Magazin</h4><a href="' + ROOT + 'artikel/">Alle Beiträge</a><a href="' + ROOT + 'ausgaben/">Ausgaben (PDF)</a><a href="' + ROOT + 'termine/">Termine &amp; Fristen</a><a href="' + ROOT + 'zahlen/">Zahlen der Branche</a><a href="' + ROOT + 'newsletter/">Der Montagskompass</a><a href="' + ROOT + 'club/">Kompass Club</a><a href="' + ROOT + 'ueber-uns/">Über uns</a><a href="mailto:redaktion@galabau-kompass.de">Redaktion kontaktieren</a></div>' +
+      '<div><h4>Service &amp; Rechtliches</h4><a href="' + ROOT + 'standort/">Standort-Check</a><a href="' + ROOT + 'branchenumfrage/">Branchenumfrage 2026</a><a href="' + ROOT + 'merkliste/">Merkliste</a><a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></div>' +
+      '</div><div class="footer-bottom"><span>© ' + new Date().getFullYear() + ' GaLaBau Kompass · Das Magazin für den Garten- und Landschaftsbau</span><span>galabau-kompass.de<a href="' + ROOT + 'impressum/">Impressum</a><a href="' + ROOT + 'datenschutz/">Datenschutz</a></span></div></div>';
   }
 
-  /* ── Live-Suche in der Ressortleiste ── */
+  /* ── Inline-Suche in der Ressortleiste ── */
   var indexPromise = null;
   function loadIndex() { if (!indexPromise) indexPromise = fetch(ROOT + 'assets/artikel-index.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }); return indexPromise; }
   function norm(s) { return String(s || '').toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss'); }
   function score(a, terms) { var t = norm(a.title), d = norm(a.dek), tg = norm(a.tags.join(' ')), x = norm(a.text); var s = 0; terms.forEach(function (w) { if (t.indexOf(w) > -1) s += 12; if (tg.indexOf(w) > -1) s += 8; if (d.indexOf(w) > -1) s += 5; if (x.indexOf(w) > -1) s += 2; }); return s; }
   function hl(text, terms) { var out = esc(text); terms.forEach(function (w) { if (w.length < 2) return; try { out = out.replace(new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>'); } catch (e) {} }); return out; }
   function initSuche(navbar) {
-    var btn = navbar.querySelector('.such-btn'), panel = navbar.querySelector('[data-suche-panel]'), input = panel.querySelector('input'), erg = panel.querySelector('[data-suche-erg]'), form = panel.querySelector('form');
+    var box = navbar.querySelector('[data-suche-box]'), btn = box.querySelector('.such-btn'), form = box.querySelector('.suche-inline'), input = form.querySelector('input'), erg = box.querySelector('[data-suche-erg]'), x = form.querySelector('.suche-x');
     var hot = -1, timer;
-    function open(o) { panel.classList.toggle('open', o); btn.classList.toggle('is-open', o); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) { loadIndex(); setTimeout(function () { input.focus(); }, 30); } else { erg.innerHTML = ''; hot = -1; } }
-    btn.addEventListener('click', function () { open(!panel.classList.contains('open')); });
+    function open(o) { navbar.classList.toggle('suche-offen', o); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) { loadIndex(); setTimeout(function () { input.focus(); }, 30); } else { erg.innerHTML = ''; hot = -1; input.value = ''; } }
+    btn.addEventListener('click', function () { open(true); });
+    x.addEventListener('click', function () { open(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') open(false); if (e.key === '/' && document.activeElement && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { e.preventDefault(); open(true); } });
-    document.addEventListener('click', function (e) { if (panel.classList.contains('open') && !navbar.contains(e.target)) open(false); });
+    document.addEventListener('click', function (e) { if (navbar.classList.contains('suche-offen') && !box.contains(e.target)) open(false); });
     function render(q) {
       var terms = norm(q).split(/\s+/).filter(function (w) { return w.length > 1; });
       if (!terms.length) { erg.innerHTML = ''; hot = -1; return; }
       loadIndex().then(function (j) {
         var rows = j.artikel.map(function (a) { return { a: a, s: score(a, terms) }; }).filter(function (r) { return r.s > 0; }).sort(function (x, y) { return y.s - x.s || (y.a.datum > x.a.datum ? 1 : -1); });
         if (!rows.length) { erg.innerHTML = '<div class="leer">Keine Treffer zu „' + esc(q) + '“.</div>'; hot = -1; return; }
-        erg.innerHTML = rows.slice(0, 6).map(function (r) { var a = r.a; return '<a href="' + ROOT + 'artikel/' + a.slug + '/" role="option"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" alt="" loading="lazy"><span><b>' + hl(a.title, terms) + '</b><small>' + esc(a.ressort_name) + ' · ' + esc(a.datum_kurz || kurzDate(a.datum)) + '</small></span></a>'; }).join('') +
+        erg.innerHTML = rows.slice(0, 6).map(function (r) { var a = r.a; return '<a href="' + ROOT + 'artikel/' + a.slug + '/" role="option">' + (a.bild ? '<img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" alt="" loading="lazy">' : '<span class="t-noimg"></span>') + '<span><b>' + hl(a.title, terms) + '</b><small>' + esc(a.ressort_name) + ' · ' + esc(a.datum_kurz || kurzDate(a.datum)) + '</small></span></a>'; }).join('') +
           '<a class="alle" href="' + ROOT + 'artikel/?q=' + encodeURIComponent(q) + '">Alle ' + rows.length + ' Treffer im Archiv →</a>';
         hot = -1;
       });
@@ -131,7 +170,7 @@
   var sessionId = (function () { try { var s = sessionStorage.getItem('kompass_session'); if (!s) { s = uuidv4(); sessionStorage.setItem('kompass_session', s); } return s; } catch (e) { return uuidv4(); } })();
   var params = {}; try { new URLSearchParams(location.search).forEach(function (v, k) { params[k] = v; }); } catch (e) {}
   ['src', 'v', 'k'].forEach(function (k) { try { if (params[k]) sessionStorage.setItem('kompass_' + k, params[k]); else if (sessionStorage.getItem('kompass_' + k)) params[k] = sessionStorage.getItem('kompass_' + k); } catch (e) {} });
-  window.KOMPASS = { cfg: CFG, root: ROOT, env: window.KOMPASS_ENV, sessionId: sessionId, params: params, uuid: uuidv4, esc: esc, deDate: deDate,
+  window.KOMPASS = { cfg: CFG, root: ROOT, env: window.KOMPASS_ENV, sessionId: sessionId, params: params, uuid: uuidv4, esc: esc, deDate: deDate, mitglied: mitglied, punkte: punkte, stufe: stufe, addPunkte: addPunkte,
     source: function () { return params.src || (params.v ? 'qr' : 'web'); }, vertriebler: function () { return params.v || null; }, kontakt: function () { return params.k || null; } };
   function track(eventType, meta) {
     var body = { event_type: eventType, session_id: sessionId, source: window.KOMPASS.source(), vertriebler: window.KOMPASS.vertriebler(), kontakt_id: window.KOMPASS.kontakt(), page: location.pathname, page_url: location.href, referrer: document.referrer || '', env: window.KOMPASS_ENV, meta: meta || {} };
@@ -178,7 +217,6 @@
     root.addEventListener('focusin', function () { pause(true); }); root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) pause(false); });
     root.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') go(i + 1, true); if (e.key === 'ArrowLeft') go(i - 1, true); });
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else restart(); });
-    // Fortschrittsbalken startet erst nach dem ersten Frame, damit die Transition greift
     requestAnimationFrame(function () { items[0] && items[0].classList.add('is-active'); restart(); });
   }
 
@@ -190,10 +228,11 @@
     apply();
   }
 
-  /* ── Lesefortschritt ── */
+  /* ── Lesefortschritt + Lesepunkte ── */
   function initProgress(bar) {
     var main = document.querySelector('.art-main'); if (!main) return;
-    function upd() { var r = main.getBoundingClientRect(), h = window.innerHeight, total = r.height - h * .5, done = Math.min(Math.max(-r.top + h * .25, 0), Math.max(total, 1)); bar.style.width = (total > 0 ? Math.round(done / total * 100) : 100) + '%'; }
+    var slug = (document.querySelector('.art') || {}).dataset ? document.querySelector('.art').dataset.slug : null, gezaehlt = false;
+    function upd() { var r = main.getBoundingClientRect(), h = window.innerHeight, total = r.height - h * .5, done = Math.min(Math.max(-r.top + h * .25, 0), Math.max(total, 1)); var pct = total > 0 ? Math.round(done / total * 100) : 100; bar.style.width = pct + '%'; if (!gezaehlt && slug && pct >= 60 && (Date.now() - loadedAt) > 12000) { gezaehlt = true; addPunkte('lesen', slug); } }
     window.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
   }
 
@@ -203,10 +242,11 @@
 
   /* ── Archiv: Suche / Filter / Sortierung ── */
   function teaserHtml(a, extra) {
-    var media = a.bild ? '<a class="t-media" href="' + ROOT + 'artikel/' + a.slug + '/" tabindex="-1" aria-hidden="true"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" srcset="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg 640w, ' + ROOT + 'assets/img/' + a.bild + '.jpg 1600w" sizes="(min-width: 720px) 240px, 112px" alt="" loading="lazy" width="1600" height="1067"></a>' : '';
+    var media = a.bild ? '<a class="t-media" href="' + ROOT + 'artikel/' + a.slug + '/" tabindex="-1" aria-hidden="true"><img src="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg" srcset="' + ROOT + 'assets/img/' + a.bild + '-thumb.jpg 640w, ' + ROOT + 'assets/img/' + a.bild + '.jpg 1600w" sizes="(min-width: 720px) 250px, 112px" alt="" loading="lazy" width="1600" height="1067"></a>' : '';
     var fmt = a.format && a.format !== 'artikel' ? '<span class="t-format t-format-' + a.format + '">' + esc(a.format_name || a.format) + '</span>' : '';
+    var neu = a.neu ? '<span class="t-neu">Neu</span>' : '';
     return '<article class="t t-horiz' + (a.bild ? '' : ' t-ohne-bild') + '" data-slug="' + a.slug + '">' + media +
-      '<div class="t-body"><div class="t-meta">' + fmt + '<a class="t-ressort" href="' + ROOT + 'ressort/' + a.ressort + '/">' + esc(a.ressort_name) + '</a><time datetime="' + a.datum + '">' + esc(a.datum_kurz || kurzDate(a.datum)) + '</time></div>' +
+      '<div class="t-body"><div class="t-meta">' + neu + fmt + '<a class="t-ressort" href="' + ROOT + 'ressort/' + a.ressort + '/">' + esc(a.ressort_name) + '</a><time datetime="' + a.datum + '">' + esc(a.datum_kurz || kurzDate(a.datum)) + '</time></div>' +
       '<h3 class="t-h"><a href="' + ROOT + 'artikel/' + a.slug + '/">' + esc(a.title) + '</a></h3><p class="t-dek">' + esc(a.dek) + '</p><div class="t-foot"><span>' + a.lesezeit + ' Min. Lesezeit' + (extra || '') + '</span><button type="button" class="merken" data-merken="' + a.slug + '" aria-label="Beitrag merken" title="Merken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button></div></div></article>';
   }
   function initArchiv(root) {
@@ -236,6 +276,7 @@
       liste.innerHTML = rows.slice(0, state.shown).map(function (r) { return teaserHtml(r.a, sort === 'gelesen' && views[r.a.slug] ? ' · ' + views[r.a.slug] + ' Leser' : ''); }).join('') || '<p class="muted mt-s">Keine Treffer. Versuchen Sie einen anderen Begriff oder ein anderes Ressort.</p>';
       mehr.hidden = rows.length <= state.shown;
       if (!mehr.hidden) mehr.textContent = 'Mehr laden (' + (rows.length - state.shown) + ' weitere)';
+      merkSync();
       try { var u = new URL(location.href); ['q', 'ressort', 'sort', 'format'].forEach(function (k) { if (state[k] && !(k === 'sort' && state[k] === 'neu') && !(k === 'ressort' && root.dataset.ressort)) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); }); history.replaceState(null, '', u.toString()); } catch (e) {}
     }
     form.addEventListener('submit', function (e) { e.preventDefault(); state.q = input.value.trim(); state.shown = 12; if (state.q) track('suche', { q: state.q }); render(); });
@@ -265,41 +306,111 @@
     function kHtml(k) { return '<div class="kommentar"><div class="k-kopf"><span><b>' + esc(k.name || 'Anonym') + '</b>' + (k.ort ? ' · ' + esc(k.ort) : '') + '</span><time>' + deDate(k.created_at) + '</time></div><p>' + esc(k.text) + '</p></div>'; }
     function render(items) { anzahl.textContent = items.length ? '(' + items.length + ')' : ''; liste.innerHTML = items.length ? items.map(kHtml).join('') : '<p class="k-leer">Noch keine Kommentare. Schreiben Sie den ersten.</p>'; }
     if (!IS_LOCAL) getJson('/kommentare?slug=' + encodeURIComponent(slug)).then(function (j) { render(j.kommentare || []); }).catch(function () {});
+    var m = mitglied(); if (m && m.name && form.name && !form.name.value) form.name.value = m.name;
     form.addEventListener('submit', function (e) {
       e.preventDefault(); err.classList.remove('active');
       var text = form.text.value.trim(); if (text.length < 10) { err.textContent = 'Bitte mindestens zehn Zeichen.'; err.classList.add('active'); return; }
       if (!window.KOMPASS.realUser()) { err.textContent = 'Bitte versuchen Sie es in einem Moment erneut.'; err.classList.add('active'); return; }
       var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Wird gesendet …';
       var body = { slug: slug, name: form.name.value.trim(), ort: form.ort.value.trim(), text: text, website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV, page_url: location.href };
-      var done = function (j) { btn.disabled = false; btn.textContent = 'Kommentar senden'; form.text.value = ''; track('kommentar', { slug: slug }); if (j && j.kommentare) { render(j.kommentare); if (j.pending) { err.textContent = 'Danke – Ihr Kommentar wird nach Prüfung freigeschaltet.'; err.classList.add('active'); } } else { var cur = liste.querySelectorAll('.kommentar').length; var neu = { name: body.name, ort: body.ort, text: text, created_at: new Date().toISOString() }; if (cur) liste.insertAdjacentHTML('afterbegin', kHtml(neu)); else render([neu]); } };
+      var done = function (j) { btn.disabled = false; btn.textContent = 'Kommentar senden'; form.text.value = ''; track('kommentar', { slug: slug }); addPunkte('kommentar', slug + ':' + Date.now()); if (j && j.kommentare) { render(j.kommentare); if (j.pending) { err.textContent = 'Danke – Ihr Kommentar wird nach Prüfung freigeschaltet.'; err.classList.add('active'); } } else { var cur = liste.querySelectorAll('.kommentar').length; var neu = { name: body.name, ort: body.ort, text: text, created_at: new Date().toISOString() }; if (cur) liste.insertAdjacentHTML('afterbegin', kHtml(neu)); else render([neu]); } };
       if (IS_LOCAL) { setTimeout(function () { done(null); }, 400); return; }
       post('/kommentare', body).then(done).catch(function (e2) { btn.disabled = false; btn.textContent = 'Kommentar senden'; err.textContent = /HTTP 429/.test(e2.message) ? 'Zu viele Kommentare in kurzer Zeit – bitte später noch einmal.' : 'Das hat nicht geklappt. Bitte versuchen Sie es erneut.'; err.classList.add('active'); });
     });
   }
 
-  /* ── Abo (Ausgabe per E-Mail) ── */
+  /* ── Montagskompass: E-Mail, WhatsApp oder beides ── */
+  function normPhone(raw) { var p = String(raw || '').replace(/[\s()/\-.]/g, ''); if (!p) return null; if (p.indexOf('00') === 0) p = '+' + p.slice(2); else if (p.indexOf('0') === 0) p = '+49' + p.slice(1); else if (p.indexOf('+') !== 0 && /^(49|43|41)\d{6,}/.test(p)) p = '+' + p; return /^\+\d{7,15}$/.test(p) ? p : null; }
+  function kanalSetup(form) {
+    var kMail = form.querySelector('[name=k_mail]'), kWa = form.querySelector('[name=k_wa]'), tel = form.querySelector('[data-abo-tel]'), mailF = form.querySelector('[data-abo-mail]');
+    function sync() {
+      form.querySelectorAll('.kanal').forEach(function (l) { var c = l.querySelector('input'); l.classList.toggle('is-on', !!(c && c.checked)); });
+      if (tel) tel.hidden = !(kWa && kWa.checked);
+      if (mailF && kMail && form.classList.contains('nur-kanal')) mailF.hidden = !kMail.checked;
+    }
+    [kMail, kWa].forEach(function (c) { if (c) c.addEventListener('change', sync); });
+    sync();
+    return { kanal: function () { var m = !kMail || kMail.checked, w = !!(kWa && kWa.checked); return m && w ? 'beide' : (w ? 'whatsapp' : 'mail'); }, mail: function () { return !kMail || kMail.checked; }, wa: function () { return !!(kWa && kWa.checked); } };
+  }
   function initAbo(form) {
-    var note = form.querySelector('[data-abo-note]');
+    var note = form.querySelector('[data-abo-note]'), k = kanalSetup(form);
     form.addEventListener('submit', function (e) {
-      e.preventDefault(); var email = form.email.value.trim(); note.classList.remove('err');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Bitte eine gültige E-Mail-Adresse eintragen.'; note.classList.add('err'); return; }
-      var btn = form.querySelector('button'); btn.disabled = true;
-      var body = { email: email, session_id: sessionId, env: window.KOMPASS_ENV, page_url: location.href, quelle: location.pathname };
-      var ok = function () { btn.disabled = false; form.email.value = ''; note.textContent = 'Danke – die nächste Ausgabe kommt per E-Mail.'; track('abo', {}); };
+      e.preventDefault(); note.classList.remove('err');
+      var email = (form.email ? form.email.value : '').trim(), telRaw = form.telefon ? form.telefon.value : '', tel = normPhone(telRaw);
+      if (!k.mail() && !k.wa()) { note.textContent = 'Bitte E-Mail oder WhatsApp wählen.'; note.classList.add('err'); return; }
+      if (k.mail() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Bitte eine gültige E-Mail-Adresse eintragen.'; note.classList.add('err'); return; }
+      if (k.wa() && !tel) { note.textContent = 'Bitte eine gültige Handynummer für WhatsApp eintragen.'; note.classList.add('err'); return; }
+      var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+      var body = { email: k.mail() ? email : (email || null), telefon: k.wa() ? tel : null, kanal: k.kanal(), session_id: sessionId, env: window.KOMPASS_ENV, page_url: location.href, quelle: location.pathname };
+      var ok = function () { btn.disabled = false; if (form.email) form.email.value = ''; if (form.telefon) form.telefon.value = ''; note.textContent = 'Danke – Sie sind eingetragen. Der nächste Montagskompass kommt ' + ({ mail: 'per E-Mail', whatsapp: 'per WhatsApp', beide: 'per E-Mail und WhatsApp' })[body.kanal] + '.'; track('abo', { kanal: body.kanal }); addPunkte('abo'); };
       if (IS_LOCAL) { setTimeout(ok, 300); return; }
       post('/abo', body).then(ok).catch(function () { btn.disabled = false; note.textContent = 'Das hat nicht geklappt – bitte später erneut versuchen.'; note.classList.add('err'); });
     });
   }
 
+  /* ── Kompass Club: Beitritt, Ausweis, Stufen ── */
+  function renderAusweis(el, m) {
+    if (!el) return;
+    var p = punkte().p | 0, s = stufe(p);
+    el.classList.toggle('leer', !m);
+    var n = el.querySelector('[data-aw-name]'), nr = el.querySelector('[data-aw-nr]'), seit = el.querySelector('[data-aw-seit]'), st = el.querySelector('[data-aw-stufe]');
+    if (n) n.textContent = m ? m.name : 'Ihr Name';
+    if (nr) nr.textContent = 'Mitglied Nr. ' + (m ? nrFmt(m.nr) : '····');
+    if (seit) { var d = m ? new Date(m.seit) : new Date(); seit.textContent = 'seit ' + MONATE[d.getMonth()] + ' ' + d.getFullYear(); }
+    if (st) st.textContent = s.icon + ' ' + s.name;
+  }
+  function renderStufen(root) {
+    var p = punkte().p | 0, s = stufe(p);
+    root.querySelectorAll('[data-punkte]').forEach(function (el) { el.textContent = p; });
+    root.querySelectorAll('[data-stufe-name]').forEach(function (el) { el.textContent = s.icon + ' ' + s.name; });
+    var bar = root.querySelector('[data-punkte-balken]'), zeile = root.querySelector('[data-punkte-zeile]');
+    if (bar) { var lo = s.ab, hi = s.next ? s.next[0] : Math.max(p, lo + 1); bar.style.width = Math.min(100, Math.round((p - lo) / (hi - lo) * 100)) + '%'; }
+    if (zeile) zeile.textContent = s.next ? (s.next[0] - p) + ' Punkte bis „' + s.next[1] + '“' : 'Höchste Stufe erreicht';
+    root.querySelectorAll('[data-stufen] li').forEach(function (li) { li.classList.toggle('is-aktuell', (li.dataset.p | 0) === s.ab); });
+  }
+  function initClub(root) {
+    var form = root.querySelector('[data-club-form]'), note = form && form.querySelector('[data-abo-note]'), danke = root.querySelector('[data-club-danke]'), ausweis = root.querySelector('[data-ausweis]');
+    var m = mitglied();
+    function zeige() { m = mitglied(); root.classList.toggle('is-mitglied', !!m); if (danke) danke.classList.toggle('active', !!m); renderAusweis(ausweis, m); renderStufen(root); if (m) { var dn = root.querySelector('[data-danke-name]'); if (dn) dn.textContent = m.name; var dnr = root.querySelector('[data-danke-nr]'); if (dnr) dnr.textContent = nrFmt(m.nr); } }
+    window.KOMPASS.onPunkte = function () { renderAusweis(ausweis, mitglied()); renderStufen(root); };
+    zeige();
+    if (!form) return;
+    var k = kanalSetup(form);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); note.classList.remove('err');
+      var name = form.name.value.trim(), email = form.email.value.trim(), tel = normPhone(form.telefon ? form.telefon.value : '');
+      if (name.length < 2) { note.textContent = 'Bitte Ihren Namen eintragen.'; note.classList.add('err'); form.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Bitte eine gültige E-Mail-Adresse eintragen.'; note.classList.add('err'); form.email.focus(); return; }
+      if (k.wa() && !tel) { note.textContent = 'Bitte eine gültige Handynummer für WhatsApp eintragen.'; note.classList.add('err'); return; }
+      if (!form.consent.checked) { note.textContent = 'Bitte der Datenschutzerklärung zustimmen.'; note.classList.add('err'); return; }
+      if (!window.KOMPASS.realUser()) { note.textContent = 'Bitte versuchen Sie es in einem Moment erneut.'; note.classList.add('err'); return; }
+      var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Wird eingetragen …';
+      var body = { name: name, email: email, telefon: k.wa() ? tel : null, betrieb: form.betrieb.value.trim(), rolle: form.rolle.value, plz: form.plz.value.trim(), kanal: k.kanal(), consent: true, website: form.website.value, session_id: sessionId, env: window.KOMPASS_ENV, page_url: location.href, quelle: location.pathname, vertriebler: window.KOMPASS.vertriebler() };
+      var ok = function (j) {
+        btn.disabled = false; btn.textContent = 'Kostenlos Mitglied werden';
+        ls('kompass_mitglied', JSON.stringify({ nr: j.nr, name: name, seit: j.seit || new Date().toISOString() }));
+        addPunkte('beitritt'); if (k.mail() || k.wa()) addPunkte('abo');
+        track('club', { nr: j.nr, kanal: body.kanal, neu: j.neu !== false });
+        document.querySelectorAll('[data-club-chip]').forEach(function (el) { el.innerHTML = clubChip(); });
+        zeige(); try { root.querySelector('[data-club-danke]').scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e2) {}
+      };
+      if (IS_LOCAL) { setTimeout(function () { ok({ ok: true, nr: 1, neu: true }); }, 400); return; }
+      post('/mitglied', body).then(ok).catch(function (e2) { btn.disabled = false; btn.textContent = 'Kostenlos Mitglied werden'; note.textContent = /HTTP 429/.test(e2.message) ? 'Zu viele Anmeldungen in kurzer Zeit – bitte später noch einmal.' : 'Das hat nicht geklappt. Bitte versuchen Sie es erneut.'; note.classList.add('err'); });
+    });
+    var aus = root.querySelector('[data-club-austritt]');
+    if (aus) aus.addEventListener('click', function () { if (confirm('Mitgliedsdaten aus diesem Browser entfernen? (Zum Austritt schreiben Sie an redaktion@galabau-kompass.de.)')) { ls('kompass_mitglied', null); document.querySelectorAll('[data-club-chip]').forEach(function (el) { el.innerHTML = clubChip(); }); zeige(); } });
+  }
+
   /* ── Teilen ── */
   function initTeilen(box) {
     var url = location.href.split('#')[0].split('?')[0], title = box.dataset.title || document.title;
-    var wa = box.querySelector('[data-share=whatsapp]'), li = box.querySelector('[data-share=linkedin]'), ma = box.querySelector('[data-share=mail]'), cp = box.querySelector('[data-share=copy]');
+    var wa = box.querySelector('[data-share=whatsapp]'), li = box.querySelector('[data-share=linkedin]'), fb = box.querySelector('[data-share=facebook]'), ma = box.querySelector('[data-share=mail]'), cp = box.querySelector('[data-share=copy]');
     if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(title + ' – ' + url);
     if (li) li.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+    if (fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
     if (ma) ma.href = 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(title + '\n' + url);
     if (cp) cp.addEventListener('click', function () { var ok = function () { cp.classList.add('ok'); cp.title = 'Link kopiert'; setTimeout(function () { cp.classList.remove('ok'); cp.title = 'Link kopieren'; }, 1800); }; try { navigator.clipboard.writeText(url).then(ok); } catch (e) { try { window.prompt('Link kopieren:', url); } catch (e2) {} } });
-    box.querySelectorAll('[data-share]').forEach(function (el) { el.addEventListener('click', function () { track('teilen', { via: el.dataset.share }); }); });
+    box.querySelectorAll('[data-share]').forEach(function (el) { el.addEventListener('click', function () { track('teilen', { via: el.dataset.share }); addPunkte('teilen', url + ':' + el.dataset.share); }); });
   }
 
   /* ── Merkliste (localStorage, kein Login) ── */
@@ -315,7 +426,7 @@
     document.addEventListener('click', function (e) {
       var b = e.target.closest('[data-merken]'); if (!b) return; e.preventDefault(); e.stopPropagation();
       var l = merkListe(), slug = b.dataset.merken, i = l.indexOf(slug);
-      if (i > -1) l.splice(i, 1); else { l.unshift(slug); track('merken', { slug: slug }); }
+      if (i > -1) l.splice(i, 1); else { l.unshift(slug); track('merken', { slug: slug }); addPunkte('merken', slug); }
       merkSet(l);
     });
     merkSync();
@@ -369,12 +480,30 @@
       mine = o.dataset.opt; try { localStorage.setItem(key, mine); } catch (e) {}
       o.disabled = true; note.textContent = 'Stimme wird gezählt …';
       var body = { poll_id: id, option: mine | 0, session_id: sessionId, env: window.KOMPASS_ENV };
-      track('frage', { id: id, opt: mine });
+      track('frage', { id: id, opt: mine }); addPunkte('frage', id);
       if (IS_LOCAL) { load(); return; }
       post('/frage', body).then(function (j) { show(j.counts || {}); }).catch(function () { load(); });
     }); });
     if (mine !== null) load();
   }
+
+  /* ── Termine: Vergangenes automatisch ausblenden bzw. nach „Bereits vorbei“ schieben ── */
+  function initTermine() {
+    var heute = new Date(); heute.setHours(0, 0, 0, 0);
+    var vorbeiListe = document.querySelector('[data-termine-vorbei]'), vorbeiBlock = document.querySelector('[data-termine-vorbei-block]');
+    document.querySelectorAll('li[data-bis]').forEach(function (li) {
+      var d = new Date(li.dataset.bis + 'T23:59:59'); if (!(d < heute)) return;
+      li.classList.add('ist-vorbei');
+      if (vorbeiListe && li.closest('[data-termine-alle]')) { li.querySelectorAll('.termin-text,.termin-ort').forEach(function (x) { x.remove(); }); vorbeiListe.insertBefore(li, vorbeiListe.firstChild); }
+      else li.hidden = true;
+    });
+    document.querySelectorAll('[data-termine-alle] .termin-monat').forEach(function (m) { if (!m.querySelector('li:not([hidden])')) m.hidden = true; });
+    if (vorbeiBlock) vorbeiBlock.hidden = !vorbeiListe.querySelector('li');
+    document.querySelectorAll('[data-termine-box]').forEach(function (box) { if (!box.querySelector('li:not([hidden])')) box.hidden = true; });
+  }
+
+  /* ── Social-Box (nur wenn Kanäle konfiguriert sind) ── */
+  function initSocialBox(box) { var s = socialLinks(true); if (!s) return; box.querySelector('[data-social-links]').innerHTML = s; box.hidden = false; }
 
   /* ── Reveal (Tool-Seiten) ── */
   function initReveal() {
@@ -400,6 +529,10 @@
     var ml = document.querySelector('[data-merkliste]'); if (ml) initMerkliste(ml);
     var vl = document.querySelector('[data-vorlesen]'); if (vl) initVorlesen(vl);
     document.querySelectorAll('[data-frage]').forEach(initFrage);
+    var cl = document.querySelector('[data-club]'); if (cl) initClub(cl);
+    document.querySelectorAll('[data-ausweis-vorschau]').forEach(function (el) { renderAusweis(el, mitglied()); });
+    document.querySelectorAll('[data-social-box]').forEach(initSocialBox);
+    initTermine();
     initReveal();
     track('page_view', { title: document.title });
     window.KOMPASS.flushQueue();

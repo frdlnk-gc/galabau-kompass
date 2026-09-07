@@ -6,7 +6,7 @@ ressort: messe-termine
 tags: [GaLaBau 2026, Messe Nürnberg, Termine, Fachkräfte, Klimaanpassung]
 featured: true
 bild_alt: "Fachbesucher vor dem Messezentrum Nürnberg am Morgen des ersten Messetags"
-bild_prompt: "Trade visitors in work jackets and business casual walking towards a large modern exhibition center entrance on a bright September morning in Germany, banners without readable text, wide documentary shot."
+bild_prompt: "Outdoor exhibition grounds of a large garden and landscaping trade fair in Germany on a bright September morning: lush show gardens with fresh green lawns, young trees in planters, perennials and natural stone paving in the foreground, trade visitors in work jackets strolling between the green displays, modern exhibition hall glass facade softly in the background, wide documentary shot, vivid greens."
 bild_caption: "Die GaLaBau gilt als umfassendste Gesamtschau im grünen Bereich – alle zwei Jahre in Nürnberg."
 relevanz: 90
 kurz:

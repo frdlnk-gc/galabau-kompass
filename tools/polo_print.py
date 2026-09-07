@@ -74,8 +74,8 @@ def spec(person: dict, size: str, url: str) -> str:
 </section>'''
 
 CSS = f'''
-@font-face{{font-family:'Fraunces';src:url('file://{ROOT}/assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}}
-@font-face{{font-family:'Fraunces';src:url('file://{ROOT}/assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}}
+@font-face{{font-family:'Plus Jakarta Sans';src:url('file://{ROOT}/assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}}
+@font-face{{font-family:'Plus Jakarta Sans';src:url('file://{ROOT}/assets/fonts/jakarta-italic.woff2') format('woff2');font-weight:200 800;font-style:italic;}}
 @font-face{{font-family:'Inter';src:url('file://{ROOT}/assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}}
 *{{margin:0;padding:0;box-sizing:border-box;}}
 html,body{{background:#fff;}}
@@ -87,7 +87,7 @@ html,body{{background:#fff;}}
 .logo{{display:flex;align-items:center;gap:6mm;}}
 .mark{{height:22mm;width:auto;}}
 .back .mark{{height:28mm;}}
-.word{{font-family:Fraunces,serif;font-weight:600;font-size:22mm;letter-spacing:-.02em;line-height:1;}}
+.word{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:22mm;letter-spacing:-.02em;line-height:1;}}
 .back .word{{font-size:27mm;}}
 .word i{{font-style:italic;color:{HONIG};}}
 .tagline{{font-size:4mm;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.65);}}
@@ -95,13 +95,13 @@ html,body{{background:#fff;}}
 .qrwrap{{background:{CREME};border-radius:8mm;padding:8mm;display:flex;align-items:center;justify-content:center;}}
 .qrwrap svg{{width:100%;height:100%;display:block;}}
 .arrow{{font-size:22mm;line-height:.9;color:{HONIG};font-weight:800;margin-top:-2mm;}}
-.line1{{font-family:Fraunces,serif;font-weight:600;font-size:14mm;line-height:1.05;letter-spacing:-.01em;}}
+.line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:14mm;line-height:1.05;letter-spacing:-.01em;}}
 .back .line1{{font-size:17mm;}}
 .line2{{font-size:8.2mm;line-height:1.25;color:{HONIG};font-weight:700;margin-top:3mm;}}
 .back .line2{{font-size:9.6mm;}}
 .foot{{font-size:3.6mm;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,232,.55);margin-top:4mm;}}
 .spec{{padding:18mm 16mm;color:#0B1F14;font-size:3.8mm;line-height:1.5;}}
-.spec h1{{font-family:Fraunces,serif;font-weight:600;font-size:8mm;margin-bottom:8mm;}}
+.spec h1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:8mm;margin-bottom:8mm;}}
 .spec table{{width:100%;border-collapse:collapse;}}
 .spec th,.spec td{{text-align:left;vertical-align:top;padding:2.6mm 3mm;border-bottom:.3mm solid #E5E1D6;}}
 .spec th{{width:38mm;font-size:3mm;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;}}

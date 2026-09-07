@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GaLaBau Kompass · Site-Generator (v4)
+GaLaBau Kompass · Site-Generator (v5)
 
 content/site.yaml          Navigation, Ressorts, Konfiguration
 content/ausgaben.yaml      Editorials je Monatsausgabe
@@ -15,7 +15,7 @@ content/seiten/*.md        Statische Seiten
 templates/*.html           Jinja2-Templates
 
 Erzeugt: index.html, artikel/<slug>/, artikel/index.html, ressort/<slug>/, thema/<slug>/, ausgaben/…,
-termine/, newsletter/ (+ abo/ Weiterleitung), zahlen/, merkliste/, <seite>/, 404.html,
+termine/, newsletter/ (+ abo/ Weiterleitung), zahlen/, merkliste/, club/, <seite>/, 404.html,
 assets/artikel-index.json, sitemap.xml
 
 Aufruf: python3 tools/build.py [--pdf]
@@ -110,14 +110,16 @@ def build():
     heute = dt.date.today()
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")), autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
     env.filters["de_date"] = lambda d, w=False: de_date(d, w)
-    env.globals.update(site=site, heute=heute, heute_lang=de_date(heute, weekday=True), FORMATE=FORMATE)
+    site_json = json.dumps({"api_base": site.get("api_base"), "stand": heute.isoformat(), "social": [s for s in (site.get("social") or []) if s.get("url")],
+                            "ressorts": [[r["slug"], r["name"], r["kurz"], r.get("nav", r["kurz"])] for r in site["ressorts"]]}, ensure_ascii=False).replace("</", "<\\/")
+    env.globals.update(site=site, heute=heute, heute_lang=de_date(heute, weekday=True), FORMATE=FORMATE, site_json=site_json)
 
     # ── Termine ──────────────────────────────────────────────────
     termine = []
     for t in termine_raw:
         d = to_date(t["datum"]); b = to_date(t["bis"]) if t.get("bis") else d
         termine.append({"datum": d, "bis": b, "datum_iso": d.isoformat(), "label": termin_label(t), "titel": t["titel"], "ort": t.get("ort", ""), "link": t.get("link", ""), "art": t.get("art", "Termin"),
-                        "monat": f"{MONATE[d.month - 1]} {d.year}", "vorbei": b < heute, "beschreibung": t.get("beschreibung", "")})
+                        "monat": f"{MONATE[d.month - 1]} {d.year}", "vorbei": b < heute, "bis_iso": b.isoformat(), "beschreibung": t.get("beschreibung", "")})
     termine.sort(key=lambda t: t["datum"])
     kommende = [t for t in termine if not t["vorbei"]]
     env.globals["termine"] = kommende[:6]
@@ -144,7 +146,7 @@ def build():
             "relevanz": int(meta.get("relevanz", 50)), "featured": bool(meta.get("featured", False)), "autor": meta.get("autor", "Redaktion GaLaBau Kompass"),
             "lesezeit": max(1, -(-n // 180)), "woerter": n, "quellen": meta.get("quellen", []), "stimmen": meta.get("stimmen", []),
             "html": html, "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip(),
-            "ausgabe": datum.strftime("%Y-%m"),
+            "ausgabe": datum.strftime("%Y-%m"), "neu": 0 <= (heute - datum).days <= 7,
         }
         artikel.append(a)
     artikel.sort(key=lambda a: (a["datum"], a["relevanz"]), reverse=True)
@@ -234,8 +236,8 @@ def build():
 
     # ── Archiv + Index-JSON ──────────────────────────────────────
     index = [{"slug": a["slug"], "title": a["title"], "dek": a["dek"], "datum": a["datum_iso"], "datum_kurz": a["datum_kurz"], "ressort": a["ressort"], "ressort_name": a["ressort_name"], "tags": a["tags"],
-              "bild": a["bild"], "relevanz": a["relevanz"], "lesezeit": a["lesezeit"], "featured": a["featured"], "format": a["format"], "format_name": a["format_name"], "text": a["text"][:1200]} for a in artikel]
-    write("assets/artikel-index.json", json.dumps({"generiert": dt.datetime.now().isoformat(timespec="minutes"), "ressorts": [{"slug": r["slug"], "name": r["name"]} for r in site["ressorts"]], "artikel": index}, ensure_ascii=False))
+              "bild": a["bild"], "relevanz": a["relevanz"], "lesezeit": a["lesezeit"], "featured": a["featured"], "format": a["format"], "format_name": a["format_name"], "neu": a["neu"], "text": a["text"][:1200]} for a in artikel]
+    write("assets/artikel-index.json", json.dumps({"generiert": heute.isoformat(), "ressorts": [{"slug": r["slug"], "name": r["name"]} for r in site["ressorts"]], "artikel": index}, ensure_ascii=False))
     write("artikel/index.html", env.get_template("archiv.html").render(depth=1, anzahl=len(artikel), top_tags=top_tags, preset_ressort=None, aeltestes=artikel[-1]["datum"]))
     for r in site["ressorts"]:
         arts = [a for a in by_ressort[r["slug"]] if a["format"] != "meldung"]; melds = [a for a in by_ressort[r["slug"]] if a["format"] == "meldung"]
@@ -259,6 +261,7 @@ def build():
     write("abo/index.html", '<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../newsletter/"><title>Weiterleitung</title></head><body><a href="../newsletter/">Weiter zum Newsletter</a></body></html>')
     write("zahlen/index.html", env.get_template("zahlen.html").render(depth=1))
     write("merkliste/index.html", env.get_template("merkliste.html").render(depth=1))
+    write("club/index.html", env.get_template("club.html").render(depth=1))
     seiten_dir = os.path.join(CONTENT, "seiten")
     for fn in sorted(os.listdir(seiten_dir)):
         if not fn.endswith(".md"): continue
@@ -270,7 +273,7 @@ def build():
 
     # ── Sitemap ──────────────────────────────────────────────────
     base = f"https://{site['domain']}"
-    urls = [""] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/"] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
+    urls = [""] + [f"artikel/{a['slug']}/" for a in artikel] + [f"ressort/{r}/" for r in ressorts] + [f"thema/{d['slug']}/" for d in dossiers] + ["artikel/", "ausgaben/", "termine/", "newsletter/", "zahlen/", "club/"] + [f"ausgaben/{x['ym']}/" for x in ausgaben] + ["standort/", "branchenumfrage/", "ueber-uns/"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{base}/{u}</loc></url>" for u in urls) + "\n</urlset>\n")
 
     print(f"✓ {len(lang)} Beiträge + {len(meldungen)} Meldungen · {len(ressorts)} Ressorts · {len(dossiers)} Dossiers · {len(ausgaben)} Ausgaben · {len(kommende)} Termine · {len(zahlen)} Zahlen")
@@ -281,7 +284,13 @@ def render_pdfs(ausgaben):
     for x in ausgaben:
         src = os.path.join(ROOT, "ausgaben", x["ym"], "print.html")
         pdf = os.path.join(out, f"galabau-kompass-{x['ym']}.pdf")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", f"--print-to-pdf={pdf}", f"file://{src}"], check=True, capture_output=True)
+        cmd = [CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer", "--virtual-time-budget=12000", f"--print-to-pdf={pdf}", f"file://{src}"]
+        for versuch in range(2):  # Chrome hängt gelegentlich nach dem Druck → Zeitlimit + ein Wiederholungsversuch
+            try:
+                subprocess.run(cmd, check=True, capture_output=True, timeout=150); break
+            except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
+                if versuch: raise
+                print("  PDF", x["label"], "Wiederholung nach", type(e).__name__)
         print("  PDF", x["label"], f"{os.path.getsize(pdf) // 1024} KB")
 
 if __name__ == "__main__":

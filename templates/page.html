@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_teaser.html" import abo_form %}
 {% set root = '../' * depth %}
 {% block title %}{{ p.title }} | {{ site.name }}{% endblock %}
 {% block description %}{{ p.description or p.title }}{% endblock %}
@@ -12,11 +13,7 @@
   </header>
   {% if slug == 'abo' %}
   <div class="abo-panel">
-    <form class="abo-form zeile" data-abo>
-      <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email" aria-label="E-Mail-Adresse">
-      <button type="submit" class="btn">Kostenlos anmelden</button>
-      <div class="abo-note" data-abo-note></div>
-    </form>
+    {{ abo_form(root, 'zeile') }}
     <ul class="vorteile">
       <li><b>Monatsausgabe als PDF</b><span>Alle Beiträge des Monats, gesetzt zum Lesen und Drucken.</span></li>
       <li><b>Wochenüberblick</b><span>Einmal pro Woche die wichtigsten Meldungen in drei Minuten.</span></li>

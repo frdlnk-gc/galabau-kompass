@@ -4,80 +4,82 @@
 <meta charset="UTF-8">
 <title>GaLaBau Kompass · Ausgabe 04/2026</title>
 <style>
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
   @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
   @page{size:A4;margin:0;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
   .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
   .seite:last-child{page-break-after:auto;}
-  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
   /* Cover */
-  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
-  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
-  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
-  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
-  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
-  .cover .wort i{color:#6EE7A0;}
-  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
-  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
-  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
   .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
-  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
-  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
-  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
-  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
-  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
   /* Editorial / Inhalt */
   .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
-  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
-  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
-  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
-  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
-  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
-  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
-  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
   /* Artikel */
   .art .kopf{margin-bottom:6mm;}
-  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
-  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
-  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
-  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
   .art figure{margin:4mm 0 6mm;}
-  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
-  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
   .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
   .art .text p{margin-bottom:3mm;}
-  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
-  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
-  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
   .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
   .art .text li{margin-bottom:1mm;}
   .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
-  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
-  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
-  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
-  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
-  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
   .art .text a{color:inherit;text-decoration:none;}
-  .art .kurz{background:#F4F2EB;border-left:.8mm solid #15803D;padding:3mm 4mm;margin:0 0 5mm;font-size:9.2pt;border-radius:1.5mm;}
-  .art .kurz b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
   .art .kurz ul{margin-left:4mm;}
   .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
   .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
   .art .kurz dt{font-weight:700;}
-  .meld .item{padding:3mm 0;border-bottom:.2mm solid #E5E1D6;break-inside:avoid;}
-  .meld .d{font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
-  .meld h3{font-family:Fraunces,serif;font-weight:600;font-size:12pt;line-height:1.2;margin:1mm 0;}
-  .meld p{font-size:9.2pt;color:#4B5A50;}
-  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
-  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
   .art .quellen ol{margin-left:4mm;}
-  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
   /* Impressum */
-  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
-  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
   .imp p{margin-bottom:3mm;}
 </style>
 </head>
@@ -86,10 +88,10 @@
   <section class="seite cover">
     <img src="../../assets/img/schwammstadt-regengaerten-praxis.jpg" alt="">
     <div class="kopf">
-      <div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
       <div class="nr">Nr. 7 · Ausgabe<b>04/2026</b>April 2026</div>
     </div>
-    <div class="titel"><div class="kick">Bauen &amp; Pflanzen</div><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p>Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p></div>
+    <div class="titel"><span class="kick">Bauen &amp; Pflanzen</span><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p>Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p></div>
     <div class="teaser"><span>Vier Landesgartenschauen 2026: Neuss, Leinefe...</span><span>Schwammstadt: Vom Fachbegriff zum Auftrag</span><span>Muss ich Regenpausen bezahlen?</span></div>
   </section>
 
@@ -104,7 +106,7 @@
 
   <!-- Artikel -->
   <section class="seite art">
-    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt – und wo die Grenze liegt</h1><p class="dek">Im Mai wird gearbeitet, solange es hell ist. Das Gesetz lässt mehr zu, als viele Betriebe denken – aber es verlangt Ausgleich, Pausen, Ruhezeiten und Aufzeichnungen. Die Regeln für Kolonnen, Fahrer und Jugendliche.</p><div class="byline">Redaktion GaLaBau Kompass · 29. April 2026</div></div>
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt – und wo die Grenze liegt</h1><p class="dek">Im Mai wird gearbeitet, solange es hell ist. Das Gesetz lässt mehr zu, als viele Betriebe denken – aber es verlangt Ausgleich, Pausen, Ruhezeiten und Aufzeichnungen. Die Regeln für Kolonnen, Fahrer und Jugendliche.</p><div class="byline">Redaktion GaLaBau Kompass · 29. April 2026</div></div>
 <figure><img src="../../assets/img/arbeitszeitgesetz-saison-zehn-stunden.jpg" alt=""><figcaption>Zehn Stunden sind erlaubt – wenn der Schnitt über sechs Monate bei acht bleibt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Acht Stunden werktäglich, bis zehn mit Ausgleich auf acht im Schnitt über sechs Monate; der Samstag ist Werktag; Fahrzeit vom Betrieb zählt mit.</li><li>Pausen 30 Minuten ab sechs, 45 Minuten ab neun Stunden; elf Stunden Ruhezeit; Sonntagsarbeit nur mit Ausnahme und Ersatzruhetag.</li><li>Unter 18: acht Stunden, 40 Stunden, nicht vor 6 und nach 20 Uhr; alles über acht Stunden aufzeichnen, seit 2022 die gesamte Arbeitszeit.</li></ul></div>    <div class="text"><p>Die Saison im GaLaBau folgt dem Licht, nicht der Uhr. Von April bis Oktober arbeiten Kolonnen regelmäßig länger als acht Stunden, und die meisten Betriebe wissen ungefähr, dass das erlaubt ist. Die genauen Regeln kennen wenige – und die Berufsgenossenschaft, das Gewerbeaufsichtsamt und im Streitfall das Arbeitsgericht fragen genau danach.</p>
 <h2>Acht Stunden, zehn Stunden, Ausgleich</h2>
 <p>Die werktägliche Arbeitszeit beträgt nach dem Arbeitszeitgesetz acht Stunden. Sie darf auf bis zu zehn Stunden verlängert werden, wenn innerhalb von sechs Kalendermonaten oder 24 Wochen im Durchschnitt acht Stunden werktäglich nicht überschritten werden. Werktage sind Montag bis Samstag – die gesetzliche Wochenarbeitszeit liegt damit bei 48 Stunden, in Spitzen bei 60.</p>
@@ -124,7 +126,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Arbeitszeitgesetz (ArbZG), § 3 Arbeitszeit der Arbeitnehmer, § 4 Ruhepausen, § 5 Ruhezeit, § 9 Sonn- und Feiertagsruhe, § 16 Aushang und Arbeitszeitnachweise – <a href="https://www.gesetze-im-internet.de/arbzg/__3.html">www.gesetze-im-internet.de/arbzg/__3.html</a></li><li>Jugendarbeitsschutzgesetz (JArbSchG), § 8 Dauer der Arbeitszeit, § 14 Nachtruhe – <a href="https://www.gesetze-im-internet.de/jarbschg/__8.html">www.gesetze-im-internet.de/jarbschg/__8.html</a></li><li>Bundesarbeitsgericht, Beschluss vom 13. September 2022, 1 ABR 22/21 (Pflicht zur Erfassung der Arbeitszeit) – <a href="https://www.bundesarbeitsgericht.de/presse/einfuehrung-elektronischer-zeiterfassung-initiativrecht-des-betriebsrats/">www.bundesarbeitsgericht.de/presse/einfuehrung-elektronis...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Recht &amp; Tarif</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Messe &amp; Termine</div><h1>Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad Nenndorf</h1><p class="dek">Zwischen dem 16. April und dem 18. Oktober öffnen vier Gartenschauen in vier Bundesländern. Für die Branche sind sie Schaufenster, Auftragsquelle und Ausflugsziel für das Team – ein Überblick mit Terminen.</p><div class="byline">Redaktion GaLaBau Kompass · 23. April 2026</div></div>
+    <div class="kopf"><span class="r">Messe &amp; Termine</span><h1>Vier Landesgartenschauen 2026: Neuss, Leinefelde-Worbis, Ellwangen, Bad Nenndorf</h1><p class="dek">Zwischen dem 16. April und dem 18. Oktober öffnen vier Gartenschauen in vier Bundesländern. Für die Branche sind sie Schaufenster, Auftragsquelle und Ausflugsziel für das Team – ein Überblick mit Terminen.</p><div class="byline">Redaktion GaLaBau Kompass · 23. April 2026</div></div>
 <figure><img src="../../assets/img/landesgartenschauen-2026.jpg" alt=""><figcaption>Gartenschauen bleiben ein halbes Jahr geöffnet – und ihre Anlagen für Jahrzehnte. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Neuss (16. April bis 11. Oktober), Leinefelde-Worbis (23. April bis 11. Oktober), Ellwangen (24. April bis 4. Oktober), Bad Nenndorf (29. April bis 18. Oktober).</li><li>Die Anlagen bauen regionale Betriebe über Ausschreibungen in Losen – Vergaben laufen zwei bis drei Jahre vor der Eröffnung, Präqualifikation ist Voraussetzung.</li><li>Für Betriebe sind die Schauen Referenz, Schaufenster für Pflanzenverwendung und Materialien und ein Ausflugsziel für die Kolonne.</li></ul></div>    <div class="text"><p>Gartenschauen sind für den Garten- und Landschaftsbau das, was Automessen für die Autoindustrie sind – mit dem Unterschied, dass die Exponate danach stehen bleiben. 2026 finden in Deutschland vier Landesgartenschauen statt, verteilt auf Nordrhein-Westfalen, Thüringen, Baden-Württemberg und Niedersachsen.</p>
 <h2>Die Termine</h2>
 <div class="table-wrap"><div class="tabelle"><table>
@@ -147,7 +149,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Landesgartenschau Ellwangen 2026: Zeitfenster 24. April bis 4. Oktober 2026 (164 Tage, 26 Hektar) – <a href="https://www.ellwangen2026.de/zeitfenster-fuer-die-landesgartenschau-2026-in-ellwangen-festgelegt/">www.ellwangen2026.de/zeitfenster-fuer-die-landesgartensch...</a></li><li>Landesgartenschau Leinefelde-Worbis 2026 (23. April bis 11. Oktober 2026) – <a href="https://www.lgs-leinefelde-worbis.de/">www.lgs-leinefelde-worbis.de/</a></li><li>Landesgartenschau Neuss 2026 – <a href="https://www.landesgartenschau-neuss.de/">www.landesgartenschau-neuss.de/</a></li><li>mein-eigenheim.de: Alle Bundes- und Landesgartenschauen 2026 im Überblick (Neuss 16. April bis 11. Oktober, Bad Nenndorf 29. April bis 18. Oktober) – <a href="https://www.mein-eigenheim.de/gartengestaltung/buga-und-laga-2026.html">www.mein-eigenheim.de/gartengestaltung/buga-und-laga-2026.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Messe &amp; Termine</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Bauen &amp; Pflanzen</div><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p class="dek">Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p><div class="byline">Redaktion GaLaBau Kompass · 15. April 2026</div></div>
+    <div class="kopf"><span class="r">Bauen &amp; Pflanzen</span><h1>Schwammstadt: Vom Fachbegriff zum Auftrag</h1><p class="dek">Regenwasser speichern statt ableiten – das Prinzip ist alt, die Nachfrage neu. Kommunen planen Regengärten, Baumrigolen und Versickerungsmulden, Landesgartenschauen zeigen sie, Förderprogramme bezahlen sie. Was GaLaBau-Betriebe wissen müssen.</p><div class="byline">Redaktion GaLaBau Kompass · 15. April 2026</div></div>
 <figure><img src="../../assets/img/schwammstadt-regengaerten-praxis.jpg" alt=""><figcaption>Versickerungsmulde im Straßenraum: Das Wasser bleibt, wo es fällt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Regengärten, Baumrigolen, Entsiegelung, Retentionsdächer und Zisternen: Die Bausteine sind bekannt, neu ist ihre Kombination in kommunalen Aufträgen.</li><li>Die Landesgartenschau 2027 in Büdingen zeigt Regengärten als Kernelement, Nürnberg plant Schwammstadt-Maßnahmen für die Gartenschau 2030; der Grün-Blaue Pfad der GaLaBau 2026 führt durch die Technik.</li><li>Betriebe brauchen dafür Bodenkunde für die Versickerung, die passende Pflanzenverwendung und Referenzen für die Vergabe.</li></ul></div>    <div class="text"><p>Eine Stadt, die Regenwasser aufnimmt wie ein Schwamm, es speichert und langsam wieder abgibt – dieses Bild hat es aus der Fachplanung in die Gemeinderäte geschafft. Starkregen und Hitzesommer haben dafür gesorgt. Für den Garten- und Landschaftsbau ist die Schwammstadt kein Trend, sondern ein Leistungsbereich, der in den nächsten Jahren einen wachsenden Teil der kommunalen Aufträge ausmachen wird.</p>
 <h2>Was gebaut wird</h2>
 <p>Die Bausteine sind bekannt, ihre Kombination ist neu:</p>
@@ -168,7 +170,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Landesbetrieb Landwirtschaft Hessen: Regengärten – Schwammstadtkonzept auf der Landesgartenschau 2027 in Büdingen erleben – <a href="https://llh.hessen.de/bildung/hessische-gartenakademie/gartenschauen/regengarten-schwammstadtkonzept-lgs-2027/">llh.hessen.de/bildung/hessische-gartenakademie/gartenscha...</a></li><li>Stadt Nürnberg: Urbane Gartenschau Nürnberg 2030 (Keßlerplatz, Schwammstadt und Entsiegelung) – <a href="https://www.nuernberg.de/internet/stadtportal/urbane_gartenschau_nuernberg.html">www.nuernberg.de/internet/stadtportal/urbane_gartenschau_...</a></li><li>Messe Nürnberg: Der GaLaBau als wichtiger Player bei der Klimaanpassung, Mai 2026 – <a href="https://www.galabau-messe.com/de-de/aktuelles/2026/05/player-bei-der-klimaanpassung">www.galabau-messe.com/de-de/aktuelles/2026/05/player-bei-...</a></li><li>Messe Nürnberg: Trendbarometer der GaLaBau 2026 (Grün-Blauer Pfad) – <a href="https://www.galabau-messe.com/de-de/presse/pressemitteilungen/2026/01/trendbarometer-galabau-2026">www.galabau-messe.com/de-de/presse/pressemitteilungen/202...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Bauen &amp; Pflanzen</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Praxisfrage · Recht &amp; Tarif</div><h1>Muss ich Regenpausen bezahlen?</h1><p class="dek">Wer die Kolonne wegen Wetters nach Hause schickt, trägt das Betriebsrisiko – außer in der Schlechtwetterzeit mit Saison-Kurzarbeitergeld.</p><div class="byline">Redaktion GaLaBau Kompass · 14. April 2026</div></div>
+    <div class="kopf"><span class="r">Praxisfrage · Recht &amp; Tarif</span><h1>Muss ich Regenpausen bezahlen?</h1><p class="dek">Wer die Kolonne wegen Wetters nach Hause schickt, trägt das Betriebsrisiko – außer in der Schlechtwetterzeit mit Saison-Kurzarbeitergeld.</p><div class="byline">Redaktion GaLaBau Kompass · 14. April 2026</div></div>
 <figure><img src="../../assets/img/praxisfrage-regenpausen-bezahlen.jpg" alt=""><figcaption>Der Regen kostet den Betrieb den Tag – nicht den Mitarbeiter den Lohn. · Symbolbild</figcaption></figure><div class="kurz"><b>Die kurze Antwort</b><p>Ja. Fällt die Arbeit wegen Regen, Frost oder Sturm aus, trägt der Betrieb das Betriebsrisiko und zahlt den Lohn weiter (§ 615 BGB). Die Ausnahme ist die Schlechtwetterzeit vom 1. Dezember bis 31. März: Dort kann der Betrieb Saison-Kurzarbeitergeld beantragen, und die Bundesagentur ersetzt einen Teil des Ausfalls.</p></div>    <div class="text"><p>Es regnet seit Stunden, die Pflasterfläche steht unter Wasser, der Vorarbeiter schickt die Kolonne um elf nach Hause. Am Monatsende steht die Frage im Raum, ob die fehlenden Stunden vom Lohn abgezogen werden dürfen. Sie dürfen nicht.</p>
 <h2>Das Betriebsrisiko liegt beim Betrieb</h2>
 <p>Nach § 615 BGB behält der Arbeitnehmer seinen Vergütungsanspruch, wenn der Arbeitgeber das Risiko des Arbeitsausfalls trägt. Wetter gehört dazu: Der Mitarbeiter war arbeitsbereit, der Betrieb konnte die Arbeit nicht abnehmen. Der Lohn wird gezahlt, als hätte er gearbeitet. Ein Abzug, eine unbezahlte Zwangspause oder ein „Nachholen“ ohne Vergütung sind unzulässig. Zulässig ist, die Kolonne auf eine andere Baustelle, in die Werkstatt oder auf den Hof zu schicken – Arbeit ist Arbeit.</p>
@@ -180,7 +182,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bürgerliches Gesetzbuch, § 615 Vergütung bei Annahmeverzug und bei Betriebsrisiko – <a href="https://www.gesetze-im-internet.de/bgb/__615.html">www.gesetze-im-internet.de/bgb/__615.html</a></li><li>Sozialgesetzbuch III, § 101 Saison-Kurzarbeitergeld (Schlechtwetterzeit 1. Dezember bis 31. März) – <a href="https://www.gesetze-im-internet.de/sgb_3/__101.html">www.gesetze-im-internet.de/sgb_3/__101.html</a></li><li>GaLaBau Kompass: Schlechtwetterzeit – Saison-Kurzarbeit statt Entlassung (Beitrag vom 1. Dezember 2025) – <a href="../../artikel/schlechtwetterzeit-saison-kurzarbeit/">../../artikel/schlechtwetterzeit-saison-kurzarbeit/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Recht &amp; Tarif</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Produkt · Produkte &amp; Software</div><h1>PlanRadar: Mängel, Fotos und Bautagebuch vom Handy in den Bericht</h1><p class="dek">Eine App, die Fotos, Notizen und Sprachaufnahmen von der Baustelle in Bautagebücher, Mängelberichte und Abnahmeprotokolle verwandelt. Über 170.000 Nutzer in mehr als 75 Ländern – und ein Preismodell, das auch kleine Betriebe erreicht.</p><div class="byline">Redaktion GaLaBau Kompass · 9. April 2026</div></div>
+    <div class="kopf"><span class="r">Produkt · Produkte &amp; Software</span><h1>PlanRadar: Mängel, Fotos und Bautagebuch vom Handy in den Bericht</h1><p class="dek">Eine App, die Fotos, Notizen und Sprachaufnahmen von der Baustelle in Bautagebücher, Mängelberichte und Abnahmeprotokolle verwandelt. Über 170.000 Nutzer in mehr als 75 Ländern – und ein Preismodell, das auch kleine Betriebe erreicht.</p><div class="byline">Redaktion GaLaBau Kompass · 9. April 2026</div></div>
 <figure><img src="../../assets/img/planradar-baudokumentation-app.jpg" alt=""><figcaption>Ein Foto, ein Tippen auf den Plan, ein Satz: Aus dem Baustellenalltag wird ein Beleg, der im Streitfall zählt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Erfasst Mängel, Aufgaben und Baufortschritt als Foto, Video, Notiz oder Sprachaufnahme, verortet auf dem Plan, und erzeugt daraus Berichte auf Knopfdruck.</li><li>Gegründet 2013 in Wien, über 170.000 Nutzer in mehr als 75 Ländern, mehr als 400 Beschäftigte in 16 Ländern.</li><li>Einstieg ab 26 Euro pro Monat, Team-Pakete ab 89 Euro (bis zehn Nutzer), 30 Tage kostenlos testen; iOS, Android und Browser.</li></ul></div><div class="kurz steck"><b>Steckbrief</b><dl><dt>Hersteller</dt><dd>PlanRadar GmbH, Wien (gegründet 2013)</dd><dt>Kategorie</dt><dd>Baudokumentation und Mängelmanagement (App und Web)</dd><dt>Funktionen</dt><dd>Mängel, Aufgaben, Baufortschritt; Fotos, Videos, Sprachnotizen, Planverortung; Berichte als Bautagebuch, Mängelbericht, Abnahmeprotokoll; Echtzeit-Teilen mit Beteiligten</dd><dt>Verbreitung</dt><dd>Über 170.000 Nutzer in mehr als 75 Ländern</dd><dt>Preis</dt><dd>Ab 26 Euro pro Monat; Starter ab 89 Euro, Pro ab 129 Euro pro Monat (jeweils bis zehn Nutzer); 30 Tage kostenlos</dd><dt>Plattformen</dt><dd>iOS, Android, Webbrowser</dd><dt>Für wen</dt><dd>Bauleiter und Vorarbeiter, die Mängel und Fortschritt gegenüber Auftraggebern belegen müssen</dd><dt>Stand</dt><dd>Herstellerangaben und Fachpresse, abgerufen September 2026</dd></dl></div>    <div class="text"><p>Die meisten Streitigkeiten am Bau entscheiden sich nicht auf der Baustelle, sondern Monate später am Schreibtisch: Wer hat wann was gemeldet, wie sah die Fläche vor dem Winter aus, wann wurde der Mangel angezeigt? PlanRadar ist eine App, die genau diese Fragen beantwortet – mit Fotos, die auf dem Plan verortet sind, mit Zeitstempel und mit Berichten, die auf Knopfdruck entstehen.</p>
 <h2>Wie es funktioniert</h2>
 <p>Der Bauleiter lädt den Plan der Baustelle hoch – als PDF oder Bild. Auf der Baustelle tippt der Vorarbeiter auf die Stelle, macht ein Foto, spricht eine Notiz oder schreibt zwei Sätze, ordnet den Eintrag einer Kategorie zu und weist ihn jemandem zu. Der Auftraggeber, der Nachunternehmer oder das Büro sehen den Eintrag in Echtzeit. Am Ende der Woche erzeugt die App daraus ein Bautagebuch, am Ende des Auftrags ein Abnahmeprotokoll mit allen offenen und erledigten Punkten.</p>
@@ -196,7 +198,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>PlanRadar: Baudokumentation-App – Funktionen und Vergleich – <a href="https://www.planradar.com/de/baudokumentation-app/">www.planradar.com/de/baudokumentation-app/</a></li><li>Softwareabc24: PlanRadar 2026 – Bewertungen, Preise und Features – <a href="https://www.softwareabc24.de/baudokumentation-software/planradar">www.softwareabc24.de/baudokumentation-software/planradar</a></li><li>KI-Syndikat: PlanRadar im Überblick 2026 – Preise ab 26 Euro pro Monat – <a href="https://www.ki-syndikat.de/tools/planradar/">www.ki-syndikat.de/tools/planradar/</a></li><li>selbststaendigkeit.com: PlanRadar – Gründergeschichte (Wien, 2013) – <a href="https://selbststaendigkeit.com/bekannte-gruender/planradar-gruendergeschichte-der-innovativen-bau-software/">selbststaendigkeit.com/bekannte-gruender/planradar-gruend...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Produkte &amp; Software</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Zeitarbeit im GaLaBau: Was erlaubt ist – und wo das Bauverbot greift</h1><p class="dek">Im Baugewerbe ist Arbeitnehmerüberlassung grundsätzlich verboten. Für den Garten- und Landschaftsbau gibt es eine Ausnahme mit engen Bedingungen: nur zwischen Baubetrieben, nur im selben Tarifbereich, nur mit Sozialkassen-Vorgeschichte. Ein Überblick.</p><div class="byline">Redaktion GaLaBau Kompass · 8. April 2026</div></div>
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Zeitarbeit im GaLaBau: Was erlaubt ist – und wo das Bauverbot greift</h1><p class="dek">Im Baugewerbe ist Arbeitnehmerüberlassung grundsätzlich verboten. Für den Garten- und Landschaftsbau gibt es eine Ausnahme mit engen Bedingungen: nur zwischen Baubetrieben, nur im selben Tarifbereich, nur mit Sozialkassen-Vorgeschichte. Ein Überblick.</p><div class="byline">Redaktion GaLaBau Kompass · 8. April 2026</div></div>
 <figure><img src="../../assets/img/zeitarbeit-im-galabau-was-erlaubt-ist.jpg" alt=""><figcaption>Kollegenhilfe zwischen Baubetrieben: erlaubt, wenn beide unter denselben Tarifvertrag fallen. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>§ 1b Arbeitnehmerüberlassungsgesetz verbietet die Überlassung in Baubetriebe für gewerbliche Arbeiten – der GaLaBau ist Baugewerbe, die klassische Zeitarbeitsfirma fällt aus.</li><li>Zulässig ist die Kollegenhilfe zwischen Betrieben, die unter denselben GaLaBau-Tarifverträgen stehen und in die Sozialkasse einzahlen (Verleiher seit mindestens drei Jahren).</li><li>Verstöße sind Ordnungswidrigkeiten; das Arbeitsverhältnis kann als eines mit dem Entleiher gelten.</li></ul></div>    <div class="text"><p>In der Saison fehlen Leute, im Winter sind sie übrig – kaum eine Branche hätte so viel Verwendung für Zeitarbeit wie der Garten- und Landschaftsbau. Und kaum eine ist rechtlich so eingeschränkt. § 1b des Arbeitnehmerüberlassungsgesetzes verbietet die Überlassung von Arbeitnehmern in Betriebe des Baugewerbes für Arbeiten, die üblicherweise von Arbeitern verrichtet werden. Der GaLaBau zählt zum Baugewerbe. Die klassische Zeitarbeitsfirma, die einen Helfer für die Pflasterkolonne stellt, ist damit in der Regel nicht zulässig.</p>
 <h2>Die Ausnahme: Baubetrieb hilft Baubetrieb</h2>
 <p>Das Gesetz kennt eine Ausnahme, die für den GaLaBau gemacht scheint. Zulässig ist die Überlassung zwischen Betrieben des Baugewerbes, wenn beide von denselben Rahmen- und Sozialkassentarifverträgen erfasst werden – im GaLaBau also beide unter den Tarifverträgen des Garten- und Landschaftsbaus stehen und in die Sozialkasse einzahlen. Nach der Auslegung in der Fachliteratur muss der verleihende Betrieb zudem seit mindestens drei Jahren von diesen Tarifverträgen erfasst sein. Im Branchenjargon heißt das Kollegenhilfe: Betrieb A hat im Frühjahr zu wenig Aufträge, Betrieb B zu viele – A überlässt B für einige Wochen eine Kolonne.</p>
@@ -215,7 +217,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>§ 1b Arbeitnehmerüberlassungsgesetz (AÜG) – Einschränkungen im Baugewerbe – <a href="https://www.gesetze-im-internet.de/a_g/__1b.html">www.gesetze-im-internet.de/a_g/__1b.html</a></li><li>HK2 / zeitarbeit-und-recht.de: Arbeitnehmerüberlassung in der Baubranche – Baugewerbe, Abbruchgewerbe, Gerüstbaugewerbe, Dachdeckerhandwerk sowie Garten- und Landschaftsbau – <a href="https://www.zeitarbeit-und-recht.de/archive/die-arbeitnehmerueberlassung-im-baugewerbe/">www.zeitarbeit-und-recht.de/archive/die-arbeitnehmerueber...</a></li><li>Haufe: Arbeitnehmerüberlassung – Dauer auf 18 Monate begrenzt (Höchstüberlassungsdauer, Equal Pay nach neun Monaten) – <a href="https://www.haufe.de/personal/arbeitsrecht/reform-der-zeitarbeit/arbeitnehmerueberlassung-dauer-auf-18-monate-begrenzt_76_433684.html">www.haufe.de/personal/arbeitsrecht/reform-der-zeitarbeit/...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 04/2026</span><span>Recht &amp; Tarif</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger – im GaLaBau entscheidet der Meister im eigenen Haus</h1><p class="dek">Das IfM Bonn hat seine Schätzung für die Jahre 2026 bis 2030 vorgelegt. Weniger Übergaben als erwartet, weil viele Betriebe wirtschaftlich unattraktiv geworden sind. Was das für Inhaber bedeutet, die in fünf Jahren aufhören wollen.</p><div class="byline">Redaktion GaLaBau Kompass · 2. April 2026</div></div>
+    <div class="kopf"><span class="r">Markt &amp; Politik</span><h1>Betriebsnachfolge: 186.000 Unternehmen suchen bis 2030 einen Nachfolger – im GaLaBau entscheidet der Meister im eigenen Haus</h1><p class="dek">Das IfM Bonn hat seine Schätzung für die Jahre 2026 bis 2030 vorgelegt. Weniger Übergaben als erwartet, weil viele Betriebe wirtschaftlich unattraktiv geworden sind. Was das für Inhaber bedeutet, die in fünf Jahren aufhören wollen.</p><div class="byline">Redaktion GaLaBau Kompass · 2. April 2026</div></div>
 <figure><img src="../../assets/img/betriebsnachfolge-186000-unternehmen.jpg" alt=""><figcaption>Die wahrscheinlichste Nachfolgerin steht oft schon auf dem Hof – wenn der Inhaber fünf Jahre vorher fragt. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>IfM Bonn: rund 186.000 Unternehmen stehen 2026 bis 2030 vor der Übergabe – 800 pro Jahr weniger als zuvor geschätzt, weil viele Betriebe unattraktiv geworden sind.</li><li>Im GaLaBau mit knapp 20.000 Betrieben und steigenden Insolvenzen ist der wahrscheinlichste Nachfolger intern: Meister, Bauleiterin, Vorarbeiter.</li><li>Der Fünf-Jahres-Plan: klären, aufbauen, übergabefähig machen, finanzieren, übergeben – mit 58 beginnen, nicht mit 63.</li></ul></div>    <div class="text"><p>Rund 186.000 Unternehmen in Deutschland stehen zwischen 2026 und 2030 vor der Übergabe, weil ihre Inhaber aus Altersgründen, wegen Krankheit oder durch Tod ausscheiden. Das ist die aktuelle Schätzung des Instituts für Mittelstandsforschung (IfM) Bonn – und sie liegt unter der vorherigen Prognose: rund 800 Übergaben pro Jahr weniger als für den Zeitraum 2022 bis 2026 erwartet. Nicht, weil die Inhaber jünger geworden wären, sondern weil sich die wirtschaftliche Lage vieler Betriebe verschlechtert hat und Übernahmen damit weniger attraktiv sind. Ein Betrieb, der keinen Nachfolger findet, wird nicht übergeben. Er wird geschlossen.</p>
 <h2>Was das für den GaLaBau heißt</h2>
 <p>Die Branche zählt knapp 20.000 Betriebe, die meisten inhabergeführt, viele in der ersten oder zweiten Generation. Das IfM weist keine Zahlen für den Landschaftsbau aus, aber die Altersstruktur der Inhaber unterscheidet sich nicht von der des Handwerks: Ein erheblicher Teil ist über 55. Auf die Branche übertragen bedeutet die Schätzung, dass in den kommenden fünf Jahren mehrere tausend GaLaBau-Betriebe einen Nachfolger brauchen – in einer Phase, in der Insolvenzen zunehmen und Banken Übernahmen kritischer prüfen.</p>

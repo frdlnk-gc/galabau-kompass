@@ -21,6 +21,6 @@
   <div class="ergebnis-zeile"><span data-ergebnis>{{ anzahl }} Beiträge</span><button type="button" class="btn-link" data-reset hidden>Filter zurücksetzen</button></div>
   <div class="river" data-liste></div>
   <div class="center mt-s"><button type="button" class="btn ghost" data-mehr hidden>Mehr laden</button></div>
-  <div class="box mt"><h3 class="box-title">Themen</h3><div class="tag-wolke">{% for t in top_tags %}<a href="?q={{ t|urlencode }}" data-tag="{{ t }}">{{ t }}</a>{% endfor %}</div></div>
+  <div class="box mt"><span class="box-title">Themen</span><div class="tag-wolke">{% for t in top_tags %}<a href="?q={{ t|urlencode }}" data-tag="{{ t }}">{{ t }}</a>{% endfor %}</div></div>
 </section>
 {% endblock %}

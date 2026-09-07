@@ -4,80 +4,82 @@
 <meta charset="UTF-8">
 <title>GaLaBau Kompass · Ausgabe 11/2025</title>
 <style>
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
   @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
   @page{size:A4;margin:0;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
   .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
   .seite:last-child{page-break-after:auto;}
-  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
   /* Cover */
-  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
-  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
-  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
-  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
-  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
-  .cover .wort i{color:#6EE7A0;}
-  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
-  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
-  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
   .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
-  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
-  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
-  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
-  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
-  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
   /* Editorial / Inhalt */
   .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
-  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
-  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
-  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
-  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
-  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
-  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
-  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
   /* Artikel */
   .art .kopf{margin-bottom:6mm;}
-  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
-  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
-  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
-  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
   .art figure{margin:4mm 0 6mm;}
-  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
-  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
   .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
   .art .text p{margin-bottom:3mm;}
-  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
-  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
-  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
   .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
   .art .text li{margin-bottom:1mm;}
   .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
-  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
-  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
-  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
-  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
-  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
   .art .text a{color:inherit;text-decoration:none;}
-  .art .kurz{background:#F4F2EB;border-left:.8mm solid #15803D;padding:3mm 4mm;margin:0 0 5mm;font-size:9.2pt;border-radius:1.5mm;}
-  .art .kurz b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
   .art .kurz ul{margin-left:4mm;}
   .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
   .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
   .art .kurz dt{font-weight:700;}
-  .meld .item{padding:3mm 0;border-bottom:.2mm solid #E5E1D6;break-inside:avoid;}
-  .meld .d{font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
-  .meld h3{font-family:Fraunces,serif;font-weight:600;font-size:12pt;line-height:1.2;margin:1mm 0;}
-  .meld p{font-size:9.2pt;color:#4B5A50;}
-  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
-  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
   .art .quellen ol{margin-left:4mm;}
-  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
   /* Impressum */
-  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
-  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
   .imp p{margin-bottom:3mm;}
 </style>
 </head>
@@ -86,10 +88,10 @@
   <section class="seite cover">
     <img src="../../assets/img/herbstumfrage-2025-geschaeftslage.jpg" alt="">
     <div class="kopf">
-      <div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
       <div class="nr">Nr. 2 · Ausgabe<b>11/2025</b>November 2025</div>
     </div>
-    <div class="titel"><div class="kick">Markt &amp; Politik</div><h1>Herbstumfrage 2025: 56 Prozent der Betriebe melden eine gute Geschäftslage</h1><p>668 Betriebe haben dem BGL geantwortet. Die Auftragslage bleibt stabil, die Stimmung kühlt leicht ab, und für 2026 ruht die Hoffnung auf dem Bau-Turbo der Bundesregierung.</p></div>
+    <div class="titel"><span class="kick">Markt &amp; Politik</span><h1>Herbstumfrage 2025: 56 Prozent der Betriebe melden eine gute Geschäftslage</h1><p>668 Betriebe haben dem BGL geantwortet. Die Auftragslage bleibt stabil, die Stimmung kühlt leicht ab, und für 2026 ruht die Hoffnung auf dem Bau-Turbo der Bundesregierung.</p></div>
     <div class="teaser"><span>Winterdienst: Der BGH macht es Gestürzten lei...</span><span>Herbstumfrage 2025: 56 Prozent der Betriebe m...</span><span>Laubbläser im Wohngebiet: Was die 32. BImSchV...</span></div>
   </section>
 
@@ -104,7 +106,7 @@
 
   <!-- Artikel -->
   <section class="seite art">
-    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Das Jahresgespräch: Wie Betriebe im November klären, wer im März noch da ist</h1><p class="dek">Wer geht, entscheidet das meist im Winter. Ein strukturiertes Gespräch vor der Saisonpause kostet eine Stunde pro Mitarbeiter – und ist das günstigste Instrument gegen Kündigungen im Frühjahr.</p><div class="byline">Redaktion GaLaBau Kompass · 19. November 2025</div></div>
+    <div class="kopf"><span class="r">Betrieb &amp; Personal</span><h1>Das Jahresgespräch: Wie Betriebe im November klären, wer im März noch da ist</h1><p class="dek">Wer geht, entscheidet das meist im Winter. Ein strukturiertes Gespräch vor der Saisonpause kostet eine Stunde pro Mitarbeiter – und ist das günstigste Instrument gegen Kündigungen im Frühjahr.</p><div class="byline">Redaktion GaLaBau Kompass · 19. November 2025</div></div>
 <figure><img src="../../assets/img/jahresgespraech-mitarbeiter-halten.jpg" alt=""><figcaption>Kein Formular, keine Bewertung: Das Jahresgespräch fragt, was bleiben soll und was sich ändern muss. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Jede zweite Kündigung kommt vom Mitarbeiter, der Wechselzeitpunkt liegt im Winter – das Gespräch im November kommt vor der Kündigung.</li><li>Drei Teile, eine Regel: Rückblick, Ausblick, Entwicklung – und der Mitarbeiter redet zuerst; Gehalt bekommt einen eigenen Termin im Januar.</li><li>Drei Punkte je Mitarbeiter mit Termin aufschreiben und im Februar Bilanz ziehen: Mitarbeiter verzeihen ein Nein, aber kein Vergessen.</li></ul></div>    <div class="text"><p>Jede zweite Beendigung eines Arbeitsverhältnisses in Deutschland geht inzwischen vom Arbeitnehmer aus, und die meisten, die kündigen, haben die nächste Stelle bereits in der Tasche. Im GaLaBau liegt der Wechselzeitpunkt fast immer im Winter: Die Saison ist vorbei, der Jahresurlaub genommen, die Kündigungsfrist reicht bis zum Saisonstart beim neuen Betrieb. Wer das Gespräch mit seinen Leuten erst führt, wenn die Kündigung auf dem Tisch liegt, führt es zu spät.</p>
 <h2>Warum ein Gespräch – und nicht die Weihnachtsfeier</h2>
 <p>Auf der Weihnachtsfeier sagt niemand, dass er unzufrieden ist. Im Jahresgespräch, unter vier Augen, mit einer Stunde Zeit und ohne Bewertungsbogen, sagen es die meisten – wenn der Betrieb fragt und nicht erklärt. Das Gespräch hat drei Teile und eine Regel: Der Mitarbeiter redet zuerst.</p>
@@ -122,7 +124,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Institut der deutschen Wirtschaft (IW), Holger Schäfer: Arbeitnehmer kündigen zunehmend selbst, 22. April 2025 (Anteil der Eigenkündigungen an allen Beendigungen 52 Prozent; 84 Prozent mit neuer Stelle in Aussicht) – <a href="https://www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuendigen-zunehmend-selbst.html">www.iwkoeln.de/studien/holger-schaefer-arbeitnehmer-kuend...</a></li><li>Bundesagentur für Arbeit: Presseinfo Nr. 44 vom 30. Oktober 2025 – Der Arbeitsmarkt im Oktober 2025 – <a href="https://www.arbeitsagentur.de/presse/2025-44-arbeitsmarkt-im-oktober-2025">www.arbeitsagentur.de/presse/2025-44-arbeitsmarkt-im-oktober-2025</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 11/2025</span><span>Betrieb &amp; Personal</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Winterdienst: Der BGH macht es Gestürzten leichter – was Dienstleister jetzt beachten müssen</h1><p class="dek">Mit Beschluss vom 1. Juli 2025 hat der Bundesgerichtshof klargestellt: Ein vollständiger Haftungsausschluss wegen Mitverschuldens ist die Ausnahme. Für GaLaBau-Betriebe im Winterdienst heißt das: Kontrolle dokumentieren, Zeiten einhalten, Verträge prüfen.</p><div class="byline">Redaktion GaLaBau Kompass · 12. November 2025</div></div>
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Winterdienst: Der BGH macht es Gestürzten leichter – was Dienstleister jetzt beachten müssen</h1><p class="dek">Mit Beschluss vom 1. Juli 2025 hat der Bundesgerichtshof klargestellt: Ein vollständiger Haftungsausschluss wegen Mitverschuldens ist die Ausnahme. Für GaLaBau-Betriebe im Winterdienst heißt das: Kontrolle dokumentieren, Zeiten einhalten, Verträge prüfen.</p><div class="byline">Redaktion GaLaBau Kompass · 12. November 2025</div></div>
 <figure><img src="../../assets/img/winterdienst-haftung-bgh-2025.jpg" alt=""><figcaption>Früh, regelmäßig, dokumentiert: Beim Winterdienst entscheidet der Nachweis der Kontrolle über die Haftung. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>BGH-Beschluss vom 1. Juli 2025 (VI ZR 357/24): Ein vollständiger Haftungsausschluss wegen Mitverschuldens des Gestürzten kommt nur in Ausnahmefällen in Betracht.</li><li>Übernimmt ein Betrieb den Winterdienst, übernimmt er die Räum- und Streupflicht des Eigentümers – der bleibt zur Kontrolle verpflichtet.</li><li>Verurteilt wurde ein Dienstleister nicht wegen eines ausgebliebenen Einsatzes, sondern wegen einer ausgebliebenen Streukontrolle: Dokumentation entscheidet.</li></ul></div>    <div class="text"><p>Für viele GaLaBau-Betriebe ist der Winterdienst das Geschäft, das die Schlechtwetterzeit überbrückt. Er ist auch das Geschäft mit dem höchsten Haftungsrisiko. Ein Beschluss des Bundesgerichtshofs vom 1. Juli 2025 (VI ZR 357/24) verschiebt die Gewichte weiter zugunsten derjenigen, die auf Glätte stürzen.</p>
 <h2>Der Kern des Beschlusses</h2>
 <p>Wer bei Glätte stürzt, hat oft selbst nicht aufgepasst – bisher ein häufiges Argument, um Schadensersatzansprüche ganz abzuwehren. Der BGH stellt klar: Ein vollständiger Haftungsausschluss wegen Mitverschuldens kommt nur in Ausnahmefällen in Betracht. Nötig ist ein Verhalten des Gestürzten von „ganz besonderer, schlechthin unverständlicher Sorglosigkeit&rdquo;. Wer die Räum- und Streupflicht verletzt hat, haftet im Regelfall zumindest anteilig.</p>
@@ -143,7 +145,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bundesgerichtshof, Beschluss vom 1. Juli 2025, VI ZR 357/24 (Mitverschulden bei glättebedingtem Sturz), zitiert nach Haufe: Verkehrssicherungspflicht bei Glatteis und Schnee – <a href="https://www.haufe.de/immobilien/verwaltung/verkehrssicherungspflicht-bei-eis-und-schnee_258_212208.html">www.haufe.de/immobilien/verwaltung/verkehrssicherungspfli...</a></li><li>Haufe: Haftung wegen Verletzung der Streupflicht durch Dienstleister (beauftragtes Unternehmen einer Gemeinde zu Schmerzensgeld verurteilt, unterlassene Streukontrolle) – <a href="https://www.haufe.de/recht/weitere-rechtsgebiete/allg-zivilrecht/haftung-wegen-verletzung-der-streupflicht-durch-dienstleister_208_482030.html">www.haufe.de/recht/weitere-rechtsgebiete/allg-zivilrecht/...</a></li><li>Rödl &amp; Partner: Winterdienst – Anforderungen zur Erfüllung der Verkehrssicherungspflichten – <a href="https://www.roedl.com/insights/winterdienst-erfuellung-verkehrssicherungspflichten/">www.roedl.com/insights/winterdienst-erfuellung-verkehrssi...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 11/2025</span><span>Recht &amp; Tarif</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Markt &amp; Politik</div><h1>Herbstumfrage 2025: 56 Prozent der Betriebe melden eine gute Geschäftslage</h1><p class="dek">668 Betriebe haben dem BGL geantwortet. Die Auftragslage bleibt stabil, die Stimmung kühlt leicht ab, und für 2026 ruht die Hoffnung auf dem Bau-Turbo der Bundesregierung.</p><div class="byline">Redaktion GaLaBau Kompass · 10. November 2025</div></div>
+    <div class="kopf"><span class="r">Markt &amp; Politik</span><h1>Herbstumfrage 2025: 56 Prozent der Betriebe melden eine gute Geschäftslage</h1><p class="dek">668 Betriebe haben dem BGL geantwortet. Die Auftragslage bleibt stabil, die Stimmung kühlt leicht ab, und für 2026 ruht die Hoffnung auf dem Bau-Turbo der Bundesregierung.</p><div class="byline">Redaktion GaLaBau Kompass · 10. November 2025</div></div>
 <figure><img src="../../assets/img/herbstumfrage-2025-geschaeftslage.jpg" alt=""><figcaption>Volle Auftragsbücher, verhaltene Erwartungen: Die Branche bleibt robust, aber ohne Wachstumsspielraum. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>668 Betriebe befragt: 56 Prozent gute Geschäftslage (Herbst 2024: 59 Prozent), 37 Prozent befriedigend, 7 Prozent schlecht.</li><li>31,2 Prozent melden eine schlechtere Auftragslage; für die nächsten sechs Monate erwarten 73 Prozent Stillstand und 21 Prozent eine Verschlechterung.</li><li>Die Umfrage misst Stimmung, nicht Ertrag: Der Umsatz hält, die Marge nicht – ob das durchschlägt, zeigt die Frühjahrsumfrage 2026.</li></ul></div>    <div class="text"><p>Der Bundesverband Garten-, Landschafts- und Sportplatzbau (BGL) hat seine Herbstumfrage 2025 vorgelegt. 668 Mitgliedsbetriebe der elf Landesverbände haben sich beteiligt. Das Ergebnis liest sich wie das Protokoll einer Branche, die den Kopf über Wasser hält, aber nicht mehr schwimmt: stabil, robust, ohne Wachstumsspielraum.</p>
 <h2>Geschäftslage: gut, aber weniger gut als 2024</h2>
 <p>56 Prozent der Betriebe bewerten ihre aktuelle Geschäftslage als gut, rund 37 Prozent als befriedigend, sieben Prozent als schlecht. Im Herbst 2024 hatten noch 59 Prozent von einer guten Lage gesprochen. Der Rückgang setzt einen Trend fort, der seit zwei Jahren anhält – langsam, aber in eine Richtung.</p>
@@ -167,7 +169,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bundesverband Garten-, Landschafts- und Sportplatzbau e. V. (BGL): BGL-Herbstumfrage 2025 – Geschäftslage bleibt stabil, aber wenig Wachstumsspielraum, Pressemitteilung vom 10. November 2025 (668 Betriebe) – <a href="https://www.presseportal.de/pm/117960/6154790">www.presseportal.de/pm/117960/6154790</a></li><li>Beschaffungsdienst GaLaBau: BGL-Herbstumfrage 2025 – Geschäftslage bleibt stabil (56 % gut, 37 % befriedigend, 7 % schlecht; Herbst 2024: 59 % gut; 31,2 % schlechtere Auftragslage; Erwartungen 6 / 73 / 21 %) – <a href="https://www.soll-galabau.de/aktuelle-news/ansicht-aktuelles/bgl-herbstumfrage-2025-galabau-geschaeftslage-bleibt-stabil-aber-wenig-wachstumsspielraum.html">www.soll-galabau.de/aktuelle-news/ansicht-aktuelles/bgl-h...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 11/2025</span><span>Markt &amp; Politik</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Technik &amp; Digital</div><h1>Laubbläser im Wohngebiet: Was die 32. BImSchV erlaubt – und wann das Ordnungsamt kommt</h1><p class="dek">Vier Stunden am Tag, nicht am Wochenende: Für Laubbläser und Freischneider gelten in Wohngebieten enge Zeitfenster. Wer sie kennt, plant die Herbstpflege anders – und erspart sich Ärger mit Anwohnern.</p><div class="byline">Redaktion GaLaBau Kompass · 5. November 2025</div></div>
+    <div class="kopf"><span class="r">Technik &amp; Digital</span><h1>Laubbläser im Wohngebiet: Was die 32. BImSchV erlaubt – und wann das Ordnungsamt kommt</h1><p class="dek">Vier Stunden am Tag, nicht am Wochenende: Für Laubbläser und Freischneider gelten in Wohngebieten enge Zeitfenster. Wer sie kennt, plant die Herbstpflege anders – und erspart sich Ärger mit Anwohnern.</p><div class="byline">Redaktion GaLaBau Kompass · 5. November 2025</div></div>
 <figure><img src="../../assets/img/laubblaeser-32-bimschv-wohngebiet.jpg" alt=""><figcaption>Werktags von 9 bis 13 und 15 bis 17 Uhr: In Wohngebieten ist der Laubbläser ein Gerät mit Stundenplan. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>In Wohngebieten dürfen Laubbläser, Laubsammler, Freischneider und Grastrimmer werktags nur von 9 bis 13 und 15 bis 17 Uhr laufen, sonntags nie.</li><li>Ausgenommen sind nur Geräte mit EU-Umweltzeichen – ein Akkugerät ist nicht automatisch befreit.</li><li>Ausnahmen genehmigt die Kommune; der eigentliche Schaden bei Verstößen ist nicht das Bußgeld, sondern der Auftrag.</li></ul></div>    <div class="text"><p>Im Herbst häufen sich bei den Ordnungsämtern die Beschwerden über Laubbläser. Die Verordnung, die dahintersteht, ist über 20 Jahre alt und wird von vielen Betrieben nur ungefähr gekannt: die Geräte- und Maschinenlärmschutzverordnung, kurz 32. BImSchV. Sie regelt nicht nur, wie laut Geräte sein dürfen, sondern auch, wann sie in Wohngebieten laufen dürfen.</p>
 <h2>Die Zeitfenster</h2>
 <p>Für die meisten Geräte im Freien – Rasenmäher, Vertikutierer, Heckenscheren, Häcksler, Kleinbagger – gilt in Wohngebieten: an Sonn- und Feiertagen gar nicht, werktags nicht zwischen 20 und 7 Uhr. Für eine Gruppe besonders lauter Geräte ist das Fenster deutlich enger. Freischneider, Grastrimmer, Laubbläser und Laubsammler dürfen werktags nur von 9 bis 13 Uhr und von 15 bis 17 Uhr betrieben werden. Am Samstag ebenfalls – der Samstag ist ein Werktag –, am Sonntag nie.</p>
@@ -184,7 +186,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bundesumweltministerium: Lärmschutz – Geräte- und Maschinenlärm (32. BImSchV) – <a href="https://www.bundesumweltministerium.de/themen/laerm/themenbereiche-laerm/geraete-und-maschinenlaerm">www.bundesumweltministerium.de/themen/laerm/themenbereich...</a></li><li>Land Berlin: Lärmbelästigung durch Maschinen und Geräte im Freien – <a href="https://www.berlin.de/umwelt/themen/laerm/artikel.256215.php">www.berlin.de/umwelt/themen/laerm/artikel.256215.php</a></li><li>Geräte- und Maschinenlärmschutzverordnung (32. BImSchV), § 7 Betrieb in Wohngebieten – <a href="https://www.gesetze-im-internet.de/bimschv_32/__7.html">www.gesetze-im-internet.de/bimschv_32/__7.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 11/2025</span><span>Technik &amp; Digital</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Mindestlohn steigt auf 13,90 Euro – und 2027 auf 14,60 Euro</h1><p class="dek">Das Bundeskabinett hat die Empfehlung der Mindestlohnkommission übernommen. Für GaLaBau-Betriebe ist der Tarif zwar höher, doch Helfer, Saisonkräfte und Minijobs sind betroffen – und die Kalkulation für 2026.</p><div class="byline">Redaktion GaLaBau Kompass · 3. November 2025</div></div>
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Mindestlohn steigt auf 13,90 Euro – und 2027 auf 14,60 Euro</h1><p class="dek">Das Bundeskabinett hat die Empfehlung der Mindestlohnkommission übernommen. Für GaLaBau-Betriebe ist der Tarif zwar höher, doch Helfer, Saisonkräfte und Minijobs sind betroffen – und die Kalkulation für 2026.</p><div class="byline">Redaktion GaLaBau Kompass · 3. November 2025</div></div>
 <figure><img src="../../assets/img/mindestlohn-2026-13-90-euro.jpg" alt=""><figcaption>Helfer und Saisonkräfte: Für sie ist der gesetzliche Mindestlohn die Untergrenze, nicht der Tarif. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>13,90 Euro ab 1. Januar 2026, 14,60 Euro ab 2027 – zusammen plus 13,88 Prozent in zwei Jahren.</li><li>Betroffen im GaLaBau: ungelernte Helfer und Saisonkräfte, Minijobs (Grenze 2026: 603 Euro) und Praktikanten außerhalb der Ausnahmen.</li><li>Ein Helfer mit 173 Stunden bekommt ab Januar mindestens 2.405 statt 2.218 Euro brutto; der Abstand zum Ecklohn schrumpft.</li></ul></div>    <div class="text"><p>Der gesetzliche Mindestlohn steigt zum 1. Januar 2026 von 12,82 Euro auf 13,90 Euro je Stunde und zum 1. Januar 2027 auf 14,60 Euro. Die Mindestlohnkommission hatte die zwei Stufen am 27. Juni 2025 empfohlen, das Bundeskabinett hat sie am 29. Oktober 2025 mit der Fünften Mindestlohnanpassungsverordnung beschlossen. Die erste Stufe entspricht einem Plus von 8,42 Prozent, die zweite von weiteren 5,04 Prozent – zusammen 13,88 Prozent in zwei Jahren.</p>
 <h2>Wen es im GaLaBau trifft</h2>
 <p>Der Tarifvertrag für den Garten- und Landschaftsbau liegt mit einem Ecklohn von 20,24 Euro (seit 1. Juli 2025) deutlich über dem Mindestlohn. Betroffen sind deshalb vor allem drei Gruppen:</p>

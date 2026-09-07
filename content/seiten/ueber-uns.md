@@ -8,16 +8,18 @@ description: GaLaBau Kompass ist das Online-Magazin für den Garten- und Landsch
 
 Der Garten- und Landschaftsbau ist eine Branche mit fast 20.000 Betrieben und mehr als 130.000 Beschäftigten, die im Alltag wenig Zeit hat, Verbandsberichte, Statistiken, Tarifmeldungen und Gesetzentwürfe zu lesen. GaLaBau Kompass sortiert das: Wir lesen die Berichte der Bundesagentur für Arbeit, des BGL, der Berufsgenossenschaft, der Tarifparteien und der Marktforscher, ziehen die Zahlen heraus, die für Betriebe relevant sind, und ordnen sie ein. Jeder Beitrag nennt seine Quellen am Ende – nachprüfbar, mit Link.
 
-## Acht Ressorts
+## Zehn Ressorts
 
 - **Betrieb & Personal** – Mitarbeiter gewinnen und halten, Ausbildung, Führung, Organisation.
 - **Recht & Tarif** – Tarifabschlüsse, Arbeitsrecht, Haftung, Pflichten.
 - **Technik & Digital** – Maschinen, Elektroantriebe, Software, KI, Aufmaß.
+- **Produkte & Software** – Maschinen, Geräte, Apps und Branchensoftware im Steckbrief, unabhängig recherchiert.
 - **Bauen & Pflanzen** – Klimaanpassung, Gebäudegrün, Baumarten, Bewässerung, Pflanzenschutz.
 - **Markt & Politik** – Konjunktur, Branchenstatistik, Verbände, Förderung, Vergabe.
 - **Sicherheit & Gesundheit** – Unfallzahlen, Hitze und UV, Prävention.
 - **Karriere & Weiterbildung** – für Fachkräfte, Vorarbeiter und Bauleiter.
 - **Messe & Termine** – GaLaBau in Nürnberg, Gartenschauen, Preise.
+- **Standpunkt** – Kommentare der Redaktion, klar gekennzeichnet.
 
 ## Monatliche Ausgabe
 

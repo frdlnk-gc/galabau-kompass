@@ -69,3 +69,27 @@ service:
     label: Ausgaben (PDF)
   - href: newsletter/
     label: Newsletter
+  - href: club/
+    label: Kompass Club
+
+# Social-Kanäle: erscheinen in Kopf, Fuß und Seitenleiste, sobald eine URL eingetragen ist.
+# Keine URL = Kanal bleibt unsichtbar (nie Platzhalter-Links veröffentlichen).
+social:
+  - id: whatsapp
+    name: WhatsApp-Kanal
+    url: ""
+  - id: instagram
+    name: Instagram
+    url: ""
+  - id: linkedin
+    name: LinkedIn
+    url: ""
+  - id: youtube
+    name: YouTube
+    url: ""
+  - id: tiktok
+    name: TikTok
+    url: ""
+  - id: facebook
+    name: Facebook
+    url: ""

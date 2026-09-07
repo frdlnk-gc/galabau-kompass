@@ -8,23 +8,23 @@
   <header class="page-head">
     <span class="t-kicker">Termine &amp; Fristen</span>
     <h1>Was ansteht</h1>
-    <p class="page-dek">Messen, Gartenschauen, Tarifstufen und gesetzliche Stichtage – nur Termine, die wir mit einer Quelle belegen können. Fehlt ein Termin? <a href="mailto:{{ site.redaktion_mail }}">Schreiben Sie der Redaktion.</a></p>
+    <p class="page-dek">Messen, Gartenschauen, Tarifstufen und gesetzliche Stichtage – nur Termine, die wir mit einer Quelle belegen können. Vergangenes wandert automatisch nach unten. Fehlt ein Termin? <a href="mailto:{{ site.redaktion_mail }}">Schreiben Sie der Redaktion.</a></p>
   </header>
+  <div data-termine-alle>
   {% for m in monate %}
   <div class="termin-monat">
     <h2 class="termin-monat-titel">{{ m.monat }}</h2>
     <ul class="termine gross">
       {% for t in m.liste %}
-      <li><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a>{% if t.ort %}<span class="termin-ort">{{ t.ort }}</span>{% endif %}{% if t.beschreibung %}<span class="termin-text">{{ t.beschreibung }}</span>{% endif %}</li>
+      <li data-bis="{{ t.bis_iso }}"><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a>{% if t.ort %}<span class="termin-ort">{{ t.ort }}</span>{% endif %}{% if t.beschreibung %}<span class="termin-text">{{ t.beschreibung }}</span>{% endif %}</li>
       {% endfor %}
     </ul>
   </div>
   {% endfor %}
-  {% if vergangene %}
-  <div class="termin-monat vorbei">
-    <h2 class="termin-monat-titel">Bereits vorbei</h2>
-    <ul class="termine gross">{% for t in vergangene[:8] %}<li><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a></li>{% endfor %}</ul>
   </div>
-  {% endif %}
+  <div class="termin-monat vorbei" data-termine-vorbei-block{% if not vergangene %} hidden{% endif %}>
+    <h2 class="termin-monat-titel">Bereits vorbei</h2>
+    <ul class="termine gross" data-termine-vorbei>{% for t in vergangene[:8] %}<li data-bis="{{ t.bis_iso }}"><span class="termin-datum">{{ t.label }}</span><a href="{{ root }}{{ t.link }}">{{ t.titel }}</a></li>{% endfor %}</ul>
+  </div>
 </section>
 {% endblock %}

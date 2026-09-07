@@ -4,80 +4,82 @@
 <meta charset="UTF-8">
 <title>GaLaBau Kompass · Ausgabe 07/2026</title>
 <style>
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-var.woff2') format('woff2');font-weight:300 700;font-style:normal;}
-  @font-face{font-family:'Fraunces';src:url('../../assets/fonts/fraunces-italic.woff2') format('woff2');font-weight:300 700;font-style:italic;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var.woff2') format('woff2');font-weight:200 800;font-style:normal;}
+  @font-face{font-family:'Plus Jakarta Sans';src:url('../../assets/fonts/jakarta-var-ext.woff2') format('woff2');font-weight:200 800;font-style:normal;unicode-range:U+0100-02BA,U+1E00-1EFF;}
   @font-face{font-family:'Inter';src:url('../../assets/fonts/inter-var.woff2') format('woff2');font-weight:400 800;}
   @page{size:A4;margin:0;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:#fff;color:#0B1F14;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  html,body{background:#fff;color:#0E1B13;font-family:Inter,sans-serif;font-size:10.5pt;line-height:1.5;}
+  .d{font-family:'Plus Jakarta Sans',sans-serif;}
   .seite{width:210mm;min-height:297mm;padding:18mm 17mm 20mm;page-break-after:always;position:relative;}
   .seite:last-child{page-break-after:auto;}
-  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#8A958D;}
+  .kolumne{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7B71;}
   /* Cover */
-  .cover{padding:0;background:#0A1710;color:#F4F1E8;overflow:hidden;}
-  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;}
-  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,23,16,.55) 0%,rgba(10,23,16,.05) 40%,rgba(10,23,16,.92) 100%);}
-  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(244,241,232,.5);padding-bottom:4mm;}
-  .cover .wort{font-family:Fraunces,serif;font-weight:600;font-size:34pt;letter-spacing:-.02em;line-height:1;}
-  .cover .wort i{color:#6EE7A0;}
-  .cover .claim{font-size:8pt;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-top:2mm;}
-  .cover .nr{text-align:right;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,232,.85);line-height:1.5;}
-  .cover .nr b{display:block;font-family:Fraunces,serif;font-size:20pt;letter-spacing:-.01em;text-transform:none;}
+  .cover{padding:0;background:#0B3D24;color:#F2F7F3;overflow:hidden;}
+  .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
+  .cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,24,.6) 0%,rgba(8,40,24,.05) 38%,rgba(8,40,24,.94) 100%);}
+  .cover .kopf{position:absolute;top:16mm;left:17mm;right:17mm;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.4mm solid rgba(242,247,243,.5);padding-bottom:4mm;}
+  .cover .marke{display:flex;align-items:center;gap:4mm;}
+  .cover .marke svg{width:14mm;height:14mm;}
+  .cover .wort{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30pt;letter-spacing:-.035em;line-height:1;}
+  .cover .claim{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,247,243,.75);margin-top:2mm;}
+  .cover .nr{text-align:right;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,247,243,.85);line-height:1.5;}
+  .cover .nr b{display:block;font-size:20pt;letter-spacing:-.02em;text-transform:none;font-weight:800;}
   .cover .titel{position:absolute;left:17mm;right:17mm;bottom:22mm;z-index:2;}
-  .cover .titel .kick{font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:#6EE7A0;margin-bottom:3mm;}
-  .cover .titel h1{font-family:Fraunces,serif;font-weight:600;font-size:40pt;line-height:1.02;letter-spacing:-.02em;max-width:150mm;}
-  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(244,241,232,.85);}
-  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(244,241,232,.85);}
-  .cover .teaser span::before{content:'▪ ';color:#6EE7A0;}
+  .cover .titel .kick{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#0D2E1B;background:#CDF47A;border-radius:99px;padding:1.4mm 3.5mm;margin-bottom:4mm;}
+  .cover .titel h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:38pt;line-height:1.02;letter-spacing:-.035em;max-width:150mm;color:#fff;}
+  .cover .titel p{margin-top:4mm;font-size:12pt;max-width:130mm;color:rgba(242,247,243,.88);}
+  .cover .teaser{position:absolute;left:17mm;right:17mm;bottom:9mm;z-index:2;display:flex;gap:6mm;font-size:8.5pt;color:rgba(242,247,243,.85);}
+  .cover .teaser span::before{content:'▪ ';color:#7EE2A2;}
   /* Editorial / Inhalt */
   .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
-  h2.rubrik{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #E5E1D6;padding-bottom:2mm;margin-bottom:5mm;}
-  .editorial p{font-family:Fraunces,serif;font-size:12pt;line-height:1.5;color:#0B1F14;}
-  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#4B5A50;}
-  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #ECE9DF;}
-  .inhalt .s{font-family:Fraunces,serif;font-weight:600;font-size:14pt;color:#15803D;line-height:1;}
-  .inhalt .r{font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;}
-  .inhalt .t{font-weight:700;font-size:10pt;line-height:1.25;}
+  h2.rubrik{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;border-bottom:.3mm solid #DDE7E0;padding-bottom:2mm;margin-bottom:5mm;}
+  .editorial p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:11.5pt;line-height:1.5;color:#0E1B13;letter-spacing:-.01em;}
+  .editorial .sig{margin-top:5mm;font-family:Inter,sans-serif;font-size:9pt;color:#3C4C42;}
+  .inhalt li{list-style:none;display:grid;grid-template-columns:14mm 1fr;gap:2mm;padding:2.6mm 0;border-bottom:.2mm solid #EAF0EC;}
+  .inhalt .s{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13pt;color:#23A551;line-height:1;}
+  .inhalt .r{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6B7B71;}
+  .inhalt .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;line-height:1.25;letter-spacing:-.01em;}
   /* Artikel */
   .art .kopf{margin-bottom:6mm;}
-  .art .r{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#15803D;}
-  .art h1{font-family:Fraunces,serif;font-weight:600;font-size:24pt;line-height:1.06;letter-spacing:-.015em;margin:2mm 0 3mm;}
-  .art .dek{font-family:Fraunces,serif;font-style:italic;font-size:12pt;line-height:1.35;color:#4B5A50;max-width:160mm;}
-  .art .byline{font-size:8pt;color:#8A958D;margin-top:3mm;}
+  .art .r{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
+  .art h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:23pt;line-height:1.06;letter-spacing:-.03em;margin:2mm 0 3mm;}
+  .art .dek{font-size:11.5pt;line-height:1.4;color:#3C4C42;max-width:160mm;}
+  .art .byline{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:8pt;color:#6B7B71;margin-top:3mm;}
   .art figure{margin:4mm 0 6mm;}
-  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:2mm;}
-  .art figcaption{font-size:7.5pt;color:#8A958D;margin-top:1.5mm;}
+  .art figure img{width:100%;height:82mm;object-fit:cover;border-radius:3mm;}
+  .art figcaption{font-size:7.5pt;color:#6B7B71;margin-top:1.5mm;}
   .art .text{column-count:2;column-gap:8mm;font-size:9.6pt;line-height:1.55;}
   .art .text p{margin-bottom:3mm;}
-  .art .text p:first-of-type::first-letter{font-family:Fraunces,serif;font-size:32pt;float:left;line-height:.8;padding:1.5mm 2mm 0 0;color:#15803D;}
-  .art .text h2{font-family:Fraunces,serif;font-weight:600;font-size:13pt;margin:4mm 0 2mm;break-after:avoid;}
-  .art .text h3{font-weight:800;font-size:10pt;margin:3mm 0 1.5mm;}
+  .art .text h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5pt;margin:4mm 0 2mm;break-after:avoid;letter-spacing:-.02em;}
+  .art .text h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10pt;margin:3mm 0 1.5mm;}
   .art .text ul,.art .text ol{margin:0 0 3mm 4mm;}
   .art .text li{margin-bottom:1mm;}
   .art .text table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:2mm 0 4mm;break-inside:avoid;}
-  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #E5E1D6;vertical-align:top;}
-  .art .text th{font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#4B5A50;background:#F4F2EB;}
-  .art .text blockquote{border-left:.8mm solid #16A34A;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:Fraunces,serif;font-style:italic;font-size:10.5pt;color:#4B5A50;break-inside:avoid;}
-  .art .text .kasten{background:#F4F2EB;border-left:.8mm solid #16A34A;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:1.5mm;}
-  .art .text .kasten b{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
+  .art .text th,.art .text td{text-align:left;padding:1.4mm 1.6mm;border-bottom:.2mm solid #DDE7E0;vertical-align:top;}
+  .art .text th{font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#3C4C42;background:#F3F8F4;}
+  .art .text blockquote{border-left:.8mm solid #23A551;padding:1mm 0 1mm 4mm;margin:3mm 0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:10.5pt;color:#3C4C42;break-inside:avoid;}
+  .art .text .kasten{background:#EAF6EE;padding:3mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid;border-radius:2mm;}
+  .art .text .kasten b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;margin-bottom:1mm;}
   .art .text a{color:inherit;text-decoration:none;}
-  .art .kurz{background:#F4F2EB;border-left:.8mm solid #15803D;padding:3mm 4mm;margin:0 0 5mm;font-size:9.2pt;border-radius:1.5mm;}
-  .art .kurz b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
+  .art .kurz{background:#EAF6EE;padding:3.5mm 4.5mm;margin:0 0 5mm;font-size:9.2pt;border-radius:2.5mm;}
+  .art .kurz b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#15803D;margin-bottom:1.5mm;}
   .art .kurz ul{margin-left:4mm;}
   .art .kurz li{margin-bottom:1mm;}
+  .art .kurz li::marker{color:#23A551;}
   .art .kurz dl{display:grid;grid-template-columns:32mm 1fr;gap:1mm 3mm;}
   .art .kurz dt{font-weight:700;}
-  .meld .item{padding:3mm 0;border-bottom:.2mm solid #E5E1D6;break-inside:avoid;}
-  .meld .d{font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:#15803D;}
-  .meld h3{font-family:Fraunces,serif;font-weight:600;font-size:12pt;line-height:1.2;margin:1mm 0;}
-  .meld p{font-size:9.2pt;color:#4B5A50;}
-  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #E5E1D6;font-size:7.3pt;color:#4B5A50;line-height:1.4;}
-  .art .quellen b{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#8A958D;margin-bottom:1mm;}
+  .meld .item{padding:3mm 0;border-bottom:.2mm solid #DDE7E0;break-inside:avoid;}
+  .meld .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:#15803D;}
+  .meld h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12pt;line-height:1.2;margin:1mm 0;letter-spacing:-.02em;}
+  .meld p{font-size:9.2pt;color:#3C4C42;}
+  .art .quellen{margin-top:5mm;padding-top:3mm;border-top:.3mm solid #DDE7E0;font-size:7.3pt;color:#3C4C42;line-height:1.4;}
+  .art .quellen b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#6B7B71;margin-bottom:1mm;}
   .art .quellen ol{margin-left:4mm;}
-  .art .quellen a{color:#4B5A50;text-decoration:none;word-break:break-all;}
+  .art .quellen a{color:#3C4C42;text-decoration:none;word-break:break-all;}
   /* Impressum */
-  .imp{font-size:9pt;color:#4B5A50;line-height:1.55;}
-  .imp h2{font-family:Fraunces,serif;font-weight:600;font-size:16pt;color:#0B1F14;margin-bottom:4mm;}
+  .imp{font-size:9pt;color:#3C4C42;line-height:1.55;}
+  .imp h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16pt;color:#0E1B13;margin-bottom:4mm;letter-spacing:-.02em;}
   .imp p{margin-bottom:3mm;}
 </style>
 </head>
@@ -86,10 +88,10 @@
   <section class="seite cover">
     <img src="../../assets/img/tarif-2026-ecklohn-20-91.jpg" alt="">
     <div class="kopf">
-      <div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div>
+      <div><div class="marke"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#F2F7F3" stroke-width="2.2"/><path d="M32 7 42.5 32 32 26.5 21.5 32Z" fill="#7EE2A2"/><path d="M32 57 21.5 32 32 37.5 42.5 32Z" fill="#F2F7F3"/></svg><div><div class="wort">GaLaBau Kompass</div><div class="claim">Das Magazin für den Garten- und Landschaftsbau</div></div></div></div>
       <div class="nr">Nr. 10 · Ausgabe<b>07/2026</b>Juli 2026</div>
     </div>
-    <div class="titel"><div class="kick">Recht &amp; Tarif</div><h1>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h1><p>Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente.</p></div>
+    <div class="titel"><span class="kick">Recht &amp; Tarif</span><h1>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h1><p>Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente.</p></div>
     <div class="teaser"><span>Probearbeit: Ein Tag, der die Fehlbesetzung v...</span><span>Krankenstand: 5,3 Prozent im ersten Halbjahr ...</span><span>Erstmals unter 90.000: Die Unfallzahlen der B...</span></div>
   </section>
 
@@ -104,7 +106,7 @@
 
   <!-- Artikel -->
   <section class="seite art">
-    <div class="kopf"><div class="r">Praxisfrage · Recht &amp; Tarif</div><h1>Muss ich die Fahrzeit zur Baustelle bezahlen?</h1><p class="dek">Vom Betrieb zur Baustelle ist Arbeitszeit – und in der Regel zu vergüten. Der Weg von zu Hause zum Betrieb nicht.</p><div class="byline">Redaktion GaLaBau Kompass · 27. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Praxisfrage · Recht &amp; Tarif</span><h1>Muss ich die Fahrzeit zur Baustelle bezahlen?</h1><p class="dek">Vom Betrieb zur Baustelle ist Arbeitszeit – und in der Regel zu vergüten. Der Weg von zu Hause zum Betrieb nicht.</p><div class="byline">Redaktion GaLaBau Kompass · 27. Juli 2026</div></div>
 <figure><img src="../../assets/img/praxisfrage-fahrzeit-zur-baustelle-bezahlen.jpg" alt=""><figcaption>Ab dem Betriebshof läuft die Uhr – für alle im Wagen. · Symbolbild</figcaption></figure><div class="kurz"><b>Die kurze Antwort</b><p>Die Fahrt vom Betrieb zur Baustelle und zurück ist Arbeitszeit, für Fahrer wie Mitfahrer, und grundsätzlich zu vergüten. Tarifverträge können die Vergütung pauschalieren oder anders regeln; tarifgebundene Betriebe wenden den Rahmentarifvertrag an. Der Weg von der Wohnung zum Betrieb ist keine Arbeitszeit.</p></div>    <div class="text"><p>Die Kolonne trifft sich um 6:45 Uhr auf dem Hof, lädt, fährt 40 Minuten zur Baustelle, arbeitet, fährt zurück. Zählt die Fahrt als Arbeit? Muss sie bezahlt werden? Und was, wenn der Mitarbeiter direkt von zu Hause zur Baustelle kommt?</p>
 <h2>Vom Betrieb zur Baustelle: Arbeitszeit</h2>
 <p>Wer sich im Betrieb einfindet und von dort mit dem Firmenfahrzeug zur Baustelle fährt, arbeitet ab dem Hof – die Fahrt dient dem Arbeitgeber. Das gilt für den Fahrer und für die Mitfahrer. Im Sinne des Arbeitszeitgesetzes zählt die Fahrzeit zur Höchstarbeitszeit: Zehn Stunden auf der Baustelle plus eine Stunde Fahrt sind elf Stunden und damit zu viel. Und sie ist grundsätzlich zu vergüten; das Bundesarbeitsgericht hat 2018 bestätigt, dass Fahrten zu auswärtigen Arbeitsstellen vergütungspflichtige Arbeit sind, sofern Tarifvertrag oder Arbeitsvertrag nichts Wirksames anderes regeln.</p>
@@ -116,7 +118,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bundesarbeitsgericht, Urteil vom 25. April 2018, 5 AZR 424/17 (Fahrtzeiten zu auswärtigen Arbeitsstellen sind vergütungspflichtige Arbeitszeit; tarifliche Abweichungen möglich)</li><li>Arbeitszeitgesetz, § 2 Begriffsbestimmungen – <a href="https://www.gesetze-im-internet.de/arbzg/__2.html">www.gesetze-im-internet.de/arbzg/__2.html</a></li><li>GaLaBau Kompass: Zehn Stunden am Tag? Was das Arbeitszeitgesetz in der Saison erlaubt (Beitrag vom 29. April 2026) – <a href="../../artikel/arbeitszeitgesetz-saison-zehn-stunden/">../../artikel/arbeitszeitgesetz-saison-zehn-stunden/</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 07/2026</span><span>Recht &amp; Tarif</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Betrieb &amp; Personal</div><h1>Probearbeit: Ein Tag, der die Fehlbesetzung verhindert</h1><p class="dek">Zwischen Bewerbungsgespräch und Vertrag liegt im GaLaBau idealerweise ein Tag auf der Baustelle. Wie Betriebe ihn organisieren, was rechtlich zu beachten ist und woran beide Seiten erkennen, ob es passt.</p><div class="byline">Redaktion GaLaBau Kompass · 22. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Betrieb &amp; Personal</span><h1>Probearbeit: Ein Tag, der die Fehlbesetzung verhindert</h1><p class="dek">Zwischen Bewerbungsgespräch und Vertrag liegt im GaLaBau idealerweise ein Tag auf der Baustelle. Wie Betriebe ihn organisieren, was rechtlich zu beachten ist und woran beide Seiten erkennen, ob es passt.</p><div class="byline">Redaktion GaLaBau Kompass · 22. Juli 2026</div></div>
 <figure><img src="../../assets/img/probearbeit-richtig-gestalten.jpg" alt=""><figcaption>Nach vier Stunden wissen beide Seiten mehr als nach drei Gesprächen. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Ein Probearbeitstag ist ein Einfühlungsverhältnis: kein Arbeitsvertrag, keine Weisungen, keine Vergütungspflicht – ein Tag, höchstens zwei.</li><li>Unfallversichert ist der Bewerber trotzdem (Bundessozialgericht 2019, B 2 U 1/18 R); eine halbe Seite Dokumentation reicht.</li><li>Der Vorarbeiter beurteilt Umgang, Sorgfalt und Fragen – nicht das Tempo; wer am selben Abend ein Angebot machen kann, sollte es tun.</li></ul></div>    <div class="text"><p>Im Bewerbungsgespräch reden beide Seiten über Erfahrung, Gehalt und Arbeitszeiten. Ob der Bewerber eine Wasserwaage lesen kann, ob er mit dem Vorarbeiter auskommt und ob er um sieben auf dem Hof steht, erfährt der Betrieb dort nicht. Ein Probearbeitstag liefert genau diese Antworten – und er liefert dem Bewerber die Antwort, ob er in diesem Betrieb arbeiten will.</p>
 <h2>Was rechtlich gilt</h2>
 <p>Ein Probearbeitstag ist in der Regel kein Arbeitsverhältnis, sondern ein sogenanntes Einfühlungsverhältnis: Der Bewerber lernt den Betrieb kennen, ohne weisungsgebunden zu arbeiten und ohne Anspruch auf Vergütung. Damit das so bleibt, darf der Tag nicht zur unbezahlten Arbeitsleistung werden – ein Tag ist üblich, mehr als zwei Tage sind schwer zu begründen. Unfallversichert ist der Bewerber trotzdem: Das Bundessozialgericht hat 2019 entschieden, dass Probearbeitende unter dem Schutz der gesetzlichen Unfallversicherung stehen (B 2 U 1/18 R). Viele Betriebe zahlen dennoch eine Aufwandsentschädigung oder den Tageslohn – als Geste, nicht als Pflicht.</p>
@@ -133,7 +135,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>Bundessozialgericht, Urteil vom 20. August 2019, B 2 U 1/18 R (Unfallversicherungsschutz bei Probearbeit als „Wie-Beschäftigter“)</li><li>Bundesagentur für Arbeit: Monatsbericht Januar 2026 (abgeschlossene Vakanzzeit 166 Tage) – <a href="https://statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/arbeitsmarktberichte/monatsbericht-monatsbericht/monatsbericht-d-0-202601-pdf.pdf">statistik.arbeitsagentur.de/Statistikdaten/Detail/202601/...</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 07/2026</span><span>Betrieb &amp; Personal</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Sicherheit &amp; Gesundheit</div><h1>Krankenstand: 5,3 Prozent im ersten Halbjahr – und was die Langzeitfälle für Betriebe bedeuten</h1><p class="dek">Die DAK meldet einen leichten Rückgang, psychische Erkrankungen liegen erstmals vorn. Für körperlich arbeitende Betriebe bleibt das Muskel-Skelett-System das Thema: Ausfälle sind selten, aber lang. Was Betriebe beim Wiedereinstieg tun müssen – und was sie vorher tun können.</p><div class="byline">Redaktion GaLaBau Kompass · 21. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Sicherheit &amp; Gesundheit</span><h1>Krankenstand: 5,3 Prozent im ersten Halbjahr – und was die Langzeitfälle für Betriebe bedeuten</h1><p class="dek">Die DAK meldet einen leichten Rückgang, psychische Erkrankungen liegen erstmals vorn. Für körperlich arbeitende Betriebe bleibt das Muskel-Skelett-System das Thema: Ausfälle sind selten, aber lang. Was Betriebe beim Wiedereinstieg tun müssen – und was sie vorher tun können.</p><div class="byline">Redaktion GaLaBau Kompass · 21. Juli 2026</div></div>
 <figure><img src="../../assets/img/krankenstand-2026-langzeitfaelle-bau.jpg" alt=""><figcaption>Ein Vakuumheber kostet weniger als drei Wochen Ausfall eines Facharbeiters. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>DAK: Krankenstand 5,3 Prozent im ersten Halbjahr 2026 (Vorjahr 5,4), 9,7 Tage je Fall; psychische Erkrankungen erstmals vorn (plus 9 Prozent), Atemwege minus 21 Prozent.</li><li>Landschaftsgärtner sind seltener krank, aber länger: Muskel-Skelett-Erkrankungen bleiben die Ursache Nummer eins der Branche.</li><li>Ab sechs Wochen Arbeitsunfähigkeit im Jahr ist das betriebliche Eingliederungsmanagement Pflicht (§ 167 SGB IX); Vakuumheber und Rotation sind billiger als drei Wochen Ausfall.</li></ul></div>    <div class="text"><p>Der Krankenstand der DAK-Versicherten lag im ersten Halbjahr 2026 bei 5,3 Prozent – ein Zehntel weniger als im Vorjahreszeitraum, aber weiter auf hohem Niveau. Die durchschnittliche Dauer je Fall stieg leicht auf 9,7 Tage. Erstmals sind psychische Erkrankungen die häufigste Ursache für Fehltage, mit einem Plus von 9 Prozent; Atemwegserkrankungen gingen nach dem starken Winter des Vorjahres um 21 Prozent zurück. Muskel-Skelett-Erkrankungen bleiben auf Platz drei – und für den GaLaBau auf Platz eins.</p>
 <h2>Warum die Branche anders krank ist</h2>
 <p>Landschaftsgärtner sind seltener krank als der Durchschnitt und länger. Wer draußen arbeitet, hat weniger Infekte; wer täglich Pflaster hebt, Bordsteine setzt und Rüttelplatten führt, hat mit 45 einen Rücken, der drei Wochen Ausfall am Stück produziert. DAK-Vorstandschef Andreas Storm sieht den Handlungsbedarf genau dort: bei der großen Zahl der Langzeiterkrankungen mit vielen Fehltagen.</p>
@@ -150,7 +152,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>DAK-Gesundheit: Krankenstand im ersten Halbjahr 2026 leicht gesunken, Pressemitteilung vom 20. Juli 2026 (5,3 Prozent nach 5,4 Prozent; 9,7 Tage je Fall nach 9,5; psychische Erkrankungen +9 Prozent, Atemwegserkrankungen −21 Prozent) – <a href="https://www.dak.de/presse/bundesthemen/gesundheitsreport/krankenstand-im-ersten-halbjahr-2026-leicht-gesunken_223354">www.dak.de/presse/bundesthemen/gesundheitsreport/krankens...</a></li><li>DAK-Gesundheitsreport 2026 (Jahr 2025: 19,5 Arbeitsunfähigkeitstage je Versicherten, Krankenstand 5,4 Prozent) – <a href="https://www.dak.de/presse/bundesthemen/gesundheitsreport_48012">www.dak.de/presse/bundesthemen/gesundheitsreport_48012</a></li><li>Sozialgesetzbuch IX, § 167 Prävention (Betriebliches Eingliederungsmanagement nach sechs Wochen Arbeitsunfähigkeit); Entgeltfortzahlungsgesetz, § 3 – <a href="https://www.gesetze-im-internet.de/sgb_9_2018/__167.html">www.gesetze-im-internet.de/sgb_9_2018/__167.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 07/2026</span><span>Sicherheit &amp; Gesundheit</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Sicherheit &amp; Gesundheit</div><h1>Erstmals unter 90.000: Die Unfallzahlen der BG BAU sinken – die Berufskrankheiten steigen</h1><p class="dek">89.113 meldepflichtige Arbeitsunfälle zählte die Berufsgenossenschaft der Bauwirtschaft 2025, 2,9 Prozent weniger als im Vorjahr. Absturz bleibt die häufigste Todesursache. Mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten zeigen das andere Risiko: Haut, Rücken, Lunge.</p><div class="byline">Redaktion GaLaBau Kompass · 14. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Sicherheit &amp; Gesundheit</span><h1>Erstmals unter 90.000: Die Unfallzahlen der BG BAU sinken – die Berufskrankheiten steigen</h1><p class="dek">89.113 meldepflichtige Arbeitsunfälle zählte die Berufsgenossenschaft der Bauwirtschaft 2025, 2,9 Prozent weniger als im Vorjahr. Absturz bleibt die häufigste Todesursache. Mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten zeigen das andere Risiko: Haut, Rücken, Lunge.</p><div class="byline">Redaktion GaLaBau Kompass · 14. Juli 2026</div></div>
 <figure><img src="../../assets/img/bg-bau-unfallzahlen-2025.jpg" alt=""><figcaption>Weniger Unfälle, mehr Berufskrankheiten: Lärm, Staub und Vibration wirken über Jahre. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>89.113 meldepflichtige Arbeitsunfälle 2025, 2.700 weniger als 2024 – erstmals unter 90.000; die Quote je 1.000 Vollarbeiter sank auf 42,95.</li><li>Tödliche Unfälle 2024: 78, vor allem Absturz (36 Prozent), herabfallende oder umstürzende Bauteile (26 Prozent) und Baumaschinen (15 Prozent).</li><li>Über 22.000 Verdachtsanzeigen auf Berufskrankheiten (plus 4,9 Prozent) – im GaLaBau vor allem Hautkrebs durch UV-Strahlung und Lärmschwerhörigkeit.</li></ul></div>    <div class="text"><p>Die Berufsgenossenschaft der Bauwirtschaft (BG BAU) hat ihre Bilanz für 2025 vorgelegt. 89.113 meldepflichtige Arbeitsunfälle wurden gezählt, 2.700 weniger als 2024 – ein Rückgang um 2,9 Prozent und zum ersten Mal ein Wert unter 90.000. Die Tausend-Personen-Quote, die Unfallhäufigkeit je 1.000 Vollarbeiter, sank von 43,76 auf 42,95. Für den Garten- und Landschaftsbau, der zur BG BAU gehört, ist das eine gute und eine schlechte Nachricht zugleich.</p>
 <h2>Die gute: Unfälle werden seltener</h2>
 <p>Der Rückgang setzt einen Trend fort. Schon 2024 lag die Zahl mit 91.813 Unfällen um 4.340 unter dem Vorjahr. Technik, Unterweisung und Prämienprogramme der BG wirken. Bei den tödlichen Unfällen bleibt das Bild allerdings düster: 2024 starben 78 Menschen auf Baustellen, zwei mehr als im Vorjahr. Die häufigsten Ursachen: Absturz mit 36 Prozent, herabfallende oder umstürzende Bauteile mit 26 Prozent und Unfälle mit Baumaschinen mit 15 Prozent.</p>
@@ -175,7 +177,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>PCH Technischer Handel: BG BAU-Bilanz 2025 – Arbeitsunfälle sinken, Berufskrankheiten bleiben Herausforderung (89.113 meldepflichtige Arbeitsunfälle 2025, −2.700 / −2,9 %; Tausend-Personen-Quote 42,95 nach 43,76; mehr als 22.000 Verdachtsanzeigen auf Berufskrankheiten, +4,9 %) – <a href="https://www.pch-24.de/bg-bau-bilanz-2025-arbeitsunfaelle-sinken-berufskrankheiten-bleiben-herausforderung/">www.pch-24.de/bg-bau-bilanz-2025-arbeitsunfaelle-sinken-b...</a></li><li>baulinks.de: BG BAU – 2024 weniger Arbeitsunfälle, aber mehr Berufskrankheiten (91.813 Arbeitsunfälle 2024, 78 Todesfälle; Ursachen Absturz 36 %, herabfallende oder umstürzende Bauteile 26 %, Baumaschinen 15 %) – <a href="https://www.baulinks.de/webplugin/2025/0954.php4">www.baulinks.de/webplugin/2025/0954.php4</a></li><li>BG BAU: Zahlen, Daten, Fakten – <a href="https://www.bgbau.de/die-bg-bau/ueber-uns/zahlen-daten-fakten">www.bgbau.de/die-bg-bau/ueber-uns/zahlen-daten-fakten</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 07/2026</span><span>Sicherheit &amp; Gesundheit</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Bauen &amp; Pflanzen</div><h1>Anwachsen sichern: Wie junge Bäume den ersten Sommer überstehen</h1><p class="dek">Die Pflanzung ist abgenommen, der Sommer kommt, und der Betrieb haftet für das Anwachsen. Was Fertigstellungs- und Entwicklungspflege verlangen, wie viel Wasser ein Jungbaum wirklich braucht und warum der Gießrand wichtiger ist als der Schlauch.</p><div class="byline">Redaktion GaLaBau Kompass · 8. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Bauen &amp; Pflanzen</span><h1>Anwachsen sichern: Wie junge Bäume den ersten Sommer überstehen</h1><p class="dek">Die Pflanzung ist abgenommen, der Sommer kommt, und der Betrieb haftet für das Anwachsen. Was Fertigstellungs- und Entwicklungspflege verlangen, wie viel Wasser ein Jungbaum wirklich braucht und warum der Gießrand wichtiger ist als der Schlauch.</p><div class="byline">Redaktion GaLaBau Kompass · 8. Juli 2026</div></div>
 <figure><img src="../../assets/img/anwachsen-sichern-bewaesserung-jungbaeume.jpg" alt=""><figcaption>Wenig und oft ist falsch: Ein Jungbaum braucht seltene, große Gaben, die bis in den Ballen reichen. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Fertigstellungspflege nach DIN 18916 bis zur Abnahme, Entwicklungspflege nach DIN 18919 danach – im Vertrag regeln, wer sie übernimmt.</li><li>Selten und viel statt oft und wenig: in Trockenphasen wöchentlich in der Größenordnung von 50 bis 100 Litern je Jungbaum, mit Gießrand, Bewässerungssack und Mulch.</li><li>Kontrollgänge dokumentieren: Das Pflegeprotokoll mit Foto ist die günstigste Versicherung gegen Ersatzpflanzungen in der Gewährleistung.</li></ul></div>    <div class="text"><p>Ein Baum, der im Herbst gepflanzt wurde, hat im ersten Sommer keine Wurzeln außerhalb des Ballens, die ihn versorgen könnten. Er lebt von dem Wasser, das im Ballen ist – und das ist im Juni nach zehn Tagen ohne Regen aufgebraucht. Ab da entscheidet der Betrieb, nicht das Wetter, ob der Baum den Sommer überlebt. Und er entscheidet es nicht freiwillig: Bis zur Abnahme schuldet er das Anwachsen, danach greift die Gewährleistung.</p>
 <h2>Fertigstellungs- und Entwicklungspflege</h2>
 <p>Die DIN 18916 beschreibt die Fertigstellungspflege: Sie beginnt mit der Pflanzung und endet mit der Abnahme, und sie umfasst alles, was das Anwachsen sichert – Wässern, Nachsetzen, Pfähle prüfen, Bindungen lockern, Wildkraut entfernen. Die Abnahme setzt voraus, dass die Pflanzen angewachsen sind; im Vertrag wird dafür meist ein Zeitraum von einer Vegetationsperiode vereinbart. Die Entwicklungspflege nach DIN 18919 schließt daran an und ist eine eigene Leistung: Sie führt die Pflanzung über zwei bis drei Jahre in den Zustand, in dem sie sich selbst versorgt. Ob der Betrieb sie übernimmt oder der Auftraggeber, steht im Leistungsverzeichnis. Wer sie nicht übernimmt, sollte es dokumentieren – sonst haftet er für Schäden, die aus fehlender Pflege des Kunden entstehen.</p>
@@ -190,7 +192,7 @@
 <div class="quellen"><b>Quellen</b><ol><li>DIN 18916: Vegetationstechnik im Landschaftsbau – Pflanzen und Pflanzarbeiten (Fertigstellungspflege)</li><li>DIN 18919: Vegetationstechnik im Landschaftsbau – Entwicklungs- und Unterhaltungspflege von Vegetationsflächen</li><li>FLL: Empfehlungen für Baumpflanzungen – Teil 1: Planung, Pflanzarbeiten, Pflege – <a href="https://www.fll.de/">www.fll.de/</a></li><li>Bürgerliches Gesetzbuch, § 634a Verjährung der Mängelansprüche; VOB/B § 13 Mängelansprüche – <a href="https://www.gesetze-im-internet.de/bgb/__634a.html">www.gesetze-im-internet.de/bgb/__634a.html</a></li></ol></div>    <div class="kolumne"><span>GaLaBau Kompass · Ausgabe 07/2026</span><span>Bauen &amp; Pflanzen</span></div>
   </section>
   <section class="seite art">
-    <div class="kopf"><div class="r">Recht &amp; Tarif</div><h1>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h1><p class="dek">Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente.</p><div class="byline">Redaktion GaLaBau Kompass · 1. Juli 2026</div></div>
+    <div class="kopf"><span class="r">Recht &amp; Tarif</span><h1>Ecklohn 20,91 Euro: Was der Tarifabschluss ab heute für Betriebe bedeutet</h1><p class="dek">Die zweite Stufe des Tarifabschlusses von IG BAU und BGL ist in Kraft. Löhne und Gehälter steigen um 3,3 Prozent, die Ausbildungsvergütung auf bis zu 1.390 Euro. Für Betriebe sind das Kosten – und Argumente.</p><div class="byline">Redaktion GaLaBau Kompass · 1. Juli 2026</div></div>
 <figure><img src="../../assets/img/tarif-2026-ecklohn-20-91.jpg" alt=""><figcaption>Tariflohn ist im Bewerbergespräch ein Anker – wenn Betriebe ihn nennen. · Symbolbild</figcaption></figure><div class="kurz"><b>Kurz gesagt</b><ul><li>Zweite Stufe des Abschlusses vom 24. Juni 2025: plus 3,3 Prozent ab 1. Juli 2026, Ecklohn (Lohngruppe 4.2a) 20,91 Euro nach 20,24 Euro.</li><li>Ausbildungsvergütung 1.140, 1.270 und 1.390 Euro; über beide Stufen ist der Ecklohn um 1,30 Euro oder rund 6,6 Prozent gestiegen.</li><li>Für eine Vollzeitkraft mit 170 Stunden sind das rund 114 Euro brutto im Monat mehr, zuzüglich Arbeitgeberanteile.</li></ul></div>    <div class="text"><p>Am 24. Juni 2025 haben sich die Industriegewerkschaft Bauen-Agrar-Umwelt (IG BAU) und der Bundesverband Garten-, Landschafts- und Sportplatzbau (BGL) auf einen zweistufigen Tarifabschluss geeinigt. Die erste Stufe brachte zum 1. Juli 2025 ein Plus von 3,2 Prozent, die zweite tritt heute in Kraft: weitere 3,3 Prozent.</p>
 <h2>Die Zahlen im Überblick</h2>
 <div class="table-wrap"><div class="tabelle"><table>

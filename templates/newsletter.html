@@ -1,28 +1,24 @@
 {% extends "base.html" %}
-{% from "_teaser.html" import textlist %}
+{% from "_teaser.html" import textlist, abo_form %}
 {% set root = '../' * depth %}
-{% block title %}Der Montagskompass – Newsletter | {{ site.name }}{% endblock %}
-{% block description %}Der Montagskompass: jeden Montag die Beiträge der Woche in fünf Minuten, eine Zahl, ein Termin. Dazu die Monatsausgabe als PDF. Kostenlos.{% endblock %}
+{% block title %}Der Montagskompass – per E-Mail oder WhatsApp | {{ site.name }}{% endblock %}
+{% block description %}Der Montagskompass: jeden Montag die Beiträge der Woche in fünf Minuten, eine Zahl, ein Termin – per E-Mail oder WhatsApp. Dazu die Monatsausgabe als PDF. Kostenlos.{% endblock %}
 {% block bodyclass %}seite seite-newsletter{% endblock %}
 {% block content %}
 <section class="container narrow">
   <header class="page-head">
-    <span class="t-kicker">Newsletter</span>
+    <span class="t-kicker">Newsletter · E-Mail oder WhatsApp</span>
     <h1>Der Montagskompass</h1>
-    <p class="page-dek">Montag früh, fünf Minuten: die Beiträge der Woche, eine Zahl mit Quelle, ein Termin, der ansteht. Einmal im Monat die Ausgabe als PDF. Kein Werbebrief, kein Login, Abmeldung mit einem Klick.</p>
+    <p class="page-dek">Montag früh, fünf Minuten: die Beiträge der Woche, eine Zahl mit Quelle, ein Termin, der ansteht. Einmal im Monat die Ausgabe als PDF. Sie entscheiden, ob per E-Mail, per WhatsApp oder beides. Kein Werbebrief, kein Login, Abmeldung mit einem Klick.</p>
   </header>
   <div class="abo-panel">
-    <form class="abo-form zeile" data-abo>
-      <input type="email" class="input" name="email" placeholder="ihre@firma.de" required autocomplete="email" aria-label="E-Mail-Adresse">
-      <button type="submit" class="btn">Kostenlos anmelden</button>
-      <div class="abo-note" data-abo-note></div>
-    </form>
+    {{ abo_form(root, 'zeile') }}
     <ul class="vorteile">
       <li><b>Montags, 6 Uhr</b><span>Vor der Frühbesprechung gelesen. Fünf Minuten, keine Anhänge.</span></li>
+      <li><b>E-Mail oder WhatsApp</b><span>Per WhatsApp kommt jeden Montag der Link zur Ausgabe – direkt aufs Handy in der Kolonne.</span></li>
       <li><b>Monatsausgabe als PDF</b><span>Alle Beiträge des Monats, gesetzt zum Lesen und Drucken.</span></li>
-      <li><b>Kein Abo-Zwang</b><span>Kostenlos, kein Login, Abmeldung mit einem Klick in jeder E-Mail.</span></li>
     </ul>
-    <p class="abo-hinweis">Mit der Anmeldung stimmen Sie zu, dass wir Ihnen den wöchentlichen Newsletter und die monatliche Ausgabe per E-Mail senden. Details in der <a href="{{ root }}datenschutz/">Datenschutzerklärung</a>.</p>
+    <p class="abo-hinweis">Mit der Anmeldung stimmen Sie zu, dass wir Ihnen den wöchentlichen Montagskompass und die monatliche Ausgabe auf dem gewählten Weg senden. Abmeldung jederzeit mit einem Klick in jeder E-Mail oder mit einer kurzen Antwort per WhatsApp. Details in der <a href="{{ root }}datenschutz/">Datenschutzerklärung</a>.</p>
   </div>
 
   <div class="rubrik mt"><h2>So sieht eine Ausgabe aus</h2><span class="rubrik-note">Beispiel aus dieser Woche</span></div>
