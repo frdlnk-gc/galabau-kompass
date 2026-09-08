@@ -193,6 +193,7 @@
           <div class="check-ic">✓</div>
           <h3>Wir rufen Sie an.</h3>
           <p>Das Recruiting-Team meldet sich innerhalb von zwei Werktagen zu Ihrer Wunschzeit. Eine Bestätigung ist unterwegs in Ihr Postfach.</p>
+          <button type="button" class="btn-link mt-2" data-neu>Standort-Check für einen weiteren Betrieb</button>
         </div>
           <h3>Anfrage ist da.</h3>
           <p>Das Recruiting-Team meldet sich bei Ihnen. Sie bekommen dazu eine kurze Bestätigung per E-Mail.</p>
@@ -384,6 +385,20 @@
         if (j.kontakt.plz) { $('plz').value = j.kontakt.plz; runCheck(); }
       }).catch(function(){});
     }
+
+    /* ── Zustand nicht aus dem Browser-Cache übernehmen ──
+       Kommt die Seite aus dem Vor-/Zurück-Speicher, ist sie im Zustand des letzten Nutzers.
+       Am Messestand wäre das fatal: Der nächste Betrieb sähe die Daten des vorherigen. */
+    window.addEventListener('pageshow', function(e){
+      if (e.persisted && !K.params.k) location.reload();
+    });
+
+    /* Nach Abschluss zurück auf Anfang – für den Vertriebler, der den nächsten Betrieb aufnimmt. */
+    function neuStarten(){
+      try { sessionStorage.removeItem('kompass_k'); } catch(err){}
+      location.href = location.pathname;
+    }
+    document.querySelectorAll('[data-neu]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); neuStarten(); }); });
 
     /* ── Sticky CTA + Scroll-Links ── */
     document.querySelectorAll('a[href="#check"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); K.track('cta_click', { id: a.id || 'cta' }); $('check').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(function(){ $('plz').focus({ preventScroll: true }); }, 500); }); });
