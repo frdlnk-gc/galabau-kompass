@@ -25,6 +25,7 @@
     .pool.gross{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
     .pool.gross b{font-size:clamp(2.6rem,11vw,3.6rem);line-height:1;}
     .pool.gross span{font-size:1rem;color:var(--q-dim);}
+    body.hat-ergebnis #ablauf{display:none;}
     /* Auf dem Handy zählt jede Zeile: Ressortleiste und Datumszeile kosten hier nur Platz,
        der Nutzer ist zum Ausfüllen gekommen, nicht zum Blättern. */
     @media(max-width:767px){
@@ -276,6 +277,7 @@
       var bars = [['Landschaftsgärtner', p.landschaftsgaertner], ['Vorarbeiter', p.vorarbeiter], ['Bauleiter / Meister', p.bauleiter], ['Maschinisten / Fahrer', p.maschinist], ['Auszubildende', p.azubi], ['Helfer', p.helfer]];
       var max = Math.max.apply(null, bars.map(function(b){ return b[1] || 0; }).concat([1]));
       $('pool-bars').innerHTML = '<div class="tag">Verteilung nach Position</div>' + bars.map(function(b){ return '<div class="bar-row"><span class="lab">' + b[0] + '</span><div class="bar-track"><div class="bar-fill" data-w="' + Math.round((b[1] || 0) / max * 100) + '"></div></div><span class="val">' + fmt(b[1]) + '</span></div>'; }).join('');
+      document.body.classList.add('hat-ergebnis');
       $('req-list').innerHTML = r.voraussetzungen.map(function(v, i){ return '<li><span class="num">' + (i + 1) + '</span><div><b>' + v.title + '</b><p>' + v.text + '</p></div></li>'; }).join('');
       $('besetzung').innerHTML = '<div class="tag">Richtwert Besetzungsdauer</div><div style="font-family:var(--font-serif);font-weight:600;font-size:1.6rem;margin-top:6px;letter-spacing:-.01em;">' + r.besetzung.wochen_min + ' bis ' + r.besetzung.wochen_max + ' Wochen</div><p class="small muted" style="margin-top:4px;">' + r.besetzung.text + '</p>';
       if (r.pool.hinweis) $('pool-note').textContent = r.pool.hinweis + ' ' + $('pool-note').textContent;
