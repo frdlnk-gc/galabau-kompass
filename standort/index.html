@@ -22,6 +22,13 @@
     @media(max-width:1023px){.hero-points{margin-left:auto;margin-right:auto;}}
     .hero-points li{display:flex;gap:11px;align-items:flex-start;font-size:.95rem;color:var(--ink-dim);}
     .hero-points li b{color:var(--ink);}
+    /* Auf dem Handy zählt jede Zeile: Ressortleiste und Datumszeile kosten hier nur Platz,
+       der Nutzer ist zum Ausfüllen gekommen, nicht zum Blättern. */
+    @media(max-width:767px){
+      .topbar,.navbar,.brandbar .fuer-switch{display:none!important;}
+      .brandbar .container{min-height:56px;height:56px;}
+      .hero{padding-top:18px;}
+    }
     /* Lime trägt nur auf dunklem Grund. Auf Weiß nimmt derselbe Akzent das dunkle Grün. */
     .sec-light em.accent,.sec-paper em.accent,.sec-light .accent,.sec-paper .accent{color:var(--green-deep);}
     .hero-points .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);border:1.5px solid var(--accent);color:var(--accent);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center;margin-top:2px;}

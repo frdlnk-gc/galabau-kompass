@@ -75,6 +75,8 @@ body:not([class]) section{padding:52px 0;}
 .kicker{display:inline-block;font-family:var(--display);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px;}
 .tag{display:inline-block;font-family:var(--display);font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--green-deep);}
 .sec-dark .kicker,.sec-dark .tag,.on-dark .kicker{color:var(--mint);}
+/* Helle Karten liegen oft in einem dunklen Abschnitt und erben dessen Lime – auf Weiß unlesbar. */
+.sec-dark .form-card .kicker,.sec-dark .card .kicker,.hero .form-card .kicker{color:var(--green-deep);}
 .rubrik{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--hair);padding-bottom:16px;margin-bottom:10px;}
 .rubrik h2{font-size:1.7rem;letter-spacing:-.03em;display:flex;align-items:center;gap:12px;}
 .rubrik h2::before{content:'';width:10px;height:10px;border-radius:3px;background:var(--green);flex:none;}
