@@ -22,6 +22,9 @@
     @media(max-width:1023px){.hero-points{margin-left:auto;margin-right:auto;}}
     .hero-points li{display:flex;gap:11px;align-items:flex-start;font-size:.95rem;color:var(--ink-dim);}
     .hero-points li b{color:var(--ink);}
+    .pool.gross{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+    .pool.gross b{font-size:clamp(2.6rem,11vw,3.6rem);line-height:1;}
+    .pool.gross span{font-size:1rem;color:var(--q-dim);}
     /* Auf dem Handy zählt jede Zeile: Ressortleiste und Datumszeile kosten hier nur Platz,
        der Nutzer ist zum Ausfüllen gekommen, nicht zum Blättern. */
     @media(max-width:767px){
@@ -161,7 +164,7 @@
           <div class="section-label">Fachkräfte-Potenzial</div>
           <h3 class="section-title" style="font-size:clamp(1.3rem,4.4vw,1.8rem);">Im Umkreis von <em class="accent" id="radius-km">30 km</em> registrierte GaLaBau-Fachkräfte</h3>
           <div class="pool-grid" id="pool-grid"></div>
-          <p class="pool-note" id="pool-note">Datenbasis: Kandidaten mit Wohnort-Angabe im Karrierenetzwerk GreenCareers, Stand heute. Zählung nach Wohnort im Umkreis, keine Personendaten.</p>
+          <p class="pool-note" id="pool-note">Gezählt nach Wohnort im Karrierenetzwerk GreenCareers, keine Personendaten.</p>
           <div class="card mt-2" id="pool-bars"></div>
         </div>
         <div class="reveal">
@@ -269,7 +272,7 @@
         [p.vorarbeiter, 'Vorarbeiter', 'Poliere'],
         [p.bauleiter, 'Bauleiter & Meister', 'Kalkulatoren']
       ];
-      $('pool-grid').innerHTML = cards.map(function(c){ return '<div class="pool"><b>' + fmt(c[0]) + '</b><span>' + c[1] + '<br><small style="color:var(--q-faint)">' + c[2] + '</small></span></div>'; }).join('');
+      $('pool-grid').innerHTML = '<div class="pool gross"><b>' + fmt(p.gesamt) + '</b><span>GaLaBau-Fachkräfte im Umkreis von ' + r.radius_km + ' km</span></div>';
       var bars = [['Landschaftsgärtner', p.landschaftsgaertner], ['Vorarbeiter', p.vorarbeiter], ['Bauleiter / Meister', p.bauleiter], ['Maschinisten / Fahrer', p.maschinist], ['Auszubildende', p.azubi], ['Helfer', p.helfer]];
       var max = Math.max.apply(null, bars.map(function(b){ return b[1] || 0; }).concat([1]));
       $('pool-bars').innerHTML = '<div class="tag">Verteilung nach Position</div>' + bars.map(function(b){ return '<div class="bar-row"><span class="lab">' + b[0] + '</span><div class="bar-track"><div class="bar-fill" data-w="' + Math.round((b[1] || 0) / max * 100) + '"></div></div><span class="val">' + fmt(b[1]) + '</span></div>'; }).join('');
