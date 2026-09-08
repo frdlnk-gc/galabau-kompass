@@ -76,11 +76,11 @@
       <div class="hero-copy">
         <span class="badge rise"><span class="dot"></span> Kostenlos für GaLaBau-Betriebe</span>
         <h1 class="rise d1" id="hero-h1">Wie gut ist Ihr <i>Standort</i> für Fachkräfte?</h1>
-        <p class="hero-sub rise d2" id="hero-sub">Wie viele <b>Landschaftsgärtner, Vorarbeiter und Bauleiter</b> in Ihrem Umkreis erreichbar sind – und was Sie tun können, damit sich diese Leute bei Ihnen bewerben.</p>
+        <p class="hero-sub rise d2" id="hero-sub">Sie sehen, wie viele <b>Landschaftsgärtner, Vorarbeiter und Bauleiter</b> rund um Ihren Betrieb wohnen. Und was nötig ist, damit die sich bei Ihnen melden.</p>
         <ul class="hero-points rise d4">
           <li><span class="ck">✓</span><span>Fachkräfte in Ihrem Umkreis, nach Position</span></li>
           <li><span class="ck">✓</span><span>Ihr Standorttyp und was dort funktioniert</span></li>
-          <li><span class="ck">✓</span><span>Drei Hebel für Ihre Arbeitgeberattraktivität</span></li>
+          <li><span class="ck">✓</span><span>Drei Dinge, auf die es bei Ihnen ankommt</span></li>
         </ul>
       </div>
 
@@ -105,7 +105,6 @@
             <button type="button" class="btn" id="plz-cta">Standort prüfen →</button>
           </div>
           <div class="error" id="plz-error">Bitte eine gültige Postleitzahl oder Adresse eintragen.</div>
-          <div class="form-trust"><span>🔒 DSGVO-konform</span><span>📍 30-km-Umkreis</span><span>⏱ Ergebnis sofort</span></div>
         </div>
 
         <!-- LOADING -->
@@ -199,9 +198,6 @@
           <p>Das Recruiting-Team meldet sich innerhalb von zwei Werktagen zu Ihrer Wunschzeit. Eine Bestätigung ist unterwegs in Ihr Postfach.</p>
           <button type="button" class="btn-link mt-2" data-neu>Standort-Check für einen weiteren Betrieb</button>
         </div>
-          <h3>Anfrage ist da.</h3>
-          <p>Das Recruiting-Team meldet sich bei Ihnen. Sie bekommen dazu eine kurze Bestätigung per E-Mail.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -210,12 +206,12 @@
   <section class="sec-paper" id="ablauf">
     <div class="container">
       <div class="section-label reveal">So funktioniert der Check</div>
-      <h2 class="section-title reveal">Drei Angaben, <em class="accent">ein ehrliches Bild.</em></h2>
-      <p class="section-sub reveal">Der Standort-Check wertet keine Schätzungen aus, sondern den Wohnort registrierter GaLaBau-Fachkräfte im Karrierenetzwerk unseres Recruiting-Partners GreenCareers und die Struktur Ihrer Region.</p>
+      <h2 class="section-title reveal">Woher die Zahlen <em class="accent">kommen</em></h2>
+      <p class="section-sub reveal">Geschätzt wird hier nichts. Gezählt wird, wie viele GaLaBau-Fachkräfte im Karrierenetzwerk unseres Recruiting-Partners GreenCareers rund um Ihren Betrieb wohnen. Dazu kommt, wie Ihre Region aufgestellt ist.</p>
       <div class="steps">
         <div class="step reveal"><div class="n">1</div><b>PLZ eingeben</b><p>Wir ordnen Ihren Betrieb der Region zu und berechnen den 30-km-Umkreis – die Pendeldistanz, die Fachkräfte im GaLaBau realistisch akzeptieren.</p></div>
         <div class="step reveal"><div class="n">2</div><b>Potenzial zählen</b><p>Landschaftsgärtner, Vorarbeiter, Bauleiter, Maschinisten und Azubis mit Wohnort im Umkreis – als Anzahl, ohne Personendaten.</p></div>
-        <div class="step reveal"><div class="n">3</div><b>Voraussetzungen lesen</b><p>Ballungsraum, Mischregion oder ländlich: Jeder Standorttyp hat Stärken – und drei Dinge, die bei der Ansprache den Unterschied machen.</p></div>
+        <div class="step reveal"><div class="n">3</div><b>Voraussetzungen lesen</b><p>Ballungsraum, Mischregion oder ländlich. Jeder Typ hat seine Stärken – und verlangt eine andere Ansprache.</p></div>
       </div>
     </div>
   </section>
@@ -225,7 +221,7 @@
     <div class="container">
       <div class="promo reveal">
         <h2>Ihr Standort ist besser, <i>als Sie denken.</i></h2>
-        <p>Die meisten Betriebe unterschätzen, wie viele Fachkräfte in ihrem Umkreis wohnen – und überschätzen, wie viele Wettbewerber sie aktiv ansprechen. Prüfen Sie es in 20 Sekunden.</p>
+        <p>Die meisten Betriebe unterschätzen, wie viele Fachkräfte in ihrem Umkreis wohnen – und überschätzen, wie viele Wettbewerber sie aktiv ansprechen. Postleitzahl eingeben, dann sehen Sie es schwarz auf weiß.</p>
         <a class="btn" href="#check" id="final-cta">Standort jetzt prüfen →</a>
         <div class="promo-note">Kostenlos · Keine Verpflichtung · Ergebnis sofort</div>
       </div>
@@ -354,7 +350,6 @@
       K.track('gate_submit', {});
       K.post('/lead', body).then(function(j){
         state.kontaktId = j.kontakt_id; state.kontakt = { email: body.email, vorname: body.vorname, firma: body.firma };
-        try { sessionStorage.setItem('kompass_k', j.kontakt_id); } catch(e){}
         renderResult(j.result);
       }).catch(function(err){
         console.error(err);
@@ -385,7 +380,7 @@
         if (!j.ok || !j.kontakt) return;
         state.kontakt = j.kontakt; state.gated = false;
         if (j.kontakt.firma) { $('hero-h1').innerHTML = 'Der Standort-Check für <i>' + j.kontakt.firma.replace(/</g, '&lt;') + '</i>'; $('form-title').textContent = 'Standort-Check für ' + j.kontakt.firma; }
-        $('hero-sub').innerHTML = 'Danke für Ihre Teilnahme an der Branchenumfrage 2026. Hier ist Ihr Dankeschön: <b>Fachkräfte-Potenzial, Standorttyp und Voraussetzungen</b> für Ihren Betrieb.';
+        $('hero-sub').innerHTML = 'Danke, dass Sie bei der Branchenumfrage mitgemacht haben. Hier ist der Standort-Check für Ihren Betrieb.';
         $('plz-kicker').textContent = 'Nur noch ein Schritt';
         if (j.kontakt.plz) { $('plz').value = j.kontakt.plz; runCheck(); }
       }).catch(function(){});
@@ -395,14 +390,11 @@
        Kommt die Seite aus dem Vor-/Zurück-Speicher, ist sie im Zustand des letzten Nutzers.
        Am Messestand wäre das fatal: Der nächste Betrieb sähe die Daten des vorherigen. */
     window.addEventListener('pageshow', function(e){
-      if (e.persisted && !K.params.k) location.reload();
+      if (e.persisted) location.reload();
     });
 
     /* Nach Abschluss zurück auf Anfang – für den Vertriebler, der den nächsten Betrieb aufnimmt. */
-    function neuStarten(){
-      try { sessionStorage.removeItem('kompass_k'); } catch(err){}
-      location.href = location.pathname;
-    }
+    function neuStarten(){ location.href = location.pathname; }
     document.querySelectorAll('[data-neu]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); neuStarten(); }); });
 
     /* ── Sticky CTA + Scroll-Links ── */

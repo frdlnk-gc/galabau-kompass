@@ -338,6 +338,17 @@
       showSlide('start');
     }
     $('again').addEventListener('click', reset);
+
+    /* ── Kein fremder Zustand auf dem Bildschirm ──
+       Am Stand geht ein Handy von Hand zu Hand. Kommt die Seite aus dem Vor-/Zurueck-Speicher
+       oder lag sie nach dem Absenden laenger in der Tasche, faengt sie wieder von vorn an. */
+    window.addEventListener('pageshow', function(e){ if (e.persisted) reset(); });
+    var wegSeit = 0;
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) { wegSeit = Date.now(); return; }
+      if (wegSeit && Date.now() - wegSeit > 90000 && $('success').classList.contains('active')) reset();
+      wegSeit = 0;
+    });
     $('submit').addEventListener('click', function(){
       if (!$('consent').checked) { $('submit-error').classList.add('active'); return; }
       $('submit-error').classList.remove('active');
