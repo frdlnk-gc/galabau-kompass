@@ -1,0 +1,41 @@
+GaLaBau Kompass · Polos für die Messe GaLaBau 2026
+Druckdaten für den Textildruck
+
+TEXTIL
+Schwarzes Piqué-Polo, Herrengrößen:
+  Nick Scheffler    M
+  Fabio Zindel      M
+  Niklas Kühme      XL
+
+DATEIEN
+  01-vorne-brustlogo.png    für alle drei Polos gleich
+  02-hinten-nick.png        nur für Nick
+  02-hinten-fabio.png       nur für Fabio
+  02-hinten-niklas.png      nur für Niklas
+
+Die Rückseiten unterscheiden sich im QR-Code. Jeder Träger hat seinen eigenen,
+damit nachvollziehbar bleibt, über welches Polo die Kontakte kommen.
+Bitte nicht vertauschen.
+
+FORMAT
+  PNG mit Transparenz, 300 dpi bei Druckgröße
+  vorne   90 × 100 mm   (1063 × 1181 px)
+  hinten  300 × 380 mm  (3544 × 4488 px)
+
+WICHTIG ZUR TRANSPARENZ
+Alle transparenten Stellen bleiben Stoff und werden nicht gedruckt. Das gilt
+ausdrücklich auch für die dunklen Felder im QR-Code: Sie sind ausgespart, der
+schwarze Stoff liefert den Kontrast. Nur die helle Fläche wird gedruckt.
+Bitte keine weiße Grundierung unter den gesamten Bereich legen, sonst wird der
+QR-Code unlesbar.
+
+FARBEN
+  Hell (Schrift, QR-Fläche)   #F2F7F3
+  Lime (Anrede, Hinweiszeile) #CDF47A
+Beide decken auf Schwarz. Falls Sonderfarben nötig sind, bitte kurz Rücksprache.
+
+PLATZIERUNG
+  vorne   Brust links, Oberkante etwa auf Höhe des untersten Knopfes
+  hinten  mittig, Oberkante etwa 10 cm unter dem Kragenansatz
+
+Rückfragen: Frederik Linke

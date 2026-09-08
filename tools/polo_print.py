@@ -19,11 +19,12 @@ import segno
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PEOPLE = [
-    {"slug": "fabio",  "name": "Fabio Zindel"},
-    {"slug": "niklas", "name": "Niklas Kühme"},
-    {"slug": "nick",   "name": "Nick Scheffler"},
-    {"slug": "julian", "name": "Julian Kohansal"},
-    {"slug": "liam",   "name": "Liam Quick"},
+    # Entscheidung im Call 07.09.: nur diese drei tragen ein Kompass-Polo und sammeln Kontakte.
+    # Julian und Liam laufen im normalen GreenCareers-Shirt (sie checken die Stände ab), Freddy macht keine Akquise.
+    # Die persönlichen Umfrage-Links (umfrage/?t=…) behalten trotzdem alle fünf.
+    {"slug": "nick",   "name": "Nick Scheffler",  "groesse": "M"},
+    {"slug": "fabio",  "name": "Fabio Zindel",    "groesse": "M"},
+    {"slug": "niklas", "name": "Niklas Kühme",    "groesse": "XL"},
 ]
 CREME, HONIG, BLACK = "#F2F7F3", "#CDF47A", "#000000"  # Hell, Lime (Akzent der v5-Farbwelt), Polo-Grund
 GRUEN = "#23A551"
@@ -39,7 +40,10 @@ def qr_svg(url: str) -> str:
     return buf.getvalue().decode("utf-8")
 
 def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
-    """Finale Fassung (Freddy, 07.09. abends): vorne Marke + Wortmarke auf der Brust; hinten Kicker „Branchenumfrage 2026“, Frage an GaLaBau-Inhaber, QR, Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke. Kein Pfeil."""
+    """Freigegebene Fassung (Freddy 07.09. abends). Vorne Marke + Wortmarke auf der Brust.
+    Hinten: Anrede „GaLaBau-Betriebe:“ über die volle Breite in Lime, darunter die Frage nach den
+    Fachkräften im Umkreis, großer QR, darunter der Nutzen und der Aufwand. Der Doppelpunkt macht
+    die Ansprache – ein Ausrufezeichen („aufgepasst!“) wäre Marktgeschrei, die Marke ist ein Magazin."""
     if kind == "front":
         return f'''
 <section class="page front" style="width:{w}mm;height:{h}mm;">
@@ -48,11 +52,14 @@ def page(kind: str, person: dict, url: str, w: int, h: int) -> str:
 </section>'''
     return f'''
 <section class="page back" style="width:{w}mm;height:{h}mm;">
-  <div class="eyebrow">Branchenumfrage 2026</div>
-  <div class="frage">GaLaBau-Inhaber:<br>Wie gewinnen Sie<br>heute Fachkräfte?</div>
-  <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
+  <div>
+    <div class="anrede">GaLaBau-Betriebe:</div>
+    <div class="frage">Wie viele Fachkräfte<br>wohnen in Ihrem<br>Umkreis?</div>
+  </div>
+  <div class="qrwrap" style="width:172mm;height:172mm;">{qr_svg(url)}</div>
   <div class="unten">
-    <div class="line2">Unverbindliche 2-Minuten-Umfrage starten</div>
+    <div class="line2">Umfrage ausfüllen, Standortcheck per Mail erhalten</div>
+    <div class="line3">Kostenlos · zwei Minuten · Branchenumfrage 2026</div>
     <div class="logo">{MARK.format(ink=CREME, accent=HONIG)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot">galabau-kompass.de</div>
   </div>
@@ -68,7 +75,7 @@ def spec(person: dict, size: str, url: str) -> str:
     <tr><th>Polo-Farbe</th><td>Schwarz (dunkler Grund, Baumwoll-Piqué)</td></tr>
     <tr><th>Druckfarben</th><td>Hell <b>{CREME}</b> · Lime <b>{HONIG}</b> (Nordnadel, Kicker, Zeile) – Sonderfarben nach HEX, Pantone/HKS mit der Druckerei abstimmen · QR-Kachel Hell mit Modulen Schwarz</td></tr>
     <tr><th>Seite 1 – VORNE</th><td>Brustlogo links: Druckfläche 90 × 100 mm, Marke 60 mm, darunter Wortmarke. Platzierung auf Höhe des untersten Knopfs, Mitte der linken Brustseite (aus Trägersicht links).</td></tr>
-    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett: Kicker „Branchenumfrage 2026“, Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, QR-Code (Vektor, je Person eigener Link), Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke, Internetadresse. Kein Pfeil.</td></tr>
+    <tr><th>Seite 2 – HINTEN</th><td>Druckfläche 300 × 380 mm, mittig, Oberkante 10 cm unter dem Kragenansatz. Motiv komplett: Kicker „Kostenlos für GaLaBau-Betriebe“, Frage „Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?“, QR-Code (Vektor, je Person eigener Link), Zeile „Umfrage ausfüllen, Standortcheck per Mail erhalten“, Wortmarke, Internetadresse. Kein Pfeil.</td></tr>
     <tr><th>QR-Code</th><td>Ziel: <b>{url}</b> — Kachel nicht verkleinern, nicht spiegeln, nicht invertieren, keine Farbänderung. Vor dem Druck einmal vom Andruck scannen (Ergebnis: Standort-Check-Seite).</td></tr>
     <tr><th>Verfahren</th><td>Vektordaten (PDF, Schriften eingebettet). Empfehlung: Siebdruck oder DTF (drei Farben + QR-Kachel); bei Flex Marke und Wortmarke einfarbig Hell, QR-Kachel als helle Fläche mit schwarzen Modulen aus dem Polo-Grund lösen.</td></tr>
     <tr><th>Stück</th><td>1 (je Vertriebler ein eigener QR-Code – Dateien NICHT vertauschen)</td></tr>
@@ -86,13 +93,13 @@ CSS = f'''
 html,body{{background:#fff;}}
 .page{{page-break-after:always;position:relative;overflow:hidden;font-family:Inter,sans-serif;}}
 .front,.back{{background:{BLACK};color:{CREME};display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14mm 10mm 12mm;position:relative;}}
-.back{{justify-content:center;gap:0;}}
-.back .eyebrow{{margin-bottom:6mm;}}
-.back .unten{{margin-top:12mm;}}
+.back{{justify-content:space-between;gap:0;padding:14mm 10mm 12mm;}}
+.anrede{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:29mm;line-height:1;color:{HONIG};white-space:nowrap;}}
+.back .unten{{gap:4.5mm;}}
 .front{{justify-content:center;gap:5mm;padding:4mm;}}
 .front .marke .mark{{height:60mm;width:auto;}}
 .word.klein{{font-size:7.8mm;white-space:nowrap;}}
-.frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:23mm;line-height:1.05;margin-bottom:12mm;}}
+.frage{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:22mm;line-height:1.05;margin-top:6mm;}}
 .unten{{display:flex;flex-direction:column;align-items:center;gap:5mm;}}
 .unten .logo .mark{{height:16mm;}}
 .unten .word{{font-size:16mm;}}
@@ -113,7 +120,8 @@ html,body{{background:#fff;}}
 .line1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:14mm;line-height:1.05;letter-spacing:-.01em;}}
 .back .line1{{font-size:17mm;}}
 .line2{{font-size:8.2mm;line-height:1.25;color:{HONIG};font-weight:700;margin-top:3mm;}}
-.back .line2{{font-size:10mm;}}
+.back .line2{{font-size:8.4mm;}}
+.line3{{font-size:5.2mm;font-weight:600;color:rgba(242,247,243,.68);}}
 .foot{{font-size:3.6mm;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,232,.55);margin-top:4mm;}}
 .spec{{padding:18mm 16mm;color:#0B1F14;font-size:3.8mm;line-height:1.5;}}
 .spec h1{{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:8mm;margin-bottom:8mm;}}
@@ -188,7 +196,7 @@ def anleitung_html(results: list, domain: str) -> str:
 <li>Druckfläche 90 × 100 mm, Brust links (aus Sicht des Trägers), waagerecht mittig auf der linken Brustseite, Oberkante auf Höhe des untersten Knopfs.</li>
 <li>Farben: Hell {CREME} (Kreis, Südnadel, Wortmarke), Grün {GRUEN} (Nordnadel). Polo-Grund bleibt frei.</li></ul>
 <h2>2 · Rückseite – Datei 02-hinten-&lt;kürzel&gt;.pdf (je Person eigene Datei)</h2>
-<ul><li>Motiv: Kicker „Branchenumfrage 2026“, Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, QR-Code, Zeile „Unverbindliche 2-Minuten-Umfrage starten“, Wortmarke, Internetadresse.</li>
+<ul><li>Motiv: Kicker „Kostenlos für GaLaBau-Betriebe“, Frage „Wie viele Fachkräfte wohnen im Umkreis Ihres Betriebs?“, QR-Code, Zeile „Umfrage ausfüllen, Standortcheck per Mail erhalten“, Wortmarke, Internetadresse.</li>
 <li>Druckfläche 300 × 380 mm, waagerecht mittig, Oberkante 10 cm unter dem Kragenansatz.</li>
 <li>Farben: Hell {CREME}, Lime {HONIG} (Nordnadel, Kicker, Zeile). QR-Kachel: helle Fläche mit schwarzen Modulen – nicht invertieren, nicht verkleinern, nicht spiegeln, Ecken bleiben rund.</li>
 <li>Jede Rückseite gehört zu genau einer Person (Tabelle unten). Dateien nicht vertauschen. Vor dem Druck einmal vom Andruck scannen – das Ziel ist die Standort-Check-Seite mit dem Kürzel der Person.</li></ul>
@@ -206,6 +214,10 @@ def druckpaket(results: list, domain: str):
     import zipfile
     out = os.path.join(ROOT, "print", "druck"); os.makedirs(out, exist_ok=True)
     work = os.path.join(ROOT, "print", "_work")
+    # Rückseiten von Personen, die nicht mehr dabei sind, entfernen – sonst druckt die Druckerei Karteileichen mit.
+    aktuell = {f"02-hinten-{r['slug']}.pdf" for r in results}
+    for fn in os.listdir(out):
+        if fn.startswith("02-hinten-") and fn not in aktuell: os.remove(os.path.join(out, fn))
     shutil.copy(os.path.join(work, f"polo-{results[0]['slug']}-front.pdf"), os.path.join(out, "01-vorne-logo.pdf"))
     for r in results: shutil.copy(os.path.join(work, f"polo-{r['slug']}-back.pdf"), os.path.join(out, f"02-hinten-{r['slug']}.pdf"))
     src = os.path.join(work, "druckanleitung.html"); open(src, "w", encoding="utf-8").write(anleitung_html(results, domain))
@@ -226,7 +238,7 @@ def main():
     results = []
     for p in PEOPLE:
         if a.only and p["slug"] != a.only: continue
-        r = build(p, sizes.get(p["slug"], "___ (bitte eintragen)"), a.domain, os.path.join(ROOT, "print", p["slug"]))
+        r = build(p, sizes.get(p["slug"], p.get("groesse") or "___ (bitte eintragen)"), a.domain, os.path.join(ROOT, "print", p["slug"]))
         results.append(r); print("✓", r["name"], "→", os.path.relpath(r["pdf"], ROOT))
     json.dump(results, open(os.path.join(ROOT, "print", "manifest.json"), "w"), indent=2, ensure_ascii=False)
     if not a.only: druckpaket(results, a.domain)

@@ -1,37 +1,23 @@
 [
   {
+    "slug": "nick",
+    "name": "Nick Scheffler",
+    "size": "M",
+    "url": "https://galabau-kompass.de/s/nick/",
+    "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/nick/polo-nick.pdf"
+  },
+  {
     "slug": "fabio",
     "name": "Fabio Zindel",
-    "size": "___ (bitte eintragen)",
+    "size": "M",
     "url": "https://galabau-kompass.de/s/fabio/",
     "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/fabio/polo-fabio.pdf"
   },
   {
     "slug": "niklas",
     "name": "Niklas Kühme",
-    "size": "___ (bitte eintragen)",
+    "size": "XL",
     "url": "https://galabau-kompass.de/s/niklas/",
     "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/niklas/polo-niklas.pdf"
-  },
-  {
-    "slug": "nick",
-    "name": "Nick Scheffler",
-    "size": "___ (bitte eintragen)",
-    "url": "https://galabau-kompass.de/s/nick/",
-    "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/nick/polo-nick.pdf"
-  },
-  {
-    "slug": "julian",
-    "name": "Julian Kohansal",
-    "size": "___ (bitte eintragen)",
-    "url": "https://galabau-kompass.de/s/julian/",
-    "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/julian/polo-julian.pdf"
-  },
-  {
-    "slug": "liam",
-    "name": "Liam Quick",
-    "size": "___ (bitte eintragen)",
-    "url": "https://galabau-kompass.de/s/liam/",
-    "pdf": "/Users/frederiklinke/Desktop/Alle Ordner/Claude/Coding/galabau-kompass/print/liam/polo-liam.pdf"
   }
 ]

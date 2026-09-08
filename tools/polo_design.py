@@ -81,12 +81,15 @@ def motiv_marke(w, h):
 
 def motiv_reduziert(url, w, h):
     """Rücken (final 07.09.): Kicker, Frage an GaLaBau-Inhaber, QR groß, Umfrage-Zeile, Wortmarke – ohne Pfeil."""
-    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 12mm;justify-content:center;gap:0;">
-  <div class="eyebrow" style="font-size:5mm;margin-bottom:6mm;">Branchenumfrage 2026</div>
-  <div class="line1" style="font-size:23mm;margin-bottom:12mm;">GaLaBau-Inhaber:<br>Wie gewinnen Sie<br>heute Fachkräfte?</div>
-  <div class="qrwrap" style="width:186mm;height:186mm;">{qr_svg(url)}</div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:5mm;margin-top:12mm;">
-    <div class="line2" style="font-size:10mm;">Unverbindliche 2-Minuten-Umfrage starten</div>
+    return f'''<section class="art" style="width:{w}mm;height:{h}mm;padding:14mm 10mm 12mm;justify-content:space-between;gap:0;">
+  <div>
+    <div class="line1" style="font-size:29mm;color:{LIME};line-height:1;white-space:nowrap;">GaLaBau-Betriebe:</div>
+    <div class="line1" style="font-size:22mm;margin-top:6mm;">Wie viele Fachkräfte<br>wohnen in Ihrem<br>Umkreis?</div>
+  </div>
+  <div class="qrwrap" style="width:172mm;height:172mm;">{qr_svg(url)}</div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4.5mm;">
+    <div class="line2" style="font-size:8.4mm;">Umfrage ausfüllen, Standortcheck per Mail erhalten</div>
+    <div style="font-size:5.2mm;font-weight:600;color:rgba(242,247,243,.68);">Kostenlos · zwei Minuten · Branchenumfrage 2026</div>
     <div class="logo" style="font-size:16mm;">{MARK.format(ink=LIGHT, accent=LIME)}<div class="word">GaLaBau Kompass</div></div>
     <div class="foot" style="font-size:3.8mm;">galabau-kompass.de</div>
   </div>
@@ -142,7 +145,7 @@ VARIANTEN = {
           [("Vorne", "Komplettes Motiv 25 × 30 cm, mittig, Oberkante ca. 3 cm unter der Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Zeilen, Pfeil) · QR-Kachel hell mit schwarzen Modulen")]),
     "B": ("Klassisch", "Vorne ein Brustlogo links wie bei einem Firmenpolo, hinten das große Motiv mit QR-Code. Wirkt von vorn seriös, von hinten fordert es zum Scannen auf – die Variante mit dem besten Verhältnis aus Auftreten und Wirkung.",
           [("Vorne", "Brustlogo links 12 × 3,5 cm (Marke + Wortmarke, darunter Claim), auf Höhe der untersten Knopfleiste"), ("Hinten", "Komplettes Motiv 30 × 38 cm, mittig, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 · Lime #CDF47A · QR-Kachel hell mit schwarzen Modulen")]),
-    "C": ("Reduziert", "Vorne die Kompassnadel mit der Wortmarke darunter, hinten der Kicker „Branchenumfrage 2026“, die Frage „GaLaBau-Inhaber: Wie gewinnen Sie heute Fachkräfte?“, der große QR-Code mit handgezeichnetem Pfeil und die Wortmarke. Ruhig, hochwertig, wenig Text – die Frage ist der Aufhänger fürs Gespräch.",
+    "C": ("Reduziert", "Vorne die Kompassnadel mit der Wortmarke darunter, hinten die Anrede „GaLaBau-Betriebe:“ über die Frage „Wie viele Fachkräfte wohnen in Ihrem Umkreis?“, der große QR-Code mit handgezeichnetem Pfeil und die Wortmarke. Ruhig, hochwertig, wenig Text – die Frage ist der Aufhänger fürs Gespräch.",
           [("Vorne", "Brustlogo links: Marke 6 cm, darunter Wortmarke, Druckfläche 9 × 10 cm, auf Höhe des untersten Knopfs"), ("Hinten", "Frage, QR 19 cm mit Edding-Pfeil, Zeile „Kostenlos scannen · Standort-Check“, Wortmarke – Fläche 30 × 38 cm, Oberkante 10 cm unter dem Kragenansatz"), ("Farben", "Hell #F2F7F3 · Grün #23A551 (Nadel) · Lime #CDF47A (Pfeil, Zeile) · QR-Kachel hell mit schwarzen Modulen")]),
 }
 GROESSEN = [("Fabio Zindel", "Vertrieb, Messe", ""), ("Niklas Kühme", "Vertrieb, Messe", ""), ("Nick Scheffler", "Vertrieb, Messe", ""), ("Julian Kohansal", "Geschäftsführung (optional)", ""), ("Liam Quick", "Geschäftsführung (optional)", "")]
