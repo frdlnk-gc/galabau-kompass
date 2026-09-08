@@ -390,8 +390,19 @@
        Kommt die Seite aus dem Vor-/Zurück-Speicher, ist sie im Zustand des letzten Nutzers.
        Am Messestand wäre das fatal: Der nächste Betrieb sähe die Daten des vorherigen. */
     window.addEventListener('pageshow', function(e){
-      if (e.persisted) location.reload();
+      if (e.persisted) { location.reload(); return; }
+      leeren();
     });
+
+    /* Beim Zurueckgehen stellt der Browser Eingabefelder von sich aus wieder her.
+       Am Stand stuende dort der Betrieb des vorherigen Besuchers. Also leeren. */
+    function leeren(){
+      if (K.params.k) return;   /* Aufruf mit Kontakt in der Adresse: Vorbelegung ist gewollt */
+      ['plz', 'firma', 'fullname', 'email', 'phone', 'nachricht'].forEach(function(id){ var el = $(id); if (el) el.value = ''; });
+      var c = $('consent'); if (c) c.checked = false;
+    }
+    leeren();
+    window.addEventListener('load', leeren);
 
     /* Nach Abschluss zurück auf Anfang – für den Vertriebler, der den nächsten Betrieb aufnimmt. */
     function neuStarten(){ location.href = location.pathname; }

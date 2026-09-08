@@ -342,7 +342,14 @@
     /* ── Kein fremder Zustand auf dem Bildschirm ──
        Am Stand geht ein Handy von Hand zu Hand. Kommt die Seite aus dem Vor-/Zurueck-Speicher
        oder lag sie nach dem Absenden laenger in der Tasche, faengt sie wieder von vorn an. */
-    window.addEventListener('pageshow', function(e){ if (e.persisted) reset(); });
+    window.addEventListener('pageshow', function(e){ if (e.persisted) reset(); else felderLeeren(); });
+    function felderLeeren(){
+      ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ var el = $(id); if (el) el.value = ''; });
+      var c = $('consent'); if (c) c.checked = false;
+      document.querySelectorAll('.notiz-feld').forEach(function(el){ el.value = ''; });
+    }
+    felderLeeren();
+    window.addEventListener('load', felderLeeren);
     var wegSeit = 0;
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) { wegSeit = Date.now(); return; }
