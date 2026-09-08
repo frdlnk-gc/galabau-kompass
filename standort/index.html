@@ -402,7 +402,11 @@
       var c = $('consent'); if (c) c.checked = false;
     }
     leeren();
-    window.addEventListener('load', leeren);
+    /* Auf schlechter Verbindung feuert 'load' spaet. Wer bis dahin schon tippt,
+       darf seine Eingabe nicht verlieren – dann wird nicht mehr geleert. */
+    var getippt = false;
+    document.addEventListener('input', function(){ getippt = true; }, true);
+    window.addEventListener('load', function(){ if (!getippt) leeren(); });
 
     /* Nach Abschluss zurück auf Anfang – für den Vertriebler, der den nächsten Betrieb aufnimmt. */
     function neuStarten(){ location.href = location.pathname; }

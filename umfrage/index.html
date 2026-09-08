@@ -349,7 +349,9 @@
       document.querySelectorAll('.notiz-feld').forEach(function(el){ el.value = ''; });
     }
     felderLeeren();
-    window.addEventListener('load', felderLeeren);
+    var getippt = false;
+    document.addEventListener('input', function(){ getippt = true; }, true);
+    window.addEventListener('load', function(){ if (!getippt) felderLeeren(); });
     var wegSeit = 0;
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) { wegSeit = Date.now(); return; }
