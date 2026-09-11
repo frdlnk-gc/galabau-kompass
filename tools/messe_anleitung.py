@@ -104,7 +104,7 @@ def seite1():
 
   <h2>Was wir machen</h2>
   <p>Wir machen eine <b>Branchenumfrage zur Mitarbeitergewinnung</b> für unser Magazin
-  <b>GaLaBau Kompass</b>, in Kooperation mit GreenCareers. 15 kurze Fragen, rund zwei Minuten.
+  <b>GaLaBau Kompass</b>, in Kooperation mit GreenCareers. 10 kurze Fragen, rund zwei Minuten.
   Die Ergebnisse veröffentlichen wir im Oktober — anonymisiert und branchenweit.</p>
   <p style="margin-top:3mm">Das ist der Aufhänger für jedes Gespräch. <b>Ziel: so viele
   Umfragen wie möglich.</b></p>
