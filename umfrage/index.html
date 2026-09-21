@@ -27,11 +27,21 @@
     .start-card .thanks{background:var(--green-mist);border:1px solid var(--green-light);border-radius:12px;padding:12px 14px;font-size:.86rem;margin:14px 0 16px;text-align:left;display:flex;gap:10px;align-items:flex-start;}
     .start-card .thanks .ic{font-size:1.3rem;line-height:1;}
     .next-btn{margin-top:14px;}
+    /* Eigene Antwort je Frage – steht immer offen, damit der Vertriebler nichts aufklappen muss.
+       Alles, was nicht in den Kacheln steht (Maschinist, Stahlbetonbauer …), kommt hier rein. */
+    .frei{margin-top:10px;}
+    .frei-feld{width:100%;font-size:1rem;padding:12px 14px;}
+    .frei-feld.hat-wert{border-color:var(--green-deep);}
     /* Notiz je Frage – ein Klick, ein kurzes Feld. Am Messestand zählt Tempo. */
-    .notiz{margin-top:12px;}
+    .notiz{margin-top:8px;padding-bottom:4px;}
     .notiz-auf{background:none;border:none;font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--green-deep);cursor:pointer;padding:6px 0;}
     .notiz-auf:hover{text-decoration:underline;}
     .notiz-feld{width:100%;font-size:1rem;padding:12px 14px;}
+    /* Wem gehört der Kontakt? Steht direkt über den Kontaktfeldern, damit vor dem Absenden
+       auffällt, wenn der persönliche Link fehlt und der Lead sonst im Inbound landen würde. */
+    .vzeile{display:flex;align-items:center;gap:8px;font-size:.82rem;border-radius:10px;padding:9px 12px;margin-bottom:14px;}
+    .vzeile.ok{background:var(--green-mist);border:1px solid var(--green-light);color:var(--text);}
+    .vzeile.warn{background:#FFF7E6;border:1px solid #F1D48A;color:#6B4E0A;}
     /* Navigationsleiste: klebt unten in der Karte, damit Zurück auch bei langen Listen immer erreichbar ist */
     .nav{position:sticky;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;
          margin:18px -20px -22px;padding:14px 20px;background:var(--white);border-top:1px solid var(--hair);
@@ -42,7 +52,6 @@
                  background:var(--bg-2);border:1.5px solid var(--hair-strong);cursor:pointer;-webkit-tap-highlight-color:transparent;}
     .nav-zurueck:hover{border-color:var(--green-deep);color:var(--green-deep);}
     .nav-weiter{min-height:52px;padding:0 26px;font-size:1rem;}
-    .nav-hinweis{font-size:.84rem;color:var(--ink-faint);}
     body.laeuft .intro{display:none;}
     body.laeuft .survey{padding-top:10px;}
     .slide{padding-bottom:2px;}
@@ -65,7 +74,7 @@
       body.laeuft .subtext{margin-bottom:10px;}
       body.laeuft .nav{margin:14px -16px 0;padding:12px 16px;}
     }
-    @media(max-width:420px){.nav-zurueck{padding:0 16px;}.nav-weiter{padding:0 18px;}.nav-hinweis{display:none;}}
+    @media(max-width:420px){.nav-zurueck{padding:0 16px;}.nav-weiter{padding:0 18px;}}
     .queue-note{background:#FFF7E6;border:1px solid #F1D48A;color:#6B4E0A;border-radius:12px;padding:10px 14px;font-size:.8rem;margin-top:12px;display:none;}
     .queue-note.active{display:block;}
     .success .btn{margin-top:14px;}
@@ -116,6 +125,7 @@
             <div class="kicker">Fast geschafft</div>
             <h3 class="question">Wer hat teilgenommen?</h3>
             <p class="subtext">Die Antworten werden anonymisiert ausgewertet. Gleich nach dem Absenden sehen Sie Ihren Standort-Check.</p>
+            <div class="vzeile warn" id="vzeile">Kein Vertriebler erkannt – bitte über den persönlichen Link oder den QR-Code vom Polo starten, sonst läuft der Lead nicht auf dich.</div>
             <div class="field"><label class="label" for="firma">Betrieb</label><input type="text" class="input" id="firma" placeholder="z. B. Müller Garten- und Landschaftsbau" autocomplete="organization" autocapitalize="words"></div>
             <div class="row-2">
               <div class="field"><label class="label" for="vorname">Vorname</label><input type="text" class="input" id="vorname" placeholder="Max" autocomplete="given-name" autocapitalize="words"></div>
@@ -127,7 +137,7 @@
               <div class="field"><label class="label" for="plz">PLZ des Betriebs</label><input type="text" class="input" id="plz" placeholder="90471" inputmode="numeric" maxlength="5" autocomplete="postal-code"></div>
             </div>
             <button type="button" class="btn block" id="kontakt-cta">Weiter →</button>
-            <div class="error" id="kontakt-error">Bitte Betrieb, Name, E-Mail, Telefon und PLZ eintragen.</div>
+            <div class="error" id="kontakt-error">Bitte Betrieb, Name und PLZ eintragen – dazu mindestens Telefon oder E-Mail.</div>
             <button type="button" class="btn-link" data-back="last">← Zurück</button>
           </div>
 
@@ -162,38 +172,56 @@
   (function(){
     'use strict';
     var K = window.KOMPASS;
-    var FRAGEN_VERSION = 'v3-messe-2026-09-11';
+    var FRAGEN_VERSION = 'v4-messe-2026-09-17';
     var CONSENT_VERSION = 'umfrage-2026-09-v2';
     var CONSENT_TEXT = 'Ich bin einverstanden, dass die GreenCareers GmbH (Herausgeberin von GaLaBau Kompass) meine Angaben speichert und mich telefonisch oder per E-Mail zur Standortanalyse und zu Angeboten der Mitarbeitergewinnung kontaktiert. Die Umfrageantworten werden anonymisiert ausgewertet. Widerruf jederzeit möglich – Details in der Datenschutzerklärung.';
-    // Struktur: id, typ (single|multi), frage, optionen [[wert, label]]. Zu jeder Frage kann der Vertriebler
-    // eine kurze Notiz tippen (Feld erscheint auf Klick, bei „Etwas anderes“ automatisch) – am Stand muss es schnell gehen.
+    // Struktur: id, frage, optionen [[wert, label]]. Jede Frage ist Mehrfachauswahl (Freddy/Nick 17.09.):
+    // am Stand trifft selten genau eine Kachel zu. Zu jeder Frage gibt es zusätzlich
+    //   · ein offenes Feld für eine eigene Antwort (Maschinist, Stahlbetonbauer … – zählt als Antwort)
+    //   · den Notiz-Button für das, was im Gespräch nebenbei fällt (geht als Notiz mit ins CRM)
+    // Weiter geht es über den Knopf unten, nie automatisch.
     var KANAELE = [['empfehlung','Empfehlungen / Mundpropaganda'],['agentur','Agentur für Arbeit'],['jobportale','Jobportale (Indeed, Stepstone …)'],['social','Social Media / Online-Anzeigen'],['website','Eigene Website'],['zeitung','Zeitung / Aushang'],['vermittler','Personalvermittler / Headhunter'],['netzwerk','Karrierenetzwerk / Plattform']];
+    // Antworten, die sich mit allem anderen beißen: klickt jemand „Keine“, fliegt der Rest raus (und umgekehrt).
+    var EXKLUSIV = ['keine','keiner','niemand','unbekannt','0'];
     var FRAGEN = [
-      { id:'betriebsgroesse', typ:'single', frage:'Wie viele Mitarbeiter beschäftigt Ihr Betrieb?', optionen:[['bis-5','bis 5'],['6-15','6 bis 15'],['16-30','16 bis 30'],['31-60','31 bis 60'],['ueber-60','über 60']] },
-      { id:'offene_stellen', typ:'single', frage:'Wie viele Stellen sind bei Ihnen aktuell unbesetzt?', optionen:[['0','Keine'],['1','Eine'],['2-3','Zwei bis drei'],['4+','Vier oder mehr']] },
-      { id:'gesuchte_positionen', typ:'multi', frage:'Welche Positionen suchen Sie aktuell oder in den nächsten 12 Monaten?', optionen:[['landschaftsgaertner','Landschaftsgärtner / Facharbeiter'],['vorarbeiter','Vorarbeiter'],['bauleiter','Bauleiter'],['azubi','Auszubildende'],['helfer','Helfer / Ungelernte'],['buero','Büro / Planung'],['keine','Keine']] },
-      { id:'besetzungsdauer', typ:'single', frage:'Wie lange dauert es bei Ihnen typischerweise, eine Fachkraft-Stelle zu besetzen?', optionen:[['unter-1','Unter 1 Monat'],['1-3','1 bis 3 Monate'],['3-6','3 bis 6 Monate'],['ueber-6','Über 6 Monate'],['unbekannt','Weiß nicht']] },
-      { id:'kanaele', typ:'multi', frage:'Über welche Wege haben Sie in den letzten 12 Monaten Mitarbeiter gesucht?', optionen:KANAELE },
-      { id:'erfolgreichster_kanal', typ:'multi', frage:'Welcher Weg hat zuletzt tatsächlich zu einer Einstellung geführt?', optionen:KANAELE.concat([['keiner','Keiner']]) },
-      { id:'huerde', typ:'single', frage:'Was ist aktuell die größte Hürde bei der Mitarbeitersuche?', optionen:[['zu-wenige','Zu wenige Bewerbungen'],['qualifikation','Bewerber passen fachlich nicht'],['gehalt','Gehaltsvorstellungen'],['absprung','Bewerber springen ab'],['zeit','Keine Zeit für die Suche'],['sonstiges','Etwas anderes']] },
-      { id:'budget', typ:'single', frage:'Wie viel investiert Ihr Betrieb pro Jahr in die Mitarbeitergewinnung?', optionen:[['0','Nichts'],['bis-2000','Bis 2.000 €'],['2000-5000','2.000 bis 5.000 €'],['5000-15000','5.000 bis 15.000 €'],['ueber-15000','Über 15.000 €'],['unbekannt','Weiß nicht']] },
-      { id:'bedarf_2027', typ:'single', frage:'Wie entwickelt sich Ihr Personalbedarf bis zur Saison 2027?', optionen:[['steigt','Steigt'],['gleich','Bleibt gleich'],['sinkt','Sinkt']] },
-      { id:'zustaendig', typ:'single', frage:'Wer kümmert sich in Ihrem Betrieb um die Mitarbeitersuche?', optionen:[['inhaber','Inhaber / Geschäftsführung selbst'],['buero','Büro / Verwaltung'],['extern','Externer Dienstleister'],['niemand','Niemand fest']] }
+      { id:'betriebsgroesse', frage:'Wie viele Mitarbeiter beschäftigt Ihr Betrieb?', frei:'Andere Angabe, z. B. „25 plus 8 Saisonkräfte“', optionen:[['bis-5','bis 5'],['6-15','6 bis 15'],['16-30','16 bis 30'],['31-60','31 bis 60'],['ueber-60','über 60']] },
+      { id:'offene_stellen', frage:'Wie viele Stellen sind bei Ihnen aktuell unbesetzt?', optionen:[['0','Keine'],['1','Eine'],['2-3','Zwei bis drei'],['4+','Vier oder mehr']] },
+      { id:'gesuchte_positionen', frage:'Welche Positionen suchen Sie aktuell oder in den nächsten 12 Monaten?', frei:'Andere Position, z. B. Maschinist, Stahlbetonbauer, Polier', optionen:[['landschaftsgaertner','Landschaftsgärtner / Facharbeiter'],['vorarbeiter','Vorarbeiter'],['bauleiter','Bauleiter'],['azubi','Auszubildende'],['helfer','Helfer / Ungelernte'],['buero','Büro / Planung'],['keine','Keine']] },
+      { id:'besetzungsdauer', frage:'Wie lange dauert es bei Ihnen typischerweise, eine Fachkraft-Stelle zu besetzen?', optionen:[['unter-1','Unter 1 Monat'],['1-3','1 bis 3 Monate'],['3-6','3 bis 6 Monate'],['ueber-6','Über 6 Monate'],['unbekannt','Weiß nicht']] },
+      { id:'kanaele', frage:'Über welche Wege haben Sie in den letzten 12 Monaten Mitarbeiter gesucht?', frei:'Anderer Weg', optionen:KANAELE },
+      { id:'erfolgreichster_kanal', frage:'Welcher Weg hat zuletzt tatsächlich zu einer Einstellung geführt?', frei:'Anderer Weg', optionen:KANAELE.concat([['keiner','Keiner']]) },
+      { id:'huerde', frage:'Was ist aktuell die größte Hürde bei der Mitarbeitersuche?', frei:'Andere Hürde – bitte eintragen', optionen:[['zu-wenige','Zu wenige Bewerbungen'],['qualifikation','Bewerber passen fachlich nicht'],['gehalt','Gehaltsvorstellungen'],['absprung','Bewerber springen ab'],['zeit','Keine Zeit für die Suche'],['sonstiges','Etwas anderes']] },
+      { id:'budget', frage:'Wie viel investiert Ihr Betrieb pro Jahr in die Mitarbeitergewinnung?', optionen:[['0','Nichts'],['bis-2000','Bis 2.000 €'],['2000-5000','2.000 bis 5.000 €'],['5000-15000','5.000 bis 15.000 €'],['ueber-15000','Über 15.000 €'],['unbekannt','Weiß nicht']] },
+      { id:'bedarf_2027', frage:'Wie entwickelt sich Ihr Personalbedarf bis zur Saison 2027?', optionen:[['steigt','Steigt'],['gleich','Bleibt gleich'],['sinkt','Sinkt']] },
+      { id:'zustaendig', frage:'Wer kümmert sich in Ihrem Betrieb um die Mitarbeitersuche?', frei:'Andere Zuständigkeit', optionen:[['inhaber','Inhaber / Geschäftsführung selbst'],['buero','Büro / Verwaltung'],['extern','Externer Dienstleister'],['niemand','Niemand fest']] }
     ];
 
     var $ = function(id){ return document.getElementById(id); };
     document.getElementById('consent-text').innerHTML = CONSENT_TEXT.replace('Datenschutzerklärung', '<a href="' + K.root + 'datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>');
 
-    /* ── Vertriebler-Token ── */
-    var token = K.params.t || null, vslug = K.params.v || null;  // t = persönlicher Token (WhatsApp-Link), v = Kürzel vom Polo-QR (s/<kürzel>/)
-    try { if (!vslug && sessionStorage.getItem('kompass_v')) vslug = sessionStorage.getItem('kompass_v'); if (vslug) sessionStorage.setItem('kompass_v', vslug); } catch(e){}
+    /* ── Vertriebler-Token ──
+       t = persönlicher Token (WhatsApp-Link), v = Kürzel vom Polo-QR (s/<kürzel>/).
+       Beides liegt zusätzlich im localStorage: das Diensthandy bleibt die ganze Messe beim selben
+       Vertriebler, und wer die Seite neu öffnet (Tab zu, Akku leer, Browser räumt auf), nimmt seine
+       Zuordnung mit. Ohne Zuordnung landet der Lead im Inbound statt beim Vertriebler – genau das
+       soll nicht passieren. */
+    function merke(key, wert){ if (!wert) return; try { sessionStorage.setItem(key, wert); localStorage.setItem(key, wert); } catch(e){} }
+    function gemerkt(key){ try { return sessionStorage.getItem(key) || localStorage.getItem(key) || null; } catch(e){ return null; } }
+    var token = K.params.t || null, vslug = K.params.v || null;
+    if (!vslug) vslug = gemerkt('kompass_v'); merke('kompass_v', vslug);
+    if (!token) token = gemerkt('kompass_t'); merke('kompass_t', token);
     var vertriebler = null;
-    try { if (!token && sessionStorage.getItem('kompass_t')) token = sessionStorage.getItem('kompass_t'); if (token) sessionStorage.setItem('kompass_t', token); } catch(e){}
+    function vertrieblerZeigen(){
+      var z = $('vzeile');
+      if (vertriebler) { $('interviewer-name').textContent = vertriebler.vorname; $('interviewer').style.display = 'inline-flex'; z.className = 'vzeile ok'; z.textContent = 'Aufgenommen von ' + vertriebler.vorname + ' · Lead läuft im CRM auf ' + vertriebler.vorname + '.'; }
+      else if (token || vslug) { z.className = 'vzeile ok'; z.textContent = 'Zuordnung erkannt – der Lead läuft auf deinen Account.'; }
+    }
     if ((token || vslug) && K.env !== 'local') {
       fetch(K.cfg.apiBase + '/umfrage?' + (token ? 't=' + encodeURIComponent(token) : 'v=' + encodeURIComponent(vslug)), { credentials: 'omit' }).then(function(r){ return r.json(); }).then(function(j){
-        if (j.ok && j.token && !token) { token = j.token; try { sessionStorage.setItem('kompass_t', token); } catch(e){} }
-        if (j.ok && j.vertriebler) { vertriebler = j.vertriebler; $('interviewer-name').textContent = j.vertriebler.vorname; $('interviewer').style.display = 'inline-flex'; }
-      }).catch(function(){});
+        if (j.ok && j.token && !token) { token = j.token; merke('kompass_t', token); }
+        if (j.ok && j.vertriebler) { vertriebler = j.vertriebler; vertrieblerZeigen(); }
+      }).catch(function(){ vertrieblerZeigen(); });
+      vertrieblerZeigen();
     }
 
     /* ── Slides bauen ── */
@@ -201,17 +229,20 @@
     var wrap = $('frage-slides');
     FRAGEN.forEach(function(f, i){
       var d = document.createElement('div'); d.className = 'slide'; d.dataset.slide = 'f' + i;
-      var tiles = f.optionen.map(function(o){ return '<button type="button" class="tile" data-q="' + f.id + '" data-v="' + o[0] + '">' + (f.typ === 'multi' ? '<span class="box"></span>' : '<span class="box" style="border-radius:50%"></span>') + '<span class="lab"><b>' + o[1] + '</b>' + (o[2] ? '<small>' + o[2] + '</small>' : '') + '</span></button>'; }).join('');
+      var tiles = f.optionen.map(function(o){ return '<button type="button" class="tile" data-q="' + f.id + '" data-v="' + o[0] + '"><span class="box"></span><span class="lab"><b>' + o[1] + '</b>' + (o[2] ? '<small>' + o[2] + '</small>' : '') + '</span></button>'; }).join('');
       d.innerHTML = '<div class="kicker">Frage ' + (i + 1) + '</div><h3 class="question">' + f.frage + '</h3>' +
-        '<p class="subtext">' + (f.typ === 'multi' ? 'Mehrfachauswahl möglich' : 'Bitte eine Antwort auswählen') + '</p>' +
+        '<p class="subtext">Mehrfachauswahl möglich</p>' +
         '<div class="tiles">' + tiles + '</div>' +
+        '<div class="frei">' +
+          '<input type="text" class="input frei-feld" data-frei="' + f.id + '" maxlength="140" placeholder="' + (f.frei || 'Andere Antwort – frei eintragen') + ' (optional)">' +
+        '</div>' +
         '<div class="notiz" data-notiz-wrap="' + f.id + '">' +
-          '<button type="button" class="notiz-auf" data-notiz-auf="' + f.id + '">+ Notiz</button>' +
-          '<input type="text" class="input notiz-feld" data-notiz="' + f.id + '" maxlength="120" placeholder="Kurz notieren, Stichworte genügen" hidden>' +
+          '<button type="button" class="notiz-auf" data-notiz-auf="' + f.id + '">+ Notiz zum Gespräch</button>' +
+          '<input type="text" class="input notiz-feld" data-notiz="' + f.id + '" maxlength="200" placeholder="Kurz notieren, Stichworte genügen – geht mit ins CRM" hidden>' +
         '</div>' +
         '<div class="nav">' +
           '<button type="button" class="nav-zurueck" data-back="' + (i === 0 ? 'start' : 'f' + (i - 1)) + '">← Zurück</button>' +
-          (f.typ === 'multi' ? '<button type="button" class="btn nav-weiter" data-next="' + i + '" disabled>Weiter →</button>' : '<span class="nav-hinweis">Antwort antippen</span>') +
+          '<button type="button" class="btn nav-weiter" data-next="' + i + '" disabled>Weiter →</button>' +
         '</div>';
       wrap.appendChild(d);
     });
@@ -231,7 +262,10 @@
       }
       K.track('slide_view', { slide: name });
       var first = slides.filter(function(s){ return s.dataset.slide === name; })[0];
-      var input = first && first.querySelector('.input'); if (input) setTimeout(function(){ input.focus({ preventScroll: true }); }, 250);
+      // Tastatur nur da aufziehen, wo wirklich getippt wird. Auf den Fragen-Slides würde sie
+      // (seit dem offenen Antwortfeld) die Kacheln verdecken.
+      var input = name === 'kontakt' && first ? first.querySelector('.input') : null;
+      if (input) setTimeout(function(){ input.focus({ preventScroll: true }); }, 250);
       if (document.body.classList.contains('laeuft')) {
         var oben = $('card').getBoundingClientRect().top;
         if (oben < 0 || oben > 120) $('card').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -244,25 +278,51 @@
       showSlide('f0');
       window.scrollTo({ top: 0, behavior: 'auto' });
     });
+    /* Weiter ist frei, sobald irgendetwas zur Frage dasteht: Kachel, eigene Antwort oder Notiz.
+       Sonst hängt der Vertriebler an einer Frage fest, die der Kunde nicht beantworten will. */
+    function weiterPruefen(qid){
+      var i = FRAGEN.findIndex(function(f){ return f.id === qid; }); if (i < 0) return;
+      var gefuellt = (answers[qid] || []).length || answers[qid + '_frei'] || answers[qid + '_notiz'];
+      var nb = document.querySelector('.slide[data-slide="f' + i + '"] [data-next]');
+      if (nb) nb.disabled = !gefuellt;
+    }
     document.querySelectorAll('.tile[data-q]').forEach(function(t){
       t.addEventListener('click', function(){
-        var q = t.dataset.q, v = t.dataset.v, i = FRAGEN.findIndex(function(f){ return f.id === q; }), f = FRAGEN[i];
+        var q = t.dataset.q, v = t.dataset.v;
         var group = t.parentNode;
-        if (f.typ === 'single') {
-          answers[q] = v; group.querySelectorAll('.tile').forEach(function(x){ x.classList.remove('picked'); }); t.classList.add('picked');
-          if (v === 'sonstiges') { notizOeffnen(q, true); return; }   // erst notieren, dann selbst weiterklicken
-          setTimeout(function(){ showSlide(i + 1 < FRAGEN.length ? 'f' + (i + 1) : 'kontakt'); }, 170);
+        var arr = answers[q] || [];
+        if (EXKLUSIV.indexOf(v) > -1) {
+          // „Keine“ / „Weiß nicht“ steht für sich allein
+          arr = t.classList.contains('picked') ? [] : [v];
+          group.querySelectorAll('.tile').forEach(function(x){ x.classList.remove('picked'); });
+          if (arr.length) t.classList.add('picked');
         } else {
-          var arr = answers[q] || [];
-          if (v === 'keine' || v === 'keiner') { arr = t.classList.contains('picked') ? [] : [v]; group.querySelectorAll('.tile').forEach(function(x){ x.classList.remove('picked'); }); if (arr.length) t.classList.add('picked'); }
-          else { group.querySelectorAll('.tile[data-v="keine"],.tile[data-v="keiner"]').forEach(function(x){ x.classList.remove('picked'); }); arr = arr.filter(function(x){ return x !== 'keine' && x !== 'keiner'; }); var pos = arr.indexOf(v); if (pos > -1) { arr.splice(pos, 1); t.classList.remove('picked'); } else { arr.push(v); t.classList.add('picked'); } }
-          answers[q] = arr;
-          if (v === 'sonstiges' && t.classList.contains('picked')) notizOeffnen(q, true);
-          var nb = group.parentNode.querySelector('[data-next]'); if (nb) nb.disabled = !arr.length;
+          group.querySelectorAll('.tile').forEach(function(x){ if (EXKLUSIV.indexOf(x.dataset.v) > -1) x.classList.remove('picked'); });
+          arr = arr.filter(function(x){ return EXKLUSIV.indexOf(x) < 0; });
+          var pos = arr.indexOf(v);
+          if (pos > -1) { arr.splice(pos, 1); t.classList.remove('picked'); } else { arr.push(v); t.classList.add('picked'); }
         }
+        answers[q] = arr;
+        // „Etwas anderes“ fragt zwangsläufig nach Text – Cursor springt ins offene Feld
+        if (v === 'sonstiges' && t.classList.contains('picked')) freiFokus(q);
+        weiterPruefen(q);
       });
     });
-    /* Notiz je Frage: ein Klick, ein kurzes Feld. Bei „Etwas anderes“ springt es von selbst auf. */
+    /* Eigene Antwort: immer sichtbar, zählt als Antwort. */
+    function freiFokus(qid){
+      var feld = document.querySelector('[data-frei="' + qid + '"]');
+      if (feld) setTimeout(function(){ feld.focus({ preventScroll: true }); }, 60);
+    }
+    document.querySelectorAll('[data-frei]').forEach(function(f){
+      f.addEventListener('input', function(){
+        var v = f.value.trim(), q = f.dataset.frei;
+        if (v) answers[q + '_frei'] = v; else delete answers[q + '_frei'];
+        f.classList.toggle('hat-wert', !!v);
+        weiterPruefen(q);
+      });
+      f.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); f.blur(); } });
+    });
+    /* Notiz je Frage: ein Klick, ein kurzes Feld. */
     function notizOeffnen(qid, fokus){
       var wrap = document.querySelector('[data-notiz-wrap="' + qid + '"]'); if (!wrap) return;
       var feld = wrap.querySelector('.notiz-feld'), auf = wrap.querySelector('.notiz-auf');
@@ -273,61 +333,68 @@
       b.addEventListener('click', function(){ notizOeffnen(b.dataset.notizAuf, true); K.track('notiz_auf', { frage: b.dataset.notizAuf }); });
     });
     document.querySelectorAll('[data-notiz]').forEach(function(f){
-      f.addEventListener('input', function(){ var v = f.value.trim(); if (v) answers[f.dataset.notiz + '_notiz'] = v; else delete answers[f.dataset.notiz + '_notiz']; });
+      f.addEventListener('input', function(){
+        var v = f.value.trim(), q = f.dataset.notiz;
+        if (v) answers[q + '_notiz'] = v; else delete answers[q + '_notiz'];
+        weiterPruefen(q);
+      });
       f.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); f.blur(); } });
     });
 
     document.querySelectorAll('[data-next]').forEach(function(b){ b.addEventListener('click', function(){ var i = parseInt(b.dataset.next, 10); showSlide(i + 1 < FRAGEN.length ? 'f' + (i + 1) : 'kontakt'); }); });
-    // Nach dem Notieren bei Einfachauswahl: Enter oder Klick auf die Kachel bringt weiter – zusätzlich ein Weiter in der Leiste
-    document.querySelectorAll('.slide[data-slide^="f"]').forEach(function(sl, i){
-      var f = FRAGEN[i]; if (!f || f.typ !== 'single') return;
-      var nav = sl.querySelector('.nav'), hinweis = nav && nav.querySelector('.nav-hinweis');
-      var feld = sl.querySelector('.notiz-feld');
-      if (!feld || !hinweis) return;
-      feld.addEventListener('focus', function(){
-        if (nav.querySelector('[data-next]')) return;
-        var b = document.createElement('button'); b.type = 'button'; b.className = 'btn nav-weiter'; b.textContent = 'Weiter →';
-        b.addEventListener('click', function(){ showSlide(i + 1 < FRAGEN.length ? 'f' + (i + 1) : 'kontakt'); });
-        hinweis.replaceWith(b);
-      });
-    });
 
     document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ var t = b.dataset.back; if (t === 'last') t = 'f' + (FRAGEN.length - 1); showSlide(t); }); });
 
-    /* ── Kontakt ── */
+    /* ── Kontakt ──
+       Pflicht ist nur, was den Anruf am Montag möglich macht: Betrieb, Name, PLZ und mindestens
+       ein Kontaktweg. Telefon ODER E-Mail reicht (Freddy 17.09.) – vorher haben Vertriebler bei
+       fehlender Nummer Fantasiewerte eingetragen, nur um weiterzukommen. Unvollständige Daten
+       blockieren nichts mehr, sie werden im CRM auf der Aufgabe als „bitte prüfen“ vermerkt. */
+    var MAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function telZiffern(v){ return v.replace(/\D/g, '').length; }
     function kontaktOk(){
       var ok = true;
-      [['firma', function(v){ return v.length >= 2; }], ['vorname', function(v){ return v.length >= 2; }], ['nachname', function(v){ return v.length >= 2; }], ['email', function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }], ['phone', function(v){ return v.replace(/\D/g, '').length >= 6; }], ['plz', function(v){ return /^\d{5}$/.test(v); }]].forEach(function(p){
+      [['firma', function(v){ return v.length >= 2; }], ['vorname', function(v){ return v.length >= 2; }], ['nachname', function(v){ return v.length >= 2; }], ['plz', function(v){ return /^\d{5}$/.test(v); }]].forEach(function(p){
         var el = $(p[0]); var good = p[1](el.value.trim()); el.classList.toggle('is-error', !good); if (!good) ok = false;
       });
+      var mail = $('email').value.trim(), tel = $('phone').value.trim();
+      var mailOk = MAIL_RE.test(mail), telOk = telZiffern(tel) >= 6;
+      // Leer ist erlaubt, solange der andere Weg steht. Ausgefüllt und trotzdem falsch: markieren.
+      $('email').classList.toggle('is-error', !!mail && !mailOk);
+      $('phone').classList.toggle('is-error', !!tel && !telOk);
+      if (!mailOk && !telOk) { $('email').classList.add('is-error'); $('phone').classList.add('is-error'); ok = false; }
       return ok;
     }
     ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ $(id).addEventListener('input', function(){ $(id).classList.remove('is-error'); $('kontakt-error').classList.remove('active'); }); });
     $('kontakt-cta').addEventListener('click', function(){ if (!kontaktOk()) { $('kontakt-error').classList.add('active'); return; } showSlide('consent'); });
     $('consent').addEventListener('change', function(){ $('submit').disabled = !$('consent').checked; });
 
-    /* ── Antworten als Klartext (für Close-Notiz, unabhängig vom Fragekatalog) ── */
-    function labelsFor(ans){
-      var out = {};
+    /* ── Antworten als Klartext (für Close-Aufgabe und -Notiz, unabhängig vom Fragekatalog) ──
+       Eigene Antwort zählt wie eine angekreuzte Option, die Notiz hängt sichtbar hinten dran.
+       Fragen ohne jede Eingabe fallen raus. */
+    function auswertung(ans){
+      var labels = {};   // Frage → Antwort inkl. eigener Antwort und Notiz (Aufgabe + Notiz in Close)
+      var werte = {};    // Frage-ID → Antwort in Klartext (für die Close-Felder, z. B. Gesuchte Position)
       FRAGEN.forEach(function(f){
-        var v = ans[f.id]; if (v === undefined || v === null || (Array.isArray(v) && !v.length)) return;
+        var v = ans[f.id], frei = ans[f.id + '_frei'], notiz = ans[f.id + '_notiz'];
         var map = {}; f.optionen.forEach(function(o){ map[o[0]] = o[1]; });
-        var wert = Array.isArray(v) ? v.map(function(x){ return map[x] || x; }).join(', ') : (map[v] || v);
-        var notiz = ans[f.id + '_notiz'];                     // Freitext des Vertrieblers hängt an der Antwort
-        out[f.frage] = notiz ? wert + ' — Notiz: ' + notiz : wert;
+        var gewaehlt = Array.isArray(v) ? v : (v ? [v] : []);
+        var teile = gewaehlt.map(function(x){ return map[x] || x; });
+        if (frei) teile.push(frei);
+        if (teile.length) werte[f.id] = teile.join(', ');
+        if (!teile.length && !notiz) return;
+        var wert = teile.length ? teile.join(', ') : '(keine Auswahl)';
+        labels[f.frage] = notiz ? wert + ' — Notiz: ' + notiz : wert;
       });
-      // Notizen zu übersprungenen Fragen gehen sonst verloren
-      FRAGEN.forEach(function(f){
-        var notiz = ans[f.id + '_notiz'];
-        if (notiz && out[f.frage] === undefined) out[f.frage] = '(keine Auswahl) — Notiz: ' + notiz;
-      });
-      return out;
+      return { labels: labels, werte: werte };
     }
 
     /* ── Absenden ── */
-    function normPhone(raw){ var d = raw.replace(/\D/g, ''); if (d.indexOf('00') === 0) d = d.slice(2); else if (d.indexOf('0') === 0) d = '49' + d.slice(1); else if (d.indexOf('49') !== 0 && d.indexOf('43') !== 0 && d.indexOf('41') !== 0) d = '49' + d; return '+' + d; }
+    function normPhone(raw){ var d = (raw || '').replace(/\D/g, ''); if (!d) return null; if (d.indexOf('00') === 0) d = d.slice(2); else if (d.indexOf('0') === 0) d = '49' + d.slice(1); else if (d.indexOf('49') !== 0 && d.indexOf('43') !== 0 && d.indexOf('41') !== 0) d = '49' + d; return '+' + d; }
     function reset(){
       answers = {}; document.querySelectorAll('.tile').forEach(function(t){ t.classList.remove('picked'); }); document.querySelectorAll('[data-next]').forEach(function(b){ b.disabled = true; });
+      document.querySelectorAll('.frei-feld').forEach(function(el){ el.value = ''; el.classList.remove('hat-wert'); });
+      document.querySelectorAll('.notiz-feld').forEach(function(el){ el.value = ''; });
       ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ $(id).value = ''; }); $('consent').checked = false; $('submit').disabled = true; $('submit').textContent = 'Umfrage abschicken →';
       $('success').classList.remove('active'); $('standort-link').style.display = 'none'; $('queue-note').classList.remove('active'); $('again').style.display = 'none';
       showSlide('start');
@@ -339,9 +406,10 @@
        oder lag sie nach dem Absenden laenger in der Tasche, faengt sie wieder von vorn an. */
     window.addEventListener('pageshow', function(e){ if (e.persisted) reset(); else felderLeeren(); });
     function felderLeeren(){
-      ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ var el = $(id); if (el) el.value = ''; });
+      ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ var el = $(id); if (el) { el.value = ''; el.classList.remove('is-error'); } });
       var c = $('consent'); if (c) c.checked = false;
       document.querySelectorAll('.notiz-feld').forEach(function(el){ el.value = ''; });
+      document.querySelectorAll('.frei-feld').forEach(function(el){ el.value = ''; el.classList.remove('hat-wert'); });
     }
     felderLeeren();
     var getippt = false;
@@ -357,9 +425,12 @@
       if (!$('consent').checked) { $('submit-error').classList.add('active'); return; }
       $('submit-error').classList.remove('active');
       var btn = $('submit'); btn.disabled = true; btn.textContent = 'Wird gesendet …';
+      var telRoh = $('phone').value.trim(), mailRoh = $('email').value.trim();
+      var aus = auswertung(answers);
       var body = {
-        token: token, v: vslug, src: K.params.src || null, session_id: K.sessionId, env: K.env, page_url: location.href, fragen_version: FRAGEN_VERSION, antworten: answers, antworten_labels: labelsFor(answers), started_at: startedAt,
-        firma: $('firma').value.trim(), vorname: $('vorname').value.trim(), nachname: $('nachname').value.trim(), email: $('email').value.trim(), telefon: normPhone($('phone').value), plz: $('plz').value.trim(),
+        token: token, v: vslug, src: K.params.src || null, session_id: K.sessionId, env: K.env, page_url: location.href, fragen_version: FRAGEN_VERSION, antworten: answers, antworten_labels: aus.labels, antworten_werte: aus.werte, started_at: startedAt,
+        firma: $('firma').value.trim(), vorname: $('vorname').value.trim(), nachname: $('nachname').value.trim(),
+        email: mailRoh || null, telefon: normPhone(telRoh), telefon_roh: telRoh || null, plz: $('plz').value.trim(),
         consent: true, consent_text: CONSENT_TEXT, consent_version: CONSENT_VERSION, client_submitted_at: new Date().toISOString(), client_id: K.uuid()
       };
       function done(j){
