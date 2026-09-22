@@ -101,6 +101,10 @@
 
         <div class="form-card" id="card">
           <div class="offline-note" id="offline-note">Keine Verbindung – Ihre Antworten werden zwischengespeichert und automatisch nachgesendet.</div>
+          <!-- Was im Puffer liegt, sieht sonst niemand. In der Messehalle ohne Netz landen Abgaben
+               hier und werden beim nächsten Seitenaufruf von selbst nachgesendet – bis dahin weiß
+               aber keiner, dass da noch etwas liegt. Deshalb sichtbar, mit Knopf zum Nachhelfen. -->
+          <div class="offline-note" id="queue-warte"></div>
           <div class="progress" id="progress" style="display:none;">
             <div class="progress-top"><span id="progress-label">Frage 1 von 10</span><span id="progress-time">≈ 2 Min.</span></div>
             <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -397,6 +401,7 @@
       document.querySelectorAll('.notiz-feld').forEach(function(el){ el.value = ''; });
       ['firma', 'vorname', 'nachname', 'email', 'phone', 'plz'].forEach(function(id){ $(id).value = ''; }); $('consent').checked = false; $('submit').disabled = true; $('submit').textContent = 'Umfrage abschicken →';
       $('success').classList.remove('active'); $('standort-link').style.display = 'none'; $('queue-note').classList.remove('active'); $('again').style.display = 'none';
+      wartendeZeigen();
       showSlide('start');
     }
     $('again').addEventListener('click', reset);
@@ -444,10 +449,29 @@
       if (K.env === 'local') { console.info('[Kompass local] Umfrage (nicht gesendet):', body); setTimeout(function(){ done({ standort_url: K.root + 'standort/?k=test' }); }, 600); return; }
       K.post('/umfrage', body).then(done).catch(function(err){
         console.warn('Umfrage-Versand fehlgeschlagen, wird gepuffert:', err);
-        K.enqueue('/umfrage', body); $('queue-note').classList.add('active'); done(null);
+        K.enqueue('/umfrage', body); $('queue-note').classList.add('active'); wartendeZeigen(); done(null);
       });
     });
-    window.addEventListener('online', function(){ K.flushQueue(); });
+    /* ── Nicht übertragene Abgaben ──
+       kompass.js puffert jede fehlgeschlagene Abgabe im localStorage und sendet sie beim
+       nächsten Seitenaufruf nach. Das lief bisher unsichtbar: Am Stand hat niemand gemerkt,
+       dass auf dem Handy noch Kontakte liegen. Jetzt steht es oben in der Karte, mit Knopf. */
+    function wartendeZeigen(){
+      var el = $('queue-warte'); if (!el || !K.queueLength) return;
+      var n = K.queueLength();
+      if (!n) { el.classList.remove('active'); el.innerHTML = ''; return; }
+      el.classList.add('active');
+      el.innerHTML = '<b>' + n + ' Abgabe' + (n === 1 ? '' : 'n') + ' noch nicht übertragen.</b> Gespeichert auf diesem Gerät, geht beim nächsten Netz von selbst raus. ' +
+        '<button type="button" class="btn-link" id="queue-senden" style="display:inline;padding:0;">Jetzt senden</button>';
+      $('queue-senden').addEventListener('click', function(){
+        var b = $('queue-senden'); b.disabled = true; b.textContent = 'Wird gesendet …';
+        K.flushQueue().then(function(){ wartendeZeigen(); }).catch(function(){ wartendeZeigen(); });
+      });
+    }
+    // Nach dem automatischen Versuch aus kompass.js (läuft bei DOMContentLoaded) nachsehen.
+    setTimeout(wartendeZeigen, 2500);
+    window.addEventListener('load', function(){ setTimeout(wartendeZeigen, 2500); });
+    window.addEventListener('online', function(){ K.flushQueue().then(wartendeZeigen).catch(wartendeZeigen); });
   })();
   </script>
 </body>
